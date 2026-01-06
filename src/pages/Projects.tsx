@@ -24,11 +24,11 @@ const Projects = () => {
                 
                 {/* Related Publications */}
                 {relatedPubs.length > 0 && (
-                  <div className="mt-6 pl-0 sm:pl-[calc(12rem+1.5rem)]">
-                    <h4 className="font-semibold text-foreground mb-3">Related publications</h4>
-                    <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+                  <div className="mt-6 w-full">
+                    <h4 className="font-semibold text-foreground mb-3 w-full">Related publications</h4>
+                    <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground w-full">
                       {relatedPubs.map((pub) => (
-                        <li key={pub!.id}>
+                        <li key={pub!.id} className="w-full">
                           {pub!.authors.join(", ")} ({pub!.year}). {pub!.title}. {pub!.venue}.
                         </li>
                       ))}
