@@ -76,7 +76,7 @@ This project explores...
 
 ## Key Findings
 
-- Users demonstrate complex awareness of AI mediation,
+- Users demonstrate complex awareness of AI mediation`,
       relatedPublications: ["p1"]
     },
     {
