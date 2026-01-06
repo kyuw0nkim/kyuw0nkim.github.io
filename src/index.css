@@ -2,95 +2,112 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Academic Research Website Design System */
 @layer base {
   :root {
+    /* Core Colors - Light Mode */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 220 20% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 20% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 20% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Sky Blue Accent - Primary */
+    --primary: 199 89% 48%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Light Gray - Secondary */
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 220 20% 30%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted/Subtle */
+    --muted: 210 20% 96%;
+    --muted-foreground: 220 10% 50%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent */
+    --accent: 199 89% 95%;
+    --accent-foreground: 199 89% 40%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Border & Input */
+    --border: 220 13% 90%;
+    --input: 220 13% 90%;
+    --ring: 199 89% 48%;
 
-    --radius: 0.5rem;
+    --radius: 0.375rem;
 
+    /* Custom Tokens */
+    --nav-height: 60px;
+    --profile-width: 280px;
+    --content-max-width: 800px;
+    --year-color: 199 89% 48%;
+    --link-color: 199 89% 40%;
+    --link-hover-color: 199 89% 30%;
+
+    /* Typography */
+    --font-heading: 'Noto Serif KR', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Sidebar */
     --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-foreground: 220 20% 30%;
+    --sidebar-primary: 199 89% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 96%;
+    --sidebar-accent-foreground: 220 20% 30%;
+    --sidebar-border: 220 13% 90%;
+    --sidebar-ring: 199 89% 48%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 220 20% 10%;
+    --foreground: 210 20% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 20% 13%;
+    --card-foreground: 210 20% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 20% 13%;
+    --popover-foreground: 210 20% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 199 89% 55%;
+    --primary-foreground: 220 20% 10%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 220 20% 18%;
+    --secondary-foreground: 210 20% 90%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 220 20% 18%;
+    --muted-foreground: 210 15% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 199 50% 20%;
+    --accent-foreground: 199 89% 70%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 199 89% 55%;
+
+    --year-color: 199 89% 60%;
+    --link-color: 199 89% 60%;
+    --link-hover-color: 199 89% 70%;
+
+    --sidebar-background: 220 20% 12%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 199 89% 55%;
+    --sidebar-primary-foreground: 220 20% 10%;
+    --sidebar-accent: 220 20% 18%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 220 20% 20%;
+    --sidebar-ring: 199 89% 55%;
   }
 }
 
@@ -99,7 +116,106 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Year Badge */
+  .year-badge {
+    @apply text-3xl font-bold;
+    color: hsl(var(--year-color));
+    font-family: var(--font-heading);
+  }
+
+  /* External Link Button */
+  .link-btn {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-md border transition-colors;
+    @apply bg-secondary text-secondary-foreground border-border hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .link-btn-primary {
+    @apply bg-primary text-primary-foreground border-primary hover:bg-primary/90;
+  }
+
+  /* Tag Pill */
+  .tag-pill {
+    @apply text-xs text-muted-foreground;
+  }
+
+  /* Award Badge */
+  .award-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full border-2;
+    @apply border-primary text-primary bg-accent;
+  }
+
+  /* Profile Social Icon */
+  .social-icon {
+    @apply w-6 h-6 text-primary hover:text-primary/80 transition-colors cursor-pointer;
+  }
+
+  /* Nav Link */
+  .nav-link {
+    @apply text-sm font-medium text-muted-foreground hover:text-foreground transition-colors;
+  }
+
+  .nav-link-active {
+    @apply text-primary;
+  }
+
+  /* Content Section */
+  .content-section {
+    @apply mb-12;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold mb-6;
+    font-family: var(--font-heading);
+  }
+
+  /* Publication Card */
+  .pub-card {
+    @apply flex gap-6 py-4;
+  }
+
+  .pub-thumbnail {
+    @apply w-48 h-32 bg-muted rounded-md flex-shrink-0 flex items-center justify-center text-muted-foreground;
+  }
+
+  /* Scroll Progress Indicator */
+  .scroll-indicator {
+    @apply fixed top-[var(--nav-height)] left-0 h-0.5 bg-primary z-50;
+  }
+}
+
+@layer utilities {
+  .container-academic {
+    @apply max-w-6xl mx-auto px-6;
+  }
+
+  .sticky-profile {
+    @apply sticky;
+    top: calc(var(--nav-height) + 2rem);
+  }
+
+  .text-link {
+    color: hsl(var(--link-color));
+  }
+
+  .text-link:hover {
+    color: hsl(var(--link-hover-color));
+    text-decoration: underline;
   }
 }
