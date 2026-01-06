@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Pretendard font loaded via index.html */
 
 /* Academic Research Website Design System */
 @layer base {
@@ -53,8 +53,8 @@
     --link-hover-color: 199 89% 30%;
 
     /* Typography */
-    --font-heading: 'Noto Serif KR', Georgia, serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
 
     /* Sidebar */
     --sidebar-background: 0 0% 98%;
@@ -206,8 +206,9 @@
   }
 
   .sticky-profile {
-    @apply sticky;
+    @apply sticky h-fit;
     top: calc(var(--nav-height) + 2rem);
+    max-height: calc(100vh - var(--nav-height) - 4rem);
   }
 
   .text-link {
