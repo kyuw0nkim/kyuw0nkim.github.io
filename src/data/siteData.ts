@@ -9,22 +9,22 @@ export const siteData: SiteData = {
   publications: [
     {
       id: "p1",
-      title: "Can Fans Build Parasocial Relationships through Idols' Simulated Voice Messages?: A Study of AI Private Call Users' Perceptions, Cognitions, and Behaviors",
-      authors: ["Eun Jeong Kang", "Haesoo Kim", "Hyunwoo Kim", "Susan R. Fussell", "Juho Kim"],
+      title: "Paper title",
+      authors: ["Kyuwon Kim", "Hyo-Jeong So"],
       year: 2026,
       venue: "CSCW 2026",
       type: "Conference",
       topics: ["Human-AI interaction"],
       tags: ["Human-AI interaction", "Social"],
-      links: { pdf: "#", acmdl: "#", doi: "https://doi.org/10.1145/3746058.3758410" }
+      links: { pdf: "#", acmdl: "#", doi: "https://doi.org" }
     },
     {
       id: "p2",
-      title: "CUPID: Evaluating Personalized and Contextualized Alignment of LLMs from Interactions",
-      authors: ["Tae Soo Kim", "Yoonjoo Lee", "Yoonah Park", "Jiho Kim", "Young-Ho Kim", "Juho Kim"],
+      title: "Paper title",
+      authors: ["Kyuwon Kim", "Hyo-Jeong So"],
       year: 2026,
-      venue: "COLM 2026",
-      type: "Workshop",
+      venue: "CSCW 2026",
+      type: "Conference",
       topics: ["Human-AI interaction"],
       tags: ["Human-AI interaction"],
       links: { website: "#", arxiv: "#" }
@@ -55,33 +55,28 @@ export const siteData: SiteData = {
   projects: [
     {
       id: "pr1",
-      title: "Can Fans Build Parasocial Relationships through Idols' Simulated Voice Messages?",
+      title: "Project Title",
       year: 2026,
       startDate: "2026-09-01",
       endDate: "2027-12-31",
       role: "Student Researcher",
-      summary: "Investigating how AI-generated voice messages affect fan-idol parasocial relationships.",
+      summary: "Project summary",
       description: `## Overview
 
-This project explores the psychological and social dynamics of parasocial relationships formed through AI-simulated voice messages from K-pop idols.
+This project explores...
 
 ## Research Questions
 
-1. How do fans perceive AI-generated voice messages compared to authentic communications?
-2. What factors influence the formation of parasocial bonds through simulated interactions?
-3. What are the ethical implications of AI-mediated celebrity relationships?
+1. A
+2. B
 
 ## Methodology
 
 - Mixed-methods approach combining surveys and interviews
-- Analysis of user behavior patterns on AI private call platforms
-- Longitudinal study tracking relationship development over time
 
 ## Key Findings
 
-- Users demonstrate complex awareness of AI mediation
-- Emotional attachment develops despite acknowledged artificiality
-- Platform design significantly influences relationship dynamics`,
+- Users demonstrate complex awareness of AI mediation,
       relatedPublications: ["p1"]
     },
     {
