@@ -7,6 +7,19 @@ interface MainLayoutProps {
   showProfile?: boolean;
 }
 
+function Footer() {
+  return (
+    <footer className="border-t border-border py-8 mt-auto">
+      <div className="container-academic">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} Kyuwon Kim. All rights reserved.</p>
+          <p>Built with React & Tailwind CSS</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export function MainLayout({ children, showProfile = false }: MainLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
@@ -24,12 +37,14 @@ export function MainLayout({ children, showProfile = false }: MainLayoutProps) {
           </div>
         ) : (
           <div className="container-academic py-12">
-            <div className="max-w-[900px] mx-auto">
+            <div className="max-w-[800px] mx-auto">
               {children}
             </div>
           </div>
         )}
       </main>
+
+      <Footer />
     </div>
   );
 }
