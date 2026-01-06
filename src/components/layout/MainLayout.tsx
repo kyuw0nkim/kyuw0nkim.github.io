@@ -17,7 +17,7 @@ export function MainLayout({ children, showProfile = false }: MainLayoutProps) {
           <div className="container-academic py-12">
             <div className="flex flex-col lg:flex-row gap-12">
               <ProfileSidebar />
-              <div className="flex-1 min-w-0 max-w-[800px]">
+              <div className="flex-1 min-w-0 w-full lg:max-w-[800px]">
                 {children}
               </div>
             </div>
