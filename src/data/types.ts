@@ -14,6 +14,7 @@ export interface Publication {
     website?: string;
     doi?: string;
   };
+  award?: string;
   thumbnail?: string;
 }
 

@@ -161,6 +161,11 @@
     @apply border-primary text-primary bg-accent;
   }
 
+  .award-badge-highlight {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold;
+    @apply border-yellow-300 bg-yellow-100 text-yellow-800;
+  }
+
   /* Profile Social Icon */
   .social-icon {
     @apply w-6 h-6 text-primary hover:text-primary/80 transition-colors cursor-pointer;
