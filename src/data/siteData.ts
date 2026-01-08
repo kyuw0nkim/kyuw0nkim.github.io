@@ -2,10 +2,10 @@ import { SiteData } from "./types";
 
 export const siteData: SiteData = {
   news: [
-    { id: "n1", date: "2024-11-29", title: "Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉" },
-    { id: "n2", date: "2025-03-02", title: "Just started my Master's journey in the IDL lab, at Ewha Womans University🚀" },
+    { id: "n4", date: "2026-12-01", title: "Our research article is accepted as full paper in LAK 2026! Full paper will be available soon in arXiv." },
     { id: "n3", date: "2025-10-01", title: "Presented the poster Your Thoughtful Opponent at UIST 2025." },
-    { id: "n4", date: "2026-12-01", title: "Our research article is accepted as full paper in LAK 2026! Full paper will be available soon in arXiv." }
+    { id: "n2", date: "2025-03-02", title: "Just started my Master's journey in the IDL lab, at Ewha Womans University🚀" },
+    { id: "n1", date: "2024-11-29", title: "Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉" }
   ],
   publications: [
     {
