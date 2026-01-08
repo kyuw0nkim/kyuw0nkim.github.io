@@ -15,8 +15,8 @@ export const siteData: SiteData = {
       year: 2025,
       venue: "교육정보미디어연구, v.31, no.5, 2033-2060",
       type: "Journal",
-      topics: ["AI Ethics", "Education"],
-      tags: ["AI Ethics", "Education"],
+      topics: ["AIED", "Game-based Learning"],
+      tags: ["AIED", "Game-based Learning"],
       links: { doi: "http://dx.doi.org/10.15833/KAFEIAM.31.5.2033" }
     },
     {
@@ -26,8 +26,8 @@ export const siteData: SiteData = {
       year: 2025,
       venue: "UIST 2025",
       type: "Conference",
-      topics: ["Learning", "AI in Education"],
-      tags: ["Learning", "AI"],
+      topics: ["Conversational Agent", "AIED"],
+      tags: ["Conversational Agent", "AIED"],
       links: { doi: "https://doi.org/10.1145/3746058.3758410" }
     },
     {
@@ -37,8 +37,8 @@ export const siteData: SiteData = {
       year: 2025,
       venue: "AIED 2025",
       type: "Conference",
-      topics: ["AI Ethics", "Learning"],
-      tags: ["AI Ethics", "Game"],
+      topics: ["AIED", "Game-based Learning"],
+      tags: ["AIED", "Game-based Learning"],
       links: { doi: "https://doi.org/10.1007/978-3-031-98417-4_31" }
     },
     {
@@ -48,8 +48,8 @@ export const siteData: SiteData = {
       year: 2025,
       venue: "IDC 2025",
       type: "Conference",
-      topics: ["Literacy", "Accessibility"],
-      tags: ["AI", "Accessibility"],
+      topics: ["AIED", "Universal Design for Learning"],
+      tags: ["AIED", "Universal Design for Learning"],
       links: { doi: "https://doi.org/10.1145/3713043.3731489" }
     },
     {
@@ -59,8 +59,8 @@ export const siteData: SiteData = {
       year: 2025,
       venue: "ICLS 2025",
       type: "Conference",
-      topics: ["AI Ethics", "Learning"],
-      tags: ["AI Ethics", "Game"],
+      topics: ["AIED", "Game-based Learning"],
+      tags: ["AIED", "Game-based Learning"],
       links: { doi: "https://doi.org/10.22318/icls2025.945127" }
     },
     {
@@ -70,8 +70,8 @@ export const siteData: SiteData = {
       year: 2025,
       venue: "2025 Korean Society for Educational Technology Spring Conference",
       type: "Conference",
-      topics: ["EdTech", "Learning Sciences"],
-      tags: ["EdTech", "Research"],
+      topics: ["EdTech", "Learning Sciences", "Review"],
+      tags: ["EdTech", "Learning Sciences", "Review"],
       links: { website: "#" }
     },
     {
@@ -81,8 +81,8 @@ export const siteData: SiteData = {
       year: 2024,
       venue: "교과교육학연구, v.28 n.5, 391–402",
       type: "Journal",
-      topics: ["AI in Education", "EdTech"],
-      tags: ["AI", "Review"],
+      topics: ["AIED", "Review"],
+      tags: ["AIED", "Review"],
       links: { website: "#" }
     },
     {
@@ -92,8 +92,8 @@ export const siteData: SiteData = {
       year: 2024,
       venue: "ICCE 2024",
       type: "Conference",
-      topics: ["GenAI", "Writing"],
-      tags: ["GenAI", "Education"],
+      topics: ["AIED", "GenAI"],
+      tags: ["AIED", "GenAI"],
       links: { website: "#" },
       award: "Best Poster Design Award"
     },
@@ -104,8 +104,8 @@ export const siteData: SiteData = {
       year: 2024,
       venue: "2024 한국교육공학회 춘계학술대회",
       type: "Conference",
-      topics: ["AI in Education", "EdTech"],
-      tags: ["AI", "Trends"],
+      topics: ["AIED", "Review"],
+      tags: ["AIED", "Review"],
       links: { website: "#" },
       award: "장려상"
     },
@@ -116,8 +116,8 @@ export const siteData: SiteData = {
       year: 2022,
       venue: "교육정보미디어연구, v.28 n.1, 133–160",
       type: "Journal",
-      topics: ["Learning", "Education"],
-      tags: ["Learning", "Design"],
+      topics: ["Learning Analytics"],
+      tags: ["Learning Analytics"],
       links: { website: "#" }
     }
   ],
