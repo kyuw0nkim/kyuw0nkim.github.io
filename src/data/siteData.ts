@@ -70,8 +70,8 @@ export const siteData: SiteData = {
       year: 2025,
       venue: "2025 Korean Society for Educational Technology Spring Conference",
       type: "Conference",
-      topics: [""],
-      tags: [""],
+      topics: ["Review"],
+      tags: ["Review"],
       links: { doi: "https://doi.org/10.22318/icls2025.945127" }
     },
     {
