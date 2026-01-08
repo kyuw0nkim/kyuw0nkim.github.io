@@ -8,6 +8,19 @@ interface PublicationCardProps {
 }
 
 export function PublicationCard({ publication, showThumbnail = true }: PublicationCardProps) {
+  const renderAuthors = () =>
+    publication.authors.map((author, index) => {
+      const isHighlighted = author === "Kyuwon Kim" || author === "김규원";
+      const content = isHighlighted ? <strong>{author}</strong> : author;
+      const separator = index < publication.authors.length - 1 ? ", " : "";
+      return (
+        <span key={`${author}-${index}`}>
+          {content}
+          {separator}
+        </span>
+      );
+    });
+
   return (
     <div className="pub-card border-b border-border last:border-b-0">
       {showThumbnail && (
@@ -26,9 +39,7 @@ export function PublicationCard({ publication, showThumbnail = true }: Publicati
         <div className="text-sm">
           <span className="text-muted-foreground italic">{publication.venue}</span>
           <span className="mx-2 text-muted-foreground">·</span>
-          <span className="text-muted-foreground">
-            {publication.authors.join(", ")}
-          </span>
+          <span className="text-muted-foreground">{renderAuthors()}</span>
         </div>
         
         {/* Links and Tags */}
