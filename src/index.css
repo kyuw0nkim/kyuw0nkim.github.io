@@ -150,9 +150,10 @@
     @apply bg-primary text-primary-foreground border-primary hover:bg-primary/90;
   }
 
-  /* Tag Pill */
+  /* Tag Pill - subtle style matching link buttons */
   .tag-pill {
-    @apply text-xs text-muted-foreground;
+    @apply inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md;
+    @apply bg-muted text-muted-foreground;
   }
 
   /* Award Badge */
@@ -162,8 +163,12 @@
   }
 
   .award-badge-highlight {
-    @apply inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold;
-    @apply border-yellow-300 bg-yellow-100 text-yellow-800;
+    @apply inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold rounded-md border;
+    @apply bg-amber-50 text-amber-700 border-amber-200;
+  }
+
+  .dark .award-badge-highlight {
+    @apply bg-amber-900/30 text-amber-300 border-amber-700;
   }
 
   /* Profile Social Icon */

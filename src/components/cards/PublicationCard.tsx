@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ExternalLink, FileText, Globe, BookOpen } from "lucide-react";
+import { ExternalLink, FileText, Globe, BookOpen, Award } from "lucide-react";
 import { Publication } from "@/data/types";
 
 interface PublicationCardProps {
@@ -76,7 +76,8 @@ export function PublicationCard({ publication, showThumbnail = true }: Publicati
           )}
           {publication.award && (
             <span className="award-badge-highlight">
-              🏆 {publication.award}
+              <Award className="w-3 h-3" />
+              {publication.award}
             </span>
           )}
           

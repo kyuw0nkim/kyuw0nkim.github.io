@@ -2,9 +2,10 @@ import { SiteData } from "./types";
 
 export const siteData: SiteData = {
   news: [
-    { id: "n1", date: "2026-09-01", title: "First News" },
-    { id: "n2", date: "2026-09-10", title: "Submitted a paper to CHI 2027" },
-    { id: "n3", date: "2026-10-02", title: "Invited talk at HCI seminar" }
+    { id: "n4", date: "2026-12-01", title: "Our research article is accepted as full paper in LAK 2026! Full paper will be available soon in arXiv." },
+    { id: "n3", date: "2025-10-01", title: "Presented the poster Your Thoughtful Opponent at UIST 2025." },
+    { id: "n2", date: "2025-03-02", title: "Just started my Master's journey in the IDL lab, at Ewha Womans University🚀" },
+    { id: "n1", date: "2024-11-29", title: "Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉" }
   ],
   publications: [
     {
@@ -123,33 +124,28 @@ export const siteData: SiteData = {
   projects: [
     {
       id: "pr1",
-      title: "Can Fans Build Parasocial Relationships through Idols' Simulated Voice Messages?",
+      title: "Project Title",
       year: 2026,
       startDate: "2026-09-01",
       endDate: "2027-12-31",
       role: "Student Researcher",
-      summary: "Investigating how AI-generated voice messages affect fan-idol parasocial relationships.",
+      summary: "Project summary",
       description: `## Overview
 
-This project explores the psychological and social dynamics of parasocial relationships formed through AI-simulated voice messages from K-pop idols.
+This project explores...
 
 ## Research Questions
 
-1. How do fans perceive AI-generated voice messages compared to authentic communications?
-2. What factors influence the formation of parasocial bonds through simulated interactions?
-3. What are the ethical implications of AI-mediated celebrity relationships?
+1. A
+2. B
 
 ## Methodology
 
 - Mixed-methods approach combining surveys and interviews
-- Analysis of user behavior patterns on AI private call platforms
-- Longitudinal study tracking relationship development over time
 
 ## Key Findings
 
-- Users demonstrate complex awareness of AI mediation
-- Emotional attachment develops despite acknowledged artificiality
-- Platform design significantly influences relationship dynamics`,
+- Users demonstrate complex awareness of AI mediation`,
       relatedPublications: ["p1"]
     },
     {
