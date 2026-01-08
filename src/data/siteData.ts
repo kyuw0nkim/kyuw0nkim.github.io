@@ -71,7 +71,8 @@ export const siteData: SiteData = {
       venue: "2025 Korean Society for Educational Technology Spring Conference",
       type: "Conference",
       topics: [""],
-      tags: [""]
+      tags: [""],
+      links: { doi: "https://doi.org/10.22318/icls2025.945127" }
     },
     {
       id: "p2024-j1",
