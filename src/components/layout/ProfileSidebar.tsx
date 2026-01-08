@@ -36,16 +36,13 @@ export function ProfileSidebar() {
 
         {/* Social Icons */}
         <div className="flex justify-center lg:justify-start gap-4">
-          <a href="mailto:kyuwon@example.com" aria-label="Email" className="social-icon">
+          <a href="mailto:kyuwonkim95@ewha.ac.kr" aria-label="Email" className="social-icon">
             <Mail className="w-6 h-6" />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="social-icon">
-            <TwitterIcon className="w-6 h-6" />
-          </a>
-          <a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" className="social-icon">
+          <a href="https://scholar.google.com/citations?user=oYoOlXgAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" className="social-icon">
             <GoogleScholarIcon className="w-6 h-6" />
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-icon">
+          <a href="https://github.com/kyuw0nkim" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-icon">
             <Github className="w-6 h-6" />
           </a>
         </div>
