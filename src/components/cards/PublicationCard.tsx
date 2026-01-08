@@ -57,6 +57,17 @@ export function PublicationCard({ publication, showThumbnail = true }: Publicati
               arXiv
             </a>
           )}
+          {publication.links.doi && (
+            <a href={publication.links.doi} target="_blank" rel="noopener noreferrer" className="link-btn">
+              <ExternalLink className="w-3 h-3" />
+              DOI
+            </a>
+          )}
+          {publication.award && (
+            <span className="award-badge-highlight">
+              🏆 {publication.award}
+            </span>
+          )}
           
           {/* Tags */}
           {publication.tags.map((tag) => (
