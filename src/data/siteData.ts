@@ -15,8 +15,8 @@ export const siteData: SiteData = {
       year: 2025,
       venue: "교육정보미디어연구, v.31, no.5, 2033-2060",
       type: "Journal",
-      topics: ["AIED", "Game-based Learning"],
-      tags: ["AIED", "Game-based Learning"],
+      topics: ["AIED", "Game-based Learning", "Learning Analytics"],
+      tags: ["AIED", "Game-based Learning", "Learning Analytics"],
       links: { doi: "http://dx.doi.org/10.15833/KAFEIAM.31.5.2033" }
     },
     {
@@ -48,8 +48,8 @@ export const siteData: SiteData = {
       year: 2025,
       venue: "IDC 2025",
       type: "Conference",
-      topics: ["AIED", "Universal Design for Learning"],
-      tags: ["AIED", "Universal Design for Learning"],
+      topics: ["AIED"],
+      tags: ["AIED"],
       links: { doi: "https://doi.org/10.1145/3713043.3731489" }
     },
     {
@@ -70,8 +70,8 @@ export const siteData: SiteData = {
       year: 2025,
       venue: "2025 Korean Society for Educational Technology Spring Conference",
       type: "Conference",
-      topics: ["EdTech", "Learning Sciences", "Review"],
-      tags: ["EdTech", "Learning Sciences", "Review"],
+      topics: ["EdTech", "Learning Sciences"],
+      tags: ["EdTech", "Learning Sciences"],
       links: { website: "#" }
     },
     {
@@ -81,8 +81,8 @@ export const siteData: SiteData = {
       year: 2024,
       venue: "교과교육학연구, v.28 n.5, 391–402",
       type: "Journal",
-      topics: ["AIED", "Review"],
-      tags: ["AIED", "Review"],
+      topics: ["AIED"],
+      tags: ["AIED"],
       links: { website: "#" }
     },
     {
@@ -92,8 +92,8 @@ export const siteData: SiteData = {
       year: 2024,
       venue: "ICCE 2024",
       type: "Conference",
-      topics: ["AIED", "GenAI"],
-      tags: ["AIED", "GenAI"],
+      topics: ["AIED"],
+      tags: ["AIED"],
       links: { website: "#" },
       award: "Best Poster Design Award"
     },
@@ -104,8 +104,8 @@ export const siteData: SiteData = {
       year: 2024,
       venue: "2024 한국교육공학회 춘계학술대회",
       type: "Conference",
-      topics: ["AIED", "Review"],
-      tags: ["AIED", "Review"],
+      topics: ["AIED"],
+      tags: ["AIED"],
       links: { website: "#" },
       award: "장려상"
     },
