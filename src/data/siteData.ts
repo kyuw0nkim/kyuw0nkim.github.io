@@ -8,48 +8,116 @@ export const siteData: SiteData = {
   ],
   publications: [
     {
-      id: "p1",
-      title: "Can Fans Build Parasocial Relationships through Idols' Simulated Voice Messages?: A Study of AI Private Call Users' Perceptions, Cognitions, and Behaviors",
-      authors: ["Eun Jeong Kang", "Haesoo Kim", "Hyunwoo Kim", "Susan R. Fussell", "Juho Kim"],
-      year: 2026,
-      venue: "CSCW 2026",
-      type: "Conference",
-      topics: ["Human-AI interaction"],
-      tags: ["Human-AI interaction", "Social"],
-      links: { pdf: "#", acmdl: "#", doi: "https://doi.org/10.1145/3746058.3758410" }
+      id: "p2025-j1",
+      title: "AI 윤리교육을 위한 대화형 게임 설계: 집단 의사결정을 통한 윤리 담화 지원",
+      authors: ["김성은", "김규원", "이진희", "소효정"],
+      year: 2025,
+      venue: "교육정보미디어연구, v.31, no.5, 2033-2060",
+      type: "Journal",
+      topics: ["AI Ethics", "Education"],
+      tags: ["AI Ethics", "Education"],
+      links: { doi: "http://dx.doi.org/10.15833/KAFEIAM.31.5.2033" }
     },
     {
-      id: "p2",
-      title: "CUPID: Evaluating Personalized and Contextualized Alignment of LLMs from Interactions",
-      authors: ["Tae Soo Kim", "Yoonjoo Lee", "Yoonah Park", "Jiho Kim", "Young-Ho Kim", "Juho Kim"],
-      year: 2026,
-      venue: "COLM 2026",
-      type: "Workshop",
-      topics: ["Human-AI interaction"],
-      tags: ["Human-AI interaction"],
-      links: { website: "#", arxiv: "#" }
-    },
-    {
-      id: "p3",
+      id: "p2025-c1",
       title: "Your Thoughtful Opponent: Embracing Cognitive Conflict with Peer Agent",
       authors: ["Kyuwon Kim", "Jaeryeong Hwang", "Younseo Lee", "Jeanhee Lee", "Sung-Eun Kim", "Hyo-Jeong So"],
       year: 2025,
       venue: "UIST 2025",
       type: "Conference",
-      topics: ["Human-AI interaction", "Learning"],
-      tags: ["Human-AI interaction", "Learning"],
-      links: { pdf: "#", acmdl: "#", doi: "https://doi.org/10.1145/3746058.3758410" }
+      topics: ["Learning", "AI in Education"],
+      tags: ["Learning", "AI"],
+      links: { doi: "https://doi.org/10.1145/3746058.3758410" }
     },
     {
-      id: "p4",
-      title: "Designing a dialogue-game for AI ethics education: Supporting ethical discourse through collective decision-making",
-      authors: ["Kim, S. E.", "Kim, K.", "Lee, J.", "So, H. J."],
+      id: "p2025-c2",
+      title: "Dilemmas in AI Ethics: A Digital Game for Moral Reasoning and Collective Decision-Making",
+      authors: ["Sung-Eun Kim", "Kyuwon Kim", "Jean Hee Lee", "Yeji Ko", "Yue Wang", "Hyo-Jeong So"],
       year: 2025,
-      venue: "Journal of Korean Association for Educational Information and Media",
+      venue: "AIED 2025",
+      type: "Conference",
+      topics: ["AI Ethics", "Learning"],
+      tags: ["AI Ethics", "Game"],
+      links: { doi: "https://doi.org/10.1007/978-3-031-98417-4_31" }
+    },
+    {
+      id: "p2025-c3",
+      title: "Bridging Literacy with AI: AI-Integrated Digital Textbook for Deaf and Hard-of-Hearing Students",
+      authors: ["Ga Young Lee", "Seonhee Na", "Kyuwon Kim", "Hyo-Jeong So"],
+      year: 2025,
+      venue: "IDC 2025",
+      type: "Conference",
+      topics: ["Literacy", "Accessibility"],
+      tags: ["AI", "Accessibility"],
+      links: { doi: "https://doi.org/10.1145/3713043.3731489" }
+    },
+    {
+      id: "p2025-c4",
+      title: "FLIP: Tabletop Role-Play Game for AI Ethics Education through Cognitive Dissonance",
+      authors: ["Yue Wang", "Yeji Ko", "Kyuwon Kim", "Sung-Eun Kim", "Hyo-Jeong So"],
+      year: 2025,
+      venue: "ICLS 2025",
+      type: "Conference",
+      topics: ["AI Ethics", "Learning"],
+      tags: ["AI Ethics", "Game"],
+      links: { doi: "https://doi.org/10.22318/icls2025.945127" }
+    },
+    {
+      id: "p2025-c5",
+      title: "Tracing the Boundaries: A Structural Topic Modeling Analysis of Research Themes in Educational Technology and the Learning Sciences",
+      authors: ["Chohui Lee", "Nayeon Hong", "Soyeon Mun", "Kyuwon Kim", "Il-Hyun Jo"],
+      year: 2025,
+      venue: "2025 Korean Society for Educational Technology Spring Conference",
+      type: "Conference",
+      topics: ["EdTech", "Learning Sciences"],
+      tags: ["EdTech", "Research"],
+      links: { website: "#" }
+    },
+    {
+      id: "p2024-j1",
+      title: "A Systematic Literature Review on AI Integration in Korean Schools: Focusing on Recent Research Trends",
+      authors: ["Seo-yun Kim", "Hyo-Jeong So", "Kyuwon Kim"],
+      year: 2024,
+      venue: "교과교육학연구, v.28 n.5, 391–402",
       type: "Journal",
-      topics: ["AI Ethics", "Education"],
-      tags: ["AI Ethics", "Education"],
-      links: { doi: "#" }
+      topics: ["AI in Education", "EdTech"],
+      tags: ["AI", "Review"],
+      links: { website: "#" }
+    },
+    {
+      id: "p2024-c1",
+      title: "What Do University Students Say About ChatGPT? A Topic Modeling of Perception on GenAI in Academic Writing",
+      authors: ["Lingxi Jin", "Kyuwon Kim", "Hyo-Jeong So", "Ga Young Lee"],
+      year: 2024,
+      venue: "ICCE 2024",
+      type: "Conference",
+      topics: ["GenAI", "Writing"],
+      tags: ["GenAI", "Education"],
+      links: { website: "#" },
+      award: "Best Poster Design Award"
+    },
+    {
+      id: "p2024-c2",
+      title: "국내 학교교육 분야의 AI활용 연구 동향",
+      authors: ["김서윤", "김규원", "소효정"],
+      year: 2024,
+      venue: "2024 한국교육공학회 춘계학술대회",
+      type: "Conference",
+      topics: ["AI in Education", "EdTech"],
+      tags: ["AI", "Trends"],
+      links: { website: "#" },
+      award: "장려상"
+    },
+    {
+      id: "p2022-j1",
+      title: "콘텐츠 설계원리에 대한 학습유형별 학습자 인지적 상태 차이",
+      authors: ["정겨운", "김규원", "조일현"],
+      year: 2022,
+      venue: "교육정보미디어연구, v.28 n.1, 133–160",
+      type: "Journal",
+      topics: ["Learning", "Education"],
+      tags: ["Learning", "Design"],
+      links: { website: "#" }
     }
   ],
   projects: [
