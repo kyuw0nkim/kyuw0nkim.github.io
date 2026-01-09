@@ -23,24 +23,17 @@ const CV = () => {
         <div className="space-y-4">
           <div className="flex justify-between items-start">
             <div>
-              <h3 className="font-medium text-foreground">Ph.D. in Neurosciences</h3>
-              <p className="text-sm text-muted-foreground">German Primate Center, University of Göttingen</p>
+              <h3 className="font-medium text-foreground">M.A. in Educational Technology</h3>
+              <p className="text-sm text-muted-foreground">Ewha Womans University</p>
             </div>
-            <span className="text-sm text-muted-foreground">2024 - Present</span>
+            <span className="text-sm text-muted-foreground">Mar 2025 - Aug 2026 (Expected)</span>
           </div>
           <div className="flex justify-between items-start">
             <div>
-              <h3 className="font-medium text-foreground">M.S. in Human-Computer Interaction</h3>
-              <p className="text-sm text-muted-foreground">KAIST</p>
+              <h3 className="font-medium text-foreground">B.A. in Educational Technology & B.E. in Software</h3>
+              <p className="text-sm text-muted-foreground">Ewha Womans University</p>
             </div>
-            <span className="text-sm text-muted-foreground">2022 - 2024</span>
-          </div>
-          <div className="flex justify-between items-start">
-            <div>
-              <h3 className="font-medium text-foreground">B.S. in Computer Science</h3>
-              <p className="text-sm text-muted-foreground">Seoul National University</p>
-            </div>
-            <span className="text-sm text-muted-foreground">2018 - 2022</span>
+            <span className="text-sm text-muted-foreground">Mar 2021 - Feb 2025</span>
           </div>
         </div>
       </section>
@@ -52,16 +45,16 @@ const CV = () => {
           <div className="flex justify-between items-start">
             <div>
               <h3 className="font-medium text-foreground">Graduate Research Assistant</h3>
-              <p className="text-sm text-muted-foreground">German Primate Center</p>
+              <p className="text-sm text-muted-foreground">Interaction for Learning Lab, Research Advisor: Hyo-Jeong So</p>
             </div>
-            <span className="text-sm text-muted-foreground">2024 - Present</span>
+            <span className="text-sm text-muted-foreground">Jan 2024 - Present</span>
           </div>
           <div className="flex justify-between items-start">
             <div>
-              <h3 className="font-medium text-foreground">Research Intern</h3>
-              <p className="text-sm text-muted-foreground">Microsoft Research Asia</p>
+              <h3 className="font-medium text-foreground">Undergraduate Research Assistant</h3>
+              <p className="text-sm text-muted-foreground">Learning Analytics for Prediction & Action Lab, Research Advisor: Il-Hyun Jo</p>
             </div>
-            <span className="text-sm text-muted-foreground">Summer 2023</span>
+            <span className="text-sm text-muted-foreground">Summer 2021, Winter 2021, Summer 2023</span>
           </div>
         </div>
       </section>
@@ -71,16 +64,24 @@ const CV = () => {
         <h2 className="text-xl font-heading font-semibold mb-4 pb-2 border-b border-border">Awards & Honors</h2>
         <div className="space-y-3">
           <div className="flex justify-between items-start">
-            <p className="text-foreground">Best Poster Design Award, UIST 2025</p>
-            <span className="text-sm text-muted-foreground">2025</span>
-          </div>
-          <div className="flex justify-between items-start">
-            <p className="text-foreground">IMPRS Scholarship</p>
+            <p className="text-foreground">Best Poster Design Award, APSCE</p>
             <span className="text-sm text-muted-foreground">2024</span>
           </div>
           <div className="flex justify-between items-start">
-            <p className="text-foreground">Dean's List, Seoul National University</p>
-            <span className="text-sm text-muted-foreground">2020, 2021</span>
+            <p className="text-foreground">Excellence Award in Youth Idea Contest on African Educational Development Cooperation, Korean National Commission for UNESCO</p>
+            <span className="text-sm text-muted-foreground">2024</span>
+          </div>
+          <div className="flex justify-between items-start">
+            <p className="text-foreground">Outstanding Paper Award, orean Association for Educational Information and Media</p>
+            <span className="text-sm text-muted-foreground">2024</span>
+          </div>
+          <div className="flex justify-between items-start">
+            <p className="text-foreground">Honorable Mention, The Koreans Society for Educational Technology</p>
+            <span className="text-sm text-muted-foreground">2023</span>
+          </div>
+          <div className="flex justify-between items-start">
+            <p className="text-foreground">Grand Award in Upcoming Life in Space SW Challenge, Future & Software Foundation</p>
+            <span className="text-sm text-muted-foreground">2022</span>
           </div>
         </div>
       </section>
@@ -89,7 +90,7 @@ const CV = () => {
       <section className="mb-10">
         <h2 className="text-xl font-heading font-semibold mb-4 pb-2 border-b border-border">Skills</h2>
         <div className="flex flex-wrap gap-2">
-          {["Python", "JavaScript/TypeScript", "React", "User Studies", "Statistical Analysis", "Machine Learning", "Figma", "LaTeX"].map((skill) => (
+          {["Python", "R", "MySQL", "JavaScript/TypeScript", "React", "Machine Learning", "Figma", "LaTeX"].map((skill) => (
             <span key={skill} className="px-3 py-1 bg-secondary text-secondary-foreground text-sm rounded-md">
               {skill}
             </span>
@@ -101,8 +102,8 @@ const CV = () => {
       <section className="mb-10">
         <h2 className="text-xl font-heading font-semibold mb-4 pb-2 border-b border-border">Academic Service</h2>
         <div className="space-y-2">
-          <p className="text-foreground">Reviewer: CHI 2025, CSCW 2025</p>
-          <p className="text-foreground">Student Volunteer: UIST 2024</p>
+          <p className="text-foreground">Ad hoc Reviewer: Journal of Research, Innovation and Technologies (JoRIT)</p>
+          <p className="text-foreground">Student Volunteer: KAIEM&KSET 2023 Fall, KAIEM 2025 Spring, ICoME 2025, KAIEM&KSET 2025 Fall</p>
         </div>
       </section>
     </MainLayout>
