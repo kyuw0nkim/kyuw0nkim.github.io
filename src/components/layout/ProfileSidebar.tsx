@@ -53,7 +53,7 @@ export function ProfileSidebar() {
           <a href="https://www.researchgate.net/profile/Kyuwon-Kim-5" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate" className="social-icon">
             <ResearchGateIcon className="w-6 h-6" />
           </a>
-          <a href="www.linkedin.com/in/kyuwon-kim-23168a209" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
+          <a href="https://www.linkedin.com/in/kyuwon-kim-23168a209" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
             <LinkedInIcon className="w-6 h-6" />
           </a>
           <a href="https://github.com/kyuw0nkim" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-icon">
