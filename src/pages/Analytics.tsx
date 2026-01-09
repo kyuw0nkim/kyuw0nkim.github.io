@@ -150,7 +150,7 @@ const Analytics = () => {
         </div>
       </div>
       
-      <div className="bg-card border border-border rounded-xl p-6">
+      <div className="bg-card border border-border rounded-xl p-6 mt-8">
         <div className="h-[400px] w-full">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
