@@ -36,10 +36,10 @@ export function ProfileSidebar() {
 
         {/* Affiliation */}
         <div className="text-center lg:text-left space-y-1 mb-6">
-          <p className="text-muted-foreground">PhD student</p>
-          <p className="text-primary font-medium">German Primate Center</p>
-          <p className="text-primary font-medium">IMPRS for Neurosciences</p>
-          <p className="text-primary font-medium">University of Göttingen</p>
+          <p className="text-muted-foreground">Master's student</p>
+          <p className="text-primary font-medium">Interaction Design for Learning Lab</p>
+          <p className="text-primary font-medium">Deparment of Educational Technology</p>
+          <p className="text-primary font-medium">Ewha Womans University</p>
         </div>
 
         {/* Social Icons */}
@@ -53,7 +53,7 @@ export function ProfileSidebar() {
           <a href="https://www.researchgate.net/profile/Kyuwon-Kim-5" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate" className="social-icon">
             <ResearchGateIcon className="w-6 h-6" />
           </a>
-          <a href="https://www.linkedin.com/in/kyuwonkim" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
+          <a href="www.linkedin.com/in/kyuwon-kim-23168a209" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
             <LinkedInIcon className="w-6 h-6" />
           </a>
           <a href="https://github.com/kyuw0nkim" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-icon">
