@@ -75,7 +75,7 @@ const Analytics = () => {
       const sortedPayload = [...payload].sort((a, b) => b.value - a.value);
       return (
         <div className="bg-popover border border-border rounded-lg shadow-lg p-3">
-          <p className="font-heading font-semibold text-foreground mb-2">{label}년</p>
+          <p className="font-heading font-semibold text-foreground mb-2">{label}</p>
           <div className="space-y-1">
             {sortedPayload.map((entry: any) => (
               entry.value > 0 && (
@@ -85,7 +85,7 @@ const Analytics = () => {
                     style={{ backgroundColor: entry.color }}
                   />
                   <span className="text-muted-foreground">{entry.name}:</span>
-                  <span className="font-medium text-foreground">{entry.value}건</span>
+                  <span className="font-medium text-foreground">{entry.value} papers</span>
                 </div>
               )
             ))}
@@ -125,9 +125,31 @@ const Analytics = () => {
     <MainLayout>
       <h1 className="text-3xl font-heading font-bold text-center mb-2">Analytics</h1>
       <p className="text-center text-muted-foreground mb-8">
-        연도별 Research Topic 출판 추이
+        An analysis of research topics across my research papers
       </p>
 
+      {/* Summary Stats */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-8">
+        <div className="bg-card border border-border rounded-lg p-4 text-center">
+          <p className="text-2xl font-heading font-bold text-primary">
+            {siteData.publications.length}
+          </p>
+          <p className="text-sm text-muted-foreground">Total Publications</p>
+        </div>
+        <div className="bg-card border border-border rounded-lg p-4 text-center">
+          <p className="text-2xl font-heading font-bold text-primary">
+            {topics.length}
+          </p>
+          <p className="text-sm text-muted-foreground">Research Topics</p>
+        </div>
+        <div className="bg-card border border-border rounded-lg p-4 text-center col-span-2 sm:col-span-1">
+          <p className="text-2xl font-heading font-bold text-primary">
+            {years[years.length - 1] - years[0] + 1}
+          </p>
+          <p className="text-sm text-muted-foreground">Years Active</p>
+        </div>
+      </div>
+      
       <div className="bg-card border border-border rounded-xl p-6">
         <div className="h-[400px] w-full">
           <ResponsiveContainer width="100%" height="100%">
@@ -182,28 +204,6 @@ const Analytics = () => {
               ))}
             </LineChart>
           </ResponsiveContainer>
-        </div>
-      </div>
-
-      {/* Summary Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-8">
-        <div className="bg-card border border-border rounded-lg p-4 text-center">
-          <p className="text-2xl font-heading font-bold text-primary">
-            {siteData.publications.length}
-          </p>
-          <p className="text-sm text-muted-foreground">Total Publications</p>
-        </div>
-        <div className="bg-card border border-border rounded-lg p-4 text-center">
-          <p className="text-2xl font-heading font-bold text-primary">
-            {topics.length}
-          </p>
-          <p className="text-sm text-muted-foreground">Research Topics</p>
-        </div>
-        <div className="bg-card border border-border rounded-lg p-4 text-center col-span-2 sm:col-span-1">
-          <p className="text-2xl font-heading font-bold text-primary">
-            {years[years.length - 1] - years[0] + 1}
-          </p>
-          <p className="text-sm text-muted-foreground">Years Active</p>
         </div>
       </div>
     </MainLayout>
