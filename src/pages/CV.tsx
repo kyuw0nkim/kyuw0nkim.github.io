@@ -13,7 +13,7 @@ const CV = () => {
           className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
         >
           <Download className="w-5 h-5" />
-          Download CV (PDF)
+          View Full CV
         </a>
       </div>
 
