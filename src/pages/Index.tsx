@@ -51,10 +51,12 @@ const Index = () => {
             </p>
             
             {/* Award Badge */}
+            {/* 
             <div className="award-badge">
               <Award className="w-4 h-4" />
               Best Poster Design Award
             </div>
+             */}
           </div>}
       </section>
     </MainLayout>;
