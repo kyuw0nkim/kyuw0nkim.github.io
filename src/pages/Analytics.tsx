@@ -125,7 +125,7 @@ const Analytics = () => {
     <MainLayout>
       <h1 className="text-3xl font-heading font-bold text-center mb-2">Analytics</h1>
       <p className="text-center text-muted-foreground mb-8">
-        An analysis of research topics across my research papers
+        An analysis of research topics across my papers
       </p>
 
       {/* Summary Stats */}
