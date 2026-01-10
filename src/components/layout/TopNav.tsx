@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { FormEvent, useMemo, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Search, Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +10,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
+import { getSearchResults } from "@/data/searchIndex";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -23,9 +25,15 @@ const navItems = [
 
 export function TopNav() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isDark, setIsDark] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchResults = useMemo(
+    () => getSearchResults(searchQuery, 5),
+    [searchQuery],
+  );
 
   const toggleDarkMode = () => {
     setIsDark(!isDark);
@@ -35,6 +43,24 @@ export function TopNav() {
   const isActive = (path: string) => {
     if (path === "/") return location.pathname === "/";
     return location.pathname.startsWith(path);
+  };
+
+  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const trimmedQuery = searchQuery.trim();
+    if (!trimmedQuery) return;
+
+    if (searchResults.length > 0) {
+      navigate(searchResults[0].url);
+      setSearchOpen(false);
+      setSearchQuery("");
+      return;
+    }
+
+    toast({
+      title: "No results found",
+      description: "Try another keyword to search the site.",
+    });
   };
 
   return (
@@ -68,12 +94,50 @@ export function TopNav() {
               <DialogHeader>
                 <DialogTitle>Search</DialogTitle>
               </DialogHeader>
-              <div className="flex flex-col gap-4">
-                <Input placeholder="Search publications, projects..." autoFocus />
-                <p className="text-sm text-muted-foreground">
-                  Type to search across all content
-                </p>
-              </div>
+              <form className="flex flex-col gap-4" onSubmit={handleSearch}>
+                <Input
+                  placeholder="Search publications, projects..."
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  autoFocus
+                />
+                {searchQuery.trim() ? (
+                  <div className="space-y-2">
+                    {searchResults.length > 0 ? (
+                      <ul className="space-y-2">
+                        {searchResults.map((result) => (
+                          <li key={result.id}>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                navigate(result.url);
+                                setSearchOpen(false);
+                                setSearchQuery("");
+                              }}
+                              className="w-full text-left rounded-md border border-border px-3 py-2 transition-colors hover:bg-accent"
+                            >
+                              <div className="text-sm font-medium text-foreground">
+                                {result.title}
+                              </div>
+                              <div className="text-xs text-muted-foreground capitalize">
+                                {result.category}
+                              </div>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-sm text-muted-foreground">
+                        No matches yet. Try another keyword.
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    Type to search across all content
+                  </p>
+                )}
+              </form>
             </DialogContent>
           </Dialog>
 
