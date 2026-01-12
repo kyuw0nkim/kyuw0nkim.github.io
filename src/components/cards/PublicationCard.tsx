@@ -31,15 +31,14 @@ export function PublicationCard({ publication, showThumbnail = true }: Publicati
       
       <div className="flex-1 space-y-2">
         {/* Title */}
-        <h3 className="font-semibold text-foreground leading-snug">
+        <h3 className="font-semibold text-foreground leading-snug font-body">
           {publication.title}
         </h3>
         
         {/* Venue and Authors */}
-        <div className="text-sm">
-          <span className="text-muted-foreground italic">{publication.venue}</span>
-          <span className="mx-2 text-muted-foreground">·</span>
-          <span className="text-muted-foreground">{renderAuthors()}</span>
+        <div className="text-sm space-y-0.5">
+          <div className="text-muted-foreground italic">{publication.venue}</div>
+          <div className="text-muted-foreground">{renderAuthors()}</div>
         </div>
         
         {/* Links and Tags */}

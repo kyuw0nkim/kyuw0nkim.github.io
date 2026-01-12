@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         heading: ['Poppins', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         body: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        poppins: ['Poppins', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
