@@ -9,6 +9,17 @@ export const siteData: SiteData = {
   ],
   publications: [
     {
+      id: "p2026-c1",
+      title: "Productive Discussion Moves in Groups Addressing Controversial Issues",
+      authors: ["Kyuwon Kim", "Jeanhee Lee", "Sung-Eun Kim", "Hyo-Jeong So"],
+      year: 2026,
+      venue: "LAK 2026 (to appear)",
+      type: "Conference",
+      topics: ["Learning Analytics"],
+      tags: ["Learning Analytics"],
+      links: { doi: "https://doi.org/10.48550/arXiv.2601.05651" }
+    },
+    {
       id: "p2025-j1",
       title: "AI 윤리교육을 위한 대화형 게임 설계: 집단 의사결정을 통한 윤리 담화 지원",
       authors: ["김성은", "김규원", "이진희", "소효정"],
