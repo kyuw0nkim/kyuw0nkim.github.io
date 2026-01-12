@@ -53,7 +53,7 @@
     --link-hover-color: 199 89% 30%;
 
     /* Typography */
-    --font-heading: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Poppins', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-body: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
 
     /* Sidebar */
