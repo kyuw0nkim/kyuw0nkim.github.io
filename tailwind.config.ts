@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        heading: ['Poppins', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         body: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       colors: {
