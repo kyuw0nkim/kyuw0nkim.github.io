@@ -17,7 +17,7 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["Learning Analytics"],
       tags: ["Learning Analytics"],
-      links: { doi: "https://doi.org/10.48550/arXiv.2601.05651" }
+      links: { arxiv: "https://doi.org/10.48550/arXiv.2601.05651" }
     },
     {
       id: "p2025-j1",
@@ -39,7 +39,7 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["Conversational Agent", "AIED"],
       tags: ["Conversational Agent", "AIED"],
-      links: { doi: "https://doi.org/10.1145/3746058.3758410" }
+      links: { acmdl: "https://doi.org/10.1145/3746058.3758410" }
     },
     {
       id: "p2025-c2",
@@ -61,7 +61,7 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["AIED"],
       tags: ["AIED"],
-      links: { doi: "https://doi.org/10.1145/3713043.3731489" }
+      links: { acmdl: "https://doi.org/10.1145/3713043.3731489" }
     },
     {
       id: "p2025-c4",
@@ -94,7 +94,7 @@ export const siteData: SiteData = {
       type: "Journal",
       topics: ["AIED"],
       tags: ["AIED"],
-      links: { website: "#" }
+      links: { doi: "#" }
     },
     {
       id: "p2024-c1",
