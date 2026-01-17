@@ -45,9 +45,16 @@ const CV = () => {
           <div className="flex justify-between items-start">
             <div>
               <h3 className="font-medium text-foreground">Graduate Research Assistant</h3>
-              <p className="text-sm text-muted-foreground">Interaction for Learning Lab, Research Advisor: Hyo-Jeong So</p>
+              <p className="text-sm text-muted-foreground">Interaction Design for Learning Lab, Research Advisor: Hyo-Jeong So</p>
             </div>
-            <span className="text-sm text-muted-foreground">Jan 2024 - Present</span>
+            <span className="text-sm text-muted-foreground">Mar 2025 - Present</span>
+          </div>
+          <div className="flex justify-between items-start">
+            <div>
+              <h3 className="font-medium text-foreground">Undergraduate Research Assistant</h3>
+              <p className="text-sm text-muted-foreground">Interaction Design for Learning Lab, Research Advisor: Hyo-Jeong So</p>
+            </div>
+            <span className="text-sm text-muted-foreground">Jan 2024 - Feb 2025</span>
           </div>
           <div className="flex justify-between items-start">
             <div>
