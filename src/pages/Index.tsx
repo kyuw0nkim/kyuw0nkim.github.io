@@ -9,13 +9,13 @@ const Index = () => {
       <section id="about" className="content-section">
         <h1 className="text-3xl font-heading font-bold mb-4">Kyuwon Kim</h1>
         <p className="text-foreground leading-relaxed text-justify">
-          Hi, I’m Kyuwon Kim, a master’s student in the Department of Educational Technology at Ewha Womans University, advised by Prof. Hyo-Jeong So.
+          Hi, I’m Kyuwon Kim, a master's student in the Department of Educational Technology at Ewha Womans University, advised by Prof. Hyo-Jeong So.
           I am currently a member of the Interaction Design for Learning Lab.
           My research interests lie at the intersection of learning and human–computer interaction.
-          I am guided by the question, “How might large language models transcend human limitations and contribute to building a better society?”
+          I am guided by the question, "How might large language models transcend human limitations and contribute to building a better society?"
           <br />
           In particular, I explore how LLMs can act as thoughtful opponents; supporting group dynamics and productive dialogue rather than replacing human-to-human interaction.
-          Outside the lab, I enjoy listening to others’ stories, tinkering with computers—especially through design—and watching Let’s Play videos. Meeting new people and hearing their unique perspectives always inspires me. If any of this resonates with you, please feel free to reach out!
+          Outside the lab, I enjoy listening to others' stories, tinkering with computers—especially through design—and watching Let’s Play videos. Meeting new people and hearing their unique perspectives always inspires me. If any of this resonates with you, please feel free to reach out via kyuwonkim95@ewha.ac.kr!
         </p>
       </section>
 
@@ -45,7 +45,7 @@ const Index = () => {
               {latestPub.authors.join(", ")}
             </p>
             <p className="text-sm text-muted-foreground mb-3">
-              {latestPub.venue}, {latestPub.links.doi && <a href={latestPub.links.doi} className="text-link hover:underline" target="_blank" rel="noopener noreferrer">
+              {latestPub.venue} {latestPub.links.doi && <a href={latestPub.links.doi} className="text-link hover:underline" target="_blank" rel="noopener noreferrer">
                   {latestPub.links.doi}
                 </a>}
             </p>
