@@ -1,15 +1,106 @@
 import { SiteData } from "./types";
 
 export const siteData: SiteData = {
+  // =========================================================================
+  // 프로필 정보 — 이름, 소속, 소개글, 소셜 링크를 여기서 수정하세요
+  // =========================================================================
+  profile: {
+    name: "Kyuwon Kim",
+    title: "Master's student",
+    lab: "Interaction Design for Learning Lab",
+    department: "Department of Educational Technology",
+    university: "Ewha Womans University",
+
+    // 소개글: 단락(문단) 단위로 작성합니다. 새 단락을 추가하려면 배열에 항목을 추가하세요.
+    bioParagraphs: [
+      "Hi, I'm Kyuwon Kim, a master's student in the Department of Educational Technology at Ewha Womans University, advised by Prof. Hyo-Jeong So. I am currently a member of the Interaction Design for Learning Lab. My research interests lie at the intersection of learning and human–computer interaction. I am guided by the question, \"How might large language models transcend human limitations and contribute to building a better society?\"",
+      "In particular, I explore how LLMs can act as thoughtful opponents; supporting group dynamics and productive dialogue rather than replacing human-to-human interaction. Outside the lab, I enjoy listening to others' stories, tinkering with computers—especially through design—and watching Let's Play videos. Meeting new people and hearing their unique perspectives always inspires me. If any of this resonates with you, please feel free to reach out via kyuwonkim95@ewha.ac.kr!",
+    ],
+
+    // 소셜 링크
+    email: "kyuwonkim95@ewha.ac.kr",
+    googleScholar: "https://scholar.google.com/citations?user=oYoOlXgAAAAJ",
+    researchGate: "https://www.researchgate.net/profile/Kyuwon-Kim-5",
+    linkedin: "https://www.linkedin.com/in/kyuwon-kim-23168a209",
+    github: "https://github.com/kyuw0nkim",
+  },
+
+  // =========================================================================
+  // CV 정보 — 학력, 경력, 수상, 스킬, 봉사를 여기서 수정하세요
+  // =========================================================================
+  cv: {
+    // CV PDF 파일 링크 (public/ 폴더에 파일을 올리고 "/파일명.pdf"로 입력)
+    cvUrl: "#",
+
+    education: [
+      {
+        degree: "M.A. in Educational Technology",
+        institution: "Ewha Womans University",
+        period: "Mar 2025 - Aug 2026 (Expected)",
+      },
+      {
+        degree: "B.A. in Educational Technology & B.E. in Software",
+        institution: "Ewha Womans University",
+        period: "Mar 2021 - Feb 2025",
+      },
+    ],
+
+    experience: [
+      {
+        role: "Graduate Research Assistant",
+        lab: "Interaction Design for Learning Lab, Research Advisor: Hyo-Jeong So",
+        period: "Mar 2025 - Present",
+      },
+      {
+        role: "Undergraduate Research Assistant",
+        lab: "Interaction Design for Learning Lab, Research Advisor: Hyo-Jeong So",
+        period: "Jan 2024 - Feb 2025",
+      },
+      {
+        role: "Undergraduate Research Assistant",
+        lab: "Learning Analytics for Prediction & Action Lab, Research Advisor: Il-Hyun Jo",
+        period: "Summer 2021, Winter 2021, Summer 2023",
+      },
+    ],
+
+    awards: [
+      { title: "Best Poster Design Award, APSCE", year: 2024 },
+      { title: "Excellence Award in Youth Idea Contest on African Educational Development Cooperation, Korean National Commission for UNESCO", year: 2024 },
+      { title: "Outstanding Paper Award, Korean Association for Educational Information and Media", year: 2024 },
+      { title: "Honorable Mention, The Koreans Society for Educational Technology", year: 2023 },
+      { title: "Grand Award in Upcoming Life in Space SW Challenge, Future & Software Foundation", year: 2022 },
+    ],
+
+    skills: ["Python", "R", "MySQL", "JavaScript/TypeScript", "React", "Machine Learning", "Figma", "LaTeX"],
+
+    service: [
+      "Ad hoc Reviewer: Journal of Research, Innovation and Technologies (JoRIT)",
+      "Student Volunteer: KAIEM&KSET 2023 Fall, KAIEM 2025 Spring, ICoME 2025, KAIEM&KSET 2025 Fall",
+    ],
+  },
+
+  // =========================================================================
+  // 뉴스 — 최신 소식을 여기서 추가/수정하세요
+  // =========================================================================
   news: [
     { id: "n4", date: "2026-12-01", title: "Our research article is accepted as full paper in LAK 2026! Full paper will be available soon in arXiv." },
     { id: "n3", date: "2025-10-01", title: "Presented the poster Your Thoughtful Opponent at UIST 2025." },
     { id: "n2", date: "2025-03-02", title: "Just started my Master's journey in the IDL lab, at Ewha Womans University🚀" },
     { id: "n1", date: "2024-11-29", title: "Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉" }
   ],
+
+  // =========================================================================
+  // 논문 목록 — 논문을 여기서 추가/수정하세요
+  //
+  // 썸네일 이미지 추가 방법:
+  //   1. public/thumbnails/ 폴더에 이미지 파일을 넣으세요 (예: my-paper-2025.png)
+  //      권장 비율: 3:2 (예: 600×400px) — 다른 크기도 자동으로 맞춰집니다
+  //   2. 해당 논문 항목에 thumbnail: "my-paper-2025.png" 를 추가하세요
+  // =========================================================================
   publications: [
     {
       id: "p2026-c1",
+      // thumbnail: "p2026-c1.png",
       title: "Productive Discussion Moves in Groups Addressing Controversial Issues",
       authors: ["Kyuwon Kim", "Jeanhee Lee", "Sung-Eun Kim", "Hyo-Jeong So"],
       year: 2026,
@@ -21,6 +112,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2025-j1",
+      // thumbnail: "p2025-j1.png",
       title: "AI 윤리교육을 위한 대화형 게임 설계: 집단 의사결정을 통한 윤리 담화 지원",
       authors: ["김성은", "김규원", "이진희", "소효정"],
       year: 2025,
@@ -32,6 +124,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2025-c1",
+      // thumbnail: "p2025-c1.png",
       title: "Your Thoughtful Opponent: Embracing Cognitive Conflict with Peer Agent",
       authors: ["Kyuwon Kim", "Jaeryeong Hwang", "Younseo Lee", "Jeanhee Lee", "Sung-Eun Kim", "Hyo-Jeong So"],
       year: 2025,
@@ -43,6 +136,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2025-c2",
+      // thumbnail: "p2025-c2.png",
       title: "Dilemmas in AI Ethics: A Digital Game for Moral Reasoning and Collective Decision-Making",
       authors: ["Sung-Eun Kim", "Kyuwon Kim", "Jean Hee Lee", "Yeji Ko", "Yue Wang", "Hyo-Jeong So"],
       year: 2025,
@@ -54,6 +148,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2025-c3",
+      // thumbnail: "p2025-c3.png",
       title: "Bridging Literacy with AI: AI-Integrated Digital Textbook for Deaf and Hard-of-Hearing Students",
       authors: ["Ga Young Lee", "Seonhee Na", "Kyuwon Kim", "Hyo-Jeong So"],
       year: 2025,
@@ -65,6 +160,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2025-c4",
+      // thumbnail: "p2025-c4.png",
       title: "FLIP: Tabletop Role-Play Game for AI Ethics Education through Cognitive Dissonance",
       authors: ["Yue Wang", "Yeji Ko", "Kyuwon Kim", "Sung-Eun Kim", "Hyo-Jeong So"],
       year: 2025,
@@ -76,6 +172,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2025-c5",
+      // thumbnail: "p2025-c5.png",
       title: "Tracing the Boundaries: A Structural Topic Modeling Analysis of Research Themes in Educational Technology and the Learning Sciences",
       authors: ["Chohui Lee", "Nayeon Hong", "Soyeon Mun", "Kyuwon Kim", "Il-Hyun Jo"],
       year: 2025,
@@ -87,6 +184,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2024-j1",
+      // thumbnail: "p2024-j1.png",
       title: "A Systematic Literature Review on AI Integration in Korean Schools: Focusing on Recent Research Trends",
       authors: ["Seo-yun Kim", "Hyo-Jeong So", "Kyuwon Kim"],
       year: 2024,
@@ -98,6 +196,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2024-c1",
+      // thumbnail: "p2024-c1.png",
       title: "What Do University Students Say About ChatGPT? A Topic Modeling of Perception on GenAI in Academic Writing",
       authors: ["Lingxi Jin", "Kyuwon Kim", "Hyo-Jeong So", "Ga Young Lee"],
       year: 2024,
@@ -110,6 +209,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2024-c2",
+      // thumbnail: "p2024-c2.png",
       title: "국내 학교교육 분야의 AI활용 연구 동향",
       authors: ["김서윤", "김규원", "소효정"],
       year: 2024,
@@ -122,6 +222,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2022-j1",
+      // thumbnail: "p2022-j1.png",
       title: "콘텐츠 설계원리에 대한 학습유형별 학습자 인지적 상태 차이",
       authors: ["정겨운", "김규원", "조일현"],
       year: 2022,
@@ -132,6 +233,10 @@ export const siteData: SiteData = {
       links: { website: "#" }
     }
   ],
+
+  // =========================================================================
+  // 프로젝트 — 프로젝트를 여기서 추가/수정하세요
+  // =========================================================================
   projects: [
     {
       id: "pr1",

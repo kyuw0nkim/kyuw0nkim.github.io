@@ -1,3 +1,43 @@
+export interface Profile {
+  name: string;
+  title: string;
+  lab: string;
+  department: string;
+  university: string;
+  bioParagraphs: string[];
+  email: string;
+  googleScholar: string;
+  researchGate: string;
+  linkedin: string;
+  github: string;
+}
+
+export interface EducationItem {
+  degree: string;
+  institution: string;
+  period: string;
+}
+
+export interface ExperienceItem {
+  role: string;
+  lab: string;
+  period: string;
+}
+
+export interface AwardItem {
+  title: string;
+  year: number | string;
+}
+
+export interface CVData {
+  cvUrl: string;
+  education: EducationItem[];
+  experience: ExperienceItem[];
+  awards: AwardItem[];
+  skills: string[];
+  service: string[];
+}
+
 export interface Publication {
   id: string;
   title: string;
@@ -39,6 +79,8 @@ export interface NewsItem {
 }
 
 export interface SiteData {
+  profile: Profile;
+  cv: CVData;
   news: NewsItem[];
   publications: Publication[];
   projects: Project[];

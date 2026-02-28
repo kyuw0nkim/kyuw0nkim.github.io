@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { getSearchResults } from "@/data/searchIndex";
+import { siteData } from "@/data/siteData";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -68,7 +69,7 @@ export function TopNav() {
       <nav className="container-academic h-[60px] flex items-center justify-between">
         {/* Site Title */}
         <Link to="/" className="text-xl font-heading font-semibold text-primary hover:opacity-80 transition-opacity">
-          Kyuwon Kim
+          {siteData.profile.name}
         </Link>
 
         {/* Desktop Navigation */}

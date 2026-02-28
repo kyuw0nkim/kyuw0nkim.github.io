@@ -24,8 +24,16 @@ export function PublicationCard({ publication, showThumbnail = true }: Publicati
   return (
     <div className="pub-card">
       {showThumbnail && (
-        <div className="pub-thumbnail hidden sm:flex">
-          <span>image</span>
+        <div className="pub-thumbnail hidden sm:flex overflow-hidden">
+          {publication.thumbnail ? (
+            <img
+              src={`/thumbnails/${publication.thumbnail}`}
+              alt={publication.title}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <span className="text-xs text-muted-foreground">No image</span>
+          )}
         </div>
       )}
       
