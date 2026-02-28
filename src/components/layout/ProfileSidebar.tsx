@@ -1,4 +1,5 @@
 import { Mail, Github } from "lucide-react";
+import { siteData } from "@/data/siteData";
 
 // Custom icons for social platforms
 function GoogleScholarIcon({ className }: { className?: string }) {
@@ -26,6 +27,8 @@ function LinkedInIcon({ className }: { className?: string }) {
 }
 
 export function ProfileSidebar() {
+  const { profile } = siteData;
+
   return (
     <aside className="w-full lg:w-[280px] flex-shrink-0">
       <div className="sticky-profile">
@@ -36,27 +39,27 @@ export function ProfileSidebar() {
 
         {/* Affiliation */}
         <div className="text-center lg:text-left space-y-1 mb-6">
-          <p className="text-muted-foreground">Master's student</p>
-          <p className="text-primary font-medium">Interaction Design for Learning Lab</p>
-          <p className="text-primary font-medium">Deparment of Educational Technology</p>
-          <p className="text-primary font-medium">Ewha Womans University</p>
+          <p className="text-muted-foreground">{profile.title}</p>
+          <p className="text-primary font-medium">{profile.lab}</p>
+          <p className="text-primary font-medium">{profile.department}</p>
+          <p className="text-primary font-medium">{profile.university}</p>
         </div>
 
         {/* Social Icons */}
         <div className="flex justify-center lg:justify-start gap-4">
-          <a href="mailto:kyuwonkim95@ewha.ac.kr" aria-label="Email" className="social-icon">
+          <a href={`mailto:${profile.email}`} aria-label="Email" className="social-icon">
             <Mail className="w-6 h-6" />
           </a>
-          <a href="https://scholar.google.com/citations?user=oYoOlXgAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" className="social-icon">
+          <a href={profile.googleScholar} target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" className="social-icon">
             <GoogleScholarIcon className="w-6 h-6" />
           </a>
-          <a href="https://www.researchgate.net/profile/Kyuwon-Kim-5" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate" className="social-icon">
+          <a href={profile.researchGate} target="_blank" rel="noopener noreferrer" aria-label="ResearchGate" className="social-icon">
             <ResearchGateIcon className="w-6 h-6" />
           </a>
-          <a href="https://www.linkedin.com/in/kyuwon-kim-23168a209" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
             <LinkedInIcon className="w-6 h-6" />
           </a>
-          <a href="https://github.com/kyuw0nkim" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-icon">
+          <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-icon">
             <Github className="w-6 h-6" />
           </a>
         </div>

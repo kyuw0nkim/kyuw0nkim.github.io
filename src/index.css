@@ -123,7 +123,7 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-body);
-    overflow-x: hidden;
+    overflow-x: clip; /* clip은 hidden과 달리 새 스크롤 컨테이너를 만들지 않아 sticky가 정상 동작 */
   }
 
   h1, h2, h3, h4, h5, h6 {

@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { TopNav } from "./TopNav";
 import { ProfileSidebar } from "./ProfileSidebar";
+import { siteData } from "@/data/siteData";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -12,7 +13,7 @@ function Footer() {
     <footer className="border-t border-border py-8 mt-auto">
       <div className="container-academic">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Kyuwon Kim. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {siteData.profile.name}. All rights reserved.</p>
           <p>Built with React & Tailwind CSS</p>
         </div>
       </div>
