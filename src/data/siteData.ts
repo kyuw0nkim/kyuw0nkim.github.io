@@ -179,12 +179,12 @@ export const siteData: SiteData = {
       venue: "2025 Korean Society for Educational Technology Spring Conference",
       type: "Conference",
       topics: ["Review"],
-      tags: ["Review"],
+      //tags: ["Review"],
       //links: { doi: "https://doi.org/10.22318/icls2025.945127" }
     },
     {
       id: "p2024-j1",
-      thumbnail: "pic.J.A Systematic",
+      thumbnail: "pic.J.A Systematic.png",
       title: "A Systematic Literature Review on AI Integration in Korean Schools: Focusing on Recent Research Trends",
       authors: ["Seo-yun Kim", "Hyo-Jeong So", "Kyuwon Kim"],
       year: 2024,
@@ -209,7 +209,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2024-c2",
-      thumbnail: "pic.J.국내 학교교육.png",
+      thumbnail: "pic.P.국내 학교교육.png",
       title: "국내 학교교육 분야의 AI활용 연구 동향",
       authors: ["김서윤", "김규원", "소효정"],
       year: 2024,
