@@ -180,11 +180,11 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["Review"],
       tags: ["Review"],
-      links: { doi: "https://doi.org/10.22318/icls2025.945127" }
+      //links: { doi: "https://doi.org/10.22318/icls2025.945127" }
     },
     {
       id: "p2024-j1",
-      // thumbnail: "p2024-j1.png",
+      thumbnail: "pic.J.A Systematic",
       title: "A Systematic Literature Review on AI Integration in Korean Schools: Focusing on Recent Research Trends",
       authors: ["Seo-yun Kim", "Hyo-Jeong So", "Kyuwon Kim"],
       year: 2024,
@@ -192,11 +192,11 @@ export const siteData: SiteData = {
       type: "Journal",
       topics: ["AIED"],
       tags: ["AIED"],
-      links: { doi: "#" }
+      links: { doi: "https://doi.org/10.24231/rici.2024.28.5.391" }
     },
     {
       id: "p2024-c1",
-      // thumbnail: "p2024-c1.png",
+      thumbnail: "pic.P.What Do.png",
       title: "What Do University Students Say About ChatGPT? A Topic Modeling of Perception on GenAI in Academic Writing",
       authors: ["Lingxi Jin", "Kyuwon Kim", "Hyo-Jeong So", "Ga Young Lee"],
       year: 2024,
@@ -204,12 +204,12 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["AIED"],
       tags: ["AIED"],
-      links: { website: "#" },
+      links: { doi: "https://doi.org/10.58459/icce.2024.5029" },
       award: "Best Poster Design Award"
     },
     {
       id: "p2024-c2",
-      // thumbnail: "p2024-c2.png",
+      thumbnail: "pic.J.국내 학교교육.png",
       title: "국내 학교교육 분야의 AI활용 연구 동향",
       authors: ["김서윤", "김규원", "소효정"],
       year: 2024,
@@ -217,12 +217,12 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["AIED"],
       tags: ["AIED"],
-      links: { website: "#" },
+      //links: { website: "#" },
       award: "장려상"
     },
     {
       id: "p2022-j1",
-      // thumbnail: "p2022-j1.png",
+      thumbnail: "pic.J.콘텐츠 설계원리.png",
       title: "콘텐츠 설계원리에 대한 학습유형별 학습자 인지적 상태 차이",
       authors: ["정겨운", "김규원", "조일현"],
       year: 2022,
@@ -230,7 +230,7 @@ export const siteData: SiteData = {
       type: "Journal",
       topics: ["Learning Analytics"],
       tags: ["Learning Analytics"],
-      links: { website: "#" }
+      links: { doi: "https://doi.org/10.15833/KAFEIAM.28.1.133" }
     }
   ],
 
