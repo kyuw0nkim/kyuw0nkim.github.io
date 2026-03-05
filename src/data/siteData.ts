@@ -172,7 +172,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2025-c5",
-      // thumbnail: "p2025-c5.png",
+      thumbnail: "pic.C.Tracing the.png",
       title: "Tracing the Boundaries: A Structural Topic Modeling Analysis of Research Themes in Educational Technology and the Learning Sciences",
       authors: ["Chohui Lee", "Nayeon Hong", "Soyeon Mun", "Kyuwon Kim", "Il-Hyun Jo"],
       year: 2025,
