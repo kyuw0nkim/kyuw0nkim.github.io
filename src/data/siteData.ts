@@ -325,7 +325,7 @@ export function getProjectsByYear() {
 
 export function getAllTopics() {
   const topics = new Set<string>();
-  siteData.publications.forEach(pub => pub.topics.forEach(t => topics.add(t)));
+  siteData.publications.forEach(pub => (pub.topics ?? []).forEach(t => topics.add(t)));
   return Array.from(topics);
 }
 
@@ -337,7 +337,7 @@ export function getAllTypes() {
 
 export function filterPublications(topic?: string, type?: string) {
   return siteData.publications.filter(pub => {
-    if (topic && topic !== "All" && !pub.topics.includes(topic)) return false;
+    if (topic && topic !== "All" && !(pub.topics ?? []).includes(topic)) return false;
     if (type && type !== "All" && pub.type !== type) return false;
     return true;
   });

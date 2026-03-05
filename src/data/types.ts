@@ -41,13 +41,13 @@ export interface CVData {
 export interface Publication {
   id: string;
   title: string;
-  authors: string[];
+  authors?: string[];
   year: number;
-  venue: string;
+  venue?: string;
   type: "Conference" | "Workshop" | "Journal" | "Preprint";
-  topics: string[];
-  tags: string[];
-  links: {
+  topics?: string[];
+  tags?: string[];
+  links?: {
     pdf?: string;
     acmdl?: string;
     arxiv?: string;

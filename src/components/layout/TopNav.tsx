@@ -91,54 +91,59 @@ export function TopNav() {
                 <Search className="w-5 h-5" />
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle>Search</DialogTitle>
-              </DialogHeader>
-              <form className="flex flex-col gap-4" onSubmit={handleSearch}>
-                <Input
-                  placeholder="Search publications, projects..."
-                  value={searchQuery}
-                  onChange={(event) => setSearchQuery(event.target.value)}
-                  autoFocus
-                />
+            <DialogContent className="sm:max-w-md max-h-[80vh] flex flex-col gap-0 p-0">
+              {/* Sticky search header */}
+              <div className="p-6 pb-4 border-b border-border flex-shrink-0">
+                <DialogHeader className="mb-3">
+                  <DialogTitle>Search</DialogTitle>
+                </DialogHeader>
+                <form onSubmit={handleSearch}>
+                  <Input
+                    placeholder="Search publications, projects..."
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                    autoFocus
+                  />
+                </form>
+              </div>
+
+              {/* Scrollable results */}
+              <div className="overflow-y-auto flex-1 p-6 pt-4">
                 {searchQuery.trim() ? (
-                  <div className="space-y-2">
-                    {searchResults.length > 0 ? (
-                      <ul className="space-y-2">
-                        {searchResults.map((result) => (
-                          <li key={result.id}>
-                            <button
-                              type="button"
-                              onClick={() => {
-                                navigate(result.url);
-                                setSearchOpen(false);
-                                setSearchQuery("");
-                              }}
-                              className="w-full text-left rounded-md border border-border px-3 py-2 transition-colors hover:bg-accent"
-                            >
-                              <div className="text-sm font-medium text-foreground">
-                                {result.title}
-                              </div>
-                              <div className="text-xs text-muted-foreground capitalize">
-                                {result.category}
-                              </div>
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-sm text-muted-foreground">
-                        No matches yet. Try another keyword.
-                      </p>
-                    )}
-                  </div>
+                  searchResults.length > 0 ? (
+                    <ul className="space-y-2">
+                      {searchResults.map((result) => (
+                        <li key={result.id}>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              navigate(result.url);
+                              setSearchOpen(false);
+                              setSearchQuery("");
+                            }}
+                            className="w-full text-left rounded-md border border-border px-3 py-2 transition-colors hover:bg-accent"
+                          >
+                            <div className="text-sm font-medium text-foreground">
+                              {result.title}
+                            </div>
+                            <div className="text-xs text-muted-foreground capitalize">
+                              {result.category}
+                            </div>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-sm text-muted-foreground">
+                      No matches yet. Try another keyword.
+                    </p>
+                  )
                 ) : (
                   <p className="text-sm text-muted-foreground">
                     Type to search across all content
                   </p>
                 )}
-              </form>
+              </div>
             </DialogContent>
           </Dialog>
 
