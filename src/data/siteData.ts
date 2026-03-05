@@ -99,6 +99,18 @@ export const siteData: SiteData = {
   // =========================================================================
   publications: [
     {
+      id: "p2026-c2",
+      thumbnail: "pic.P.Understanding University.png",
+      title: "Understanding university music learners’ interaction with an LLM-powered pedagogical conversational agent",
+      authors: ["Lingxi Jin", "Kyuwon Kim", "Baicheng Lin", "Mengze Hong", "Hyo-Jeong So"],
+      year: 2026,
+      venue: "CHI 2026 (to appear)",
+      type: "Conference",
+      topics: ["Conversational Agent", "Learning Analytics", "AIED"],
+      tags: ["Conversational Agent", "Learning Analytics", "AIED"],
+      //links: { arxiv: "https://doi.org/10.48550/arXiv.2601.05651" }
+    },
+    {
       id: "p2026-c1",
       thumbnail: "pic.C.Productive Discussion.png",
       title: "Productive Discussion Moves in Groups Addressing Controversial Issues",
