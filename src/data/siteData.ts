@@ -13,8 +13,8 @@ export const siteData: SiteData = {
 
     // 소개글: 단락(문단) 단위로 작성합니다. 새 단락을 추가하려면 배열에 항목을 추가하세요.
     bioParagraphs: [
-      "Hi, I'm Kyuwon Kim, a master's student in the Department of Educational Technology at Ewha Womans University, advised by Prof. Hyo-Jeong So. I am currently a member of the Interaction Design for Learning Lab. My research interests lie at the intersection of learning and human–computer interaction. I am guided by the question, \"How might large language models transcend human limitations and contribute to building a better society?\"",
-      "In particular, I explore how LLMs can act as thoughtful opponents; supporting group dynamics and productive dialogue rather than replacing human-to-human interaction. Outside the lab, I enjoy listening to others' stories, tinkering with computers—especially through design—and watching Let's Play videos. Meeting new people and hearing their unique perspectives always inspires me. If any of this resonates with you, please feel free to reach out via kyuwonkim95@ewha.ac.kr!",
+      "Hi, I'm Kyuwon, a master's student in Educational Technology at Ewha Womans University. I am currently a member of the Interaction Design for Learning Lab, advised by Prof. Hyo-Jeong So. My research sits at the intersection of learning and HCI, guided by a single question: How might LLMs transcend human limitations to build a better society? Outside the lab, I enjoy listening to people's stories, tinkering with design, and watching Let's Play videos. New perspectives always inspire me — feel free to reach out! kyuwonkim95@ewha.ac.kr
+"
     ],
 
     // 소셜 링크
