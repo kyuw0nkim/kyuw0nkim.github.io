@@ -100,7 +100,7 @@ export const siteData: SiteData = {
   publications: [
     {
       id: "p2026-c1",
-      // thumbnail: "p2026-c1.png",
+      thumbnail: "pic.C.Productive Discussion.png",
       title: "Productive Discussion Moves in Groups Addressing Controversial Issues",
       authors: ["Kyuwon Kim", "Jeanhee Lee", "Sung-Eun Kim", "Hyo-Jeong So"],
       year: 2026,
@@ -112,7 +112,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2025-j1",
-      // thumbnail: "p2025-j1.png",
+      thumbnail: "pic.J.AI 윤리교육.png",
       title: "AI 윤리교육을 위한 대화형 게임 설계: 집단 의사결정을 통한 윤리 담화 지원",
       authors: ["김성은", "김규원", "이진희", "소효정"],
       year: 2025,
@@ -124,7 +124,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2025-c1",
-      // thumbnail: "p2025-c1.png",
+      thumbnail: "pic.P.Your Thoughtful.png",
       title: "Your Thoughtful Opponent: Embracing Cognitive Conflict with Peer Agent",
       authors: ["Kyuwon Kim", "Jaeryeong Hwang", "Younseo Lee", "Jeanhee Lee", "Sung-Eun Kim", "Hyo-Jeong So"],
       year: 2025,
@@ -136,7 +136,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2025-c2",
-      // thumbnail: "p2025-c2.png",
+      thumbnail: "pic.C.Dilemmas in.png",
       title: "Dilemmas in AI Ethics: A Digital Game for Moral Reasoning and Collective Decision-Making",
       authors: ["Sung-Eun Kim", "Kyuwon Kim", "Jean Hee Lee", "Yeji Ko", "Yue Wang", "Hyo-Jeong So"],
       year: 2025,
@@ -148,7 +148,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2025-c3",
-      // thumbnail: "p2025-c3.png",
+      thumbnail: "pic.P.Bridging Literacy.png",
       title: "Bridging Literacy with AI: AI-Integrated Digital Textbook for Deaf and Hard-of-Hearing Students",
       authors: ["Ga Young Lee", "Seonhee Na", "Kyuwon Kim", "Hyo-Jeong So"],
       year: 2025,
@@ -160,7 +160,7 @@ export const siteData: SiteData = {
     },
     {
       id: "p2025-c4",
-      // thumbnail: "p2025-c4.png",
+      thumbnail: "pic.C.FLIP.png",
       title: "FLIP: Tabletop Role-Play Game for AI Ethics Education through Cognitive Dissonance",
       authors: ["Yue Wang", "Yeji Ko", "Kyuwon Kim", "Sung-Eun Kim", "Hyo-Jeong So"],
       year: 2025,
