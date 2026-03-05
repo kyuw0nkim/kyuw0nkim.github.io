@@ -9,10 +9,10 @@ interface PublicationCardProps {
 
 export function PublicationCard({ publication, showThumbnail = true }: PublicationCardProps) {
   const renderAuthors = () =>
-    publication.authors.map((author, index) => {
+    (publication.authors ?? []).map((author, index) => {
       const isHighlighted = author === "Kyuwon Kim" || author === "김규원";
       const content = isHighlighted ? <span className="font-semibold">{author}</span> : author;
-      const separator = index < publication.authors.length - 1 ? ", " : "";
+      const separator = index < (publication.authors?.length ?? 0) - 1 ? ", " : "";
       return (
         <span key={`${author}-${index}`}>
           {content}
@@ -45,37 +45,41 @@ export function PublicationCard({ publication, showThumbnail = true }: Publicati
         
         {/* Venue and Authors */}
         <div className="text-sm space-y-0.5">
-          <div className="text-muted-foreground italic">{publication.venue}</div>
-          <div className="text-muted-foreground">{renderAuthors()}</div>
+          {publication.venue && (
+            <div className="text-muted-foreground italic">{publication.venue}</div>
+          )}
+          {publication.authors && publication.authors.length > 0 && (
+            <div className="text-muted-foreground">{renderAuthors()}</div>
+          )}
         </div>
-        
+
         {/* Links and Tags */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
-          {publication.links.acmdl && (
+          {publication.links?.acmdl && (
             <a href={publication.links.acmdl} target="_blank" rel="noopener noreferrer" className="link-btn link-btn-primary">
               <BookOpen className="w-3 h-3" />
               ACM DL
             </a>
           )}
-          {publication.links.pdf && (
+          {publication.links?.pdf && (
             <a href={publication.links.pdf} target="_blank" rel="noopener noreferrer" className="link-btn link-btn-primary">
               <FileText className="w-3 h-3" />
               PDF
             </a>
           )}
-          {publication.links.website && (
+          {publication.links?.website && (
             <a href={publication.links.website} target="_blank" rel="noopener noreferrer" className="link-btn">
               <Globe className="w-3 h-3" />
               Website
             </a>
           )}
-          {publication.links.arxiv && (
+          {publication.links?.arxiv && (
             <a href={publication.links.arxiv} target="_blank" rel="noopener noreferrer" className="link-btn">
               <ExternalLink className="w-3 h-3" />
               arXiv
             </a>
           )}
-          {publication.links.doi && (
+          {publication.links?.doi && (
             <a href={publication.links.doi} target="_blank" rel="noopener noreferrer" className="link-btn">
               <ExternalLink className="w-3 h-3" />
               DOI
@@ -87,9 +91,9 @@ export function PublicationCard({ publication, showThumbnail = true }: Publicati
               {publication.award}
             </span>
           )}
-          
+
           {/* Tags */}
-          {publication.tags.map((tag) => (
+          {(publication.tags ?? []).map((tag) => (
             <span key={tag} className="tag-pill">
               #{tag}
             </span>

@@ -44,11 +44,11 @@ const buildSearchItems = (): SearchItem[] => {
     category: "publication" as const,
     content: [
       publication.title,
-      publication.authors.join(" "),
-      publication.venue,
+      (publication.authors ?? []).join(" "),
+      publication.venue ?? "",
       publication.type,
-      publication.topics.join(" "),
-      publication.tags.join(" "),
+      (publication.topics ?? []).join(" "),
+      (publication.tags ?? []).join(" "),
       publication.year.toString(),
     ].join(" "),
   }));

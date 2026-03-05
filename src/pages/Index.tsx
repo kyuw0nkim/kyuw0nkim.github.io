@@ -51,11 +51,11 @@ const Index = () => {
           <div>
             <h3 className="font-semibold text-foreground mb-1">{latestPub.title}</h3>
             <p className="text-sm text-muted-foreground mb-2">
-              {latestPub.authors.join(", ")}
+              {(latestPub.authors ?? []).join(", ")}
             </p>
             <p className="text-sm text-muted-foreground mb-3">
               {latestPub.venue}{" "}
-              {latestPub.links.doi && (
+              {latestPub.links?.doi && (
                 <a href={latestPub.links.doi} className="text-link hover:underline" target="_blank" rel="noopener noreferrer">
                   {latestPub.links.doi}
                 </a>
