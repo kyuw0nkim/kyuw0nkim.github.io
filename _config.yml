@@ -5,3 +5,5 @@ analytics:
   google:
     tracking_id          : "G-S9V5S51QTE"
     anonymize_ip         : # true, false (default)
+
+google_analytics: "G-S9V5S51QTE"
