@@ -13,7 +13,7 @@ export const siteData: SiteData = {
 
     // 소개글: 단락(문단) 단위로 작성합니다. 새 단락을 추가하려면 배열에 항목을 추가하세요.
     bioParagraphs: [
-      "Hi, I'm Kyuwon, a master's student in Educational Technology at Ewha Womans University. I am currently a member of the Interaction Design for Learning Lab, advised by Prof. Hyo-Jeong So. My research sits at the intersection of learning and HCI, guided by a single question: How might LLMs transcend human limitations to build a better society? Outside the lab, I enjoy listening to people's stories, tinkering with design, and watching Let's Play videos. New perspectives always inspire me — feel free to reach out! kyuwonkim95@ewha.ac.kr"
+      "Hi, I'm Kyuwon, a master's student in Educational Technology at Ewha Womans University. I am currently a member of the Interaction Design for Learning Lab, advised by Prof. Hyo-Jeong So. My research sits at the intersection of learning and HCI, guided by a single question: How might LLMs transcend human limitations to build a better society? Outside the lab, I enjoy listening to people's stories, tinkering with design, and watching Let's Play videos. New perspectives always inspire me - so feel free to reach out!"
     ],
 
     // 소셜 링크
