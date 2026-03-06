@@ -1,6 +1,18 @@
 import { Fragment } from "react";
 import { MainLayout } from "@/components/layout";
 import { siteData, getLatestPublication, formatDate } from "@/data/siteData";
+import type { TextPart } from "@/data/types";
+
+const renderParts = (parts: TextPart[]) =>
+  parts.map((part, i) =>
+    typeof part === "string" ? (
+      part
+    ) : (
+      <a key={i} href={part.href} className="text-link hover:underline" target="_blank" rel="noopener noreferrer">
+        {part.text}
+      </a>
+    )
+  );
 
 const Index = () => {
   const { profile } = siteData;
@@ -15,7 +27,7 @@ const Index = () => {
           {profile.bioParagraphs.map((para, i) => (
             <Fragment key={i}>
               {i > 0 && <br />}
-              {para}
+              {renderParts(para)}
             </Fragment>
           ))}
         </p>
@@ -31,13 +43,7 @@ const Index = () => {
                 {formatDate(item.date)}
               </span>
               <span className="text-foreground">
-                {item.link ? (
-                  <a href={item.link} className="text-link hover:underline">
-                    {item.title}
-                  </a>
-                ) : (
-                  item.title
-                )}
+                {renderParts(item.title)}
               </span>
             </div>
           ))}

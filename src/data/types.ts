@@ -1,10 +1,13 @@
+// A text segment: either a plain string or a linked piece of text.
+export type TextPart = string | { text: string; href: string };
+
 export interface Profile {
   name: string;
   title: string;
   lab: string;
   department: string;
   university: string;
-  bioParagraphs: string[];
+  bioParagraphs: TextPart[][];  // array of paragraphs; each paragraph is an array of TextParts
   email: string;
   googleScholar: string;
   researchGate: string;
@@ -74,8 +77,7 @@ export interface Project {
 export interface NewsItem {
   id: string;
   date: string;
-  title: string;
-  link?: string;
+  title: TextPart[];  // array of TextParts; embed { text, href } for inline links
 }
 
 export interface SiteData {
