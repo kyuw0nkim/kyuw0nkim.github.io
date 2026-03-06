@@ -11,9 +11,16 @@ export const siteData: SiteData = {
     department: "Department of Educational Technology",
     university: "Ewha Womans University",
 
-    // 소개글: 단락(문단) 단위로 작성합니다. 새 단락을 추가하려면 배열에 항목을 추가하세요.
+    // 소개글: 단락(문단) 단위로 작성합니다.
+    // 각 단락은 TextPart 배열입니다.
+    //   - 일반 텍스트: "그냥 문자열"
+    //   - 링크 텍스트: { text: "표시할 텍스트", href: "https://..." }
+    // 예시:
+    //   ["안녕하세요 ", { text: "Ewha", href: "https://ewha.ac.kr" }, " 소속입니다."]
     bioParagraphs: [
-      "Hi, I'm Kyuwon, a master's student in Educational Technology at Ewha Womans University. I am currently a member of the Interaction Design for Learning Lab, advised by Prof. Hyo-Jeong So. My research sits at the intersection of learning and HCI, guided by a single question: How might LLMs transcend human limitations to build a better society? Outside the lab, I enjoy listening to people's stories, tinkering with design, and watching Let's Play videos. New perspectives always inspire me - so feel free to reach out!"
+      [
+        "Hi, I'm Kyuwon, a master's student in Educational Technology at Ewha Womans University. I am currently a member of the Interaction Design for Learning Lab, advised by Prof. Hyo-Jeong So. My research sits at the intersection of learning and HCI, guided by a single question: How might LLMs transcend human limitations to build a better society? Outside the lab, I enjoy listening to people's stories, tinkering with design, and watching Let's Play videos. New perspectives always inspire me - so feel free to reach out!"
+      ]
     ],
 
     // 소셜 링크
@@ -81,11 +88,18 @@ export const siteData: SiteData = {
   // =========================================================================
   // 뉴스 — 최신 소식을 여기서 추가/수정하세요
   // =========================================================================
+  // 뉴스 title도 TextPart 배열입니다.
+  //   - 일반 텍스트: "문자열"
+  //   - 링크 텍스트: { text: "표시할 텍스트", href: "https://..." }
+  // 예시 (title 일부에 링크):
+  //   title: ["Presented the poster ", { text: "Your Thoughtful Opponent", href: "https://..." }, " at UIST 2025."]
+  // 예시 (title 전체에 링크):
+  //   title: [{ text: "전체 제목", href: "https://..." }]
   news: [
-    { id: "n4", date: "2026-12-01", title: "Our research article is accepted as full paper in LAK 2026! Full paper will be available soon in arXiv." },
-    { id: "n3", date: "2025-10-01", title: "Presented the poster Your Thoughtful Opponent at UIST 2025." },
-    { id: "n2", date: "2025-03-02", title: "Just started my Master's journey in the IDL lab, at Ewha Womans University🚀" },
-    { id: "n1", date: "2024-11-29", title: "Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉" }
+    { id: "n4", date: "2026-12-01", title: ["Our research article is accepted as full paper in LAK 2026! Full paper will be available soon in arXiv."] },
+    { id: "n3", date: "2025-10-01", title: ["Presented the poster Your Thoughtful Opponent at UIST 2025."] },
+    { id: "n2", date: "2025-03-02", title: ["Just started my Master's journey in the IDL lab, at Ewha Womans University🚀"] },
+    { id: "n1", date: "2024-11-29", title: ["Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉"] }
   ],
 
   // =========================================================================

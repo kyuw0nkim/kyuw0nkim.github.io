@@ -1,5 +1,17 @@
 import { MainLayout } from "@/components/layout";
 import { siteData, formatDate } from "@/data/siteData";
+import type { TextPart } from "@/data/types";
+
+const renderParts = (parts: TextPart[]) =>
+  parts.map((part, i) =>
+    typeof part === "string" ? (
+      part
+    ) : (
+      <a key={i} href={part.href} className="text-link hover:underline" target="_blank" rel="noopener noreferrer">
+        {part.text}
+      </a>
+    )
+  );
 
 const News = () => {
   // Sort news by date descending
@@ -18,13 +30,7 @@ const News = () => {
               {formatDate(item.date)}
             </span>
             <span className="text-foreground">
-              {item.link ? (
-                <a href={item.link} className="text-link hover:underline" target="_blank" rel="noopener noreferrer">
-                  {item.title}
-                </a>
-              ) : (
-                item.title
-              )}
+              {renderParts(item.title)}
             </span>
           </div>
         ))}
