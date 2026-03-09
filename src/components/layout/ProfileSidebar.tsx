@@ -30,7 +30,7 @@ export function ProfileSidebar() {
   const { profile } = siteData;
 
   return (
-    <aside className="w-full lg:w-[280px] flex-shrink-0">
+    <aside className="w-full lg:w-[320px] flex-shrink-0">
       <div className="sticky-profile">
         {/* Profile Image */}
         <div className="w-48 h-48 mx-auto lg:mx-0 rounded-full bg-muted flex items-center justify-center text-muted-foreground mb-6">
