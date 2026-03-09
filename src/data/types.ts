@@ -29,6 +29,7 @@ export interface ExperienceItem {
 
 export interface AwardItem {
   title: string;
+  organization?: string;
   year: number | string;
 }
 

@@ -58,7 +58,12 @@ const CV = () => {
         <div className="space-y-4">
           {cv.awards.map((item, i) => (
             <div key={i} className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-0.5">
-              <p className="font-medium text-foreground">{item.title}</p>
+              <div>
+                <p className="font-medium text-foreground">{item.title}</p>
+                {item.organization && (
+                  <p className="text-sm text-muted-foreground">{item.organization}</p>
+                )}
+              </div>
               <span className="text-sm text-muted-foreground shrink-0 sm:ml-4">{item.year}</span>
             </div>
           ))}
