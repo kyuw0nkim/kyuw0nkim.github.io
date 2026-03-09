@@ -82,8 +82,8 @@ export const siteData: SiteData = {
     skills: ["Python", "R", "MySQL", "JavaScript/TypeScript", "React", "Machine Learning", "Figma", "LaTeX"],
 
     service: [
-      "Ad hoc Reviewer: Journal of Research, Innovation and Technologies (JoRIT)",
-      "Student Volunteer: KAIEM&KSET 2023 Fall, KAIEM 2025 Spring, ICoME 2025, KAIEM&KSET 2025 Fall",
+      { role: "Ad hoc Reviewer", details: ["Journal of Research, Innovation and Technologies (JoRIT)"] },
+      { role: "Student Volunteer", details: ["KAIEM&KSET 2023 Fall", "KAIEM 2025 Spring", "ICoME 2025", "KAIEM&KSET 2025 Fall"] },
     ],
   },
 
