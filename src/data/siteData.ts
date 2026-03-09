@@ -72,11 +72,11 @@ export const siteData: SiteData = {
     ],
 
     awards: [
-      { title: "Best Poster Design Award, APSCE", year: 2024 },
-      { title: "Excellence Award in Youth Idea Contest on African Educational Development Cooperation, Korean National Commission for UNESCO", year: 2024 },
-      { title: "Outstanding Paper Award, Korean Association for Educational Information and Media", year: 2024 },
-      { title: "Honorable Mention, The Koreans Society for Educational Technology", year: 2023 },
-      { title: "Grand Award in Upcoming Life in Space SW Challenge, Future & Software Foundation", year: 2022 },
+      { title: "Best Poster Design Award", organization: "APSCE", year: 2024 },
+      { title: "Excellence Award in Youth Idea Contest on African Educational Development Cooperation", organization: "Korean National Commission for UNESCO", year: 2024 },
+      { title: "Outstanding Paper Award", organization: "Korean Association for Educational Information and Media", year: 2024 },
+      { title: "Honorable Mention", organization: "The Korean Society for Educational Technology", year: 2023 },
+      { title: "Grand Award in Upcoming Life in Space SW Challenge", organization: "Future & Software Foundation", year: 2022 },
     ],
 
     skills: ["Python", "R", "MySQL", "JavaScript/TypeScript", "React", "Machine Learning", "Figma", "LaTeX"],
