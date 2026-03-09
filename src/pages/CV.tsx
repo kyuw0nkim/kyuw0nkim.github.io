@@ -25,12 +25,10 @@ const CV = () => {
         <h2 className="text-xl font-heading font-semibold mb-4 pb-2 border-b border-border">Education</h2>
         <div className="space-y-4">
           {cv.education.map((item) => (
-            <div key={item.degree} className="flex justify-between items-start">
-              <div>
-                <h3 className="font-medium text-foreground">{item.degree}</h3>
-                <p className="text-sm text-muted-foreground">{item.institution}</p>
-              </div>
-              <span className="text-sm text-muted-foreground shrink-0 ml-4">{item.period}</span>
+            <div key={item.degree}>
+              <h3 className="font-medium text-foreground">{item.degree}</h3>
+              <p className="text-sm text-muted-foreground">{item.institution}</p>
+              <p className="text-sm text-muted-foreground mt-0.5">{item.period}</p>
             </div>
           ))}
         </div>
@@ -41,12 +39,10 @@ const CV = () => {
         <h2 className="text-xl font-heading font-semibold mb-4 pb-2 border-b border-border">Research Experience</h2>
         <div className="space-y-4">
           {cv.experience.map((item, i) => (
-            <div key={i} className="flex justify-between items-start">
-              <div>
-                <h3 className="font-medium text-foreground">{item.role}</h3>
-                <p className="text-sm text-muted-foreground">{item.lab}</p>
-              </div>
-              <span className="text-sm text-muted-foreground shrink-0 ml-4">{item.period}</span>
+            <div key={i}>
+              <h3 className="font-medium text-foreground">{item.role}</h3>
+              <p className="text-sm text-muted-foreground">{item.lab}</p>
+              <p className="text-sm text-muted-foreground mt-0.5">{item.period}</p>
             </div>
           ))}
         </div>
@@ -55,11 +51,11 @@ const CV = () => {
       {/* Awards */}
       <section className="mb-10">
         <h2 className="text-xl font-heading font-semibold mb-4 pb-2 border-b border-border">Awards & Honors</h2>
-        <div className="space-y-3">
+        <div className="space-y-4">
           {cv.awards.map((item, i) => (
-            <div key={i} className="flex justify-between items-start">
-              <p className="text-foreground">{item.title}</p>
-              <span className="text-sm text-muted-foreground shrink-0 ml-4">{item.year}</span>
+            <div key={i}>
+              <p className="font-medium text-foreground">{item.title}</p>
+              <p className="text-sm text-muted-foreground mt-0.5">{item.year}</p>
             </div>
           ))}
         </div>

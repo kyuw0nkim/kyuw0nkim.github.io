@@ -67,13 +67,18 @@ const buildSearchItems = (): SearchItem[] => {
     ].join(" "),
   }));
 
-  const newsItems = siteData.news.map((news) => ({
-    id: news.id,
-    title: news.title,
-    url: "/news",
-    category: "news" as const,
-    content: [news.title, news.date].join(" "),
-  }));
+  const newsItems = siteData.news.map((news) => {
+    const titleStr = news.title
+      .map((part) => (typeof part === "string" ? part : part.text))
+      .join("");
+    return {
+      id: news.id,
+      title: titleStr,
+      url: "/news",
+      category: "news" as const,
+      content: [titleStr, news.date].join(" "),
+    };
+  });
 
   const blogItems = blogPosts.map((post) => ({
     id: post.id,
