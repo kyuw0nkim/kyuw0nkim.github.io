@@ -85,9 +85,12 @@ const CV = () => {
       {/* Academic Service */}
       <section className="mb-10">
         <h2 className="text-xl font-heading font-semibold mb-4 pb-2 border-b border-border">Academic Service</h2>
-        <div className="space-y-2">
+        <div className="space-y-4">
           {cv.service.map((item, i) => (
-            <p key={i} className="text-foreground">{item}</p>
+            <div key={i}>
+              <h3 className="font-medium text-foreground">{item.role}</h3>
+              <p className="text-sm text-muted-foreground">{item.details.join(", ")}</p>
+            </div>
           ))}
         </div>
       </section>
