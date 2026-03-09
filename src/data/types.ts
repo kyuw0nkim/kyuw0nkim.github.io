@@ -33,13 +33,18 @@ export interface AwardItem {
   year: number | string;
 }
 
+export interface ServiceItem {
+  role: string;
+  details: string[];
+}
+
 export interface CVData {
   cvUrl: string;
   education: EducationItem[];
   experience: ExperienceItem[];
   awards: AwardItem[];
   skills: string[];
-  service: string[];
+  service: ServiceItem[];
 }
 
 export interface Publication {
