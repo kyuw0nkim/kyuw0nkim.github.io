@@ -98,7 +98,7 @@ export const siteData: SiteData = {
   // 예시 (title 전체에 링크):
   //   title: [{ text: "전체 제목", href: "https://..." }]
   news: [
-    { id: "n4", date: "2026-02-20", title: ["Our poster MelodyMate is accepted in CHI 2026✨"] },
+    { id: "n5", date: "2026-02-20", title: ["Our poster MelodyMate is accepted in CHI 2026✨"] },
     { id: "n4", date: "2025-12-01", title: ["Our research article is accepted as full paper in LAK 2026! Paper is currently available in arXiv."] },
     { id: "n3", date: "2025-10-01", title: ["Presented the poster Your Thoughtful Opponent at UIST 2025."] },
     { id: "n2", date: "2025-03-02", title: ["Just started my Master's journey in the IDL lab, at Ewha Womans University🚀"] },
