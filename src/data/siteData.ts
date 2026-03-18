@@ -103,8 +103,9 @@ export const siteData: SiteData = {
   // 예시 (title 전체에 링크):
   //   title: [{ text: "전체 제목", href: "https://..." }]
   news: [
-    { id: "n5", date: "2026-02-20", title: ["Our poster MelodyMate is accepted in CHI 2026✨"] },
-    { id: "n4", date: "2025-12-01", title: ["Our research article is accepted as full paper in LAK 2026! Paper is currently available in arXiv."] },
+    { id: "n5", date: "2026-02-20", title: ["Traveling to London, Milan, and Barcelona (Apr 2–19)."] },
+    { id: "n5", date: "2026-02-20", title: ["MelodyMate is accepted as poster in CHI 2026✨"] },
+    { id: "n4", date: "2025-12-01", title: ["Our research article is accepted as full paper in LAK 2026! Currently available in ", { text: "arXiv", href: "https://doi.org/10.48550/arXiv.2601.05651" }, "."] },
     { id: "n3", date: "2025-10-01", title: ["Presented the poster Your Thoughtful Opponent at UIST 2025."] },
     { id: "n2", date: "2025-03-02", title: ["Just started my Master's journey in the IDL lab, at Ewha Womans University🚀"] },
     { id: "n1", date: "2024-11-29", title: ["Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉"] }
