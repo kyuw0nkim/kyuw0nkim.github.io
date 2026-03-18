@@ -173,9 +173,9 @@
 
   .award-badge-highlight {
     @apply inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold rounded-md border;
-    background-color: hsl(var(--sub-color) / 0.12);
-    color: hsl(var(--sub-color));
-    border-color: hsl(var(--sub-color) / 0.4);
+    background-color: hsl(var(--sub-color));
+    color: white;
+    border-color: hsl(var(--sub-color));
   }
 
   /* Profile Social Icon */
