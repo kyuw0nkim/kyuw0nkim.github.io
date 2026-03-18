@@ -11,6 +11,11 @@ export const siteData: SiteData = {
     department: "Department of Educational Technology",
     university: "Ewha Womans University",
 
+    // 프로필 이미지: public/ 폴더에 이미지를 올리고 경로를 입력하세요.
+    // 예: profileImage: "/profile.jpg"
+    // 이미지가 없으면 이 줄을 삭제하거나 주석 처리하세요.
+    profileImage: "/profile.jpg",
+
     // 소개글: 단락(문단) 단위로 작성합니다.
     // 각 단락은 TextPart 배열입니다.
     //   - 일반 텍스트: "그냥 문자열"
