@@ -56,13 +56,13 @@ export function PublicationCard({ publication, showThumbnail = true }: Publicati
         {/* Links and Tags */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
           {publication.links?.acmdl && (
-            <a href={publication.links.acmdl} target="_blank" rel="noopener noreferrer" className="link-btn link-btn-primary">
+            <a href={publication.links.acmdl} target="_blank" rel="noopener noreferrer" className="link-btn">
               <BookOpen className="w-3 h-3" />
               ACM DL
             </a>
           )}
           {publication.links?.pdf && (
-            <a href={publication.links.pdf} target="_blank" rel="noopener noreferrer" className="link-btn link-btn-primary">
+            <a href={publication.links.pdf} target="_blank" rel="noopener noreferrer" className="link-btn">
               <FileText className="w-3 h-3" />
               PDF
             </a>
