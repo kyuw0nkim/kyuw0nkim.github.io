@@ -1,14 +1,8 @@
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Search, Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { getSearchResults } from "@/data/searchIndex";
@@ -32,6 +26,7 @@ export function TopNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
   const searchResults = useMemo(
     () => getSearchResults(searchQuery, 20),
     [searchQuery],
@@ -86,33 +81,37 @@ export function TopNav() {
           ))}
 
           {/* Search Button */}
-          <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
-            <DialogTrigger asChild>
+          <Popover open={searchOpen} onOpenChange={(open) => {
+            setSearchOpen(open);
+            if (!open) setSearchQuery("");
+            if (open) setTimeout(() => inputRef.current?.focus(), 0);
+          }}>
+            <PopoverTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Search">
                 <Search className="w-5 h-5" />
               </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md max-h-[80vh] flex flex-col gap-0 p-0">
-              {/* Sticky search header */}
-              <div className="p-6 pb-4 border-b border-border flex-shrink-0">
-                <DialogHeader className="mb-3">
-                  <DialogTitle>Search</DialogTitle>
-                </DialogHeader>
-                <form onSubmit={handleSearch}>
-                  <Input
-                    placeholder="Search publications, projects..."
-                    value={searchQuery}
-                    onChange={(event) => setSearchQuery(event.target.value)}
-                    autoFocus
-                  />
-                </form>
-              </div>
+            </PopoverTrigger>
+            <PopoverContent
+              align="end"
+              sideOffset={8}
+              className="w-80 p-0 flex flex-col"
+              onOpenAutoFocus={(e) => e.preventDefault()}
+            >
+              {/* Fixed search input */}
+              <form onSubmit={handleSearch} className="p-3 border-b border-border flex-shrink-0">
+                <Input
+                  ref={inputRef}
+                  placeholder="Search publications, projects..."
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                />
+              </form>
 
               {/* Scrollable results */}
-              <div className="overflow-y-auto flex-1 p-6 pt-4 max-h-[50vh]">
+              <div className="overflow-y-auto max-h-72 p-2">
                 {searchQuery.trim() ? (
                   searchResults.length > 0 ? (
-                    <ul className="space-y-2">
+                    <ul className="space-y-1">
                       {searchResults.map((result) => (
                         <li key={result.id}>
                           <button
@@ -122,7 +121,7 @@ export function TopNav() {
                               setSearchOpen(false);
                               setSearchQuery("");
                             }}
-                            className="w-full text-left rounded-md border border-border px-3 py-2 transition-colors hover:bg-accent"
+                            className="w-full text-left rounded-md px-3 py-2 transition-colors hover:bg-accent"
                           >
                             <div className="text-sm font-medium text-foreground">
                               {result.title}
@@ -135,18 +134,18 @@ export function TopNav() {
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground px-3 py-2">
                       No matches yet. Try another keyword.
                     </p>
                   )
                 ) : (
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground px-3 py-2">
                     Type to search across all content
                   </p>
                 )}
               </div>
-            </DialogContent>
-          </Dialog>
+            </PopoverContent>
+          </Popover>
 
           {/* Dark Mode Toggle */}
           <Button variant="ghost" size="icon" onClick={toggleDarkMode} aria-label="Toggle dark mode">
