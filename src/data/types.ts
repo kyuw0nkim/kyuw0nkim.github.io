@@ -88,6 +88,20 @@ export interface NewsItem {
   title: TextPart[];  // array of TextParts; embed { text, href } for inline links
 }
 
+export interface DesignWork {
+  id: string;
+  title: string;
+  category: "Prototype" | "Visual" | "UX";
+  thumbnail?: string;
+  description: string;
+  year: number;
+  links?: {
+    figma?: string;
+    demo?: string;
+    video?: string;
+  };
+}
+
 export interface SiteData {
   profile: Profile;
   cv: CVData;
