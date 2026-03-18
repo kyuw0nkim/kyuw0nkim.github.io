@@ -89,9 +89,8 @@ const Publications = () => {
         </div>
       </div>
 
-      {/* Scrollable Publications List - shows ~2 cards at a time */}
-      <div className="overflow-y-auto" style={{ maxHeight: "calc(100vh - 60px - 160px)" }}>
-        {/* Publications by Year */}
+      {/* Publications by Year */}
+      <div>
         {sortedYears.map((year) => (
           <section key={year} className="mb-10">
             <h2 className="year-badge mb-4">{year}</h2>
