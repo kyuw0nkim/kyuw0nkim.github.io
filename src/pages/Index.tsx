@@ -3,15 +3,18 @@ import { MainLayout } from "@/components/layout";
 import { PublicationCard } from "@/components/cards/PublicationCard";
 import { siteData, getLatestPublication, formatDate } from "@/data/siteData";
 import type { TextPart } from "@/data/types";
+import { HoverTooltip } from "@/components/ui/HoverTooltip";
 
 const renderParts = (parts: TextPart[]) =>
   parts.map((part, i) =>
     typeof part === "string" ? (
       part
     ) : (
-      <a key={i} href={part.href} className="text-link" target="_blank" rel="noopener noreferrer">
-        {part.text}
-      </a>
+      <HoverTooltip key={i} content={part.tooltip}>
+        <a href={part.href} className="text-link" target="_blank" rel="noopener noreferrer">
+          {part.text}
+        </a>
+      </HoverTooltip>
     )
   );
 
