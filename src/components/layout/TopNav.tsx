@@ -33,7 +33,7 @@ export function TopNav() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const searchResults = useMemo(
-    () => getSearchResults(searchQuery, 5),
+    () => getSearchResults(searchQuery, 20),
     [searchQuery],
   );
 
@@ -109,7 +109,7 @@ export function TopNav() {
               </div>
 
               {/* Scrollable results */}
-              <div className="overflow-y-auto flex-1 p-6 pt-4">
+              <div className="overflow-y-auto flex-1 p-6 pt-4 max-h-[50vh]">
                 {searchQuery.trim() ? (
                   searchResults.length > 0 ? (
                     <ul className="space-y-2">

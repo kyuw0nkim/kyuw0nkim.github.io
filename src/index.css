@@ -145,7 +145,7 @@
   /* Year Badge */
   .year-badge {
     @apply text-3xl font-medium;
-    color: hsl(var(--foreground));
+    color: hsl(var(--muted-foreground));
     font-family: var(--font-heading);
   }
 
