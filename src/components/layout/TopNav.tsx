@@ -22,7 +22,7 @@ const navItems = [
   { name: "CV", path: "/cv" },
   // { name: "Blog", path: "/blog" }, //
   { name: "Analytics", path: "/analytics" },
-  { name: "Design", path: "/design" },
+  //{ name: "Design", path: "/design" }, //
 ];
 
 export function TopNav() {
