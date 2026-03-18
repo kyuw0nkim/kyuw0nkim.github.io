@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { MainLayout } from "@/components/layout";
+import { PublicationCard } from "@/components/cards/PublicationCard";
 import { siteData, getLatestPublication, formatDate } from "@/data/siteData";
 import type { TextPart } from "@/data/types";
 
@@ -53,22 +54,7 @@ const Index = () => {
       {/* Latest Publication Section */}
       <section id="publications" className="content-section">
         <h2 className="section-title">Latest Publication</h2>
-        {latestPub && (
-          <div>
-            <h3 className="font-semibold text-foreground mb-1">{latestPub.title}</h3>
-            <p className="text-sm text-muted-foreground mb-2">
-              {(latestPub.authors ?? []).join(", ")}
-            </p>
-            <p className="text-sm text-muted-foreground mb-3">
-              {latestPub.venue}{" "}
-              {latestPub.links?.doi && (
-                <a href={latestPub.links.doi} className="text-link hover:underline" target="_blank" rel="noopener noreferrer">
-                  {latestPub.links.doi}
-                </a>
-              )}
-            </p>
-          </div>
-        )}
+        {latestPub && <PublicationCard publication={latestPub} />}
       </section>
     </MainLayout>
   );
