@@ -51,59 +51,64 @@ const Publications = () => {
 
   return (
     <MainLayout>
-      <h1 className="text-3xl font-heading font-bold text-center mb-8">Publications</h1>
+      <h1 className="text-3xl font-heading font-bold text-center mb-6">Publications</h1>
 
-      {/* Filter Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-        <div>
-          <label className="block text-sm text-muted-foreground mb-2">Research Topic</label>
-          <Select value={selectedTopic} onValueChange={handleTopicChange}>
-            <SelectTrigger className="w-full bg-background">
-              <SelectValue placeholder="All" />
-            </SelectTrigger>
-            <SelectContent className="bg-popover">
-              {topics.map((topic) => (
-                <SelectItem key={topic} value={topic} className="focus:bg-sub/15 focus:text-foreground">
-                  {topic}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <label className="block text-sm text-muted-foreground mb-2">Publication Type</label>
-          <Select value={selectedType} onValueChange={handleTypeChange}>
-            <SelectTrigger className="w-full bg-background">
-              <SelectValue placeholder="All" />
-            </SelectTrigger>
-            <SelectContent className="bg-popover">
-              {types.map((type) => (
-                <SelectItem key={type} value={type} className="focus:bg-sub/15 focus:text-foreground">
-                  {type}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+      {/* Filter Bar - sticky below nav */}
+      <div className="sticky top-[60px] z-20 bg-background pb-4 pt-2 border-b border-border mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm text-muted-foreground mb-2">Research Topic</label>
+            <Select value={selectedTopic} onValueChange={handleTopicChange}>
+              <SelectTrigger className="w-full bg-background">
+                <SelectValue placeholder="All" />
+              </SelectTrigger>
+              <SelectContent className="bg-popover">
+                {topics.map((topic) => (
+                  <SelectItem key={topic} value={topic} className="focus:bg-sub/15 focus:text-foreground">
+                    {topic}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <label className="block text-sm text-muted-foreground mb-2">Publication Type</label>
+            <Select value={selectedType} onValueChange={handleTypeChange}>
+              <SelectTrigger className="w-full bg-background">
+                <SelectValue placeholder="All" />
+              </SelectTrigger>
+              <SelectContent className="bg-popover">
+                {types.map((type) => (
+                  <SelectItem key={type} value={type} className="focus:bg-sub/15 focus:text-foreground">
+                    {type}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </div>
 
-      {/* Publications by Year */}
-      {sortedYears.map((year) => (
-        <section key={year} className="mb-10">
-          <h2 className="year-badge mb-4">{year}</h2>
-          <div className="divide-y divide-border">
-            {grouped[year].map((pub) => (
-              <PublicationCard key={pub.id} publication={pub} />
-            ))}
-          </div>
-        </section>
-      ))}
+      {/* Scrollable Publications List - shows ~2 cards at a time */}
+      <div className="overflow-y-auto" style={{ maxHeight: "calc(100vh - 60px - 160px)" }}>
+        {/* Publications by Year */}
+        {sortedYears.map((year) => (
+          <section key={year} className="mb-10">
+            <h2 className="year-badge mb-4">{year}</h2>
+            <div className="divide-y divide-border">
+              {grouped[year].map((pub) => (
+                <PublicationCard key={pub.id} publication={pub} />
+              ))}
+            </div>
+          </section>
+        ))}
 
-      {sortedYears.length === 0 && (
-        <p className="text-center text-muted-foreground py-12">
-          No publications found matching the selected filters.
-        </p>
-      )}
+        {sortedYears.length === 0 && (
+          <p className="text-center text-muted-foreground py-12">
+            No publications found matching the selected filters.
+          </p>
+        )}
+      </div>
     </MainLayout>
   );
 };
