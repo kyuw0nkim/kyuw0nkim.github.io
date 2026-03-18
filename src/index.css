@@ -49,12 +49,11 @@
     --profile-width: 280px;
     --content-max-width: 800px;
 
-    /* Sub Color - used for icons, year badges, CV button, analytics numbers, links */
-    /* Change this value to restyle all sub-color elements at once */
+    /* Sub Color - used for icons, CV button, links */
     --sub-color: 44 100% 55%;
     --sub-color-foreground: 220 20% 15%;
 
-    --year-color: var(--sub-color);
+    --year-color: var(--primary);
     --link-color: var(--sub-color);
     --link-hover-color: 44 100% 40%;
 
@@ -106,7 +105,7 @@
     --sub-color: 44 100% 55%;
     --sub-color-foreground: 220 20% 15%;
 
-    --year-color: var(--sub-color);
+    --year-color: var(--primary);
     --link-color: var(--sub-color);
     --link-hover-color: 44 100% 40%;
 
@@ -174,11 +173,9 @@
 
   .award-badge-highlight {
     @apply inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold rounded-md border;
-    @apply bg-amber-50 text-amber-700 border-amber-200;
-  }
-
-  .dark .award-badge-highlight {
-    @apply bg-amber-900/30 text-amber-300 border-amber-700;
+    background-color: hsl(var(--sub-color) / 0.12);
+    color: hsl(var(--sub-color));
+    border-color: hsl(var(--sub-color) / 0.4);
   }
 
   /* Profile Social Icon */
