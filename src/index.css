@@ -183,7 +183,7 @@
 
   /* Profile Social Icon */
   .social-icon {
-    @apply w-6 h-6 text-sub hover:text-sub/80 transition-colors cursor-pointer;
+    @apply w-6 h-6 text-primary hover:text-primary/80 transition-colors cursor-pointer;
   }
 
   /* Nav Link */
@@ -232,18 +232,22 @@
   }
 
   .text-link {
-    color: hsl(var(--link-color));
+    color: inherit;
     text-decoration: underline;
-    text-decoration-color: hsl(var(--link-color) / 0.5);
-    text-underline-offset: 3px;
-    border-radius: 3px;
+    text-decoration-thickness: 2px;
+    text-decoration-color: hsl(var(--sub-color));
+    text-underline-offset: 2px;
+    border-radius: 2px;
     padding: 0 2px;
-    transition: background-color 0.15s ease, color 0.15s ease, text-decoration-color 0.15s ease;
+    background: linear-gradient(hsl(var(--sub-color) / 0.22), hsl(var(--sub-color) / 0.22));
+    background-size: 100% 0%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    transition: background-size 0.2s ease;
   }
 
   .text-link:hover {
-    color: hsl(var(--link-hover-color));
-    text-decoration-color: hsl(var(--link-hover-color));
-    background-color: hsl(var(--sub-color) / 0.18);
+    color: inherit;
+    background-size: 100% 100%;
   }
 }
