@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, FileText, Globe, BookOpen, Award } from "lucide-react";
 import { Publication } from "@/data/types";
+import { HoverTooltip } from "@/components/ui/HoverTooltip";
 
 interface PublicationCardProps {
   publication: Publication;
@@ -56,34 +57,44 @@ export function PublicationCard({ publication, showThumbnail = true }: Publicati
         {/* Links and Tags */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
           {publication.links?.acmdl && (
-            <a href={publication.links.acmdl} target="_blank" rel="noopener noreferrer" className="link-btn">
-              <BookOpen className="w-3 h-3" />
-              ACM DL
-            </a>
+            <HoverTooltip content="Read on ACM Digital Library">
+              <a href={publication.links.acmdl} target="_blank" rel="noopener noreferrer" className="link-btn">
+                <BookOpen className="w-3 h-3" />
+                ACM DL
+              </a>
+            </HoverTooltip>
           )}
           {publication.links?.pdf && (
-            <a href={publication.links.pdf} target="_blank" rel="noopener noreferrer" className="link-btn">
-              <FileText className="w-3 h-3" />
-              PDF
-            </a>
+            <HoverTooltip content="Download PDF">
+              <a href={publication.links.pdf} target="_blank" rel="noopener noreferrer" className="link-btn">
+                <FileText className="w-3 h-3" />
+                PDF
+              </a>
+            </HoverTooltip>
           )}
           {publication.links?.website && (
-            <a href={publication.links.website} target="_blank" rel="noopener noreferrer" className="link-btn">
-              <Globe className="w-3 h-3" />
-              Website
-            </a>
+            <HoverTooltip content="Visit project website">
+              <a href={publication.links.website} target="_blank" rel="noopener noreferrer" className="link-btn">
+                <Globe className="w-3 h-3" />
+                Website
+              </a>
+            </HoverTooltip>
           )}
           {publication.links?.arxiv && (
-            <a href={publication.links.arxiv} target="_blank" rel="noopener noreferrer" className="link-btn">
-              <ExternalLink className="w-3 h-3" />
-              arXiv
-            </a>
+            <HoverTooltip content="Read preprint on arXiv">
+              <a href={publication.links.arxiv} target="_blank" rel="noopener noreferrer" className="link-btn">
+                <ExternalLink className="w-3 h-3" />
+                arXiv
+              </a>
+            </HoverTooltip>
           )}
           {publication.links?.doi && (
-            <a href={publication.links.doi} target="_blank" rel="noopener noreferrer" className="link-btn">
-              <ExternalLink className="w-3 h-3" />
-              DOI
-            </a>
+            <HoverTooltip content="View via DOI">
+              <a href={publication.links.doi} target="_blank" rel="noopener noreferrer" className="link-btn">
+                <ExternalLink className="w-3 h-3" />
+                DOI
+              </a>
+            </HoverTooltip>
           )}
           {publication.award && (
             <span className="award-badge-highlight">
