@@ -54,16 +54,16 @@ const Publications = () => {
       <h1 className="text-3xl font-heading font-bold text-center mb-8">Publications</h1>
 
       {/* Filter Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 p-4 rounded-lg border border-sub/30 bg-sub/5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
         <div>
-          <label className="block text-sm text-sub mb-2">Research Topic</label>
+          <label className="block text-sm text-muted-foreground mb-2">Research Topic</label>
           <Select value={selectedTopic} onValueChange={handleTopicChange}>
-            <SelectTrigger className="w-full bg-background border-sub/40 focus:ring-sub/50">
+            <SelectTrigger className="w-full bg-background">
               <SelectValue placeholder="All" />
             </SelectTrigger>
             <SelectContent className="bg-popover">
               {topics.map((topic) => (
-                <SelectItem key={topic} value={topic}>
+                <SelectItem key={topic} value={topic} className="focus:bg-sub/15 focus:text-foreground">
                   {topic}
                 </SelectItem>
               ))}
@@ -71,14 +71,14 @@ const Publications = () => {
           </Select>
         </div>
         <div>
-          <label className="block text-sm text-sub mb-2">Publication Type</label>
+          <label className="block text-sm text-muted-foreground mb-2">Publication Type</label>
           <Select value={selectedType} onValueChange={handleTypeChange}>
-            <SelectTrigger className="w-full bg-background border-sub/40 focus:ring-sub/50">
+            <SelectTrigger className="w-full bg-background">
               <SelectValue placeholder="All" />
             </SelectTrigger>
             <SelectContent className="bg-popover">
               {types.map((type) => (
-                <SelectItem key={type} value={type}>
+                <SelectItem key={type} value={type} className="focus:bg-sub/15 focus:text-foreground">
                   {type}
                 </SelectItem>
               ))}
