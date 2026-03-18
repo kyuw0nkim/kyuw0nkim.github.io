@@ -86,15 +86,18 @@ export function TopNav() {
           ))}
 
           {/* Search Button */}
-          <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
+          <Dialog open={searchOpen} onOpenChange={(open) => {
+            setSearchOpen(open);
+            if (!open) setSearchQuery("");
+          }}>
             <DialogTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Search">
                 <Search className="w-5 h-5" />
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md max-h-[80vh] flex flex-col gap-0 p-0">
-              {/* Sticky search header */}
-              <div className="p-6 pb-4 border-b border-border flex-shrink-0">
+            <DialogContent className="sm:max-w-md p-0 gap-0 flex flex-col overflow-hidden" style={{ height: "420px" }}>
+              {/* Fixed search header — never scrolls */}
+              <div className="flex-shrink-0 p-6 pb-4 border-b border-border">
                 <DialogHeader className="mb-3">
                   <DialogTitle>Search</DialogTitle>
                 </DialogHeader>
@@ -108,11 +111,11 @@ export function TopNav() {
                 </form>
               </div>
 
-              {/* Scrollable results */}
-              <div className="overflow-y-auto flex-1 p-6 pt-4 max-h-[50vh]">
+              {/* Scrollable results — only this area scrolls */}
+              <div className="flex-1 overflow-y-auto p-4">
                 {searchQuery.trim() ? (
                   searchResults.length > 0 ? (
-                    <ul className="space-y-2">
+                    <ul className="space-y-1">
                       {searchResults.map((result) => (
                         <li key={result.id}>
                           <button
@@ -122,7 +125,7 @@ export function TopNav() {
                               setSearchOpen(false);
                               setSearchQuery("");
                             }}
-                            className="w-full text-left rounded-md border border-border px-3 py-2 transition-colors hover:bg-accent"
+                            className="w-full text-left rounded-md px-3 py-2 transition-colors hover:bg-accent"
                           >
                             <div className="text-sm font-medium text-foreground">
                               {result.title}
@@ -135,12 +138,12 @@ export function TopNav() {
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground px-3 py-2">
                       No matches yet. Try another keyword.
                     </p>
                   )
                 ) : (
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground px-3 py-2">
                     Type to search across all content
                   </p>
                 )}
