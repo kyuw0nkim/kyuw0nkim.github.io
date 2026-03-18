@@ -8,6 +8,8 @@ export interface Profile {
   department: string;
   university: string;
   bioParagraphs: TextPart[][];  // array of paragraphs; each paragraph is an array of TextParts
+  // 프로필 이미지 경로 (public/ 폴더 기준, 예: "/profile.jpg")
+  profileImage?: string;
   email: string;
   googleScholar: string;
   researchGate: string;

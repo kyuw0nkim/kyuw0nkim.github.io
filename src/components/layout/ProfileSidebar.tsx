@@ -33,8 +33,18 @@ export function ProfileSidebar() {
     <aside className="w-full lg:w-[290px] flex-shrink-0">
       <div className="sticky-profile">
         {/* Profile Image */}
-        <div className="w-48 h-48 mx-auto lg:mx-0 rounded-full bg-muted flex items-center justify-center text-muted-foreground mb-6">
-          <span className="text-lg">image</span>
+        <div className="w-48 h-48 mx-auto lg:mx-0 mb-6">
+          {profile.profileImage ? (
+            <img
+              src={profile.profileImage}
+              alt={profile.name}
+              className="w-full h-full rounded-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full rounded-full bg-muted flex items-center justify-center text-muted-foreground">
+              <span className="text-lg">image</span>
+            </div>
+          )}
         </div>
 
         {/* Affiliation */}
