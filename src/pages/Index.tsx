@@ -35,7 +35,7 @@ const Index = () => {
 
       {/* News Section */}
       <section id="news" className="content-section">
-        <h2 className="section-title">News</h2>
+        <h2 className="section-title">Updates</h2>
         <div className="divide-y divide-border">
           {siteData.news.slice(0, 3).map(item => (
             <div key={item.id} className="flex gap-6 py-3">
