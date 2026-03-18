@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 declare global {
   interface Window {
@@ -21,6 +21,17 @@ function RouteTracker() {
     }
   }, [location]);
   return null;
+}
+
+function PageFade({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    ref.current?.classList.remove("page-fade");
+    void ref.current?.offsetWidth; // reflow to restart animation
+    ref.current?.classList.add("page-fade");
+  }, [location.pathname]);
+  return <div ref={ref}>{children}</div>;
 }
 import Index from "./pages/Index";
 import Publications from "./pages/Publications";
@@ -41,6 +52,7 @@ const App = () => (
       <Sonner />
       <HashRouter>
         <RouteTracker />
+        <PageFade>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/publications" element={<Publications />} />
@@ -54,6 +66,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </PageFade>
       </HashRouter>
     </TooltipProvider>
   </QueryClientProvider>
