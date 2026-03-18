@@ -19,6 +19,9 @@
   - 블로그 포스트 데이터는 `src/data/blogPosts.ts`
 - **Blog 상세**: `src/pages/Blog.tsx` (`BlogPost` 컴포넌트)
 - **Analytics 페이지**: `src/pages/Analytics.tsx`
+- **Design 갤러리**: `src/pages/Design.tsx`
+  - 작업물 데이터는 `src/data/designData.ts`의 `designWorks` 배열
+  - 이미지는 `public/design/` 폴더에 저장 후 `thumbnail: "/design/파일명.png"` 형식으로 입력
 - **404 페이지**: `src/pages/NotFound.tsx`
 
 > 데이터 중심으로 업데이트하고 싶다면 **`src/data/siteData.ts`**만 수정해도
@@ -35,7 +38,7 @@
 
 - 상단 네비게이션 항목은 `src/components/layout/TopNav.tsx`의 `navItems` 배열에서 수정합니다.
 - 라우트 구성은 `src/App.tsx`에서 관리합니다.
-  - Home / Publications / Projects / Projects/:id / News / CV / Blog / Blog/:id / Analytics
+  - Home / Publications / Projects / Projects/:id / News / CV / Blog / Blog/:id / Analytics / Design
 
 ## 프로필 사이드바(사진/소속/링크)
 
@@ -75,6 +78,7 @@
 |------|----------|
 | `--primary` | 네비게이션 활성 링크, 논문 카드의 primary 버튼(ACM DL·PDF), 스크롤 인디케이터, award 배지 테두리 등 UI 전반 |
 | `--sub-color` | 프로필 소셜 아이콘, 연도 배지, CV 다운로드 버튼, Analytics 통계 숫자, 하이퍼링크 색상 |
+| `--foreground` | **기본 본문 색상(Default Color)**. 특별한 강조 없이 일반 텍스트에 사용하는 색. 라이트 모드 기준 진한 회색(`hsl(220 20% 15%)`). Tailwind 클래스: `text-foreground` |
 
 #### Sub Color 변경 방법
 

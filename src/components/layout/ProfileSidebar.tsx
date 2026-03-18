@@ -50,9 +50,9 @@ export function ProfileSidebar() {
         {/* Affiliation */}
         <div className="text-center lg:text-left space-y-1 mb-6">
           <p className="text-muted-foreground">{profile.title}</p>
-          <p className="text-primary font-medium">{profile.lab}</p>
-          <p className="text-primary font-medium">{profile.department}</p>
-          <p className="text-primary font-medium">{profile.university}</p>
+          <p className="text-foreground font-medium">{profile.lab}</p>
+          <p className="text-foreground font-medium">{profile.department}</p>
+          <p className="text-foreground font-medium">{profile.university}</p>
         </div>
 
         {/* Social Icons */}
