@@ -9,47 +9,29 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    id: "first-post",
-    title: "Getting Started with HCI Research",
-    date: "2026-09-15",
-    excerpt: "Reflections on my first year as a PhD student in Human-Computer Interaction research.",
-    content: `# Getting Started with HCI Research
+    id: "post1",
+    title: "Things I Love",
+    date: "2026-02-18,
+    excerpt: "Games that move people and the mechanics that make them meaningful.",
+    content: `
+I’ve always been drawn to games that do more than just entertain. What interests me most is how a game, through its mechanics, can shape the way players think, feel, and make decisions.
+Here are a few games I really like.
 
-Starting a PhD in Human-Computer Interaction has been an incredible journey. In this post, I want to share some thoughts and lessons learned during my first year.
+### Detroit: Become Human
+A game where your choices really matter. I liked how it constantly made me pause and think, “What should I do here?” and then actually made me live with the outcome.
 
-## Finding Your Research Direction
+### Undertale
+You don’t have to fight, and that alone changes everything. It’s one of those games that quietly makes you question your own decisions.
 
-One of the biggest challenges for new PhD students is identifying a research direction that is both personally meaningful and academically valuable. 
+### Super Mario Odyssey
+Just pure fun. The movement feels great, and the "capture" mechanic keeps things fresh the whole time.
 
-## Building a Research Practice
+### Life is Strange
+Being able to rewind time sounds powerful, but it mostly just made me overthink everything. In a good way. The story hits emotionally too.
 
-- **Read widely**: Don't limit yourself to your immediate field
-- **Write regularly**: Keep a research journal
-- **Collaborate**: Work with others whenever possible
+### Alba: A Wildlife Adventure
+The story is pretty simple, but it’s really good at making you want to collect things and explore. At the same time, you naturally learn about nature without it feeling forced.`,
 
-## Looking Forward
-
-I'm excited to continue exploring the intersection of AI and human cognition in my research.`,
-    tags: ["PhD", "Research", "HCI"],
-  },
-  {
-    id: "ai-interaction",
-    title: "Thoughts on Human-AI Collaboration",
-    date: "2026-10-01",
-    excerpt: "Exploring the nuances of how humans and AI systems can work together effectively.",
-    content: `# Thoughts on Human-AI Collaboration
-
-As AI systems become more capable, understanding how humans can effectively collaborate with them becomes increasingly important.
-
-## Key Considerations
-
-1. Trust calibration
-2. Transparency in AI decision-making
-3. Maintaining human agency
-
-## Future Directions
-
-The field of Human-AI interaction is rapidly evolving...`,
-    tags: ["AI", "Collaboration", "HCI"],
+    tags: ["Games", "Design", "Interaction"],
   },
 ];
