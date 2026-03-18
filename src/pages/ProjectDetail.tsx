@@ -12,7 +12,7 @@ const ProjectDetail = () => {
       <MainLayout>
         <div className="text-center py-20">
           <h1 className="text-2xl font-heading font-bold mb-4">Project not found</h1>
-          <Link to="/projects" className="text-link hover:underline">
+          <Link to="/projects" className="text-link">
             ← Back to projects
           </Link>
         </div>
@@ -95,7 +95,7 @@ const ProjectDetail = () => {
 
   return (
     <MainLayout>
-      <Link to="/projects" className="inline-flex items-center gap-2 text-link hover:underline mb-8">
+      <Link to="/projects" className="inline-flex items-center gap-2 text-link mb-8">
         <ArrowLeft className="w-4 h-4" />
         Back to projects
       </Link>

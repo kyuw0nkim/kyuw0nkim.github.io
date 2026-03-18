@@ -7,7 +7,7 @@ const renderParts = (parts: TextPart[]) =>
     typeof part === "string" ? (
       part
     ) : (
-      <a key={i} href={part.href} className="text-link hover:underline" target="_blank" rel="noopener noreferrer">
+      <a key={i} href={part.href} className="text-link" target="_blank" rel="noopener noreferrer">
         {part.text}
       </a>
     )
