@@ -1,5 +1,5 @@
 // A text segment: either a plain string or a linked piece of text.
-export type TextPart = string | { text: string; href: string };
+export type TextPart = string | { text: string; href: string; tooltip?: string };
 
 export interface Profile {
   name: string;

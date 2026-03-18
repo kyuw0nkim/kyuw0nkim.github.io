@@ -5,26 +5,12 @@ import { siteData, getLatestPublication, formatDate } from "@/data/siteData";
 import type { TextPart } from "@/data/types";
 import { HoverTooltip } from "@/components/ui/HoverTooltip";
 
-const LINK_TOOLTIPS: Record<string, string> = {
-  "idlearning.org": "Visit our lab! 🏫",
-  "dI0biU8AAAAJ": "My advisor 👩‍🏫",
-  "arXiv": "Read preprint on arXiv",
-  "doi.org": "Read the paper",
-};
-
-function getLinkTooltip(href: string, text: string): string {
-  for (const [key, tooltip] of Object.entries(LINK_TOOLTIPS)) {
-    if (href.includes(key) || text.includes(key)) return tooltip;
-  }
-  return "Open link ↗";
-}
-
 const renderParts = (parts: TextPart[]) =>
   parts.map((part, i) =>
     typeof part === "string" ? (
       part
     ) : (
-      <HoverTooltip key={i} content={getLinkTooltip(part.href, part.text)}>
+      <HoverTooltip key={i} content={part.tooltip}>
         <a href={part.href} className="text-link" target="_blank" rel="noopener noreferrer">
           {part.text}
         </a>

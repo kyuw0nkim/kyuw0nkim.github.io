@@ -107,19 +107,29 @@ import { HoverTooltip } from "@/components/ui/HoverTooltip";
 
 ### 바이오/뉴스 링크에 툴팁 메시지 수정
 
-`src/pages/Index.tsx`의 `LINK_TOOLTIPS` 객체에서 href 키워드별 메시지를 수정합니다.
+툴팁은 링크 데이터와 함께 `src/data/siteData.ts`에서 바로 설정합니다.
+`TextPart` 객체에 `tooltip` 필드를 추가하면 됩니다.
 
 ```ts
-const LINK_TOOLTIPS: Record<string, string> = {
-  "idlearning.org": "Visit our lab! 🏫",
-  "dI0biU8AAAAJ": "My advisor 👩‍🏫",
-  "doi.org": "Read the paper",
-};
+// src/data/siteData.ts
+bioParagraphs: [
+  [
+    "Hi, I'm Kyuwon. I'm a member of the ",
+    { text: "IDL Lab", href: "https://idlearning.org", tooltip: "Visit our lab! 🏫" },
+    ", advised by",
+    { text: "Prof. So", href: "https://scholar.google.com/...", tooltip: "My advisor 👩‍🏫" },
+  ]
+],
+
+news: [
+  { id: "n1", date: "2025-12-01", title: [
+    "Paper accepted! See ",
+    { text: "arXiv", href: "https://arxiv.org/...", tooltip: "Read preprint on arXiv" },
+  ]},
+]
 ```
 
-- 키: href 또는 링크 텍스트에 포함된 문자열
-- 값: 표시할 툴팁 메시지
-- 매칭되는 키가 없으면 기본값 `"Open link ↗"` 표시
+- `tooltip` 필드를 생략하면 해당 링크에는 툴팁이 표시되지 않습니다.
 
 ## 썸네일 이미지
 
