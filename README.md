@@ -55,6 +55,72 @@
 - `src/components/ui/` — shadcn-ui 기반 공통 컴포넌트
 - `src/components/NavLink.tsx` — 네비게이션 링크 컴포넌트
 
+## 호버 툴팁 (HoverTooltip)
+
+요소에 마우스를 올렸을 때 말풍선 형태의 툴팁을 표시하는 컴포넌트입니다.
+Sub Color(앰버) 배경의 작은 말풍선으로 나타납니다.
+
+**현재 적용 위치:** 홈 페이지의 바이오/뉴스 텍스트 링크 (`src/pages/Index.tsx`)
+
+### 기본 사용법
+
+```tsx
+import { HoverTooltip } from "@/components/ui/HoverTooltip";
+
+<HoverTooltip content="툴팁 메시지">
+  <a href="...">링크 텍스트</a>
+</HoverTooltip>
+```
+
+### 툴팁 생략
+
+`content` prop을 넘기지 않으면 툴팁 없이 자식 요소만 그대로 렌더링됩니다.
+
+```tsx
+// 툴팁 있음
+<HoverTooltip content="Visit our lab! 🏫">
+  <a href="...">IDL Lab</a>
+</HoverTooltip>
+
+// 툴팁 없음 — <a> 태그만 렌더링됨
+<HoverTooltip>
+  <a href="...">IDL Lab</a>
+</HoverTooltip>
+```
+
+### 말풍선 위치 변경
+
+기본값은 `top`(위쪽)이며, `side` prop으로 변경할 수 있습니다.
+
+```tsx
+<HoverTooltip content="아래에 표시" side="bottom">
+  <button>버튼</button>
+</HoverTooltip>
+```
+
+| `side` 값 | 설명 |
+|-----------|------|
+| `"top"` (기본값) | 요소 위에 표시 |
+| `"bottom"` | 요소 아래에 표시 |
+| `"left"` | 요소 왼쪽에 표시 |
+| `"right"` | 요소 오른쪽에 표시 |
+
+### 바이오/뉴스 링크에 툴팁 메시지 수정
+
+`src/pages/Index.tsx`의 `LINK_TOOLTIPS` 객체에서 href 키워드별 메시지를 수정합니다.
+
+```ts
+const LINK_TOOLTIPS: Record<string, string> = {
+  "idlearning.org": "Visit our lab! 🏫",
+  "dI0biU8AAAAJ": "My advisor 👩‍🏫",
+  "doi.org": "Read the paper",
+};
+```
+
+- 키: href 또는 링크 텍스트에 포함된 문자열
+- 값: 표시할 툴팁 메시지
+- 매칭되는 키가 없으면 기본값 `"Open link ↗"` 표시
+
 ## 썸네일 이미지
 
 - 논문/프로젝트 썸네일은 `public/thumbnails/`에 저장합니다.
