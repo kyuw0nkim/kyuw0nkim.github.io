@@ -1,8 +1,14 @@
-import { FormEvent, useMemo, useRef, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Search, Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { getSearchResults } from "@/data/searchIndex";
@@ -26,7 +32,6 @@ export function TopNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null);
   const searchResults = useMemo(
     () => getSearchResults(searchQuery, 20),
     [searchQuery],
@@ -81,34 +86,33 @@ export function TopNav() {
           ))}
 
           {/* Search Button */}
-          <Popover open={searchOpen} onOpenChange={(open) => {
+          <Dialog open={searchOpen} onOpenChange={(open) => {
             setSearchOpen(open);
             if (!open) setSearchQuery("");
-            if (open) setTimeout(() => inputRef.current?.focus(), 0);
           }}>
-            <PopoverTrigger asChild>
+            <DialogTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Search">
                 <Search className="w-5 h-5" />
               </Button>
-            </PopoverTrigger>
-            <PopoverContent
-              align="end"
-              sideOffset={8}
-              className="w-80 p-0 flex flex-col"
-              onOpenAutoFocus={(e) => e.preventDefault()}
-            >
-              {/* Fixed search input */}
-              <form onSubmit={handleSearch} className="p-3 border-b border-border flex-shrink-0">
-                <Input
-                  ref={inputRef}
-                  placeholder="Search publications, projects..."
-                  value={searchQuery}
-                  onChange={(event) => setSearchQuery(event.target.value)}
-                />
-              </form>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md p-0 gap-0 flex flex-col overflow-hidden" style={{ height: "420px" }}>
+              {/* Fixed search header — never scrolls */}
+              <div className="flex-shrink-0 p-6 pb-4 border-b border-border">
+                <DialogHeader className="mb-3">
+                  <DialogTitle>Search</DialogTitle>
+                </DialogHeader>
+                <form onSubmit={handleSearch}>
+                  <Input
+                    placeholder="Search publications, projects..."
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                    autoFocus
+                  />
+                </form>
+              </div>
 
-              {/* Scrollable results */}
-              <div className="overflow-y-auto max-h-72 p-2">
+              {/* Scrollable results — only this area scrolls */}
+              <div className="flex-1 overflow-y-auto p-4">
                 {searchQuery.trim() ? (
                   searchResults.length > 0 ? (
                     <ul className="space-y-1">
@@ -144,8 +148,8 @@ export function TopNav() {
                   </p>
                 )}
               </div>
-            </PopoverContent>
-          </Popover>
+            </DialogContent>
+          </Dialog>
 
           {/* Dark Mode Toggle */}
           <Button variant="ghost" size="icon" onClick={toggleDarkMode} aria-label="Toggle dark mode">
