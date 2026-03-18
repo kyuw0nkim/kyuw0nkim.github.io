@@ -4,12 +4,14 @@ import { cn } from "@/lib/utils";
 
 interface HoverTooltipProps {
   children: React.ReactNode;
-  content: React.ReactNode;
+  content?: React.ReactNode;
   className?: string;
   side?: "top" | "bottom" | "left" | "right";
 }
 
 export function HoverTooltip({ children, content, className, side = "top" }: HoverTooltipProps) {
+  if (!content) return <>{children}</>;
+
   return (
     <Tooltip>
       <TooltipTrigger asChild>

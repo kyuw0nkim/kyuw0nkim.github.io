@@ -1,6 +1,5 @@
 import { Mail, Github } from "lucide-react";
 import { siteData } from "@/data/siteData";
-import { HoverTooltip } from "@/components/ui/HoverTooltip";
 
 // Custom icons for social platforms
 function GoogleScholarIcon({ className }: { className?: string }) {
@@ -58,31 +57,21 @@ export function ProfileSidebar() {
 
         {/* Social Icons */}
         <div className="flex justify-center lg:justify-start gap-4">
-          <HoverTooltip content="Say hi! 👋">
-            <a href={`mailto:${profile.email}`} aria-label="Email" className="social-icon">
-              <Mail className="w-6 h-6" />
-            </a>
-          </HoverTooltip>
-          <HoverTooltip content="My publications 📖">
-            <a href={profile.googleScholar} target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" className="social-icon">
-              <GoogleScholarIcon className="w-6 h-6" />
-            </a>
-          </HoverTooltip>
-          <HoverTooltip content="Research profile 🔬">
-            <a href={profile.researchGate} target="_blank" rel="noopener noreferrer" aria-label="ResearchGate" className="social-icon">
-              <ResearchGateIcon className="w-6 h-6" />
-            </a>
-          </HoverTooltip>
-          <HoverTooltip content="Let's connect 💼">
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
-              <LinkedInIcon className="w-6 h-6" />
-            </a>
-          </HoverTooltip>
-          <HoverTooltip content="Check my code 🐱">
-            <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-icon">
-              <Github className="w-6 h-6" />
-            </a>
-          </HoverTooltip>
+          <a href={`mailto:${profile.email}`} aria-label="Email" className="social-icon">
+            <Mail className="w-6 h-6" />
+          </a>
+          <a href={profile.googleScholar} target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" className="social-icon">
+            <GoogleScholarIcon className="w-6 h-6" />
+          </a>
+          <a href={profile.researchGate} target="_blank" rel="noopener noreferrer" aria-label="ResearchGate" className="social-icon">
+            <ResearchGateIcon className="w-6 h-6" />
+          </a>
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
+            <LinkedInIcon className="w-6 h-6" />
+          </a>
+          <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-icon">
+            <Github className="w-6 h-6" />
+          </a>
         </div>
       </div>
     </aside>
