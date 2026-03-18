@@ -11,7 +11,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: "post1",
     title: "Things I Love",
-    date: "2026-02-18,
+    date: "2026-02-18",
     excerpt: "Games that move people and the mechanics that make them meaningful.",
     content: `
 I’ve always been drawn to games that do more than just entertain. What interests me most is how a game, through its mechanics, can shape the way players think, feel, and make decisions.
