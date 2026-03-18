@@ -48,7 +48,7 @@ const BlogPost = () => {
       <MainLayout>
         <div className="text-center py-20">
           <h1 className="text-2xl font-heading font-bold mb-4">Post not found</h1>
-          <Link to="/blog" className="text-link hover:underline">
+          <Link to="/blog" className="text-link">
             ← Back to blog
           </Link>
         </div>
@@ -81,7 +81,7 @@ const BlogPost = () => {
 
   return (
     <MainLayout>
-      <Link to="/blog" className="inline-flex items-center gap-2 text-link hover:underline mb-8">
+      <Link to="/blog" className="inline-flex items-center gap-2 text-link mb-8">
         <ArrowLeft className="w-4 h-4" />
         Back to blog
       </Link>
