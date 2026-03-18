@@ -25,9 +25,9 @@ export const siteData: SiteData = {
     bioParagraphs: [
       [
         "Hi, I'm Kyuwon, a master's student in Educational Technology at Ewha Womans University. I am currently a member of the ",
-        { text: "Interaction Design for Learning Lab", href: "https://idlearning.org", tooltip: "Meet my awesome lab mates 👋" },
-        ", advised by",
-        { text: "Prof. Hyo-Jeong So", href: "https://scholar.google.com/citations?user=dI0biU8AAAAJ&hl=en", tooltip: "Also a researcher I truly admire 🍀" },
+        { text: "Interaction Design for Learning Lab", href: "https://idlearning.org", tooltip: "Meet the awesome people I work with👋" },
+        ", advised by ",
+        { text: "Prof. Hyo-Jeong So", href: "https://scholar.google.com/citations?user=dI0biU8AAAAJ&hl=en", tooltip: "A researcher I truly admire🍀" },
         ". My research sits at the intersection of learning and HCI, guided by a single question: How might learning technologies help us go beyond our limitations and create a better society? Outside the lab, I enjoy listening to people's stories, tinkering with design, and watching Let's Play videos. New perspectives always inspire me - so feel free to reach out!"
       ]
     ],
@@ -107,7 +107,7 @@ export const siteData: SiteData = {
   news: [
     { id: "n6", date: "2026-03-18", title: ["Traveling to London, Milan, and Barcelona (Apr 2–19). So many places in the world to explore!"] },
     { id: "n5", date: "2026-02-20", title: ["MelodyMate is accepted as poster in CHI 2026✨"] },
-    { id: "n4", date: "2025-12-01", title: ["Our research article is accepted as full paper in LAK 2026! Currently available in ", { text: "arXiv", href: "https://doi.org/10.48550/arXiv.2601.05651", tooltip: "Read preprint on arXiv" }, "."] },
+    { id: "n4", date: "2025-12-01", title: ["Our research article is accepted as full paper in LAK 2026! Now available in ", { text: "arXiv", href: "https://doi.org/10.48550/arXiv.2601.05651", tooltip: "Check out our preprint" }, "."] },
     { id: "n3", date: "2025-10-01", title: ["Presented the poster Your Thoughtful Opponent at UIST 2025."] },
     { id: "n2", date: "2025-03-02", title: ["Just started my Master's journey in the IDL lab, at Ewha Womans University🚀"] },
     { id: "n1", date: "2024-11-29", title: ["Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉"] }
