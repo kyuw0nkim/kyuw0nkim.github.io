@@ -27,7 +27,7 @@ const Index = () => {
       {/* About Section */}
       <section id="about" className="content-section">
         <h1 className="text-3xl font-heading font-bold mb-1">{profile.name}</h1>
-        <p className="text-muted-foreground mb-4" style={{ fontFamily: "Georgia, serif", fontStyle: "italic" }}>
+        <p className="text-muted-foreground mb-4" style={{ fontFamily: "'Noto Serif', serif", fontWeight: 500, fontStyle: "italic" }}>
           Always go with the choice that scares you the most
         </p>
         <p className="text-foreground leading-relaxed text-justify">
