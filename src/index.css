@@ -51,12 +51,12 @@
 
     /* Sub Color - used for icons, year badges, CV button, analytics numbers, links */
     /* Change this value to restyle all sub-color elements at once */
-    --sub-color: 199 89% 48%;
-    --sub-color-foreground: 0 0% 100%;
+    --sub-color: 47 84% 68%;
+    --sub-color-foreground: 220 20% 15%;
 
     --year-color: var(--sub-color);
     --link-color: var(--sub-color);
-    --link-hover-color: 199 89% 30%;
+    --link-hover-color: 47 84% 52%;
 
     /* Typography */
     --font-heading: 'Poppins', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -103,8 +103,8 @@
     --ring: 199 89% 55%;
 
     /* Sub Color - dark mode */
-    --sub-color: 199 89% 55%;
-    --sub-color-foreground: 220 20% 10%;
+    --sub-color: 47 84% 68%;
+    --sub-color-foreground: 220 20% 15%;
 
     --year-color: var(--sub-color);
     --link-color: var(--sub-color);
