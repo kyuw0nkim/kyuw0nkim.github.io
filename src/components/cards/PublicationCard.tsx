@@ -11,7 +11,7 @@ export function PublicationCard({ publication, showThumbnail = true }: Publicati
   const renderAuthors = () =>
     (publication.authors ?? []).map((author, index) => {
       const isHighlighted = author === "Kyuwon Kim" || author === "김규원";
-      const content = isHighlighted ? <span className="font-semibold">{author}</span> : author;
+      const content = isHighlighted ? <span className="font-semibold author-highlight">{author}</span> : author;
       const separator = index < (publication.authors?.length ?? 0) - 1 ? ", " : "";
       return (
         <span key={`${author}-${index}`}>

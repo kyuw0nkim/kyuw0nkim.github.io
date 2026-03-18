@@ -250,4 +250,20 @@
     color: inherit;
     background-size: 100% 100%;
   }
+
+  .author-highlight {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: hsl(var(--sub-color));
+    text-underline-offset: 2px;
+  }
+
+  .page-fade {
+    animation: pageFadeIn 0.15s ease-out;
+  }
+
+  @keyframes pageFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
 }
