@@ -67,6 +67,41 @@
 - 공통 유틸리티 클래스는 `src/index.css`의 `@layer utilities`에 있습니다.
   - `container-academic`, `content-section`, `section-title` 등
 
+### Main Color vs Sub Color
+
+사이트의 색상은 **Main Color**(`--primary`)와 **Sub Color**(`--sub-color`) 두 가지로 구분됩니다.
+
+| 변수 | 적용 범위 |
+|------|----------|
+| `--primary` | 네비게이션 활성 링크, 논문 카드의 primary 버튼(ACM DL·PDF), 스크롤 인디케이터, award 배지 테두리 등 UI 전반 |
+| `--sub-color` | 프로필 소셜 아이콘, 연도 배지, CV 다운로드 버튼, Analytics 통계 숫자, 하이퍼링크 색상 |
+
+#### Sub Color 변경 방법
+
+`src/index.css`에서 `--sub-color` 값만 바꾸면 위 요소들이 모두 한 번에 변경됩니다.
+
+```css
+/* src/index.css — :root (라이트 모드) */
+--sub-color: 199 89% 48%;        /* HSL 값으로 입력 */
+--sub-color-foreground: 0 0% 100%; /* 버튼 위 텍스트 색상 */
+
+/* src/index.css — .dark (다크 모드) */
+--sub-color: 199 89% 55%;
+--sub-color-foreground: 220 20% 10%;
+```
+
+#### Main Color로 특정 요소만 바꾸고 싶을 때
+
+특정 요소 하나만 main color(`--primary`)로 되돌리고 싶다면, 해당 Tailwind 클래스를 `text-sub` → `text-primary`, `bg-sub` → `bg-primary` 등으로 직접 수정합니다.
+
+| 파일 | 요소 | 현재 클래스 → Main Color로 변경 |
+|------|------|-------------------------------|
+| `src/pages/Analytics.tsx` | 통계 숫자 | `text-sub` → `text-primary` |
+| `src/pages/CV.tsx` | 다운로드 버튼 | `bg-sub text-sub-foreground` → `bg-primary text-primary-foreground` |
+| `src/index.css` | 소셜 아이콘 | `.social-icon`의 `text-sub` → `text-primary` |
+| `src/index.css` | 연도 배지 | `--year-color: var(--sub-color)` → `--year-color: var(--primary)` |
+| `src/index.css` | 하이퍼링크 | `--link-color: var(--sub-color)` → `--link-color: var(--primary)` |
+
 ## 여백/레이아웃 수정
 
 - 전체 레이아웃과 기본 여백은 `src/components/layout/MainLayout.tsx`에서 조정합니다.

@@ -131,19 +131,19 @@ const Analytics = () => {
       {/* Summary Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-8">
         <div className="bg-card border border-border rounded-lg p-4 text-center">
-          <p className="text-2xl font-heading font-bold text-primary">
+          <p className="text-2xl font-heading font-bold text-sub">
             {siteData.publications.length}
           </p>
           <p className="text-sm text-muted-foreground">Total Publications</p>
         </div>
         <div className="bg-card border border-border rounded-lg p-4 text-center">
-          <p className="text-2xl font-heading font-bold text-primary">
+          <p className="text-2xl font-heading font-bold text-sub">
             {topics.length}
           </p>
           <p className="text-sm text-muted-foreground">Research Topics</p>
         </div>
         <div className="bg-card border border-border rounded-lg p-4 text-center col-span-2 sm:col-span-1">
-          <p className="text-2xl font-heading font-bold text-primary">
+          <p className="text-2xl font-heading font-bold text-sub">
             {years[years.length - 1] - years[0] + 1}
           </p>
           <p className="text-sm text-muted-foreground">Years Active</p>

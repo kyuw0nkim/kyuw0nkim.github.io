@@ -48,8 +48,14 @@
     --nav-height: 60px;
     --profile-width: 280px;
     --content-max-width: 800px;
-    --year-color: 199 89% 48%;
-    --link-color: 199 89% 40%;
+
+    /* Sub Color - used for icons, year badges, CV button, analytics numbers, links */
+    /* Change this value to restyle all sub-color elements at once */
+    --sub-color: 199 89% 48%;
+    --sub-color-foreground: 0 0% 100%;
+
+    --year-color: var(--sub-color);
+    --link-color: var(--sub-color);
     --link-hover-color: 199 89% 30%;
 
     /* Typography */
@@ -96,8 +102,12 @@
     --input: 220 20% 20%;
     --ring: 199 89% 55%;
 
-    --year-color: 199 89% 60%;
-    --link-color: 199 89% 60%;
+    /* Sub Color - dark mode */
+    --sub-color: 199 89% 55%;
+    --sub-color-foreground: 220 20% 10%;
+
+    --year-color: var(--sub-color);
+    --link-color: var(--sub-color);
     --link-hover-color: 199 89% 70%;
 
     --sidebar-background: 220 20% 12%;
@@ -173,7 +183,7 @@
 
   /* Profile Social Icon */
   .social-icon {
-    @apply w-6 h-6 text-primary hover:text-primary/80 transition-colors cursor-pointer;
+    @apply w-6 h-6 text-sub hover:text-sub/80 transition-colors cursor-pointer;
   }
 
   /* Nav Link */
