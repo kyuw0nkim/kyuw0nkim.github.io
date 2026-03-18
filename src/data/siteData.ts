@@ -25,9 +25,9 @@ export const siteData: SiteData = {
     bioParagraphs: [
       [
         "Hi, I'm Kyuwon, a master's student in Educational Technology at Ewha Womans University. I am currently a member of the ",
-        { text: "Interaction Design for Learning Lab", href: "https://idlearning.org", tooltip: "Visit our lab! 🏫" },
+        { text: "Interaction Design for Learning Lab", href: "https://idlearning.org", tooltip: "Meet my awesome lab mates 👋" },
         ", advised by",
-        { text: "Prof. Hyo-Jeong So", href: "https://scholar.google.com/citations?user=dI0biU8AAAAJ&hl=en", tooltip: "My advisor 👩‍🏫" },
+        { text: "Prof. Hyo-Jeong So", href: "https://scholar.google.com/citations?user=dI0biU8AAAAJ&hl=en", tooltip: "Also a researcher I truly admire 🍀" },
         ". My research sits at the intersection of learning and HCI, guided by a single question: How might learning technologies help us go beyond our limitations and create a better society? Outside the lab, I enjoy listening to people's stories, tinkering with design, and watching Let's Play videos. New perspectives always inspire me - so feel free to reach out!"
       ]
     ],
