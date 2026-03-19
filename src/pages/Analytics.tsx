@@ -9,6 +9,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ReferenceLine,
   ResponsiveContainer,
 } from "recharts";
 
@@ -19,6 +20,28 @@ const TOPIC_COLORS: Record<string, string> = {
   "Accessibility": "hsl(142, 76%, 36%)",
   "AI/ML": "hsl(24, 95%, 53%)",
   "Information Visualization": "hsl(346, 77%, 50%)",
+};
+
+const AnnotationLabel = ({ viewBox, label }: { viewBox?: { x: number; y: number; height: number }; label: string }) => {
+  if (!viewBox) return null;
+  const { x, y } = viewBox;
+  return (
+    <g>
+      <circle cx={x} cy={y + 2} r={3} fill="hsl(var(--muted-foreground))" opacity={0.5} />
+      <line x1={x} y1={y + 5} x2={x - 10} y2={y + 20} stroke="hsl(var(--muted-foreground))" strokeWidth={1} opacity={0.4} />
+      <text
+        x={x - 12}
+        y={y + 22}
+        textAnchor="end"
+        fontSize={13}
+        fontFamily="'Caveat', cursive"
+        fill="hsl(var(--muted-foreground))"
+        style={{ userSelect: "none" }}
+      >
+        {label}
+      </text>
+    </g>
+  );
 };
 
 const getTopicColor = (topic: string, index: number) => {
@@ -178,6 +201,17 @@ const Analytics = () => {
               />
               <Tooltip content={<CustomTooltip />} />
               <Legend content={<CustomLegend />} />
+              {(siteData.chartAnnotations ?? []).map((ann) => (
+                <ReferenceLine
+                  key={ann.year}
+                  x={ann.year.toString()}
+                  stroke="hsl(var(--muted-foreground))"
+                  strokeDasharray="4 3"
+                  strokeWidth={1}
+                  strokeOpacity={0.4}
+                  label={(props) => <AnnotationLabel {...props} label={ann.label} />}
+                />
+              ))}
               {topics.map((topic, index) => (
                 <Line
                   key={topic}

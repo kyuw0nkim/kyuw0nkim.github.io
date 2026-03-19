@@ -296,7 +296,15 @@ Developing an AI peer agent that promotes deeper learning by introducing product
 - Learning gain measurements and qualitative analysis`,
       relatedPublications: ["p2025-c1"]
     }
-  ]
+  ],
+
+  // =========================================================================
+  // 차트 주석 — Analytics 그래프에 표시할 개인 이정표를 추가하세요
+  // year: X축 연도 (숫자), label: 표시할 텍스트
+  // =========================================================================
+  chartAnnotations: [
+    { year: 2025, label: "Earned my bachelor's degree" },
+  ],
 };
 
 // Helper functions
