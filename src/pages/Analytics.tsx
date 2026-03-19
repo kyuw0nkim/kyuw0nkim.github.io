@@ -48,7 +48,7 @@ const Analytics = () => {
       if (!yearTopicCount[year]) {
         yearTopicCount[year] = {};
       }
-      pub.topics.forEach((topic) => {
+      (pub.topics ?? []).forEach((topic) => {
         yearTopicCount[year][topic] = (yearTopicCount[year][topic] || 0) + 1;
       });
     });

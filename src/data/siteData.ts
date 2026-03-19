@@ -132,7 +132,6 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["Conversational Agent", "Learning Analytics", "AIED"],
       tags: ["Conversational Agent", "Learning Analytics", "AIED"],
-      //links: { arxiv: "https://doi.org/10.48550/arXiv.2601.05651" }
     },
     {
       id: "p2026-c1",
@@ -215,8 +214,7 @@ export const siteData: SiteData = {
       venue: "2025 Korean Society for Educational Technology Spring Conference",
       type: "Conference",
       topics: ["Review"],
-      //tags: ["Review"],
-      //links: { doi: "https://doi.org/10.22318/icls2025.945127" }
+      tags: ["Review"],
     },
     {
       id: "p2024-j1",
@@ -253,7 +251,6 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["AIED"],
       tags: ["AIED"],
-      //links: { website: "#" },
       award: "장려상"
     },
     {
@@ -274,32 +271,6 @@ export const siteData: SiteData = {
   // 프로젝트 — 프로젝트를 여기서 추가/수정하세요
   // =========================================================================
   projects: [
-    {
-      id: "pr1",
-      title: "Project Title",
-      year: 2026,
-      startDate: "2026-09-01",
-      endDate: "2027-12-31",
-      role: "Student Researcher",
-      summary: "Project summary",
-      description: `## Overview
-
-This project explores...
-
-## Research Questions
-
-1. A
-2. B
-
-## Methodology
-
-- Mixed-methods approach combining surveys and interviews
-
-## Key Findings
-
-- Users demonstrate complex awareness of AI mediation`,
-      relatedPublications: ["p1"]
-    },
     {
       id: "pr2",
       title: "Thoughtful Peer Agent for Cognitive Conflict in Learning",
@@ -323,7 +294,7 @@ Developing an AI peer agent that promotes deeper learning by introducing product
 - User studies with university students
 - A/B testing of different agent personalities
 - Learning gain measurements and qualitative analysis`,
-      relatedPublications: ["p3"]
+      relatedPublications: ["p2025-c1"]
     }
   ]
 };

@@ -66,6 +66,9 @@ const BlogPost = () => {
       if (line.startsWith('## ')) {
         return <h2 key={index} className="text-xl font-heading font-semibold mt-8 mb-4">{line.replace('## ', '')}</h2>;
       }
+      if (line.startsWith('### ')) {
+        return <h3 key={index} className="text-base font-heading font-semibold mt-6 mb-3">{line.replace('### ', '')}</h3>;
+      }
       if (line.startsWith('- ')) {
         return <li key={index} className="ml-6 text-foreground">{line.replace('- ', '')}</li>;
       }
@@ -100,7 +103,7 @@ const BlogPost = () => {
             </span>
             <div className="flex gap-2">
               {post.tags.map((tag) => (
-                <span key={tag} className="text-primary">#{tag}</span>
+                <span key={tag} className="text-xs text-primary">#{tag}</span>
               ))}
             </div>
           </div>

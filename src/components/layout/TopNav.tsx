@@ -18,11 +18,11 @@ const navItems = [
   { name: "Home", path: "/" },
   { name: "News", path: "/news" },
   { name: "Publications", path: "/publications" },
-  // { name: "Projects", path: "/projects" }, //
+  // { name: "Projects", path: "/projects" },
   { name: "CV", path: "/cv" },
-  // { name: "Blog", path: "/blog" }, //
+  // { name: "Blog", path: "/blog" },
   { name: "Analytics", path: "/analytics" },
-  //{ name: "Design", path: "/design" }, //
+  // { name: "Design", path: "/design" },
 ];
 
 export function TopNav() {
@@ -103,7 +103,7 @@ export function TopNav() {
                 </DialogHeader>
                 <form onSubmit={handleSearch}>
                   <Input
-                    placeholder="Search publications, projects..."
+                    placeholder="Search publications, news, blog..."
                     value={searchQuery}
                     onChange={(event) => setSearchQuery(event.target.value)}
                     autoFocus
