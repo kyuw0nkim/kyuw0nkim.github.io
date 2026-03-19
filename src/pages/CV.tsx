@@ -13,9 +13,9 @@ const CV = () => {
       <div className="flex justify-center mb-12">
         <a
           href={cv.cvUrl}
-          className="inline-flex items-center gap-2 px-6 py-3 bg-sub text-sub-foreground rounded-md hover:bg-sub/90 transition-colors"
+          className="inline-flex items-center gap-1.5 px-4 py-1.5 text-sm bg-sub text-sub-foreground rounded-full hover:bg-sub/90 transition-colors"
         >
-          <Download className="w-5 h-5" />
+          <Download className="w-4 h-4" />
           View Full CV
         </a>
       </div>

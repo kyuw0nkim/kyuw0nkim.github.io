@@ -48,7 +48,7 @@ const Analytics = () => {
       if (!yearTopicCount[year]) {
         yearTopicCount[year] = {};
       }
-      pub.topics.forEach((topic) => {
+      (pub.topics ?? []).forEach((topic) => {
         yearTopicCount[year][topic] = (yearTopicCount[year][topic] || 0) + 1;
       });
     });
@@ -131,19 +131,19 @@ const Analytics = () => {
       {/* Summary Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-8">
         <div className="bg-card border border-border rounded-lg p-4 text-center">
-          <p className="text-2xl font-heading font-medium text-muted-foreground">
+          <p className="text-xl font-heading font-semibold text-muted-foreground">
             {siteData.publications.length}
           </p>
           <p className="text-sm text-muted-foreground">Total Publications</p>
         </div>
         <div className="bg-card border border-border rounded-lg p-4 text-center">
-          <p className="text-2xl font-heading font-medium text-muted-foreground">
+          <p className="text-xl font-heading font-semibold text-muted-foreground">
             {topics.length}
           </p>
           <p className="text-sm text-muted-foreground">Research Topics</p>
         </div>
         <div className="bg-card border border-border rounded-lg p-4 text-center col-span-2 sm:col-span-1">
-          <p className="text-2xl font-heading font-medium text-muted-foreground">
+          <p className="text-xl font-heading font-semibold text-muted-foreground">
             {years[years.length - 1] - years[0] + 1}
           </p>
           <p className="text-sm text-muted-foreground">Years Active</p>

@@ -108,7 +108,7 @@ export const siteData: SiteData = {
     { id: "n6", date: "2026-03-18", title: ["Traveling to London, Milan, and Barcelona (Apr 2–19). So many places in the world to explore!"] },
     { id: "n5", date: "2026-02-20", title: ["MelodyMate is accepted as poster in CHI 2026✨"] },
     { id: "n4", date: "2025-12-01", title: ["Our research article is accepted as full paper in LAK 2026! Now available in ", { text: "arXiv", href: "https://doi.org/10.48550/arXiv.2601.05651", tooltip: "Check out our preprint" }, "."] },
-    { id: "n3", date: "2025-10-01", title: ["Presented the poster Your Thoughtful Opponent at UIST 2025."] },
+    { id: "n3", date: "2025-10-01", title: ["Presented the poster ", { text: "Your Thoughtful Opponent", href: "https://doi.org/10.1145/3746058.3758410", tooltip: "Read the paper" }, " at UIST 2025."] },
     { id: "n2", date: "2025-03-02", title: ["Just started my Master's journey in the IDL lab, at Ewha Womans University🚀"] },
     { id: "n1", date: "2024-11-29", title: ["Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉"] }
   ],
@@ -132,7 +132,6 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["Conversational Agent", "Learning Analytics", "AIED"],
       tags: ["Conversational Agent", "Learning Analytics", "AIED"],
-      //links: { arxiv: "https://doi.org/10.48550/arXiv.2601.05651" }
     },
     {
       id: "p2026-c1",
@@ -215,8 +214,7 @@ export const siteData: SiteData = {
       venue: "2025 Korean Society for Educational Technology Spring Conference",
       type: "Conference",
       topics: ["Review"],
-      //tags: ["Review"],
-      //links: { doi: "https://doi.org/10.22318/icls2025.945127" }
+      tags: ["Review"],
     },
     {
       id: "p2024-j1",
@@ -253,7 +251,6 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["AIED"],
       tags: ["AIED"],
-      //links: { website: "#" },
       award: "장려상"
     },
     {
@@ -274,32 +271,6 @@ export const siteData: SiteData = {
   // 프로젝트 — 프로젝트를 여기서 추가/수정하세요
   // =========================================================================
   projects: [
-    {
-      id: "pr1",
-      title: "Project Title",
-      year: 2026,
-      startDate: "2026-09-01",
-      endDate: "2027-12-31",
-      role: "Student Researcher",
-      summary: "Project summary",
-      description: `## Overview
-
-This project explores...
-
-## Research Questions
-
-1. A
-2. B
-
-## Methodology
-
-- Mixed-methods approach combining surveys and interviews
-
-## Key Findings
-
-- Users demonstrate complex awareness of AI mediation`,
-      relatedPublications: ["p1"]
-    },
     {
       id: "pr2",
       title: "Thoughtful Peer Agent for Cognitive Conflict in Learning",
@@ -323,7 +294,7 @@ Developing an AI peer agent that promotes deeper learning by introducing product
 - User studies with university students
 - A/B testing of different agent personalities
 - Learning gain measurements and qualitative analysis`,
-      relatedPublications: ["p3"]
+      relatedPublications: ["p2025-c1"]
     }
   ]
 };
