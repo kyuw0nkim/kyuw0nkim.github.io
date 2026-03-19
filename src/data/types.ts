@@ -102,10 +102,16 @@ export interface DesignWork {
   };
 }
 
+export interface ChartAnnotation {
+  year: number;
+  label: string;
+}
+
 export interface SiteData {
   profile: Profile;
   cv: CVData;
   news: NewsItem[];
   publications: Publication[];
   projects: Project[];
+  chartAnnotations?: ChartAnnotation[];
 }
