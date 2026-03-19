@@ -213,7 +213,6 @@ export const siteData: SiteData = {
       year: 2025,
       venue: "2025 Korean Society for Educational Technology Spring Conference",
       type: "Conference",
-      topics: ["Review"],
       tags: ["Review"],
     },
     {
