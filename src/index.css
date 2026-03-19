@@ -144,8 +144,7 @@
 @layer components {
   /* Year Badge */
   .year-badge {
-    @apply text-xl font-semibold;
-    color: hsl(var(--muted-foreground));
+    @apply text-xl font-semibold text-foreground;
     font-family: var(--font-heading);
   }
 
