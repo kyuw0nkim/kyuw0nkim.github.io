@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Character Preview</title>
+<style>
+  body { background: #f5f5f5; display: flex; gap: 60px; align-items: flex-end; padding: 60px; font-family: sans-serif; }
+  .scene { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .label { font-size: 12px; color: #888; }
+
+  /* Walking legs */
+  @keyframes walk-left  { 0%,100% { transform: rotate(-22deg); } 50% { transform: rotate(22deg); } }
+  @keyframes walk-right { 0%,100% { transform: rotate(22deg); } 50% { transform: rotate(-22deg); } }
+
+  /* Waving arm */
+  @keyframes wave { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-75deg); } }
+
+  /* Cursor blink */
+  @keyframes blink { 0%,100% { opacity: 0.5; } 50% { opacity: 0; } }
+  .cursor { animation: blink 0.8s ease-in-out infinite; }
+
+  .walk-left-leg  { transform-origin: 22px 44px; animation: walk-left  0.45s ease-in-out infinite; }
+  .walk-right-leg { transform-origin: 22px 44px; animation: walk-right 0.45s ease-in-out infinite; }
+  .wave-arm       { transform-origin: 22px 28px; animation: wave 0.6s ease-in-out infinite; }
+
+  /* Speech bubble */
+  .bubble {
+    position: relative;
+    background: white;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    width: 210px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #1f2937;
+  }
+  .bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; left: 18px;
+    width: 13px; height: 13px;
+    background: white;
+    border-right: 1.5px solid #e5e7eb;
+    border-bottom: 1.5px solid #e5e7eb;
+    transform: rotate(45deg);
+  }
+  .close-btn {
+    position: absolute;
+    top: 6px; right: 10px;
+    background: none; border: none;
+    color: #9ca3af; font-size: 16px;
+    cursor: pointer; line-height: 1;
+  }
+  .curious-btn {
+    display: inline-block;
+    margin-top: 10px;
+    background: #1f2937;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<!-- State 1: Walking -->
+<div class="scene">
+  <div class="label">① walking</div>
+  <svg width="44" height="68" viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="22" cy="10" r="9" fill="black"/>
+    <line x1="22" y1="19" x2="22" y2="44" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="22" y1="28" x2="10" y2="40" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="22" y1="28" x2="34" y2="40" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+    <g class="walk-left-leg">
+      <line x1="22" y1="44" x2="13" y2="64" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <g class="walk-right-leg">
+      <line x1="22" y1="44" x2="31" y2="64" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+  </svg>
+</div>
+
+<!-- State 2: Waving -->
+<div class="scene">
+  <div class="label">② waving</div>
+  <svg width="44" height="68" viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="22" cy="10" r="9" fill="black"/>
+    <line x1="22" y1="19" x2="22" y2="44" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="22" y1="28" x2="10" y2="40" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+    <g class="wave-arm">
+      <line x1="22" y1="28" x2="34" y2="40" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <line x1="22" y1="44" x2="13" y2="64" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="22" y1="44" x2="31" y2="64" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<!-- State 3: Talking (with speech bubble) -->
+<div class="scene">
+  <div class="label">③ talking</div>
+  <div style="position:relative; display:flex; flex-direction:column; align-items:flex-start;">
+    <div class="bubble">
+      <button class="close-btn">×</button>
+      hi there — curious about the person behind the research?<span class="cursor">|</span>
+      <br/>
+      <button class="curious-btn">I'm Curious →</button>
+    </div>
+    <svg width="44" height="68" viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left:4px; margin-top:4px;">
+      <circle cx="22" cy="10" r="9" fill="black"/>
+      <line x1="22" y1="19" x2="22" y2="44" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="22" y1="28" x2="10" y2="40" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+      <g class="wave-arm">
+        <line x1="22" y1="28" x2="34" y2="40" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+      <line x1="22" y1="44" x2="13" y2="64" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="22" y1="44" x2="31" y2="64" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div>
+
+</body>
+</html>
