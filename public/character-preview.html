@@ -4,122 +4,174 @@
 <meta charset="UTF-8">
 <title>Character Preview</title>
 <style>
-  body { background: #f5f5f5; display: flex; gap: 60px; align-items: flex-end; padding: 60px; font-family: sans-serif; }
-  .scene { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  .label { font-size: 12px; color: #888; }
-
-  /* Walking legs */
-  @keyframes walk-left  { 0%,100% { transform: rotate(-22deg); } 50% { transform: rotate(22deg); } }
-  @keyframes walk-right { 0%,100% { transform: rotate(22deg); } 50% { transform: rotate(-22deg); } }
-
-  /* Waving arm */
-  @keyframes wave { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-75deg); } }
-
-  /* Cursor blink */
-  @keyframes blink { 0%,100% { opacity: 0.5; } 50% { opacity: 0; } }
-  .cursor { animation: blink 0.8s ease-in-out infinite; }
-
-  .walk-left-leg  { transform-origin: 22px 44px; animation: walk-left  0.45s ease-in-out infinite; }
-  .walk-right-leg { transform-origin: 22px 44px; animation: walk-right 0.45s ease-in-out infinite; }
-  .wave-arm       { transform-origin: 22px 28px; animation: wave 0.6s ease-in-out infinite; }
-
-  /* Speech bubble */
-  .bubble {
-    position: relative;
-    background: white;
-    border: 1.5px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 12px 14px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    width: 210px;
-    font-size: 13px;
-    line-height: 1.5;
-    color: #1f2937;
+  body {
+    background: #f9fafb;
+    display: flex;
+    gap: 80px;
+    align-items: flex-end;
+    padding: 80px 60px 60px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
+  .scene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .label {
+    font-size: 11px;
+    color: #9ca3af;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── Walking: legs & arms use CSS path morphing (d property) ── */
+  @keyframes walk-leg-left {
+    0%, 100% { d: path("M 26 46 Q 30 57 34 68"); }
+    50%       { d: path("M 26 46 Q 21 57 17 68"); }
+  }
+  @keyframes walk-leg-right {
+    0%, 100% { d: path("M 26 46 Q 21 57 17 68"); }
+    50%       { d: path("M 26 46 Q 30 57 34 68"); }
+  }
+  /* Arms swing opposite to same-side leg */
+  @keyframes walk-arm-left {
+    0%, 100% { d: path("M 26 29 Q 18 35 13 44"); }
+    50%       { d: path("M 26 29 Q 18 22 14 15"); }
+  }
+  @keyframes walk-arm-right {
+    0%, 100% { d: path("M 26 29 Q 34 22 38 15"); }
+    50%       { d: path("M 26 29 Q 34 36 40 44"); }
+  }
+
+  .walk-leg-left  { animation: walk-leg-left  0.5s ease-in-out infinite; }
+  .walk-leg-right { animation: walk-leg-right 0.5s ease-in-out infinite; }
+  .walk-arm-left  { animation: walk-arm-left  0.5s ease-in-out infinite; }
+  .walk-arm-right { animation: walk-arm-right 0.5s ease-in-out infinite; }
+
+  /* ── Wave: upper arm is static/raised, forearm waves ── */
+  @keyframes wave-forearm {
+    0%, 100% { d: path("M 38 14 Q 45 11 48 5"); }
+    50%       { d: path("M 38 14 Q 41 8 40 1"); }
+  }
+  .wave-forearm { animation: wave-forearm 0.55s ease-in-out infinite; }
+
+  /* ── Cursor blink ── */
+  @keyframes blink { 0%,100% { opacity: 0.5; } 50% { opacity: 0; } }
+  .cursor { animation: blink 0.8s ease-in-out infinite; color: #9ca3af; }
+
+  /* ── Tooltip-style speech bubble (matches radix tooltip) ── */
+  .bubble-wrap {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .bubble {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;                    /* rounded-md */
+    padding: 6px 12px;                     /* py-1.5 px-3 */
+    font-size: 14px;                       /* text-sm */
+    color: #111827;                        /* text-popover-foreground */
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04); /* shadow-md */
+    max-width: 230px;
+    line-height: 1.5;
+    position: relative;
+  }
+  /* Tooltip tail – pointing downward toward character */
   .bubble::after {
     content: '';
     position: absolute;
-    bottom: -8px; left: 18px;
-    width: 13px; height: 13px;
+    bottom: -5px;
+    left: 20px;
+    width: 9px; height: 9px;
     background: white;
-    border-right: 1.5px solid #e5e7eb;
-    border-bottom: 1.5px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
     transform: rotate(45deg);
   }
   .close-btn {
     position: absolute;
-    top: 6px; right: 10px;
+    top: 4px; right: 8px;
     background: none; border: none;
-    color: #9ca3af; font-size: 16px;
-    cursor: pointer; line-height: 1;
+    color: #9ca3af; font-size: 15px;
+    cursor: pointer; line-height: 1; padding: 0;
   }
+  .close-btn:hover { color: #6b7280; }
   .curious-btn {
     display: inline-block;
-    margin-top: 10px;
-    background: #1f2937;
+    margin-top: 8px;
+    background: #111827;
     color: white;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
+    font-size: 12px; font-weight: 600;
+    padding: 5px 11px;
+    border-radius: 5px;
+    border: none; cursor: pointer;
   }
+  .curious-btn:hover { background: #374151; }
 </style>
 </head>
 <body>
 
-<!-- State 1: Walking -->
+<!-- ① Walking -->
 <div class="scene">
   <div class="label">① walking</div>
-  <svg width="44" height="68" viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="22" cy="10" r="9" fill="black"/>
-    <line x1="22" y1="19" x2="22" y2="44" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="22" y1="28" x2="10" y2="40" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="22" y1="28" x2="34" y2="40" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-    <g class="walk-left-leg">
-      <line x1="22" y1="44" x2="13" y2="64" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-    </g>
-    <g class="walk-right-leg">
-      <line x1="22" y1="44" x2="31" y2="64" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-    </g>
+  <svg width="54" height="76" viewBox="0 0 54 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Head -->
+    <circle cx="26" cy="11" r="10" fill="black"/>
+    <!-- Body: thick, slight curve -->
+    <path d="M 26 21 Q 27 33 26 46" stroke="black" stroke-width="6" stroke-linecap="round"/>
+    <!-- Left arm -->
+    <path class="walk-arm-left"  d="M 26 29 Q 18 35 13 44" stroke="black" stroke-width="4" stroke-linecap="round"/>
+    <!-- Right arm -->
+    <path class="walk-arm-right" d="M 26 29 Q 34 22 38 15" stroke="black" stroke-width="4" stroke-linecap="round"/>
+    <!-- Left leg -->
+    <path class="walk-leg-left"  d="M 26 46 Q 30 57 34 68" stroke="black" stroke-width="4" stroke-linecap="round"/>
+    <!-- Right leg -->
+    <path class="walk-leg-right" d="M 26 46 Q 21 57 17 68" stroke="black" stroke-width="4" stroke-linecap="round"/>
   </svg>
 </div>
 
-<!-- State 2: Waving -->
+<!-- ② Waving -->
 <div class="scene">
   <div class="label">② waving</div>
-  <svg width="44" height="68" viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="22" cy="10" r="9" fill="black"/>
-    <line x1="22" y1="19" x2="22" y2="44" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="22" y1="28" x2="10" y2="40" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-    <g class="wave-arm">
-      <line x1="22" y1="28" x2="34" y2="40" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-    </g>
-    <line x1="22" y1="44" x2="13" y2="64" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="22" y1="44" x2="31" y2="64" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  <svg width="54" height="76" viewBox="0 0 54 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Head -->
+    <circle cx="26" cy="11" r="10" fill="black"/>
+    <!-- Body -->
+    <path d="M 26 21 Q 27 33 26 46" stroke="black" stroke-width="6" stroke-linecap="round"/>
+    <!-- Left arm (relaxed hang) -->
+    <path d="M 26 29 Q 18 35 13 44" stroke="black" stroke-width="4" stroke-linecap="round"/>
+    <!-- Right upper arm (raised, static) -->
+    <path d="M 26 29 Q 33 21 38 14" stroke="black" stroke-width="4" stroke-linecap="round"/>
+    <!-- Right forearm (waves) -->
+    <path class="wave-forearm" d="M 38 14 Q 45 11 48 5" stroke="black" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Legs at rest -->
+    <path d="M 26 46 Q 22 57 18 68" stroke="black" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 26 46 Q 30 57 34 68" stroke="black" stroke-width="4" stroke-linecap="round"/>
   </svg>
 </div>
 
-<!-- State 3: Talking (with speech bubble) -->
+<!-- ③ Talking (wave stopped, arm rests at side) -->
 <div class="scene">
   <div class="label">③ talking</div>
-  <div style="position:relative; display:flex; flex-direction:column; align-items:flex-start;">
-    <div class="bubble">
-      <button class="close-btn">×</button>
-      hi there — curious about the person behind the research?<span class="cursor">|</span>
-      <br/>
-      <button class="curious-btn">I'm Curious →</button>
+  <div style="display:flex; flex-direction:column; align-items:flex-start;">
+    <div class="bubble-wrap">
+      <div class="bubble">
+        <button class="close-btn">×</button>
+        <span style="padding-right:14px; display:block;">
+          hi there — curious about the person behind the research?<span class="cursor">|</span>
+        </span>
+        <button class="curious-btn">I'm Curious →</button>
+      </div>
     </div>
-    <svg width="44" height="68" viewBox="0 0 44 68" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left:4px; margin-top:4px;">
-      <circle cx="22" cy="10" r="9" fill="black"/>
-      <line x1="22" y1="19" x2="22" y2="44" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="22" y1="28" x2="10" y2="40" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-      <g class="wave-arm">
-        <line x1="22" y1="28" x2="34" y2="40" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-      </g>
-      <line x1="22" y1="44" x2="13" y2="64" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="22" y1="44" x2="31" y2="64" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+    <svg width="54" height="76" viewBox="0 0 54 76" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left:6px;">
+      <circle cx="26" cy="11" r="10" fill="black"/>
+      <path d="M 26 21 Q 27 33 26 46" stroke="black" stroke-width="6" stroke-linecap="round"/>
+      <!-- Both arms hanging relaxed -->
+      <path d="M 26 29 Q 18 35 13 44" stroke="black" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 26 29 Q 34 35 39 44" stroke="black" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 26 46 Q 22 57 18 68" stroke="black" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 26 46 Q 30 57 34 68" stroke="black" stroke-width="4" stroke-linecap="round"/>
     </svg>
   </div>
 </div>
