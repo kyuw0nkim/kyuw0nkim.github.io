@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { MainLayout } from "@/components/layout";
 import { PublicationCard } from "@/components/cards/PublicationCard";
 import { siteData, getLatestPublication, formatDate } from "@/data/siteData";
@@ -30,14 +29,11 @@ const Index = () => {
         <p className="text-muted-foreground mb-4" style={{ fontFamily: "'Noto Serif', serif", fontWeight: 500, fontStyle: "italic" }}>
           Always go with the choice that scares you the most
         </p>
-        <p className="text-foreground leading-relaxed text-justify">
+        <div className="text-foreground leading-relaxed text-justify space-y-3">
           {profile.bioParagraphs.map((para, i) => (
-            <Fragment key={i}>
-              {i > 0 && <br />}
-              {renderParts(para)}
-            </Fragment>
+            <p key={i}>{renderParts(para)}</p>
           ))}
-        </p>
+        </div>
       </section>
 
       {/* News Section */}
