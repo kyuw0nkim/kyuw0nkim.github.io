@@ -28,7 +28,13 @@ export const siteData: SiteData = {
         { text: "Interaction Design for Learning Lab", href: "https://idlearning.org", tooltip: "Meet the awesome people I work with👋" },
         ", advised by ",
         { text: "Prof. Hyo-Jeong So", href: "https://scholar.google.com/citations?user=dI0biU8AAAAJ&hl=en", tooltip: "A researcher I truly admire🍀" },
-        ". My research sits at the intersection of learning and HCI, guided by a single question: How might learning technologies help us go beyond our limitations and create a better society? Outside the lab, I enjoy listening to people's stories, tinkering with design, and watching Let's Play videos. New perspectives always inspire me - so feel free to reach out!"
+        ". My research explores how human thinking unfolds—and sometimes breaks down—during collaborative dialogue, especially around socially contested topics.",
+        "I focus on understanding how AI systems can ",
+        { text: "recognize these critical moments", href: "https://doi.org/10.48550/arXiv.2601.05651"},
+        " and ",
+        { text: "intervene", href: "https://doi.org/10.1145/3746058.3758410"},
+        " to sustain and deepen the dialogue. Ultimately, I aim to build learning technologies that support people in thinking together through complex and contested issues.",
+        "Outside the lab, I enjoy listening to people's stories, tinkering with design, and watching Let's Play videos. New perspectives always inspire me - so feel free to reach out!"
       ]
     ],
 
