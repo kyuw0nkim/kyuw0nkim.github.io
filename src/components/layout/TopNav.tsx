@@ -20,7 +20,7 @@ const navItems = [
   { name: "Publications", path: "/publications" },
   // { name: "Projects", path: "/projects" },
   { name: "CV", path: "/cv" },
-  { name: "Blog", path: "/blog" },
+  // { name: "Blog", path: "/blog" },
   { name: "Analytics", path: "/analytics" },
   // { name: "Design", path: "/design" },
 ];
