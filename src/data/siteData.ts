@@ -115,6 +115,7 @@ export const siteData: SiteData = {
   // 예시 (title 전체에 링크):
   //   title: [{ text: "전체 제목", href: "https://..." }]
   news: [
+    { id: "n7", date: "2026-03-18", title: ["Our paper about productive dialogue in value-laden discussions is accepted as full paper in ICALT 2026."] },
     { id: "n6", date: "2026-03-18", title: ["Traveling to London, Milan, and Barcelona (Apr 2–19). So many places in the world to explore!"] },
     { id: "n5", date: "2026-02-20", title: ["MelodyMate is accepted as poster in CHI 2026✨"] },
     { id: "n4", date: "2025-12-01", title: ["Our research article is accepted as full paper in LAK 2026! Now available in ", { text: "arXiv", href: "https://doi.org/10.48550/arXiv.2601.05651", tooltip: "Check out our preprint" }, "."] },
