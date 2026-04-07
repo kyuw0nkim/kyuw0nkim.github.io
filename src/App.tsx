@@ -37,6 +37,7 @@ import CV from "./pages/CV";
 import { BlogList, BlogPost } from "./pages/Blog";
 import Analytics from "./pages/Analytics";
 import Insights from "./pages/Insights";
+import { InsightsGate } from "./components/InsightsGate";
 import Design from "./pages/Design";
 import NotFound from "./pages/NotFound";
 
@@ -60,7 +61,14 @@ const App = () => (
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/overview" element={<Analytics />} />
-          <Route path="/insights" element={<Insights />} />
+          <Route
+            path="/insights"
+            element={
+              <InsightsGate>
+                <Insights />
+              </InsightsGate>
+            }
+          />
           <Route path="/design" element={<Design />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
