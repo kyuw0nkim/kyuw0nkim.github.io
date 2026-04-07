@@ -1,6 +1,7 @@
 import { MainLayout } from "@/components/layout";
 import { Download } from "lucide-react";
 import { siteData } from "@/data/siteData";
+import { trackCvDownload } from "@/lib/analytics";
 
 const CV = () => {
   const { cv } = siteData;
@@ -15,6 +16,7 @@ const CV = () => {
           href={cv.cvUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackCvDownload(cv.cvUrl)}
           className="inline-flex items-center gap-1.5 px-4 py-1.5 text-sm bg-sub text-sub-foreground rounded-full hover:bg-sub/90 transition-colors"
         >
           <Download className="w-4 h-4" />

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, FileText, Globe, BookOpen, Award } from "lucide-react";
 import { Publication } from "@/data/types";
+import { trackOutbound, trackPdfDownload, trackPublicationView } from "@/lib/analytics";
 
 interface PublicationCardProps {
   publication: Publication;
@@ -56,31 +57,76 @@ export function PublicationCard({ publication, showThumbnail = true }: Publicati
         {/* Links and Tags */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
           {publication.links?.acmdl && (
-            <a href={publication.links.acmdl} target="_blank" rel="noopener noreferrer" className="link-btn">
+            <a
+              href={publication.links.acmdl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-btn"
+              onClick={() => {
+                trackPublicationView(publication.id, publication.title);
+                trackOutbound(publication.links!.acmdl!, "acmdl");
+              }}
+            >
               <BookOpen className="w-3 h-3" />
               ACM DL
             </a>
           )}
           {publication.links?.pdf && (
-            <a href={publication.links.pdf} target="_blank" rel="noopener noreferrer" className="link-btn">
+            <a
+              href={publication.links.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-btn"
+              onClick={() => {
+                trackPublicationView(publication.id, publication.title);
+                trackPdfDownload(publication.links!.pdf!, publication.id);
+              }}
+            >
               <FileText className="w-3 h-3" />
               PDF
             </a>
           )}
           {publication.links?.website && (
-            <a href={publication.links.website} target="_blank" rel="noopener noreferrer" className="link-btn">
+            <a
+              href={publication.links.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-btn"
+              onClick={() => {
+                trackPublicationView(publication.id, publication.title);
+                trackOutbound(publication.links!.website!, "website");
+              }}
+            >
               <Globe className="w-3 h-3" />
               Website
             </a>
           )}
           {publication.links?.arxiv && (
-            <a href={publication.links.arxiv} target="_blank" rel="noopener noreferrer" className="link-btn">
+            <a
+              href={publication.links.arxiv}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-btn"
+              onClick={() => {
+                trackPublicationView(publication.id, publication.title);
+                trackOutbound(publication.links!.arxiv!, "arxiv");
+              }}
+            >
               <ExternalLink className="w-3 h-3" />
               arXiv
             </a>
           )}
           {publication.links?.doi && (
-            <a href={publication.links.doi} target="_blank" rel="noopener noreferrer" className="link-btn">
+            <a
+              href={publication.links.doi}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-btn"
+              onClick={() => {
+                trackPublicationView(publication.id, publication.title);
+                trackOutbound(publication.links!.doi!, "doi");
+              }}
+            >
               <ExternalLink className="w-3 h-3" />
               DOI
             </a>

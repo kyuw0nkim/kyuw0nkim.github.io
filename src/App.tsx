@@ -4,21 +4,16 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
-
-declare global {
-  interface Window {
-    gtag: (...args: unknown[]) => void;
-  }
-}
+import { trackPageView, getSessionUtm } from "@/lib/analytics";
+import { useScrollDepth } from "@/hooks/use-scroll-depth";
 
 function RouteTracker() {
   const location = useLocation();
+  useScrollDepth();
   useEffect(() => {
-    if (typeof window.gtag === "function") {
-      window.gtag("event", "page_view", {
-        page_path: location.pathname + location.search + location.hash,
-      });
-    }
+    // Make sure UTM params on the landing URL are captured once.
+    getSessionUtm();
+    trackPageView(location.pathname + location.search + location.hash);
   }, [location]);
   return null;
 }
@@ -41,6 +36,7 @@ import News from "./pages/News";
 import CV from "./pages/CV";
 import { BlogList, BlogPost } from "./pages/Blog";
 import Analytics from "./pages/Analytics";
+import Insights from "./pages/Insights";
 import Design from "./pages/Design";
 import NotFound from "./pages/NotFound";
 
@@ -64,6 +60,7 @@ const App = () => (
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/overview" element={<Analytics />} />
+          <Route path="/insights" element={<Insights />} />
           <Route path="/design" element={<Design />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

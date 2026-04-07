@@ -1,5 +1,6 @@
 import { Mail, Github } from "lucide-react";
 import { siteData } from "@/data/siteData";
+import { trackEmailClick, trackOutbound } from "@/lib/analytics";
 
 // Custom icons for social platforms
 function GoogleScholarIcon({ className }: { className?: string }) {
@@ -57,19 +58,52 @@ export function ProfileSidebar() {
 
         {/* Social Icons */}
         <div className="flex justify-center lg:justify-start gap-4">
-          <a href={`mailto:${profile.email}`} aria-label="Email" className="social-icon">
+          <a
+            href={`mailto:${profile.email}`}
+            aria-label="Email"
+            className="social-icon"
+            onClick={() => trackEmailClick(profile.email)}
+          >
             <Mail className="w-6 h-6" />
           </a>
-          <a href={profile.googleScholar} target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" className="social-icon">
+          <a
+            href={profile.googleScholar}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Google Scholar"
+            className="social-icon"
+            onClick={() => trackOutbound(profile.googleScholar, "google_scholar")}
+          >
             <GoogleScholarIcon className="w-6 h-6" />
           </a>
-          <a href={profile.researchGate} target="_blank" rel="noopener noreferrer" aria-label="ResearchGate" className="social-icon">
+          <a
+            href={profile.researchGate}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="ResearchGate"
+            className="social-icon"
+            onClick={() => trackOutbound(profile.researchGate, "researchgate")}
+          >
             <ResearchGateIcon className="w-6 h-6" />
           </a>
-          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon">
+          <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="social-icon"
+            onClick={() => trackOutbound(profile.linkedin, "linkedin")}
+          >
             <LinkedInIcon className="w-6 h-6" />
           </a>
-          <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-icon">
+          <a
+            href={profile.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="social-icon"
+            onClick={() => trackOutbound(profile.github, "github")}
+          >
             <Github className="w-6 h-6" />
           </a>
         </div>
