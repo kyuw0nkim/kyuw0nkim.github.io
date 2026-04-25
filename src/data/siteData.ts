@@ -136,18 +136,6 @@ export const siteData: SiteData = {
   publications: [
     {
       id: "p2026-c2",
-      thumbnail: "pic.P.Understanding University.png",
-      title: "How Learners Engage with an LLM-Based Pedagogical Conversational Agent During Music Form Analysis",
-      authors: ["Lingxi Jin", "Kyuwon Kim", "Baicheng Lin", "Mengze Hong", "Hyo-Jeong So"],
-      year: 2026,
-      venue: "CHI 2026 Extended Abstracts",
-      type: "Conference",
-      topics: ["Conversational Agent", "Learning Analytics", "AIED"],
-      tags: ["Conversational Agent", "Learning Analytics", "AIED"],
-      links: { acm: "https://doi.org/10.1145/3772363.3798900" }
-    },
-    {
-      id: "p2026-c1",
       thumbnail: "pic.C.Productive Discussion.png",
       title: "Productive Discussion Moves in Groups Addressing Controversial Issues",
       authors: ["Kyuwon Kim", "Jeanhee Lee", "Sung-Eun Kim", "Hyo-Jeong So"],
@@ -157,6 +145,18 @@ export const siteData: SiteData = {
       topics: ["Learning Analytics"],
       tags: ["Learning Analytics"],
       links: { arxiv: "https://doi.org/10.48550/arXiv.2601.05651" }
+    },
+    {
+      id: "p2026-c1",
+      thumbnail: "pic.P.Understanding University.png",
+      title: "How Learners Engage with an LLM-Based Pedagogical Conversational Agent During Music Form Analysis",
+      authors: ["Lingxi Jin", "Kyuwon Kim", "Baicheng Lin", "Mengze Hong", "Hyo-Jeong So"],
+      year: 2026,
+      venue: "CHI 2026 Extended Abstracts",
+      type: "Conference",
+      topics: ["Conversational Agent", "Learning Analytics", "AIED"],
+      tags: ["Conversational Agent", "Learning Analytics", "AIED"],
+      links: { acm: "https://doi.org/10.1145/3772363.3798900" }
     },
     {
       id: "p2025-j1",
