@@ -115,6 +115,7 @@ export const siteData: SiteData = {
   // 예시 (title 전체에 링크):
   //   title: [{ text: "전체 제목", href: "https://..." }]
   news: [
+    { id: "n8", date: "2026-04-25", title: ["After a short break in Korea, off to Norway for LAK 2026🍀"] },
     { id: "n7", date: "2026-04-04", title: ["Our paper about productive dialogue in value-laden discussions is accepted as full paper in ICALT 2026."] },
     { id: "n6", date: "2026-03-18", title: ["Traveling to London, Milan, and Barcelona (Apr 2–19). So many places in the world to explore!"] },
     { id: "n5", date: "2026-02-20", title: ["MelodyMate is accepted as poster in CHI 2026✨"] },
@@ -136,13 +137,14 @@ export const siteData: SiteData = {
     {
       id: "p2026-c2",
       thumbnail: "pic.P.Understanding University.png",
-      title: "Understanding university music learners’ interaction with an LLM-powered pedagogical conversational agent",
+      title: "How Learners Engage with an LLM-Based Pedagogical Conversational Agent During Music Form Analysis",
       authors: ["Lingxi Jin", "Kyuwon Kim", "Baicheng Lin", "Mengze Hong", "Hyo-Jeong So"],
       year: 2026,
-      venue: "CHI 2026 (to appear)",
+      venue: "CHI 2026 Extended Abstracts",
       type: "Conference",
       topics: ["Conversational Agent", "Learning Analytics", "AIED"],
       tags: ["Conversational Agent", "Learning Analytics", "AIED"],
+      links: { acm: "https://doi.org/10.1145/3772363.3798900" }
     },
     {
       id: "p2026-c1",
