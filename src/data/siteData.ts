@@ -55,7 +55,7 @@ export const siteData: SiteData = {
   // =========================================================================
   cv: {
     // CV PDF 파일 링크 (public/ 폴더에 파일을 올리고 "/파일명.pdf"로 입력)
-    cvUrl: "/Kyuwon Kim_CV_Mar_2026.pdf",
+    cvUrl: "/Kyuwon Kim_CV_Apr_2026.pdf",
 
     education: [
       {
