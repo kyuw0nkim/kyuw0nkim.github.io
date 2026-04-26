@@ -140,11 +140,11 @@ export const siteData: SiteData = {
       title: "Productive Discussion Moves in Groups Addressing Controversial Issues",
       authors: ["Kyuwon Kim", "Jeanhee Lee", "Sung-Eun Kim", "Hyo-Jeong So"],
       year: 2026,
-      venue: "LAK 2026 (to appear)",
+      venue: "LAK 2026",
       type: "Conference",
       topics: ["Learning Analytics"],
       tags: ["Learning Analytics"],
-      links: { acm: "https://doi.org/10.1145/3785022.3785111" }
+      links: { acmdl: "https://doi.org/10.1145/3785022.3785111" }
     },
     {
       id: "p2026-c1",
@@ -156,7 +156,7 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["Conversational Agent", "Learning Analytics", "AIED"],
       tags: ["Conversational Agent", "Learning Analytics", "AIED"],
-      links: { acm: "https://doi.org/10.1145/3772363.3798900" }
+      links: { acmdl: "https://doi.org/10.1145/3772363.3798900" }
     },
     {
       id: "p2025-j1",
@@ -176,7 +176,7 @@ export const siteData: SiteData = {
       title: "Your Thoughtful Opponent: Embracing Cognitive Conflict with Peer Agent",
       authors: ["Kyuwon Kim", "Jaeryeong Hwang", "Younseo Lee", "Jeanhee Lee", "Sung-Eun Kim", "Hyo-Jeong So"],
       year: 2025,
-      venue: "UIST 2025",
+      venue: "UIST 2025 Extended Abstracts",
       type: "Conference",
       topics: ["Conversational Agent", "AIED"],
       tags: ["Conversational Agent", "AIED"],
@@ -200,7 +200,7 @@ export const siteData: SiteData = {
       title: "Bridging Literacy with AI: AI-Integrated Digital Textbook for Deaf and Hard-of-Hearing Students",
       authors: ["Ga Young Lee", "Seonhee Na", "Kyuwon Kim", "Hyo-Jeong So"],
       year: 2025,
-      venue: "IDC 2025",
+      venue: "IDC 2025 Extended Abstracts",
       type: "Conference",
       topics: ["AIED"],
       tags: ["AIED"],
