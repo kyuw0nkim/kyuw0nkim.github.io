@@ -144,7 +144,7 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["Learning Analytics"],
       tags: ["Learning Analytics"],
-      links: { arxiv: "https://doi.org/10.48550/arXiv.2601.05651" }
+      links: { acm: "https://doi.org/10.1145/3785022.3785111" }
     },
     {
       id: "p2026-c1",
