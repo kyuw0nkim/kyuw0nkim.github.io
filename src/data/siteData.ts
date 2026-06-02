@@ -116,6 +116,7 @@ export const siteData: SiteData = {
   // 예시 (title 전체에 링크):
   //   title: [{ text: "전체 제목", href: "https://..." }]
   news: [
+    { id: "n11", date: "2026-05-30", title: ["Excited to share that my first-authored poster received the Best Paper Award at the KAIEM Spring Conference."] },
     { id: "n10", date: "2026-05-18", title: ["Started my new journey at Seoul Robot & AI Museum as a museum educator🤖"] },
     { id: "n9", date: "2026-05-07", title: ["Honored to be selected as a recipient of the IEEE TCLT Student Award."] },
     { id: "n8", date: "2026-04-25", title: ["After a short break in Korea, off to Norway for LAK 2026🍀"] },
