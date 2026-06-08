@@ -138,6 +138,28 @@ export const siteData: SiteData = {
   //   2. 해당 논문 항목에 thumbnail: "my-paper-2025.png" 를 추가하세요
   // =========================================================================
   publications: [
+      {
+      id: "p2026-c4",
+      title: "Understanding Productive Dialogue in Value-Laden Discussions through Hidden Markov Models",
+      authors: ["Kyuwon Kim", "Jeanhee Lee", "Hyo-Jeong So"],
+      year: 2026,
+      venue: "IEEE ICALT 2026",
+      type: "Conference",
+      topics: ["Learning Analytics"],
+      tags: ["Learning Analytics"],
+      award: "최우수논문상"
+    },
+     {
+      id: "p2026-c3",
+      title: "논쟁문제 의사결정 상황에서 LLM 기반 대화형 에이전트의 참여와 수행 역할에 따른 효과 검증",
+      authors: ["김규원", "소효정"],
+      year: 2026,
+      venue: "2026 교육정보미디어학회 춘계학술대회",
+      type: "Conference",
+      topics: ["Conversational Agent"],
+      tags: ["Conversational Agent"],
+      award: "최우수논문상"
+    },
     {
       id: "p2026-c2",
       thumbnail: "pic.C.Productive Discussion.png",
@@ -172,7 +194,8 @@ export const siteData: SiteData = {
       type: "Journal",
       topics: ["AIED", "Game-based Learning", "Learning Analytics"],
       tags: ["AIED", "Game-based Learning", "Learning Analytics"],
-      links: { doi: "http://dx.doi.org/10.15833/KAFEIAM.31.5.2033" }
+      links: { doi: "http://dx.doi.org/10.15833/KAFEIAM.31.5.2033" },
+      award: "우수학술상"
     },
     {
       id: "p2025-c1",
