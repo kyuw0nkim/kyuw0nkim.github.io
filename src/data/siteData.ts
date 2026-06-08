@@ -90,6 +90,8 @@ export const siteData: SiteData = {
 
     awards: [
       { title: "IEEE TCLT Student Award", organization: "IEEE TCLT", year: 2026 },
+      { title: "Outstanding Research Award", organization: "Korean Association for Educational Information and Media", year: 2026 },
+      { title: "Best Paper Award", organization: "Korean Association for Educational Information and Media", year: 2026 },
       { title: "Best Poster Design Award", organization: "APSCE", year: 2024 },
       { title: "Excellence Award in Youth Idea Contest on African Educational Development Cooperation", organization: "Korean National Commission for UNESCO", year: 2024 },
       { title: "Outstanding Paper Award", organization: "Korean Association for Educational Information and Media", year: 2024 },
@@ -147,8 +149,7 @@ export const siteData: SiteData = {
       type: "Conference",
       topics: ["Learning Analytics"],
       tags: ["Learning Analytics"],
-      award: "최우수논문상"
-    },
+]    },
      {
       id: "p2026-c3",
       title: "논쟁문제 의사결정 상황에서 LLM 기반 대화형 에이전트의 참여와 수행 역할에 따른 효과 검증",
