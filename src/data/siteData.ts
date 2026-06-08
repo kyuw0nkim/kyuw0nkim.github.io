@@ -148,8 +148,8 @@ export const siteData: SiteData = {
       venue: "IEEE ICALT 2026",
       type: "Conference",
       topics: ["Learning Analytics"],
-      tags: ["Learning Analytics"],
-]    },
+      tags: ["Learning Analytics"]
+      },
      {
       id: "p2026-c3",
       title: "논쟁문제 의사결정 상황에서 LLM 기반 대화형 에이전트의 참여와 수행 역할에 따른 효과 검증",
