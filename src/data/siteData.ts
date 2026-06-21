@@ -141,27 +141,7 @@ export const siteData: SiteData = {
   // =========================================================================
   publications: [
       {
-      id: "p2026-c4",
-      title: "How Teachers Learn by Designing AI-Ethics Scenarios Using an LLM-Supported Authoring Tool",
-      authors: ["Jeanhee Lee", "Sieun Park", "Yue Wang", "Kyuwon Kim", "Yeji Ko", "Hyo-Jeong So"],
-      year: 2026,
-      venue: "ICLS 2026",
-      type: "Conference",
-      topics: ["AIED"],
-      tags: ["AIED"]
-      },
-      {
-      id: "p2026-w1",
-      title: "When Should AI Intervene? Rethinking In-Video Quizzes as Affective Transition Points",
-      authors: ["Eunyoung Kim", "Kyuwon Kim", "Hyo-Jeong So"],
-      year: 2026,
-      venue: "MAAI Workshop at Festival of Learning 2026",
-      type: "Conference",
-      topics: ["AIED"],
-      tags: ["AIED"]
-      },
-      {
-      id: "p2026-pre1",
+      id: "p2026-pre2",
       title: "Understanding Productive Dialogue in Value-Laden Discussions through Hidden Markov Models",
       authors: ["Kyuwon Kim", "Jeanhee Lee", "Hyo-Jeong So"],
       year: 2026,
@@ -169,6 +149,16 @@ export const siteData: SiteData = {
       type: "Preprint",
       topics: ["Learning Analytics"],
       tags: ["Learning Analytics"]
+      },
+      {
+      id: "p2026-pre1",
+      title: "When Should AI Intervene? Rethinking In-Video Quizzes as Affective Transition Points",
+      authors: ["Eunyoung Kim", "Kyuwon Kim", "Hyo-Jeong So"],
+      year: 2026,
+      venue: "MAAI Workshop at Festival of Learning 2026",
+      type: "Preprint",
+      topics: ["AIED"],
+      tags: ["AIED"]
       },
      {
       id: "p2026-c3",
@@ -181,6 +171,16 @@ export const siteData: SiteData = {
       tags: ["Conversational Agent"],
       award: "최우수논문상"
     },
+    {
+      id: "p2026-c4",
+      title: "How Teachers Learn by Designing AI-Ethics Scenarios Using an LLM-Supported Authoring Tool",
+      authors: ["Jeanhee Lee", "Sieun Park", "Yue Wang", "Kyuwon Kim", "Yeji Ko", "Hyo-Jeong So"],
+      year: 2026,
+      venue: "ICLS 2026",
+      type: "Conference",
+      topics: ["AIED"],
+      tags: ["AIED"]
+      },
     {
       id: "p2026-c2",
       thumbnail: "pic.C.Productive Discussion.png",
