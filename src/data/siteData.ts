@@ -166,7 +166,7 @@ export const siteData: SiteData = {
       authors: ["Kyuwon Kim", "Jeanhee Lee", "Hyo-Jeong So"],
       year: 2026,
       venue: "IEEE ICALT 2026",
-      type: "Conference",
+      type: "Preprint",
       topics: ["Learning Analytics"],
       tags: ["Learning Analytics"]
       },
@@ -419,7 +419,9 @@ export function filterPublications(topic?: string, type?: string) {
 }
 
 export function getLatestPublication() {
-  return [...siteData.publications].sort((a, b) => b.year - a.year)[0];
+  return [...siteData.publications]
+    .filter(p => p.type !== "Preprint")
+    .sort((a, b) => b.year - a.year)[0];
 }
 
 export function formatDate(dateString: string) {
