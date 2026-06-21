@@ -40,8 +40,10 @@ const Publications = () => {
 
   // Filter and group publications
   const filtered = filterPublications(selectedTopic, selectedType);
-  const grouped: Record<number, typeof filtered> = {};
-  filtered.forEach((pub) => {
+  const preprints = filtered.filter(p => p.type === "Preprint");
+  const nonPreprints = filtered.filter(p => p.type !== "Preprint");
+  const grouped: Record<number, typeof nonPreprints> = {};
+  nonPreprints.forEach((pub) => {
     if (!grouped[pub.year]) grouped[pub.year] = [];
     grouped[pub.year].push(pub);
   });
@@ -91,6 +93,18 @@ const Publications = () => {
 
       {/* Publications by Year */}
       <div>
+        {/* Preprint Section */}
+        {preprints.length > 0 && (
+          <section className="mb-10">
+            <h2 className="year-badge mb-4">Preprint</h2>
+            <div className="divide-y divide-border">
+              {preprints.map((pub) => (
+                <PublicationCard key={pub.id} publication={pub} />
+              ))}
+            </div>
+          </section>
+        )}
+
         {sortedYears.map((year) => (
           <section key={year} className="mb-10">
             <h2 className="year-badge mb-4">{year}</h2>
@@ -102,7 +116,7 @@ const Publications = () => {
           </section>
         ))}
 
-        {sortedYears.length === 0 && (
+        {preprints.length === 0 && sortedYears.length === 0 && (
           <p className="text-center text-muted-foreground py-12">
             No publications found matching the selected filters.
           </p>
