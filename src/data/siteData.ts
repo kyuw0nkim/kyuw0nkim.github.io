@@ -160,6 +160,16 @@ export const siteData: SiteData = {
       topics: ["AIED"],
       tags: ["AIED"]
       },
+      {
+      id: "p2026-c4",
+      title: "How Teachers Learn by Designing AI-Ethics Scenarios Using an LLM-Supported Authoring Tool",
+      authors: ["Jeanhee Lee", "Sieun Park", "Yue Wang", "Kyuwon Kim", "Yeji Ko", "Hyo-Jeong So"],
+      year: 2026,
+      venue: "ICLS 2026",
+      type: "Conference",
+      topics: ["AIED"],
+      tags: ["AIED"]
+      },
      {
       id: "p2026-c3",
       title: "논쟁문제 의사결정 상황에서 LLM 기반 대화형 에이전트의 참여와 수행 역할에 따른 효과 검증",
@@ -171,16 +181,6 @@ export const siteData: SiteData = {
       tags: ["Conversational Agent"],
       award: "최우수논문상"
     },
-    {
-      id: "p2026-c4",
-      title: "How Teachers Learn by Designing AI-Ethics Scenarios Using an LLM-Supported Authoring Tool",
-      authors: ["Jeanhee Lee", "Sieun Park", "Yue Wang", "Kyuwon Kim", "Yeji Ko", "Hyo-Jeong So"],
-      year: 2026,
-      venue: "ICLS 2026",
-      type: "Conference",
-      topics: ["AIED"],
-      tags: ["AIED"]
-      },
     {
       id: "p2026-c2",
       thumbnail: "pic.C.Productive Discussion.png",
