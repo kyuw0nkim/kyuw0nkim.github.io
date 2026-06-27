@@ -61,12 +61,12 @@ export const siteData: SiteData = {
       {
         degree: "M.A. in Educational Technology",
         institution: "Ewha Womans University",
-        period: "Mar 2025 - Aug 2026 (Expected)",
+        period: "Mar 2025 - Aug 2026"
       },
       {
         degree: "B.A. in Educational Technology & B.E. in Software",
         institution: "Ewha Womans University",
-        period: "Mar 2021 - Feb 2025",
+        period: "Mar 2021 - Feb 2025"
       },
     ],
 
@@ -74,17 +74,17 @@ export const siteData: SiteData = {
       {
         role: "Graduate Research Assistant",
         lab: "Interaction Design for Learning Lab, Research Advisor: Hyo-Jeong So",
-        period: "Mar 2025 - Present",
+        period: "Mar 2025 - Aug 2026"
       },
       {
         role: "Undergraduate Research Assistant",
         lab: "Interaction Design for Learning Lab, Research Advisor: Hyo-Jeong So",
-        period: "Jan 2024 - Feb 2025",
+        period: "Jan 2024 - Feb 2025"
       },
       {
         role: "Undergraduate Research Assistant",
         lab: "Learning Analytics for Prediction & Action Lab, Research Advisor: Il-Hyun Jo",
-        period: "Summer 2021, Winter 2021, Summer 2023",
+        period: "Summer 2021, Winter 2021, Summer 2023"
       },
     ],
 
@@ -103,7 +103,7 @@ export const siteData: SiteData = {
 
     service: [
       { role: "Ad hoc Reviewer", details: ["Journal of Research, Innovation and Technologies (JoRIT)", "Environment and Social Psychology"] },
-      { role: "Student Volunteer", details: ["KAIEM&KSET 2023 Fall", "KAIEM 2025 Spring", "ICoME 2025", "KAIEM&KSET 2025 Fall"] },
+      { role: "Student Volunteer", details: ["KAEIM&KSET 2023 Fall", "KAEIM 2025 Spring", "ICoME 2025", "KAEIM&KSET 2025 Fall", "KAEIM 2026 Spring] },
     ],
   },
 
@@ -118,7 +118,7 @@ export const siteData: SiteData = {
   // 예시 (title 전체에 링크):
   //   title: [{ text: "전체 제목", href: "https://..." }]
   news: [
-    { id: "n11", date: "2026-05-30", title: ["Excited to share that my first-authored poster received the Best Paper Award at the KAIEM Spring Conference."] },
+    { id: "n11", date: "2026-05-30", title: ["Excited to share that my first-authored poster received the Best Paper Award at the KAEIM Spring Conference."] },
     { id: "n10", date: "2026-05-18", title: ["Started my new journey at Seoul Robot & AI Museum as a museum educator🤖"] },
     { id: "n9", date: "2026-05-07", title: ["Honored to be selected as a recipient of the IEEE TCLT Student Award."] },
     { id: "n8", date: "2026-04-25", title: ["After a short break in Korea, off to Norway for LAK 2026🍀"] },
@@ -141,7 +141,7 @@ export const siteData: SiteData = {
   // =========================================================================
   publications: [
       {
-      id: "p2026-pre2",
+      id: "p2026-pre1",
       title: "Understanding Productive Dialogue in Value-Laden Discussions through Hidden Markov Models",
       authors: ["Kyuwon Kim", "Jeanhee Lee", "Hyo-Jeong So"],
       year: 2026,
@@ -151,7 +151,7 @@ export const siteData: SiteData = {
       tags: ["Learning Analytics"]
       },
       {
-      id: "p2026-pre1",
+      id: "p2026-c5",
       title: "When Should AI Intervene? Rethinking In-Video Quizzes as Affective Transition Points",
       authors: ["Eunyoung Kim", "Kyuwon Kim", "Hyo-Jeong So"],
       year: 2026,
