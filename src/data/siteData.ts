@@ -103,7 +103,7 @@ export const siteData: SiteData = {
 
     service: [
       { role: "Ad hoc Reviewer", details: ["Journal of Research, Innovation and Technologies (JoRIT)", "Environment and Social Psychology"] },
-      { role: "Student Volunteer", details: ["KAEIM&KSET 2023 Fall", "KAEIM 2025 Spring", "ICoME 2025", "KAEIM&KSET 2025 Fall", "KAEIM 2026 Spring] },
+      { role: "Student Volunteer", details: ["KAEIM&KSET 2023 Fall", "KAEIM 2025 Spring", "ICoME 2025", "KAEIM&KSET 2025 Fall", "KAEIM 2026 Spring"] },
     ],
   },
 
