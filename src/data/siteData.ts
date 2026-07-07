@@ -89,6 +89,7 @@ export const siteData: SiteData = {
     ],
 
     awards: [
+      { title: "Best Student Paper Nominee", organization: "ICALT 2026", year: 2026 },
       { title: "IEEE TCLT Student Award", organization: "IEEE TCLT", year: 2026 },
       { title: "Outstanding Research Award", organization: "Korean Association for Educational Information and Media", year: 2026 },
       { title: "Best Paper Award", organization: "Korean Association for Educational Information and Media", year: 2026 },
@@ -118,6 +119,7 @@ export const siteData: SiteData = {
   // 예시 (title 전체에 링크):
   //   title: [{ text: "전체 제목", href: "https://..." }]
   news: [
+    { id: "n12", date: "2026-07-07", title: ["My first-authored paper has been nominated for the Best Student Paper Award at ICALT 2026."] },
     { id: "n11", date: "2026-05-30", title: ["Excited to share that my first-authored poster received the Best Paper Award at the KAEIM Spring Conference."] },
     { id: "n10", date: "2026-05-18", title: ["Started my new journey at Seoul Robot & AI Museum as a museum educator🤖"] },
     { id: "n9", date: "2026-05-07", title: ["Honored to be selected as a recipient of the IEEE TCLT Student Award."] },
@@ -146,9 +148,10 @@ export const siteData: SiteData = {
       authors: ["Kyuwon Kim", "Jeanhee Lee", "Hyo-Jeong So"],
       year: 2026,
       venue: "IEEE ICALT 2026",
-      type: "Preprint",
+      type: "Conference",
       topics: ["Learning Analytics"],
-      tags: ["Learning Analytics"]
+      tags: ["Learning Analytics"],
+      links: { doi: "https://doi.org/10.1109/ICALT68022.2026.00046" }
       },
       {
       id: "p2026-c5",
@@ -156,7 +159,7 @@ export const siteData: SiteData = {
       authors: ["Eunyoung Kim", "Kyuwon Kim", "Hyo-Jeong So"],
       year: 2026,
       venue: "MAAI Workshop at Festival of Learning 2026",
-      type: "Preprint",
+      type: "Conference",
       topics: ["AIED"],
       tags: ["AIED"]
       },
