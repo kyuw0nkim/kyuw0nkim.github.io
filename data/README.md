@@ -23,23 +23,23 @@
 
 ## 열(column) 설명
 
-| 열 | 필수 | 설명 |
-|----|------|------|
-| `id` | ✅ | 고유 식별자. 한 번 정하면 바꾸지 마세요 (프로젝트의 relatedPublications 등이 참조). 예: `p2026-c2` |
-| `title` | ✅ | 논문 제목 |
-| `year` | ✅ | 연도 (숫자). 사이트에서 연도별로 묶여 표시됩니다 |
-| `type` | ✅ | `Conference` / `Workshop` / `Journal` / `Preprint` 중 하나 |
-| `authors` |  | 저자. **세미콜론(`;`)** 으로 구분. 예: `Kyuwon Kim; Hyo-Jeong So` |
-| `venue` |  | 게재처. 예: `LAK 2026`, `교육정보미디어연구, v.31, no.5` |
-| `topics` |  | 연구 주제. `;` 로 구분. 필터에 사용됨. 예: `AIED; Learning Analytics` |
-| `tags` |  | 태그. `;` 로 구분 |
-| `pdf` |  | PDF 링크 |
-| `doi` |  | DOI 링크 |
-| `arxiv` |  | arXiv 링크 |
-| `acmdl` |  | ACM Digital Library 링크 |
-| `website` |  | 프로젝트/논문 웹사이트 링크 |
-| `award` |  | 수상 내역. 예: `최우수논문상`, `Best Poster Design Award` |
-| `thumbnail` |  | `public/thumbnails/` 안의 이미지 파일명. 예: `pic.C.FLIP.png` |
+| 열           | 필수  | 설명                                                                       |
+| ----------- | --- | ------------------------------------------------------------------------ |
+| `id`        | ✅   | 고유 식별자. 한 번 정하면 바꾸지 마세요 (프로젝트의 relatedPublications 등이 참조). 예: `p2026-c2` |
+| `title`     | ✅   | 논문 제목                                                                    |
+| `year`      | ✅   | 연도 (숫자). 사이트에서 연도별로 묶여 표시됩니다                                             |
+| `type`      | ✅   | `Conference` / `Workshop` / `Journal` / `Preprint` 중 하나                  |
+| `authors`   |     | 저자. **세미콜론(`;`)** 으로 구분. 예: `Kyuwon Kim; Hyo-Jeong So`                   |
+| `venue`     |     | 게재처. 예: `LAK 2026`, `교육정보미디어연구, v.31, no.5`                              |
+| `topics`    |     | 연구 주제. `;` 로 구분. 필터에 사용됨. 예: `AIED; Learning Analytics`                  |
+| `tags`      |     | 태그. `;` 로 구분                                                             |
+| `pdf`       |     | PDF 링크                                                                   |
+| `doi`       |     | DOI 링크                                                                   |
+| `arxiv`     |     | arXiv 링크                                                                 |
+| `acmdl`     |     | ACM Digital Library 링크                                                   |
+| `website`   |     | 프로젝트/논문 웹사이트 링크                                                          |
+| `award`     |     | 수상 내역. 예: `최우수논문상`, `Best Poster Design Award`                           |
+| `thumbnail` |     | `public/thumbnails/` 안의 이미지 파일명. 예: `pic.C.FLIP.png`                     |
 
 ### 규칙
 - **행 순서 = 같은 연도 안에서의 표시 순서** 입니다. 최신 논문을 위로 두세요.

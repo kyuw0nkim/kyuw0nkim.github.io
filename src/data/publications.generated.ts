@@ -4,7 +4,7 @@
 import { Publication } from "./types";
 
 export const publications: Publication[] = [
-  {"id":"p2026-pre1","title":"Understanding Productive Dialogue in Value-Laden Discussions through Hidden Markov Models","year":2026,"type":"Conference","authors":["Kyuwon Kim","Jeanhee Lee","Hyo-Jeong So"],"venue":"IEEE ICALT 2026","topics":["Learning Analytics"],"tags":["Learning Analytics"],"links":{"doi":"https://doi.org/10.1109/ICALT68022.2026.00046"}},
+  {"id":"p2026-pre1","title":"Understanding Productive Dialogue in Value-Laden Discussions through Hidden Markov Models","year":2026,"type":"Conference","authors":["Kyuwon Kim","Jeanhee Lee","Hyo-Jeong So"],"venue":"IEEE ICALT 2026","topics":["Learning Analytics"],"tags":["Learning Analytics"],"links":{"doi":"https://doi.org/10.1109/ICALT68022.2026.00046"},"award":"Best Student Paper Nominee"},
   {"id":"p2026-c5","title":"When Should AI Intervene? Rethinking In-Video Quizzes as Affective Transition Points","year":2026,"type":"Conference","authors":["Eunyoung Kim","Kyuwon Kim","Hyo-Jeong So"],"venue":"MAAI Workshop at Festival of Learning 2026","topics":["AIED"],"tags":["AIED"]},
   {"id":"p2026-c4","title":"How Teachers Learn by Designing AI-Ethics Scenarios Using an LLM-Supported Authoring Tool","year":2026,"type":"Conference","authors":["Jeanhee Lee","Sieun Park","Yue Wang","Kyuwon Kim","Yeji Ko","Hyo-Jeong So"],"venue":"ICLS 2026","topics":["AIED"],"tags":["AIED"]},
   {"id":"p2026-c3","title":"논쟁문제 의사결정 상황에서 LLM 기반 대화형 에이전트의 참여와 수행 역할에 따른 효과 검증","year":2026,"type":"Conference","authors":["김규원","소효정"],"venue":"2026 교육정보미디어학회 춘계학술대회","topics":["Conversational Agent"],"tags":["Conversational Agent"],"award":"최우수논문상"},
