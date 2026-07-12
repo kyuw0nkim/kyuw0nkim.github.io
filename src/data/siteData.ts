@@ -1,4 +1,5 @@
 import { SiteData } from "./types";
+import { publications } from "./publications.generated";
 
 export const siteData: SiteData = {
   // =========================================================================
@@ -134,201 +135,18 @@ export const siteData: SiteData = {
   ],
 
   // =========================================================================
-  // 논문 목록 — 논문을 여기서 추가/수정하세요
+  // 논문 목록 — 여기서 직접 수정하지 마세요!
   //
-  // 썸네일 이미지 추가 방법:
-  //   1. public/thumbnails/ 폴더에 이미지 파일을 넣으세요 (예: my-paper-2025.png)
-  //      권장 비율: 3:2 (예: 600×400px) — 다른 크기도 자동으로 맞춰집니다
-  //   2. 해당 논문 항목에 thumbnail: "my-paper-2025.png" 를 추가하세요
+  // 논문은 엑셀 파일에서 관리합니다:  data/publications.xlsx
+  //   1. data/publications.xlsx 를 열어 행을 추가/수정 (한 행 = 논문 하나)
+  //   2. 터미널에서  npm run gen:pubs  실행
+  //      → src/data/publications.generated.ts 가 자동으로 다시 생성됩니다
+  //   3. git add / commit / push  하면 사이트에 자동 반영
+  //
+  // 썸네일: public/thumbnails/ 폴더에 이미지를 넣고(권장 3:2, 예 600×400px),
+  //         엑셀의 thumbnail 열에 파일명(예: my-paper-2025.png)을 적으세요.
   // =========================================================================
-  publications: [
-      {
-      id: "p2026-pre1",
-      title: "Understanding Productive Dialogue in Value-Laden Discussions through Hidden Markov Models",
-      authors: ["Kyuwon Kim", "Jeanhee Lee", "Hyo-Jeong So"],
-      year: 2026,
-      venue: "IEEE ICALT 2026",
-      type: "Conference",
-      topics: ["Learning Analytics"],
-      tags: ["Learning Analytics"],
-      links: { doi: "https://doi.org/10.1109/ICALT68022.2026.00046" }
-      },
-      {
-      id: "p2026-c5",
-      title: "When Should AI Intervene? Rethinking In-Video Quizzes as Affective Transition Points",
-      authors: ["Eunyoung Kim", "Kyuwon Kim", "Hyo-Jeong So"],
-      year: 2026,
-      venue: "MAAI Workshop at Festival of Learning 2026",
-      type: "Conference",
-      topics: ["AIED"],
-      tags: ["AIED"]
-      },
-      {
-      id: "p2026-c4",
-      title: "How Teachers Learn by Designing AI-Ethics Scenarios Using an LLM-Supported Authoring Tool",
-      authors: ["Jeanhee Lee", "Sieun Park", "Yue Wang", "Kyuwon Kim", "Yeji Ko", "Hyo-Jeong So"],
-      year: 2026,
-      venue: "ICLS 2026",
-      type: "Conference",
-      topics: ["AIED"],
-      tags: ["AIED"]
-      },
-     {
-      id: "p2026-c3",
-      title: "논쟁문제 의사결정 상황에서 LLM 기반 대화형 에이전트의 참여와 수행 역할에 따른 효과 검증",
-      authors: ["김규원", "소효정"],
-      year: 2026,
-      venue: "2026 교육정보미디어학회 춘계학술대회",
-      type: "Conference",
-      topics: ["Conversational Agent"],
-      tags: ["Conversational Agent"],
-      award: "최우수논문상"
-    },
-    {
-      id: "p2026-c2",
-      thumbnail: "pic.C.Productive Discussion.png",
-      title: "Productive Discussion Moves in Groups Addressing Controversial Issues",
-      authors: ["Kyuwon Kim", "Jeanhee Lee", "Sung-Eun Kim", "Hyo-Jeong So"],
-      year: 2026,
-      venue: "LAK 2026",
-      type: "Conference",
-      topics: ["Learning Analytics"],
-      tags: ["Learning Analytics"],
-      links: { acmdl: "https://doi.org/10.1145/3785022.3785111" }
-    },
-    {
-      id: "p2026-c1",
-      thumbnail: "pic.P.Understanding University.png",
-      title: "How Learners Engage with an LLM-Based Pedagogical Conversational Agent During Music Form Analysis",
-      authors: ["Lingxi Jin", "Kyuwon Kim", "Baicheng Lin", "Mengze Hong", "Hyo-Jeong So"],
-      year: 2026,
-      venue: "CHI 2026 Extended Abstracts",
-      type: "Conference",
-      topics: ["Conversational Agent", "Learning Analytics", "AIED"],
-      tags: ["Conversational Agent", "Learning Analytics", "AIED"],
-      links: { acmdl: "https://doi.org/10.1145/3772363.3798900" }
-    },
-    {
-      id: "p2025-j1",
-      thumbnail: "pic.J.AI 윤리교육.png",
-      title: "AI 윤리교육을 위한 대화형 게임 설계: 집단 의사결정을 통한 윤리 담화 지원",
-      authors: ["김성은", "김규원", "이진희", "소효정"],
-      year: 2025,
-      venue: "교육정보미디어연구, v.31, no.5, 2033-2060",
-      type: "Journal",
-      topics: ["AIED", "Game-based Learning", "Learning Analytics"],
-      tags: ["AIED", "Game-based Learning", "Learning Analytics"],
-      links: { doi: "http://dx.doi.org/10.15833/KAFEIAM.31.5.2033" },
-      award: "우수학술상"
-    },
-    {
-      id: "p2025-c1",
-      thumbnail: "pic.P.Your Thoughtful.png",
-      title: "Your Thoughtful Opponent: Embracing Cognitive Conflict with Peer Agent",
-      authors: ["Kyuwon Kim", "Jaeryeong Hwang", "Younseo Lee", "Jeanhee Lee", "Sung-Eun Kim", "Hyo-Jeong So"],
-      year: 2025,
-      venue: "UIST 2025 Extended Abstracts",
-      type: "Conference",
-      topics: ["Conversational Agent", "AIED"],
-      tags: ["Conversational Agent", "AIED"],
-      links: { acmdl: "https://doi.org/10.1145/3746058.3758410" }
-    },
-    {
-      id: "p2025-c2",
-      thumbnail: "pic.C.Dilemmas in.png",
-      title: "Dilemmas in AI Ethics: A Digital Game for Moral Reasoning and Collective Decision-Making",
-      authors: ["Sung-Eun Kim", "Kyuwon Kim", "Jean Hee Lee", "Yeji Ko", "Yue Wang", "Hyo-Jeong So"],
-      year: 2025,
-      venue: "AIED 2025",
-      type: "Conference",
-      topics: ["AIED", "Game-based Learning"],
-      tags: ["AIED", "Game-based Learning"],
-      links: { doi: "https://doi.org/10.1007/978-3-031-98417-4_31" }
-    },
-    {
-      id: "p2025-c3",
-      thumbnail: "pic.P.Bridging Literacy.png",
-      title: "Bridging Literacy with AI: AI-Integrated Digital Textbook for Deaf and Hard-of-Hearing Students",
-      authors: ["Ga Young Lee", "Seonhee Na", "Kyuwon Kim", "Hyo-Jeong So"],
-      year: 2025,
-      venue: "IDC 2025 Extended Abstracts",
-      type: "Conference",
-      topics: ["AIED"],
-      tags: ["AIED"],
-      links: { acmdl: "https://doi.org/10.1145/3713043.3731489" }
-    },
-    {
-      id: "p2025-c4",
-      thumbnail: "pic.C.FLIP.png",
-      title: "FLIP: Tabletop Role-Play Game for AI Ethics Education through Cognitive Dissonance",
-      authors: ["Yue Wang", "Yeji Ko", "Kyuwon Kim", "Sung-Eun Kim", "Hyo-Jeong So"],
-      year: 2025,
-      venue: "ICLS 2025",
-      type: "Conference",
-      topics: ["AIED", "Game-based Learning"],
-      tags: ["AIED", "Game-based Learning"],
-      links: { doi: "https://doi.org/10.22318/icls2025.945127" }
-    },
-    {
-      id: "p2025-c5",
-      thumbnail: "pic.C.Tracing the.png",
-      title: "Tracing the Boundaries: A Structural Topic Modeling Analysis of Research Themes in Educational Technology and the Learning Sciences",
-      authors: ["Chohui Lee", "Nayeon Hong", "Soyeon Mun", "Kyuwon Kim", "Il-Hyun Jo"],
-      year: 2025,
-      venue: "2025 Korean Society for Educational Technology Spring Conference",
-      type: "Conference",
-      tags: ["Review"],
-    },
-    {
-      id: "p2024-j1",
-      thumbnail: "pic.J.A Systematic.png",
-      title: "A Systematic Literature Review on AI Integration in Korean Schools: Focusing on Recent Research Trends",
-      authors: ["Seo-yun Kim", "Hyo-Jeong So", "Kyuwon Kim"],
-      year: 2024,
-      venue: "교과교육학연구, v.28 n.5, 391–402",
-      type: "Journal",
-      topics: ["AIED"],
-      tags: ["AIED"],
-      links: { doi: "https://doi.org/10.24231/rici.2024.28.5.391" }
-    },
-    {
-      id: "p2024-c1",
-      thumbnail: "pic.P.What Do.png",
-      title: "What Do University Students Say About ChatGPT? A Topic Modeling of Perception on GenAI in Academic Writing",
-      authors: ["Lingxi Jin", "Kyuwon Kim", "Hyo-Jeong So", "Ga Young Lee"],
-      year: 2024,
-      venue: "ICCE 2024",
-      type: "Conference",
-      topics: ["AIED"],
-      tags: ["AIED"],
-      links: { doi: "https://doi.org/10.58459/icce.2024.5029" },
-      award: "Best Poster Design Award"
-    },
-    {
-      id: "p2024-c2",
-      thumbnail: "pic.P.국내 학교교육.png",
-      title: "국내 학교교육 분야의 AI활용 연구 동향",
-      authors: ["김서윤", "김규원", "소효정"],
-      year: 2024,
-      venue: "2024 한국교육공학회 춘계학술대회",
-      type: "Conference",
-      topics: ["AIED"],
-      tags: ["AIED"],
-      award: "장려상"
-    },
-    {
-      id: "p2022-j1",
-      thumbnail: "pic.J.콘텐츠 설계원리.png",
-      title: "콘텐츠 설계원리에 대한 학습유형별 학습자 인지적 상태 차이",
-      authors: ["정겨운", "김규원", "조일현"],
-      year: 2022,
-      venue: "교육정보미디어연구, v.28 n.1, 133–160",
-      type: "Journal",
-      topics: ["Learning Analytics"],
-      tags: ["Learning Analytics"],
-      links: { doi: "https://doi.org/10.15833/KAFEIAM.28.1.133" }
-    }
-  ],
+  publications: publications,
 
   // =========================================================================
   // 프로젝트 — 프로젝트를 여기서 추가/수정하세요
