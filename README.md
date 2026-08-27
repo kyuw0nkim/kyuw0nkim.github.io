@@ -19,9 +19,76 @@
 | 프로젝트 | `projects` | Projects, Projects/:id |
 | CV (학력/경력/수상/스킬) | `cv` | CV |
 
+### 뉴스 작성법
+
+뉴스는 `src/data/siteData.ts`의 `news` 배열에서 관리합니다. 각 뉴스는 날짜, 대표 사진(선택), 그리고 순서가 있는 본문 블록으로 구성됩니다.
+
+#### 일반 뉴스
+
+본문 한 줄만 있는 뉴스도 동일한 블록 형식을 사용합니다.
+
+```ts
+{
+  id: "n13",
+  date: "2026-08-01",
+  blocks: [
+    {
+      order: 1,
+      type: "paragraph",
+      content: ["Started a new research project."]
+    }
+  ]
+}
+```
+
+#### 논문과 설명이 섞인 뉴스
+
+`order` 숫자가 작은 블록부터 표시됩니다. 논문 블록에서는 `title`만 필수이며 `label`, `authors`, `href`는 모두 선택 항목입니다. 저널 논문은 `label: "Journal Article"`로 입력할 수 있고, 표시할 종류가 없으면 `label`을 생략합니다.
+
+```ts
+{
+  id: "n14",
+  date: "2026-08-15",
+  blocks: [
+    {
+      order: 1,
+      type: "paragraph",
+      content: ["Our new publications are now available."]
+    },
+    {
+      order: 2,
+      type: "paper",
+      title: "Understanding Productive Dialogue in Groups",
+      label: "Journal Article",
+      authors: "Kyuwon Kim, Hyo-Jeong So",
+      href: "https://doi.org/..."
+    },
+    {
+      order: 3,
+      type: "paragraph",
+      content: ["This study examines how collaborative dialogue unfolds..."]
+    }
+  ]
+}
+```
+
+#### 대표 사진
+
+뉴스별 대표 사진은 한 장만 사용할 수 있습니다. 사진 파일을 `public/news/`에 저장하고 뉴스에 `coverImage`를 추가합니다. 사진이 없는 뉴스에서는 `coverImage`를 생략합니다.
+
+```ts
+coverImage: {
+  src: "/news/aied2026-group.jpg",
+  alt: "Researchers attending AIED 2026",
+  caption: "AIED 2026 in Seoul"
+},
+```
+
+`caption`은 선택 항목입니다. `alt`에는 사진을 볼 수 없는 사용자를 위한 짧은 설명을 입력하는 것을 권장합니다.
+
 ### 텍스트 링크 작성법 (TextPart)
 
-소개글(`bioParagraphs`)과 뉴스(`news[].title`)에서 텍스트 안에 링크를 삽입할 때:
+소개글(`bioParagraphs`)과 뉴스 본문 블록(`news[].blocks[].content`)에서 텍스트 안에 링크를 삽입할 때:
 
 ```ts
 // 일반 텍스트
@@ -161,3 +228,4 @@ bun 사용 시: `bun install && bun run dev`
 - `.github/workflows/deploy.yml`로 GitHub Actions 자동 배포
 - GitHub 설정: **Settings → Pages → Source = GitHub Actions**
 - `HashRouter` 기반이므로 별도 서버 설정 없이 정적 호스팅에서 동작
+
