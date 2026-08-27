@@ -1,17 +1,6 @@
 import { MainLayout } from "@/components/layout";
+import { NewsContent } from "@/components/news/NewsContent";
 import { siteData, formatDate } from "@/data/siteData";
-import type { TextPart } from "@/data/types";
-
-const renderParts = (parts: TextPart[]) =>
-  parts.map((part, i) =>
-    typeof part === "string" ? (
-      part
-    ) : (
-      <a key={i} href={part.href} className="text-link" target="_blank" rel="noopener noreferrer">
-        {part.text}
-      </a>
-    )
-  );
 
 const News = () => {
   // Sort news by date descending
@@ -25,14 +14,14 @@ const News = () => {
 
       <div className="divide-y divide-border">
         {sortedNews.map((item) => (
-          <div key={item.id} className="flex gap-6 py-4">
-            <span className="text-muted-foreground text-sm w-28 flex-shrink-0">
+          <article key={item.id} className="flex flex-col gap-3 py-6 sm:flex-row sm:gap-6">
+            <time dateTime={item.date} className="text-muted-foreground text-sm w-28 flex-shrink-0">
               {formatDate(item.date)}
-            </span>
-            <span className="text-foreground">
-              {renderParts(item.title)}
-            </span>
-          </div>
+            </time>
+            <div className="min-w-0 flex-1">
+              <NewsContent item={item} />
+            </div>
+          </article>
         ))}
       </div>
     </MainLayout>
@@ -40,3 +29,4 @@ const News = () => {
 };
 
 export default News;
+
