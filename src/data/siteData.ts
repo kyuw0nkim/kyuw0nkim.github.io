@@ -130,14 +130,29 @@ export const siteData: SiteData = {
       id: "n12",
       date: "2026-07-07",
       blocks: [
-        { order: 1, type: "paragraph", content: ["My first-authored paper has been nominated for the Best Student Paper Award at ICALT 2026."] }
+        { order: 1, type: "paragraph", content: ["My first-authored paper has been nominated for the Best Student Paper Award at ICALT 2026."] },
+        {
+          order: 2,
+          type: "paper",
+          title: "Understanding Productive Dialogue in Value-Laden Discussions through Hidden Markov Models",
+          label: "Full Paper",
+          authors: "Kyuwon Kim, Jeanhee Lee, Hyo-Jeong So",
+          href: "https://doi.org/10.1109/ICALT68022.2026.00046"
+        }
       ]
     },
     {
       id: "n11",
       date: "2026-05-30",
       blocks: [
-        { order: 1, type: "paragraph", content: ["Excited to share that my first-authored poster received the Best Paper Award at the KAEIM Spring Conference."] }
+        { order: 1, type: "paragraph", content: ["Excited to share that my first-authored poster received the Best Paper Award at the KAEIM Spring Conference."] },
+        {
+          order: 2,
+          type: "paper",
+          title: "논쟁문제 의사결정 상황에서 LLM 기반 대화형 에이전트의 참여와 수행 역할에 따른 효과 검증",
+          label: "Conference Paper",
+          authors: "김규원, 소효정"
+        }
       ]
     },
     {
@@ -165,7 +180,15 @@ export const siteData: SiteData = {
       id: "n7",
       date: "2026-04-04",
       blocks: [
-        { order: 1, type: "paragraph", content: ["Our paper about productive dialogue in value-laden discussions is accepted as full paper in ICALT 2026."] }
+        { order: 1, type: "paragraph", content: ["Our paper about productive dialogue in value-laden discussions is accepted as full paper in ICALT 2026."] },
+        {
+          order: 2,
+          type: "paper",
+          title: "Understanding Productive Dialogue in Value-Laden Discussions through Hidden Markov Models",
+          label: "Full Paper",
+          authors: "Kyuwon Kim, Jeanhee Lee, Hyo-Jeong So",
+          href: "https://doi.org/10.1109/ICALT68022.2026.00046"
+        }
       ]
     },
     {
@@ -179,7 +202,15 @@ export const siteData: SiteData = {
       id: "n5",
       date: "2026-02-20",
       blocks: [
-        { order: 1, type: "paragraph", content: ["MelodyMate is accepted as poster in CHI 2026✨"] }
+        { order: 1, type: "paragraph", content: ["MelodyMate is accepted as poster in CHI 2026✨"] },
+        {
+          order: 2,
+          type: "paper",
+          title: "How Learners Engage with an LLM-Based Pedagogical Conversational Agent During Music Form Analysis",
+          label: "Poster",
+          authors: "Lingxi Jin, Kyuwon Kim, Baicheng Lin, Mengze Hong, Hyo-Jeong So",
+          href: "https://doi.org/10.1145/3772363.3798900"
+        }
       ]
     },
     {
@@ -194,6 +225,14 @@ export const siteData: SiteData = {
             { text: "arXiv", href: "https://doi.org/10.48550/arXiv.2601.05651", tooltip: "Check out our preprint" },
             "."
           ]
+        },
+        {
+          order: 2,
+          type: "paper",
+          title: "Productive Discussion Moves in Groups Addressing Controversial Issues",
+          label: "Full Paper",
+          authors: "Kyuwon Kim, Jeanhee Lee, Sung-Eun Kim, Hyo-Jeong So",
+          href: "https://doi.org/10.1145/3785022.3785111"
         }
       ]
     },
@@ -205,10 +244,16 @@ export const siteData: SiteData = {
           order: 1,
           type: "paragraph",
           content: [
-            "Presented the poster ",
-            { text: "Your Thoughtful Opponent", href: "https://doi.org/10.1145/3746058.3758410", tooltip: "Read the paper" },
-            " at UIST 2025."
+            "Presented the poster at UIST 2025."
           ]
+        },
+        {
+          order: 2,
+          type: "paper",
+          title: "Your Thoughtful Opponent: Embracing Cognitive Conflict with Peer Agent",
+          label: "Poster",
+          authors: "Kyuwon Kim, Jaeryeong Hwang, Younseo Lee, Jeanhee Lee, Sung-Eun Kim, Hyo-Jeong So",
+          href: "https://doi.org/10.1145/3746058.3758410"
         }
       ]
     },
@@ -223,7 +268,15 @@ export const siteData: SiteData = {
       id: "n1",
       date: "2024-11-29",
       blocks: [
-        { order: 1, type: "paragraph", content: ["Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉"] }
+        { order: 1, type: "paragraph", content: ["Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉"] },
+        {
+          order: 2,
+          type: "paper",
+          title: "What Do University Students Say About ChatGPT? A Topic Modeling of Perception on GenAI in Academic Writing",
+          label: "Poster",
+          authors: "Lingxi Jin, Kyuwon Kim, Hyo-Jeong So, Ga Young Lee",
+          href: "https://doi.org/10.58459/icce.2024.5029"
+        }
       ]
     }
   ],
