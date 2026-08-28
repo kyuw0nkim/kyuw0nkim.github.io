@@ -68,15 +68,20 @@ const buildSearchItems = (): SearchItem[] => {
   }));
 
   const newsItems = siteData.news.map((news) => {
-    const titleStr = news.title
-      .map((part) => (typeof part === "string" ? part : part.text))
-      .join("");
+    const blockText = [...news.blocks]
+      .sort((a, b) => a.order - b.order)
+      .map((block) =>
+        block.type === "paragraph"
+          ? block.content.map((part) => (typeof part === "string" ? part : part.text)).join("")
+          : [block.title, block.label, block.authors].filter(Boolean).join(" ")
+      );
+    const titleStr = blockText[0] || "News";
     return {
       id: news.id,
       title: titleStr,
       url: "/news",
       category: "news" as const,
-      content: [titleStr, news.date].join(" "),
+      content: [...blockText, news.coverImage?.caption, news.date].filter(Boolean).join(" "),
     };
   });
 
@@ -107,3 +112,4 @@ export const getSearchResults = (query: string, limit = 5) => {
 
   return scored.slice(0, limit).map((entry) => entry.item);
 };
+

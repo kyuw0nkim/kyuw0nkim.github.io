@@ -1,5 +1,6 @@
 import { MainLayout } from "@/components/layout";
 import { PublicationCard } from "@/components/cards/PublicationCard";
+import { NewsPreview } from "@/components/news/NewsContent";
 import { siteData, getLatestPublication, formatDate } from "@/data/siteData";
 import type { TextPart } from "@/data/types";
 import { HoverTooltip } from "@/components/ui/HoverTooltip";
@@ -20,6 +21,9 @@ const renderParts = (parts: TextPart[]) =>
 const Index = () => {
   const { profile } = siteData;
   const latestPub = getLatestPublication();
+  const latestNews = [...siteData.news]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
 
   return (
     <MainLayout showProfile>
@@ -40,13 +44,13 @@ const Index = () => {
       <section id="news" className="content-section">
         <h2 className="section-title">Updates</h2>
         <div className="divide-y divide-border">
-          {siteData.news.slice(0, 3).map(item => (
+          {latestNews.map(item => (
             <div key={item.id} className="flex gap-6 py-3">
               <span className="text-muted-foreground text-sm w-24 flex-shrink-0">
                 {formatDate(item.date)}
               </span>
               <span className="text-foreground">
-                {renderParts(item.title)}
+                <NewsPreview item={item} />
               </span>
             </div>
           ))}
@@ -63,3 +67,4 @@ const Index = () => {
 };
 
 export default Index;
+
