@@ -112,173 +112,26 @@ export const siteData: SiteData = {
   // =========================================================================
   // 뉴스 — 최신 소식을 여기서 추가/수정하세요
   // =========================================================================
-  // 한 뉴스는 대표 사진(선택)과 순서가 있는 blocks로 구성합니다.
-  //
-  // 대표 사진 (선택):
-  //   coverImage: { src: "/news/파일명.jpg", alt: "사진 설명", caption: "화면에 표시할 캡션" }
-  //
-  // 일반 본문 블록:
-  //   { order: 1, type: "paragraph", content: ["본문 텍스트"] }
-  //   링크가 필요한 경우 content 배열에 { text: "표시 문구", href: "https://..." }를 넣습니다.
-  //
-  // 논문 블록 (title만 필수이며 label/authors/href는 선택):
-  //   { order: 2, type: "paper", title: "논문 제목", label: "Journal Article", authors: "저자", href: "https://..." }
-  //
-  // 블록은 order 숫자가 작은 것부터 표시됩니다.
+  // 뉴스 title도 TextPart 배열입니다.
+  //   - 일반 텍스트: "문자열"
+  //   - 링크 텍스트: { text: "표시할 텍스트", href: "https://..." }
+  // 예시 (title 일부에 링크):
+  //   title: ["Presented the poster ", { text: "Your Thoughtful Opponent", href: "https://..." }, " at UIST 2025."]
+  // 예시 (title 전체에 링크):
+  //   title: [{ text: "전체 제목", href: "https://..." }]
   news: [
-    {
-      id: "n12",
-      date: "2026-07-07",
-      blocks: [
-        { order: 1, type: "paragraph", content: ["My first-authored paper has been nominated for the Best Student Paper Award at ICALT 2026."] },
-        {
-          order: 2,
-          type: "paper",
-          title: "Understanding Productive Dialogue in Value-Laden Discussions through Hidden Markov Models",
-          label: "Full Paper",
-          authors: "Kyuwon Kim, Jeanhee Lee, Hyo-Jeong So",
-          href: "https://doi.org/10.1109/ICALT68022.2026.00046"
-        }
-      ]
-    },
-    {
-      id: "n11",
-      date: "2026-05-30",
-      blocks: [
-        { order: 1, type: "paragraph", content: ["Excited to share that my first-authored poster received the Best Paper Award at the KAEIM Spring Conference."] },
-        {
-          order: 2,
-          type: "paper",
-          title: "논쟁문제 의사결정 상황에서 LLM 기반 대화형 에이전트의 참여와 수행 역할에 따른 효과 검증",
-          label: "Conference Paper",
-          authors: "김규원, 소효정"
-        }
-      ]
-    },
-    {
-      id: "n10",
-      date: "2026-05-18",
-      blocks: [
-        { order: 1, type: "paragraph", content: ["Started my new journey at Seoul Robot & AI Museum as a museum educator🤖"] }
-      ]
-    },
-    {
-      id: "n9",
-      date: "2026-05-07",
-      blocks: [
-        { order: 1, type: "paragraph", content: ["Honored to be selected as a recipient of the IEEE TCLT Student Award."] }
-      ]
-    },
-    {
-      id: "n8",
-      date: "2026-04-25",
-      blocks: [
-        { order: 1, type: "paragraph", content: ["After a short break in Korea, off to Norway for LAK 2026🍀"] }
-      ]
-    },
-    {
-      id: "n7",
-      date: "2026-04-04",
-      blocks: [
-        { order: 1, type: "paragraph", content: ["Our paper about productive dialogue in value-laden discussions is accepted as full paper in ICALT 2026."] },
-        {
-          order: 2,
-          type: "paper",
-          title: "Understanding Productive Dialogue in Value-Laden Discussions through Hidden Markov Models",
-          label: "Full Paper",
-          authors: "Kyuwon Kim, Jeanhee Lee, Hyo-Jeong So",
-          href: "https://doi.org/10.1109/ICALT68022.2026.00046"
-        }
-      ]
-    },
-    {
-      id: "n6",
-      date: "2026-03-18",
-      blocks: [
-        { order: 1, type: "paragraph", content: ["Traveling to London, Milan, and Barcelona (Apr 2–19). So many places in the world to explore!"] }
-      ]
-    },
-    {
-      id: "n5",
-      date: "2026-02-20",
-      blocks: [
-        { order: 1, type: "paragraph", content: ["MelodyMate is accepted as poster in CHI 2026✨"] },
-        {
-          order: 2,
-          type: "paper",
-          title: "How Learners Engage with an LLM-Based Pedagogical Conversational Agent During Music Form Analysis",
-          label: "Poster",
-          authors: "Lingxi Jin, Kyuwon Kim, Baicheng Lin, Mengze Hong, Hyo-Jeong So",
-          href: "https://doi.org/10.1145/3772363.3798900"
-        }
-      ]
-    },
-    {
-      id: "n4",
-      date: "2025-12-01",
-      blocks: [
-        {
-          order: 1,
-          type: "paragraph",
-          content: [
-            "Our research article is accepted as full paper in LAK 2026! Now available in ",
-            { text: "arXiv", href: "https://doi.org/10.48550/arXiv.2601.05651", tooltip: "Check out our preprint" },
-            "."
-          ]
-        },
-        {
-          order: 2,
-          type: "paper",
-          title: "Productive Discussion Moves in Groups Addressing Controversial Issues",
-          label: "Full Paper",
-          authors: "Kyuwon Kim, Jeanhee Lee, Sung-Eun Kim, Hyo-Jeong So",
-          href: "https://doi.org/10.1145/3785022.3785111"
-        }
-      ]
-    },
-    {
-      id: "n3",
-      date: "2025-10-01",
-      blocks: [
-        {
-          order: 1,
-          type: "paragraph",
-          content: [
-            "Presented the poster at UIST 2025."
-          ]
-        },
-        {
-          order: 2,
-          type: "paper",
-          title: "Your Thoughtful Opponent: Embracing Cognitive Conflict with Peer Agent",
-          label: "Poster",
-          authors: "Kyuwon Kim, Jaeryeong Hwang, Younseo Lee, Jeanhee Lee, Sung-Eun Kim, Hyo-Jeong So",
-          href: "https://doi.org/10.1145/3746058.3758410"
-        }
-      ]
-    },
-    {
-      id: "n2",
-      date: "2025-03-02",
-      blocks: [
-        { order: 1, type: "paragraph", content: ["Just started my Master's journey in the IDL lab, at Ewha Womans University🚀"] }
-      ]
-    },
-    {
-      id: "n1",
-      date: "2024-11-29",
-      blocks: [
-        { order: 1, type: "paragraph", content: ["Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉"] },
-        {
-          order: 2,
-          type: "paper",
-          title: "What Do University Students Say About ChatGPT? A Topic Modeling of Perception on GenAI in Academic Writing",
-          label: "Poster",
-          authors: "Lingxi Jin, Kyuwon Kim, Hyo-Jeong So, Ga Young Lee",
-          href: "https://doi.org/10.58459/icce.2024.5029"
-        }
-      ]
-    }
+    { id: "n12", date: "2026-07-07", title: ["My first-authored paper has been nominated for the Best Student Paper Award at ICALT 2026."] },
+    { id: "n11", date: "2026-05-30", title: ["Excited to share that my first-authored poster received the Best Paper Award at the KAEIM Spring Conference."] },
+    { id: "n10", date: "2026-05-18", title: ["Started my new journey at Seoul Robot & AI Museum as a museum educator🤖"] },
+    { id: "n9", date: "2026-05-07", title: ["Honored to be selected as a recipient of the IEEE TCLT Student Award."] },
+    { id: "n8", date: "2026-04-25", title: ["After a short break in Korea, off to Norway for LAK 2026🍀"] },
+    { id: "n7", date: "2026-04-04", title: ["Our paper about productive dialogue in value-laden discussions is accepted as full paper in ICALT 2026."] },
+    { id: "n6", date: "2026-03-18", title: ["Traveling to London, Milan, and Barcelona (Apr 2–19). So many places in the world to explore!"] },
+    { id: "n5", date: "2026-02-20", title: ["MelodyMate is accepted as poster in CHI 2026✨"] },
+    { id: "n4", date: "2025-12-01", title: ["Our research article is accepted as full paper in LAK 2026! Now available in ", { text: "arXiv", href: "https://doi.org/10.48550/arXiv.2601.05651", tooltip: "Check out our preprint" }, "."] },
+    { id: "n3", date: "2025-10-01", title: ["Presented the poster ", { text: "Your Thoughtful Opponent", href: "https://doi.org/10.1145/3746058.3758410", tooltip: "Read the paper" }, " at UIST 2025."] },
+    { id: "n2", date: "2025-03-02", title: ["Just started my Master's journey in the IDL lab, at Ewha Womans University🚀"] },
+    { id: "n1", date: "2024-11-29", title: ["Attended ICCE 2024 in person as a presenter. Our poster received a Best Poster Design Award at ICCE 2024🎉"] }
   ],
 
   // =========================================================================
@@ -396,4 +249,3 @@ export function formatDate(dateString: string) {
   const date = new Date(dateString);
   return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 }
-
