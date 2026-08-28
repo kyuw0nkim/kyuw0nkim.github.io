@@ -85,28 +85,8 @@ export interface Project {
 export interface NewsItem {
   id: string;
   date: string;
-  coverImage?: {
-    src: string;
-    alt?: string;
-    caption?: string;
-  };
-  blocks: NewsBlock[];
+  title: TextPart[];  // array of TextParts; embed { text, href } for inline links
 }
-
-export type NewsBlock =
-  | {
-      order: number;
-      type: "paragraph";
-      content: TextPart[];
-    }
-  | {
-      order: number;
-      type: "paper";
-      title: string;
-      label?: string;
-      authors?: string;
-      href?: string;
-    };
 
 export interface DesignWork {
   id: string;
@@ -135,4 +115,3 @@ export interface SiteData {
   projects: Project[];
   chartAnnotations?: ChartAnnotation[];
 }
-
