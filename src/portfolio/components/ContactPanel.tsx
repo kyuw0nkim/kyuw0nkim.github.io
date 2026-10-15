@@ -17,14 +17,14 @@ export function ContactPanel() {
 
   return (
     <div className="contact">
-      <p className="eyebrow">
-        <span>Contact</span>
-        <span className="eyebrow__rule" aria-hidden="true" />
-        <span>{site.location}</span>
-      </p>
-
       <h1 className="contact__title">
-        Say <span className="kh__together">hello.</span>
+        Say{" "}
+        <span className="contact__nowrap">
+          hello
+          <span className="contact__wave" aria-hidden="true">
+            👋
+          </span>
+        </span>
       </h1>
       <p className="intro__text">{site.contactLine}</p>
 

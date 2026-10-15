@@ -332,6 +332,17 @@ ul {
   transform: scaleX(1);
 }
 
+.site-nav__out {
+  display: inline-block;
+  margin-left: 0.35em;
+  letter-spacing: 0;
+  transition: transform 0.25s var(--ease-out);
+}
+
+.site-nav__link--out:hover .site-nav__out {
+  transform: translate(2px, -2px);
+}
+
 .say-hello {
   display: inline-flex;
   align-items: center;
@@ -937,14 +948,6 @@ ul {
   font-size: clamp(22px, 2vw, 32px);
 }
 
-.kh__together {
-  padding: 0 0.12em;
-  border-radius: 0.14em;
-  background: var(--pf-yellow-soft);
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
 /* Keyboard-only control to stop the word switching (visible on focus). */
 .kh__pause {
   position: absolute;
@@ -1477,10 +1480,21 @@ ul {
 }
 
 .contact__title {
-  font-family: var(--font-serif);
-  font-size: clamp(64px, 8vw, 132px);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans);
+  font-size: clamp(52px, 6.4vw, 108px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.contact__nowrap {
+  white-space: nowrap;
+}
+
+.contact__wave {
+  margin-left: 0.08em;
+  font-size: 0.82em;
+  letter-spacing: 0;
 }
 
 .contact .intro__text {

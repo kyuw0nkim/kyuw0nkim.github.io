@@ -12,6 +12,8 @@ export const site = {
   location: "Seoul, KR",
   /** The academic website (publications, CV, news). */
   academicUrl: "/",
+  /** Publication list on the academic website (HashRouter route). */
+  publicationsUrl: "/#/publications",
   cvUrl: cv.cvUrl,
 
   heroIntro:

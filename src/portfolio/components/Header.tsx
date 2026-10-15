@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { trackOutbound } from "@/lib/analytics";
+import { site } from "../data/site";
 import { useRouteState } from "../hooks/usePortfolioState";
 
 const NAV = [
@@ -68,6 +70,19 @@ export function Header() {
             {item.label}
           </NavLink>
         ))}
+        <a
+          className="site-nav__link site-nav__link--out"
+          href={site.publicationsUrl}
+          target="_blank"
+          rel="noopener"
+          onClick={() => trackOutbound(site.publicationsUrl, "Publications (nav)")}
+        >
+          Publications
+          <span className="site-nav__out" aria-hidden="true">
+            ↗
+          </span>
+          <span className="sr-only"> (academic website, opens in a new tab)</span>
+        </a>
         <NavLink to="/contact" className={({ isActive }) => `say-hello${isActive ? " is-active" : ""}`}>
           Say hello <span className="say-hello__dot" aria-hidden="true" />
         </NavLink>
