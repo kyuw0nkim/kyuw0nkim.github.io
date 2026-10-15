@@ -1,0 +1,627 @@
+{
+  "project": "Tracing / Shaping 2.5D Portfolio Hero",
+  "manifestVersion": "0.1",
+  "baseSceneSize": {
+    "width": 1448,
+    "height": 1086,
+    "units": "px"
+  },
+  "layerOrder": "Ascending zIndex = back to front",
+  "interactions": {
+    "tracing": [
+      "character-white",
+      "character-green",
+      "character-pink",
+      "character-lavender"
+    ],
+    "shaping": [
+      "table",
+      "laptop"
+    ]
+  },
+  "notes": [
+    "Generated sprites are not pixel-registered to the original composition. Pixel-perfect object transforms must be calibrated before implementation.",
+    "scenePosition and sceneScale intentionally null until layout calibration.",
+    "RGBA/alpha verification is technical file inspection, not proof of clean cutout edges or perfect visual reconstruction."
+  ],
+  "assets": [
+    {
+      "zIndex": 1,
+      "file": "background/bg_exterior_far.png",
+      "group": "exterior-far",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 1 · 01",
+      "dimensionsPx": [
+        1448,
+        1086
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          0,
+          1448,
+          1054
+        ]
+      }
+    },
+    {
+      "zIndex": 2,
+      "file": "background/bg_exterior_foliage.png",
+      "group": "exterior-near",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 1 · 02",
+      "dimensionsPx": [
+        1448,
+        1086
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          0,
+          1448,
+          1086
+        ]
+      }
+    },
+    {
+      "zIndex": 3,
+      "file": "background/bg_room_window_floor.png",
+      "group": "room",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 1 · 03",
+      "dimensionsPx": [
+        1448,
+        1086
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          0,
+          1448,
+          1086
+        ]
+      }
+    },
+    {
+      "zIndex": 4,
+      "file": "shadows/shadow_table.png",
+      "group": "table",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 2 · 09",
+      "dimensionsPx": [
+        1448,
+        1086
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          9,
+          1448,
+          1086
+        ]
+      }
+    },
+    {
+      "zIndex": 5,
+      "file": "shadows/shadow_chair_green.png",
+      "group": "chair-green",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 2 · 10",
+      "dimensionsPx": [
+        1448,
+        1086
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          23,
+          1418,
+          1086
+        ]
+      }
+    },
+    {
+      "zIndex": 6,
+      "file": "shadows/shadow_chair_pink.png",
+      "group": "chair-pink",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 3 · 05",
+      "dimensionsPx": [
+        1448,
+        1086
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          19,
+          21,
+          1434,
+          1062
+        ]
+      }
+    },
+    {
+      "zIndex": 7,
+      "file": "shadows/shadow_stool.png",
+      "group": "stool-lavender",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 3 · 06",
+      "dimensionsPx": [
+        1448,
+        1086
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          33,
+          48,
+          1422,
+          1068
+        ]
+      }
+    },
+    {
+      "zIndex": 8,
+      "file": "furniture/chair_green_legs.png",
+      "group": "chair-green",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 3 · 07 (replacement)",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          25,
+          25,
+          1224,
+          1236
+        ]
+      }
+    },
+    {
+      "zIndex": 9,
+      "file": "furniture/chair_pink_legs.png",
+      "group": "chair-pink",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 3 · 08 (replacement)",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          47,
+          39,
+          1240,
+          1230
+        ]
+      }
+    },
+    {
+      "zIndex": 10,
+      "file": "furniture/stool_lavender_legs.png",
+      "group": "stool-lavender",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 3 · 09 (replacement)",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          23,
+          1234,
+          1238
+        ]
+      }
+    },
+    {
+      "zIndex": 11,
+      "file": "furniture/chair_green_back.png",
+      "group": "chair-green",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 2 · 02",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          9,
+          1240,
+          1254
+        ]
+      }
+    },
+    {
+      "zIndex": 12,
+      "file": "furniture/chair_pink_back.png",
+      "group": "chair-pink",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 2 · 05",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          43,
+          1216,
+          1254
+        ]
+      }
+    },
+    {
+      "zIndex": 13,
+      "file": "furniture/stool_lavender_seat.png",
+      "group": "stool-lavender",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 3 · 10 (replacement)",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          53,
+          1234,
+          1254
+        ]
+      }
+    },
+    {
+      "zIndex": 14,
+      "file": "characters/char_white_body.png",
+      "group": "character-white",
+      "clickTarget": "tracing",
+      "clickable": true,
+      "source": "Batch 1 · 04",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          37,
+          1234,
+          1254
+        ]
+      }
+    },
+    {
+      "zIndex": 15,
+      "file": "characters/char_green_body.png",
+      "group": "character-green",
+      "clickTarget": "tracing",
+      "clickable": true,
+      "source": "Pattern-free revision · 02",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          0,
+          1253,
+          1254
+        ]
+      }
+    },
+    {
+      "zIndex": 16,
+      "file": "characters/char_pink_body.png",
+      "group": "character-pink",
+      "clickTarget": "tracing",
+      "clickable": true,
+      "source": "Pattern-free revision · 01",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          17,
+          1244,
+          1250
+        ]
+      }
+    },
+    {
+      "zIndex": 17,
+      "file": "furniture/chair_green_front.png",
+      "group": "chair-green",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 2 · 03",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          43,
+          23,
+          1216,
+          1254
+        ]
+      }
+    },
+    {
+      "zIndex": 18,
+      "file": "furniture/chair_pink_front.png",
+      "group": "chair-pink",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 2 · 06",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          21,
+          1224,
+          1237
+        ]
+      }
+    },
+    {
+      "zIndex": 19,
+      "file": "furniture/table_pedestal.png",
+      "group": "table",
+      "clickTarget": "shaping",
+      "clickable": true,
+      "source": "Batch 1 · 08",
+      "dimensionsPx": [
+        1448,
+        1086
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          35,
+          1412,
+          1086
+        ]
+      }
+    },
+    {
+      "zIndex": 20,
+      "file": "furniture/table_surface.png",
+      "group": "table",
+      "clickTarget": "shaping",
+      "clickable": true,
+      "source": "Batch 1 · 09",
+      "dimensionsPx": [
+        1448,
+        1086
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          19,
+          1426,
+          1086
+        ]
+      }
+    },
+    {
+      "zIndex": 21,
+      "file": "characters/char_green_front_paws.png",
+      "group": "character-green",
+      "clickTarget": "tracing",
+      "clickable": true,
+      "source": "Rounded paws revision · 02",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          0,
+          1236,
+          1206
+        ]
+      }
+    },
+    {
+      "zIndex": 22,
+      "file": "characters/char_pink_front_paws.png",
+      "group": "character-pink",
+      "clickTarget": "tracing",
+      "clickable": true,
+      "source": "Rounded paws revision · 01",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          0,
+          1236,
+          1254
+        ]
+      }
+    },
+    {
+      "zIndex": 23,
+      "file": "tools/tool_laptop.png",
+      "group": "laptop",
+      "clickTarget": "shaping",
+      "clickable": true,
+      "source": "Batch 1 · 10",
+      "dimensionsPx": [
+        1448,
+        1086
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          41,
+          29,
+          1418,
+          1056
+        ]
+      }
+    },
+    {
+      "zIndex": 24,
+      "file": "furniture/table_front_rim.png",
+      "group": "table",
+      "clickTarget": "shaping",
+      "clickable": true,
+      "source": "Batch 3 · 04",
+      "dimensionsPx": [
+        1448,
+        1086
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          36,
+          32,
+          1412,
+          1035
+        ]
+      }
+    },
+    {
+      "zIndex": 25,
+      "file": "characters/char_lavender.png",
+      "group": "character-lavender",
+      "clickTarget": "tracing",
+      "clickable": true,
+      "source": "Batch 1 · 07",
+      "dimensionsPx": [
+        1254,
+        1254
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          19,
+          1240,
+          1254
+        ]
+      }
+    },
+    {
+      "zIndex": 26,
+      "file": "foreground/fg_plant_blur.png",
+      "group": "foreground-plant",
+      "clickTarget": null,
+      "clickable": false,
+      "source": "Batch 3 · 01",
+      "dimensionsPx": [
+        1448,
+        1086
+      ],
+      "scenePositionPx": null,
+      "sceneScale": null,
+      "alpha": {
+        "verified": true,
+        "boundsPx": [
+          0,
+          36,
+          1408,
+          1086
+        ]
+      }
+    }
+  ]
+}

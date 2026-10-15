@@ -1,0 +1,41 @@
+/* Design tokens — change the palette, type and rhythm of the portfolio here. */
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --pf-bg: #f8f5ef;
+  --pf-bg-2: #f1ebe1;
+  --pf-white: #fffdf9;
+  --pf-line: rgba(32, 32, 30, 0.12);
+
+  /* Text */
+  --pf-ink: #20201e;
+  --pf-ink-2: #57544f; /* ≥ 4.5:1 on --pf-bg and on the hero room wall behind the text */
+  --pf-ink-3: #a29d94; /* decorative only */
+
+  /* Accents */
+  --pf-yellow: #ffd76a;
+  --pf-yellow-soft: #ffe9a8;
+
+  /* Type */
+  --font-serif: "Instrument Serif", "Iowan Old Style", "Times New Roman", serif;
+  --font-sans: "Figtree", "Pretendard", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Layout */
+  --header-h: 84px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --scene-w: 100vw;
+  --shadow-soft: 0 30px 60px -28px rgba(70, 52, 32, 0.32), 0 2px 8px rgba(70, 52, 32, 0.05);
+}
+
+@media (min-width: 960px) {
+  :root {
+    --scene-w: 47vw;
+    --header-h: 96px;
+  }
+}
