@@ -915,22 +915,11 @@ ul {
 .kh__word {
   display: block;
   white-space: nowrap;
-}
-
-.kh__word--sans {
   font-family: var(--font-sans);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1.1;
   padding-right: 0.02em;
-}
-
-.kh__word--serif {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: 1.14em;
-  letter-spacing: -0.015em;
-  line-height: 0.965;
 }
 
 .kh__tail {
@@ -955,45 +944,28 @@ ul {
   -webkit-box-decoration-break: clone;
 }
 
-.kh__swap {
+/* Keyboard-only control to stop the word switching (visible on focus). */
+.kh__pause {
   position: absolute;
-  z-index: 1;
-  left: calc(var(--kh-size) * -0.6);
-  top: calc(var(--kh-size) * 0.06);
-  width: calc(var(--kh-size) * 0.4);
-  height: calc(var(--kh-size) * 0.98);
-  border-radius: 10px;
-  color: var(--pf-ink);
+  top: -2.6em;
+  left: 0;
+  z-index: 2;
+  padding: 6px 12px;
+  border: 1.5px solid var(--pf-ink);
+  border-radius: 999px;
+  background: var(--pf-white);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.kh__arrow {
-  width: 100%;
-  height: 100%;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-  transition: transform 0.72s var(--ease-in-out);
-}
-
-.kh[data-word="shaping"] .kh__arrow {
-  transform: scaleY(-1);
-}
-
-.kh__swap:hover .kh__arrow {
-  stroke-width: 3;
-}
-
-@media (max-width: 959px) {
-  .kh__swap {
-    left: auto;
-    right: 0;
-    top: calc(var(--kh-size) * 0.12);
-    width: calc(var(--kh-size) * 0.34);
-    height: calc(var(--kh-size) * 0.86);
-  }
+.kh__pause:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* ======================================================================

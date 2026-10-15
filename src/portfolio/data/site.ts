@@ -14,7 +14,6 @@ export const site = {
   academicUrl: "/",
   cvUrl: cv.cvUrl,
 
-  heroEyebrow: ["Research", "Design", "Development"],
   heroIntro:
     "I'm Kyuwon Kim — a researcher, designer, and developer working where human interaction, AI, and learning meet. I trace how people think and talk together, and shape the agents, tools, and learning experiences that help them do it.",
 

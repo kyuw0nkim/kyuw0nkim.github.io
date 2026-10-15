@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Mode, ModeFilter } from "../data/types";
 import { MODES } from "../data/modes";
@@ -12,7 +12,6 @@ const ALL_DEFINITION =
   "Selected research, design, and development work. Each project traces how people think together, shapes something that helps them — or both.";
 
 export function ExplorePanel({ filter }: { filter: ModeFilter }) {
-  const navigate = useNavigate();
   const selected: Mode | null = filter === "all" ? null : filter;
 
   return (
@@ -21,7 +20,7 @@ export function ExplorePanel({ filter }: { filter: ModeFilter }) {
         <span aria-hidden="true">←</span> Intro
       </Link>
 
-      <KineticHeadline selected={selected} size="compact" onSwap={(m) => navigate(`/${m}`)} />
+      <KineticHeadline selected={selected} size="compact" />
 
       <AnimatePresence mode="wait" initial={false}>
         <motion.p

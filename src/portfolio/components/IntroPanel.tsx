@@ -15,21 +15,15 @@ const rise = {
 export function IntroPanel() {
   return (
     <div className="intro">
-      <motion.p className="eyebrow" variants={rise} initial="hidden" animate="show" custom={0}>
-        <span>{site.name}</span>
-        <span className="eyebrow__rule" aria-hidden="true" />
-        <span>{site.heroEyebrow.join(" · ")}</span>
-      </motion.p>
-
-      <motion.div variants={rise} initial="hidden" animate="show" custom={1}>
+      <motion.div variants={rise} initial="hidden" animate="show" custom={0}>
         <KineticHeadline selected={null} size="hero" />
       </motion.div>
 
-      <motion.p className="intro__text" variants={rise} initial="hidden" animate="show" custom={2}>
+      <motion.p className="intro__text" variants={rise} initial="hidden" animate="show" custom={1}>
         {site.heroIntro}
       </motion.p>
 
-      <motion.div className="intro__explore" variants={rise} initial="hidden" animate="show" custom={3}>
+      <motion.div className="intro__explore" variants={rise} initial="hidden" animate="show" custom={2}>
         <p className="hint">
           <span className="hint__wide">Select a character or the table to explore</span>
           <span className="hint__narrow">Tap a character or the table — or pick a path</span>
