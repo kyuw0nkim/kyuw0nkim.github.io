@@ -25,10 +25,7 @@ export function IntroPanel() {
 
       <motion.div className="intro__explore" variants={rise} initial="hidden" animate="show" custom={2}>
         <p className="hint">
-          <span className="hint__text">
-            <span className="hint__wide">Click a character or the table</span>
-            <span className="hint__narrow">Tap a character or the table</span> — or browse
-          </span>
+          <span className="hint__text">Explore the scene — or browse</span>
           <ModePills />
         </p>
       </motion.div>

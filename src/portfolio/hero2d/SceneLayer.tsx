@@ -1,6 +1,7 @@
 import { memo } from "react";
 import type { SceneLayerConfig } from "./sceneConfig";
 import { layerSize, layerTransform } from "./sceneConfig";
+import { GLOW_BELOW_LAYERS } from "./sceneMotion";
 
 export type Highlight = "selected" | "hover" | null;
 
@@ -35,6 +36,7 @@ export const SceneLayer = memo(function SceneLayer({ layer, src, depth = 0, high
       data-group={layer.group}
       data-interaction={layer.interaction ?? undefined}
       data-highlight={highlight ?? undefined}
+      data-glow={GLOW_BELOW_LAYERS.has(layer.id) ? "below" : undefined}
       onLoad={() => onSettled?.(layer.id)}
       onError={() => onSettled?.(layer.id)}
       style={{

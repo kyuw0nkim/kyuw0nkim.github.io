@@ -81,7 +81,6 @@ function Stage25D({ selected, onSelect, onReset }: Props) {
   const finePointer = useCanHover();
   const isWide = useIsWide();
   const hover = usePortfolioStore((s) => s.hover);
-  const hoverObject = usePortfolioStore((s) => s.hoverObject);
 
   useEffect(() => {
     if (!selected || !onReset) return;
@@ -110,7 +109,7 @@ function Stage25D({ selected, onSelect, onReset }: Props) {
         bleed={isWide}
         interactive
         reducedMotion={reduced}
-        highlight={{ selected, hoverMode: hover, hoverGroup: hoverObject }}
+        highlight={{ selected, hoverMode: hover }}
         onHoverTarget={(t) => setHover(t?.mode ?? null, t?.group ?? null)}
         onSelectTarget={(t) => onSelect(t.mode)}
       />

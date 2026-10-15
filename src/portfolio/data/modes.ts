@@ -3,6 +3,8 @@ import type { Mode } from "./types";
 export interface ModeInfo {
   id: Mode;
   label: string;
+  /** Emoji mark shown next to the label (replaces a coloured dot). */
+  emoji: string;
   /** One-line definition used in the list header and About. */
   definition: string;
   /** Typical activities — perspectives, not strict categories. */
@@ -17,6 +19,7 @@ export const MODES: Record<Mode, ModeInfo> = {
   tracing: {
     id: "tracing",
     label: "Tracing",
+    emoji: "💭",
     definition: "Understanding how people interact, collaborate, communicate, and learn.",
     activities: [
       "Dialogue analysis",
@@ -31,6 +34,7 @@ export const MODES: Record<Mode, ModeInfo> = {
   shaping: {
     id: "shaping",
     label: "Shaping",
+    emoji: "🛠️",
     definition: "Designing and building interventions, tools, systems, and experiences.",
     activities: [
       "Conversational AI agents",

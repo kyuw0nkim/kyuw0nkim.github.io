@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { Html, Line, QuadraticBezierLine } from "@react-three/drei";
 import { MODES } from "../data/modes";
+import { ModeIcon } from "../components/ModeIcon";
 import { CAST } from "./cast";
 import { GEO, MAT, TABLE_TOP, damp, useSceneLive } from "./shared";
 
@@ -174,7 +175,7 @@ export function HoverLabel() {
   return (
     <Html position={LABEL_ANCHORS[hoverObject]} center zIndexRange={[20, 0]} style={{ pointerEvents: "none" }}>
       <span className="scene-chip" data-mode={hover}>
-        <span className="mode-dot" data-mode={hover} />
+        <ModeIcon mode={hover} />
         <span className="scene-chip__label">{MODES[hover].label}</span>
         <span className="scene-chip__hint">{isCurrent ? "you're here" : "click to explore"}</span>
       </span>

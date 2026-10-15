@@ -3,6 +3,7 @@ import type { Mode, ModeFilter } from "../data/types";
 import { MODES, MODE_ORDER } from "../data/modes";
 import { getProjects } from "../data/projects";
 import { pathForFilter, previewHandlers } from "../hooks/usePortfolioState";
+import { ModeIcon } from "./ModeIcon";
 
 /** Compact pill links into Tracing / Shaping — the keyboard/touch alternative to the scene. */
 export function ModePills() {
@@ -10,7 +11,7 @@ export function ModePills() {
     <span className="mode-pills">
       {MODE_ORDER.map((mode) => (
         <Link key={mode} to={`/${mode}`} className="mode-pill" data-mode={mode} {...previewHandlers(mode)}>
-          <span className="mode-dot" data-mode={mode} aria-hidden="true" />
+          <ModeIcon mode={mode} />
           {MODES[mode].label}
           <span className="mode-pill__arrow" aria-hidden="true">
             →
@@ -35,7 +36,7 @@ export function ModeTabs({ current }: { current: ModeFilter }) {
           aria-current={f === current ? "page" : undefined}
           {...(f === "all" ? {} : previewHandlers(f))}
         >
-          {f !== "all" && <span className="mode-dot" data-mode={f} aria-hidden="true" />}
+          {f !== "all" && <ModeIcon mode={f} />}
           {f === "all" ? "All works" : MODES[f].label}
           <span className="mode-tab__count">{String(getProjects(f).length).padStart(2, "0")}</span>
         </Link>

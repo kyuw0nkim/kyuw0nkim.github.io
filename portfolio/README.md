@@ -86,7 +86,7 @@ hero: {
 | 바꿀 것 | 파일 |
 |---------|------|
 | 인트로·About·Contact 문구 | `src/portfolio/data/site.ts` (이메일·소셜·스킬은 학술 사이트 `siteData.ts`에서 자동으로 가져옴) |
-| Tracing / Shaping 정의와 활동 목록 | `src/portfolio/data/modes.ts` |
+| Tracing / Shaping 정의, 활동 목록, 이모지(💭 / 🛠️) | `src/portfolio/data/modes.ts` |
 | 색·폰트·여백 토큰 | `src/portfolio/styles/tokens.css` |
 | 헤드라인 전환 간격 | `src/portfolio/components/KineticHeadline.tsx`의 `INTERVAL` |
 
@@ -120,7 +120,7 @@ hero: {
 - **카메라**: `translate + scale`만 사용하는 2D 가상 카메라입니다. 어떤 화면 크기에서도 장면 밖(빈 영역)이 보이지 않도록 이동·확대 범위를 제한합니다. 목표 사각형은 `scene-layout.json`의 `framing`에 있고 편집기 "Camera"에서 바꿀 수 있습니다.
 - **패럴랙스**: 그룹별 깊이(`src/portfolio/hero2d/sceneMotion.ts`의 `PARALLAX_DEPTH`, 단위 px). 같은 그룹(의자+캐릭터, 테이블+노트북)은 같은 깊이라 서로 어긋나지 않습니다. 마우스/펜에서만 동작하고, 터치·동작 줄이기 설정에서는 꺼집니다. 프레임이 계속 느리면(소프트웨어 합성 등) 자동으로 패럴랙스와 카메라 애니메이션을 끕니다.
 - **클릭 판정**: PNG 알파 기반입니다. 투명한 부분은 클릭되지 않고, 앞쪽 식물은 통과하며, 앞에 있는 의자·스툴은 뒤의 캐릭터를 가립니다.
-- **호버**: 캐릭터/테이블에 올리면 헤드라인이 해당 단어로 바뀌고 그 대상만 은은하게 빛납니다. 오른쪽 Tracing/Shaping 버튼에 올려도 해당 대상들이 함께 빛납니다.
+- **호버**: 캐릭터 하나에 올리면 헤드라인이 Tracing으로 바뀌고 **캐릭터 4종이 함께** 빛납니다. 테이블이나 노트북에 올리면 Shaping으로 바뀌고 테이블·노트북이 함께 빛납니다. 오른쪽 Tracing/Shaping 버튼에 올려도 같습니다. 테이블 앞 테두리(`table_front_rim`)는 빛이 상판 위로 번지지 않도록 아래쪽으로만 빛납니다(`sceneMotion.ts`의 `GLOW_BELOW_LAYERS`).
 - 레이어는 `flipX`/`flipY`로 좌우·상하 반전할 수 있습니다(편집기 Flip H / Flip V).
 
 ### 위치 편집기 (개발 전용)

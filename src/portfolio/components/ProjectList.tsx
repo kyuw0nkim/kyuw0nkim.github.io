@@ -5,6 +5,7 @@ import type { ModeFilter, Project } from "../data/types";
 import { MODES } from "../data/modes";
 import { projectNumber } from "../data/projects";
 import { portfolioStore } from "../hooks/usePortfolioState";
+import { ModeIcon } from "./ModeIcon";
 
 const list = {
   hidden: {},
@@ -54,7 +55,7 @@ export function ProjectList({ projects, filter }: { projects: Project[]; filter:
                 <span className="project-row__meta">
                   <span className="project-row__modes" aria-hidden="true">
                     {p.modes.map((m) => (
-                      <span key={m} className="mode-dot" data-mode={m} />
+                      <ModeIcon key={m} mode={m} />
                     ))}
                   </span>
                   <span className="sr-only">{p.modes.map((m) => MODES[m].label).join(" and ")}: </span>

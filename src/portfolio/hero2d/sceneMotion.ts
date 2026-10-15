@@ -43,5 +43,12 @@ export const CAMERA = {
 /** Groups that never take part in click detection (decoration, not obstacles). */
 export const PASS_THROUGH_GROUPS = new Set(["foreground-plant"]);
 
+/**
+ * Overlay layers whose top edge lies on their own object (the table's front lip
+ * over the tabletop). Their glow is cast downward only, so it doesn't bleed
+ * onto the tabletop as a band.
+ */
+export const GLOW_BELOW_LAYERS = new Set(["table_front_rim"]);
+
 /** Minimum alpha (0–255) for a pixel to count as part of an object. */
 export const HIT_ALPHA = 96;

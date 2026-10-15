@@ -8,6 +8,7 @@ import { getAdjacentProjects, getProject, projectNumber, projects } from "../dat
 import { site } from "../data/site";
 import { pathForFilter } from "../hooks/usePortfolioState";
 import { Media, PlaceholderNote } from "./Media";
+import { ModeIcon } from "./ModeIcon";
 
 const LINK_LABELS: Record<string, string> = { doi: "DOI", acmdl: "ACM DL", arxiv: "arXiv", pdf: "PDF", website: "Website" };
 
@@ -97,7 +98,7 @@ export function ProjectDetail() {
           <div className="pd-hero__chips">
             {project.modes.map((m) => (
               <Link key={m} to={`/${m}`} className="mode-chip" data-mode={m}>
-                <span className="mode-dot" data-mode={m} aria-hidden="true" />
+                <ModeIcon mode={m} />
                 {MODES[m].label}
               </Link>
             ))}

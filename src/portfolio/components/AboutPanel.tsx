@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { MODES, MODE_ORDER } from "../data/modes";
 import { site } from "../data/site";
 import { previewHandlers } from "../hooks/usePortfolioState";
+import { ModeIcon } from "./ModeIcon";
 
 export function AboutPanel() {
   return (
@@ -24,7 +25,7 @@ export function AboutPanel() {
         {MODE_ORDER.map((mode) => (
           <Link key={mode} to={`/${mode}`} className="about__mode" {...previewHandlers(mode)}>
             <h2 className="about__mode-title">
-              <span className="mode-dot" data-mode={mode} aria-hidden="true" />
+              <ModeIcon mode={mode} />
               {MODES[mode].label}
             </h2>
             <p className="about__mode-def">{MODES[mode].definition}</p>

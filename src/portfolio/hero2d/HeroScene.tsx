@@ -37,12 +37,10 @@ function useElementSize<T extends HTMLElement>(useParent: boolean) {
  */
 const BACKDROP_GROUPS = new Set(["exterior-far", "exterior-near", "room"]);
 
-/** What should glow: the selected theme's objects, or a hovered group / theme. */
+/** What should glow: the selected theme's objects, and every object of the hovered theme. */
 export interface SceneHighlight {
   selected: "tracing" | "shaping" | null;
   hoverMode: "tracing" | "shaping" | null;
-  /** Hovered group (from the scene); null with a hoverMode means "all of that theme" (from UI buttons). */
-  hoverGroup: string | null;
 }
 
 interface Props {
@@ -79,7 +77,7 @@ interface Props {
 function highlightFor(layer: SceneLayerConfig, h?: SceneHighlight): Highlight {
   if (!h || !layer.interaction) return null;
   if (h.selected === layer.interaction) return "selected";
-  if (h.hoverMode === layer.interaction && (h.hoverGroup === null || h.hoverGroup === layer.group)) return "hover";
+  if (h.hoverMode === layer.interaction) return "hover";
   return null;
 }
 
