@@ -1,5 +1,8 @@
 # Kyuwon Kim — Personal Academic Site
 
+> 별도의 시각 포트폴리오(`/portfolio/`)가 같은 저장소에 있습니다. 학술 사이트 내비게이션에는 연결되지 않으며,
+> 수정 방법은 [`portfolio/README.md`](portfolio/README.md)를 참고하세요.
+
 대부분의 업데이트는 **`src/data/siteData.ts`** 하나만 수정하면 됩니다.
 컴포넌트나 스타일 변경이 필요한 경우에만 아래 가이드를 참고하세요.
 
