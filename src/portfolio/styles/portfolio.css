@@ -754,6 +754,67 @@ ul {
   opacity: 1;
 }
 
+.hero-scene__clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/*
+ * Desktop split layout: the room (and the view through its window) continues
+ * behind the text like the original composition, dissolving only at its own
+ * far edge. Characters and furniture stay in the stage and, when the camera
+ * zooms in, fade out within the panel's left padding — never under the text.
+ */
+@media (min-width: 960px) {
+  .stage[data-renderer="2.5d"] {
+    overflow: visible;
+  }
+
+  .hero-scene--bleed {
+    right: auto;
+    width: 100vw;
+    background: transparent;
+  }
+
+  .hero-scene--bleed .hero-scene__clip {
+    /* Always narrower than the panel's left padding, clamp(48px, 5.4vw, 104px). */
+    --bleed-pad: clamp(40px, 4.4vw, 88px);
+    right: auto;
+    width: calc(var(--scene-w) + var(--bleed-pad));
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - var(--bleed-pad) - 32px), rgba(0, 0, 0, 0.55) calc(100% - var(--bleed-pad) * 0.5), transparent);
+    mask-image: linear-gradient(90deg, #000 calc(100% - var(--bleed-pad) - 32px), rgba(0, 0, 0, 0.55) calc(100% - var(--bleed-pad) * 0.5), transparent);
+  }
+
+  .hero-scene--bleed .scene-layer[data-group="room"] {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      #000 58%,
+      rgba(0, 0, 0, 0.94) 66%,
+      rgba(0, 0, 0, 0.8) 74%,
+      rgba(0, 0, 0, 0.58) 82%,
+      rgba(0, 0, 0, 0.32) 89%,
+      rgba(0, 0, 0, 0.12) 95%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      #000 58%,
+      rgba(0, 0, 0, 0.94) 66%,
+      rgba(0, 0, 0, 0.8) 74%,
+      rgba(0, 0, 0, 0.58) 82%,
+      rgba(0, 0, 0, 0.32) 89%,
+      rgba(0, 0, 0, 0.12) 95%,
+      transparent 100%
+    );
+  }
+
+  /* The room provides the window light now; drop the imitation streaks. */
+  .home:has(> .stage[data-renderer="2.5d"])::before {
+    display: none;
+  }
+}
+
 .scene-layer {
   position: absolute;
   max-width: none;
@@ -779,25 +840,29 @@ ul {
   }
 }
 
-/* Soft hand-off from the scene to the page. */
+/* Small screens: soft hand-off from the scene (above) to the content (below). */
 .stage__edge {
-  position: absolute;
-  z-index: 2;
-  pointer-events: none;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 9%;
-  background: linear-gradient(90deg, rgba(248, 245, 239, 0), var(--pf-bg));
+  display: none;
 }
 
 @media (max-width: 959px) {
   .stage__edge {
-    top: auto;
+    display: block;
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
     left: 0;
-    width: auto;
-    height: 12%;
-    background: linear-gradient(180deg, rgba(248, 245, 239, 0), var(--pf-bg));
+    right: 0;
+    bottom: 0;
+    height: 16%;
+    background: linear-gradient(
+      180deg,
+      rgba(248, 245, 239, 0) 0%,
+      rgba(248, 245, 239, 0.22) 32%,
+      rgba(248, 245, 239, 0.56) 60%,
+      rgba(248, 245, 239, 0.86) 84%,
+      var(--pf-bg) 100%
+    );
   }
 }
 

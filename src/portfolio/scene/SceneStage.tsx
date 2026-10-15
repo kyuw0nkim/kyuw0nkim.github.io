@@ -79,6 +79,7 @@ export function SceneStage(props: Props) {
 function Stage25D({ selected, onSelect, onReset }: Props) {
   const reduced = useReducedMotion();
   const finePointer = useCanHover();
+  const isWide = useIsWide();
   const hover = usePortfolioStore((s) => s.hover);
   const hoverObject = usePortfolioStore((s) => s.hoverObject);
 
@@ -106,6 +107,7 @@ function Stage25D({ selected, onSelect, onReset }: Props) {
         className="stage__scene"
         shot={selected ?? "hero"}
         parallax={finePointer}
+        bleed={isWide}
         interactive
         reducedMotion={reduced}
         highlight={{ selected, hoverMode: hover, hoverGroup: hoverObject }}

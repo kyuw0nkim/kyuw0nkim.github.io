@@ -9,20 +9,33 @@ import { useParallax } from "./useParallax";
 import { useSceneInteraction } from "./useSceneInteraction";
 import type { SceneTarget } from "./useSceneInteraction";
 
-function useElementSize<T extends HTMLElement>() {
+/**
+ * Size of the element (or of its parent when `useParent`), plus a ref to the
+ * measured element. With bleed, the scene root is wider than the stage it sits
+ * in, but framing and pointer maths still follow the stage.
+ */
+function useElementSize<T extends HTMLElement>(useParent: boolean) {
   const ref = useRef<T>(null);
+  const measured = useRef<HTMLElement | null>(null);
   const [size, setSize] = useState({ width: 0, height: 0 });
   useLayoutEffect(() => {
-    const el = ref.current;
+    const el = useParent ? (ref.current?.parentElement ?? null) : ref.current;
+    measured.current = el;
     if (!el) return;
     const measure = () => setSize({ width: el.clientWidth, height: el.clientHeight });
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
-  }, []);
-  return [ref, size] as const;
+  }, [useParent]);
+  return [ref, size, measured] as const;
 }
+
+/**
+ * Layers that may continue behind the page content when the scene bleeds:
+ * the room and the view through its window. Everything else stays in the stage.
+ */
+const BACKDROP_GROUPS = new Set(["exterior-far", "exterior-near", "room"]);
 
 /** What should glow: the selected theme's objects, or a hovered group / theme. */
 export interface SceneHighlight {
@@ -43,6 +56,11 @@ interface Props {
   fitOverride?: Fit;
   /** Pointer parallax (desktop pointers only). */
   parallax?: boolean;
+  /**
+   * Let the room continue to the right, behind the page content (desktop
+   * split layout). Characters and furniture stay inside the stage.
+   */
+  bleed?: boolean;
   /** Clickable characters / table / laptop. */
   interactive?: boolean;
   /** No camera transitions or parallax. */
@@ -80,6 +98,7 @@ export function HeroScene({
   shot = "hero",
   fitOverride,
   parallax = false,
+  bleed = false,
   interactive = false,
   reducedMotion = false,
   highlight,
@@ -90,9 +109,13 @@ export function HeroScene({
   onReady,
   className = "",
 }: Props) {
-  const [ref, size] = useElementSize<HTMLDivElement>();
+  const [ref, size, stageRef] = useElementSize<HTMLDivElement>(bleed);
   const worldRef = useRef<HTMLDivElement>(null);
   const layers = useMemo(() => byZ(layout.layers), [layout.layers]);
+  const [backLayers, frontLayers] = useMemo(
+    () => (bleed ? [layers.filter((l) => BACKDROP_GROUPS.has(l.group)), layers.filter((l) => !BACKDROP_GROUPS.has(l.group))] : [[], layers]),
+    [bleed, layers],
+  );
   const autoFit = useMemo(
     () =>
       mode === "contain"
@@ -115,7 +138,7 @@ export function HeroScene({
   // continuous motion (parallax, animated camera) and keep everything else.
   const [lowPower, setLowPower] = useState(false);
   const parallaxOn = parallax && !reducedMotion && !lowPower;
-  const parallaxState = useParallax(worldRef, ref, parallaxOn, () => setLowPower(true));
+  const parallaxState = useParallax(ref, stageRef, parallaxOn, () => setLowPower(true));
   useSceneInteraction({
     layout,
     enabled: interactive,
@@ -153,26 +176,35 @@ export function HeroScene({
     transition: animate ? `transform ${CAMERA.durationMs}ms ${CAMERA.easing}` : "none",
   };
 
+  const renderLayer = (layer: SceneLayerConfig) => (
+    <SceneLayer
+      key={layer.id}
+      layer={layer}
+      src={layerSrc(layout, layer)}
+      depth={parallaxOn ? (PARALLAX_DEPTH[layer.group] ?? 0) : 0}
+      highlight={highlightFor(layer, highlight)}
+      onSettled={onSettled}
+    />
+  );
+
   return (
     <div
       ref={ref}
-      className={`hero-scene ${className}`.trim()}
+      className={`hero-scene${bleed ? " hero-scene--bleed" : ""} ${className}`.trim()}
       data-ready={ready || undefined}
       data-shot={shot}
       data-interactive={interactive || undefined}
     >
-      <div ref={worldRef} className="hero-scene__world" style={worldStyle}>
-        {layers.map((layer) => (
-          <SceneLayer
-            key={layer.id}
-            layer={layer}
-            src={layerSrc(layout, layer)}
-            depth={parallaxOn ? (PARALLAX_DEPTH[layer.group] ?? 0) : 0}
-            highlight={highlightFor(layer, highlight)}
-            onSettled={onSettled}
-          />
-        ))}
-        {children}
+      {backLayers.length > 0 && (
+        <div className="hero-scene__world hero-scene__world--back" style={worldStyle} aria-hidden="true">
+          {backLayers.map(renderLayer)}
+        </div>
+      )}
+      <div className="hero-scene__clip">
+        <div ref={worldRef} className="hero-scene__world" style={worldStyle}>
+          {frontLayers.map(renderLayer)}
+          {children}
+        </div>
       </div>
     </div>
   );

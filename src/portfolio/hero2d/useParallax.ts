@@ -10,13 +10,13 @@ export interface ParallaxState {
 
 /**
  * ParallaxController: follows the pointer relative to the stage and writes
- * --par-x / --par-y on the scene world. Layers turn those into small,
+ * --par-x / --par-y on the scene root (inherited by its world layers). Layers turn those into small,
  * depth-scaled offsets (see SceneLayer). Uses one rAF loop that stops as soon
  * as the motion settles; no React re-renders per frame.
  */
 export function useParallax(
-  worldRef: RefObject<HTMLElement>,
-  stageRef: RefObject<HTMLElement>,
+  targetRef: RefObject<HTMLElement>,
+  stageRef: RefObject<HTMLElement | null>,
   enabled: boolean,
   /** Called once if frames stay slow while moving (e.g. software compositing). */
   onSlow?: () => void,
@@ -26,12 +26,12 @@ export function useParallax(
   slowCb.current = onSlow;
 
   useEffect(() => {
-    const world = worldRef.current;
+    const host = targetRef.current;
     const stage = stageRef.current;
-    if (!world || !stage) return;
+    if (!host || !stage) return;
     const write = () => {
-      world.style.setProperty("--par-x", state.current.x.toFixed(4));
-      world.style.setProperty("--par-y", state.current.y.toFixed(4));
+      host.style.setProperty("--par-x", state.current.x.toFixed(4));
+      host.style.setProperty("--par-y", state.current.y.toFixed(4));
     };
     if (!enabled) {
       state.current = { x: 0, y: 0 };
@@ -91,7 +91,7 @@ export function useParallax(
       document.documentElement.removeEventListener("pointerleave", onLeave);
       window.removeEventListener("blur", onLeave);
     };
-  }, [enabled, stageRef, worldRef]);
+  }, [enabled, stageRef, targetRef]);
 
   return state;
 }
