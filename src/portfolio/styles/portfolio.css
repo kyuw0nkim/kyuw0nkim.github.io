@@ -435,20 +435,6 @@ ul {
     display: grid;
     grid-template-columns: var(--scene-w) minmax(0, 1fr);
   }
-
-  /* Soft window light falling across the wall behind the text. */
-  .home::before {
-    content: "";
-    position: fixed;
-    inset: 0 0 0 var(--scene-w);
-    z-index: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(112deg, transparent 18%, rgba(255, 255, 255, 0.7) 26%, transparent 36%),
-      linear-gradient(112deg, transparent 48%, rgba(255, 255, 255, 0.55) 55%, transparent 63%),
-      linear-gradient(112deg, transparent 0%, rgba(232, 218, 198, 0.22) 40%, transparent 80%);
-    filter: blur(28px);
-  }
 }
 
 .home__panel {
@@ -479,14 +465,12 @@ ul {
 }
 
 /* ======================================================================
-   Stage (scene) — 2D layers around the 3D canvas
+   Stage (hero scene)
    ====================================================================== */
 
 .stage {
-  --px: 0;
-  --py: 0;
   position: relative;
-  height: clamp(380px, 64svh, 620px);
+  height: clamp(340px, 118vw, 70svh);
   overflow: hidden;
   isolation: isolate;
 }
@@ -498,187 +482,6 @@ ul {
     height: 100vh;
     height: 100svh;
   }
-}
-
-.backdrop,
-.backdrop > * {
-  position: absolute;
-  pointer-events: none;
-}
-
-.backdrop {
-  inset: 0;
-  z-index: -1;
-}
-
-.backdrop__wall {
-  inset: 0;
-  background:
-    radial-gradient(90% 60% at 20% 20%, rgba(255, 252, 245, 0.9), transparent 70%),
-    linear-gradient(180deg, #f1e7da 0%, #f3eadf 55%, #efe5d8 100%);
-}
-
-.backdrop__window {
-  left: -9%;
-  top: 4%;
-  width: 72%;
-  height: auto;
-  filter: blur(1.4px) saturate(0.95);
-  transform: translate(calc(var(--px) * -8px), calc(var(--py) * -5px));
-  transition: transform 0.8s var(--ease-out);
-}
-
-.backdrop__floor {
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 36%;
-  background: linear-gradient(180deg, rgba(222, 206, 184, 0.5) 0%, rgba(244, 237, 227, 0.95) 12%, #f7f1e8 60%, #f8f4ee 100%);
-}
-
-.backdrop__sun {
-  left: 6%;
-  bottom: 8%;
-  width: 62%;
-  height: 18%;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85) 30%, rgba(255, 252, 240, 0.6) 70%, rgba(255, 255, 255, 0));
-  transform: skewX(-40deg);
-  filter: blur(18px);
-}
-
-.backdrop__shade {
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 22%;
-  background: linear-gradient(90deg, rgba(248, 245, 239, 0), var(--pf-bg));
-}
-
-@media (max-width: 959px) {
-  .backdrop__window {
-    left: -4%;
-    width: 64%;
-    max-width: 420px;
-  }
-
-  .backdrop__shade {
-    top: auto;
-    left: 0;
-    width: auto;
-    height: 18%;
-    background: linear-gradient(180deg, rgba(248, 245, 239, 0), var(--pf-bg));
-  }
-}
-
-.stage__canvas {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.9s var(--ease-out) 0.1s;
-  touch-action: pan-y;
-}
-
-.stage[data-ready] .stage__canvas {
-  opacity: 1;
-}
-
-/* Let floor shadows fade out instead of ending at the canvas edge. */
-@media (min-width: 960px) {
-  .stage__canvas {
-    -webkit-mask-image: linear-gradient(90deg, #000 86%, transparent 99%);
-    mask-image: linear-gradient(90deg, #000 86%, transparent 99%);
-  }
-}
-
-@media (max-width: 959px) {
-  .stage__canvas {
-    -webkit-mask-image: linear-gradient(180deg, #000 86%, transparent 100%);
-    mask-image: linear-gradient(180deg, #000 86%, transparent 100%);
-  }
-}
-
-.plant {
-  position: absolute;
-  left: -7%;
-  bottom: -9%;
-  width: 42%;
-  max-width: 320px;
-  z-index: 2;
-  pointer-events: none;
-  filter: blur(8px);
-  opacity: 0.95;
-  transform: translate(calc(var(--px) * 16px), calc(var(--py) * 8px));
-  transition: transform 0.8s var(--ease-out);
-}
-
-.stage__note {
-  position: absolute;
-  right: 16px;
-  bottom: 14px;
-  z-index: 3;
-  font-size: 12.5px;
-  color: var(--pf-ink-2);
-}
-
-.scene-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px 8px 12px;
-  border-radius: 999px;
-  background: rgba(255, 253, 249, 0.94);
-  box-shadow: 0 10px 30px -10px rgba(70, 52, 32, 0.28);
-  white-space: nowrap;
-  font-family: var(--font-sans);
-  font-size: 13.5px;
-  color: var(--pf-ink);
-  transform: translateY(-18px);
-  animation: chip-in 0.25s var(--ease-out);
-}
-
-.scene-chip__label {
-  font-weight: 600;
-}
-
-.scene-chip__hint {
-  font-size: 12px;
-  color: var(--pf-ink-2);
-}
-
-@keyframes chip-in {
-  from {
-    opacity: 0;
-    transform: translateY(-10px) scale(0.96);
-  }
-}
-
-/* 2D fallback scene */
-.fallback {
-  position: absolute;
-  left: 6%;
-  right: 6%;
-  bottom: 6%;
-  width: 88%;
-  height: 72%;
-}
-
-.fallback__target {
-  cursor: pointer;
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-  transition: transform 0.35s var(--ease-out), filter 0.35s;
-  outline: none;
-}
-
-.fallback__target:hover,
-.fallback__target:focus-visible,
-.fallback__target.is-selected {
-  transform: translateY(-6px);
-  filter: drop-shadow(0 8px 10px rgba(70, 52, 32, 0.18));
-}
-
-.fallback__target:focus-visible {
-  filter: drop-shadow(0 0 0 #20201e) drop-shadow(0 0 2px #20201e);
 }
 
 /* ======================================================================
@@ -719,7 +522,7 @@ ul {
  * zooms in, fade out within the panel's left padding — never under the text.
  */
 @media (min-width: 960px) {
-  .stage[data-renderer="2.5d"] {
+  .stage {
     overflow: visible;
   }
 
@@ -736,6 +539,16 @@ ul {
     width: calc(var(--scene-w) + var(--bleed-pad));
     -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - var(--bleed-pad) - 32px), rgba(0, 0, 0, 0.55) calc(100% - var(--bleed-pad) * 0.5), transparent);
     mask-image: linear-gradient(90deg, #000 calc(100% - var(--bleed-pad) - 32px), rgba(0, 0, 0, 0.55) calc(100% - var(--bleed-pad) * 0.5), transparent);
+  }
+
+  /*
+   * When the scene can't reach the top of a tall stage, dissolve the room's top
+   * edge (and the view behind it) into the page instead of ending on a hard line.
+   * Logical px: the scenery behind the window starts 21px below the edge.
+   */
+  .hero-scene--bleed[data-gap-top] .hero-scene__world--back {
+    -webkit-mask-image: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.35) 12px, rgba(0, 0, 0, 0.8) 28px, #000 44px);
+    mask-image: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.35) 12px, rgba(0, 0, 0, 0.8) 28px, #000 44px);
   }
 
   .hero-scene--bleed .scene-layer[data-group="room"] {
@@ -759,11 +572,6 @@ ul {
       rgba(0, 0, 0, 0.12) 95%,
       transparent 100%
     );
-  }
-
-  /* The room provides the window light now; drop the imitation streaks. */
-  .home:has(> .stage[data-renderer="2.5d"])::before {
-    display: none;
   }
 }
 
@@ -798,12 +606,6 @@ ul {
 
 .scene-layer[data-glow="below"][data-highlight="selected"] {
   filter: drop-shadow(0 2px 1px rgba(255, 248, 225, 0.95)) drop-shadow(0 9px 9px rgba(255, 212, 110, 0.62));
-}
-
-@media (max-width: 959px) {
-  .stage[data-renderer="2.5d"] {
-    height: clamp(340px, 118vw, 70svh);
-  }
 }
 
 /* Small screens: soft hand-off from the scene (above) to the content (below). */

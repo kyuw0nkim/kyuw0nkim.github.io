@@ -4,23 +4,21 @@ import { useLocation } from "react-router-dom";
 import type { Mode, ModeFilter } from "../data/types";
 
 /**
- * Transient interaction state shared by the DOM UI and the 3D scene
- * (which renders in its own React root, so a tiny external store is used
- * instead of context). Navigation state — which view and which mode is
- * selected — lives in the URL; see `useRouteState`.
+ * Transient interaction state shared by the panel, the hero scene and the
+ * list preview (a tiny external store, so hover changes only re-render the
+ * components that read them). Navigation state — which view and which mode
+ * is selected — lives in the URL; see `useRouteState`.
  */
 export interface InteractionState {
   /** Mode being previewed by hovering/focusing a scene object, a button or a list item. */
   hover: Mode | null;
-  /** Which scene object is hovered (characters/table/laptop), for the 3D highlight. */
-  hoverObject: string | null;
   /** Project being previewed in the list. */
   previewId: string | null;
   /** Vertical centre (viewport px) of the previewed list row. */
   previewY: number;
 }
 
-let state: InteractionState = { hover: null, hoverObject: null, previewId: null, previewY: 0 };
+let state: InteractionState = { hover: null, previewId: null, previewY: 0 };
 const listeners = new Set<() => void>();
 
 export const portfolioStore = {
@@ -41,8 +39,7 @@ export function usePortfolioStore<T>(selector: (s: InteractionState) => T): T {
   return useSyncExternalStore(portfolioStore.subscribe, () => selector(portfolioStore.get()));
 }
 
-export const setHover = (hover: Mode | null, hoverObject: string | null = null) =>
-  portfolioStore.set({ hover, hoverObject });
+export const setHover = (hover: Mode | null) => portfolioStore.set({ hover });
 
 export type View = "intro" | "explore" | "about" | "contact" | "project" | "other";
 

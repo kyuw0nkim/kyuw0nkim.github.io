@@ -15,13 +15,17 @@ export type Interaction = "tracing" | "shaping" | null;
 export interface SceneLayerConfig {
   /** Unique id (file name without extension). */
   id: string;
-  /** Path below `assetBase`, e.g. "characters/char_green_body.png". */
+  /**
+   * Original PNG, relative to the source package (portfolio/hero-source/), e.g.
+   * "characters/char_green_body.png". The site loads the WebP built from it
+   * (same path, .webp — see `webFile`).
+   */
   file: string;
   /** Physical group from the manifest — layers of a group move together. */
   group: string;
   /** Which theme a click selects (from the manifest's clickTarget). */
   interaction: Interaction;
-  /** Native pixel size of the PNG. */
+  /** Native pixel size of the original PNG (the web copy may be smaller; layout uses this size). */
   width: number;
   height: number;
   /** Centre position in logical scene px. */
@@ -50,7 +54,7 @@ export interface Rect {
 export interface SceneLayout {
   version: 1;
   baseSize: { width: number; height: number };
-  /** Folder of the PNGs, relative to the site root (public/). */
+  /** Folder of the web sprites (WebP), relative to the site root (public/). */
   assetBase: string;
   /** Regions of the scene. `hero` is what must stay visible at any viewport size. */
   framing: { hero: Rect } & Record<string, Rect>;
@@ -59,8 +63,11 @@ export interface SceneLayout {
 
 export const sceneLayout = rawLayout as SceneLayout;
 
+/** Web copy of an original sprite: scripts/optimize-hero-assets.py writes `x.png` as `x.webp`. */
+export const webFile = (file: string) => file.replace(/\.png$/i, ".webp");
+
 export const layerSrc = (layout: SceneLayout, layer: SceneLayerConfig) =>
-  `${import.meta.env.BASE_URL}${layout.assetBase.replace(/^\//, "")}${layer.file}`;
+  `${import.meta.env.BASE_URL}${layout.assetBase.replace(/^\//, "")}${webFile(layer.file)}`;
 
 export const byZ = (layers: SceneLayerConfig[]) => [...layers].sort((a, b) => a.z - b.z);
 

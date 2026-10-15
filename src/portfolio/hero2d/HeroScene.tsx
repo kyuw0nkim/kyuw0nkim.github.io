@@ -123,6 +123,9 @@ export function HeroScene({
   );
   const fit = fitOverride ?? autoFit;
   useEffect(() => onFit?.(fit), [fit, onFit]);
+  // Tall, narrow stages: keeping the hero framing whole leaves the room short of
+  // the top edge (see fitScene). Mark it so the room can fade out there.
+  const gapTop = mode === "cover" && fitScene(layout, size.width, size.height, "cover").y > 0.5;
 
   // Animate camera moves only after the first real measurement (no zoom-in on load).
   const [cameraLive, setCameraLive] = useState(false);
@@ -190,6 +193,7 @@ export function HeroScene({
       ref={ref}
       className={`hero-scene${bleed ? " hero-scene--bleed" : ""} ${className}`.trim()}
       data-ready={ready || undefined}
+      data-gap-top={gapTop || undefined}
       data-shot={shot}
       data-interactive={interactive || undefined}
     >

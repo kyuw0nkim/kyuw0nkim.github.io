@@ -6,7 +6,7 @@
 
 - 진입 HTML: `portfolio/index.html` → 빌드 시 `dist/portfolio/index.html`
 - 소스: `src/portfolio/`
-- three.js 3D 씬은 별도 청크로 지연 로드되어 학술 사이트 번들에는 포함되지 않습니다.
+- 히어로는 투명 이미지 레이어를 겹친 2.5D 장면입니다(WebGL·3D 라이브러리 없음).
 
 ---
 
@@ -25,14 +25,11 @@ npm run preview    # 빌드 결과 확인: http://localhost:4173/portfolio/
 
 | 주소 | 화면 |
 |------|------|
-| `/portfolio/#/` | Intro — 3D 씬 + Tracing/Shaping 헤드라인 |
+| `/portfolio/#/` | Intro — 히어로 장면 + Tracing/Shaping 헤드라인 |
 | `#/tracing`, `#/shaping` | Explore — 해당 관점의 프로젝트 목록 |
 | `#/works` | 전체 프로젝트 |
 | `#/works/<id>` | 프로젝트 상세(케이스 스터디) |
 | `#/about`, `#/contact` | 소개 / 연락처 |
-
-쿼리 옵션: `?no3d` → 2D 대체 씬 강제, `?3d` → 소프트웨어 렌더러에서도 3D 강제(테스트용).
-예: `/portfolio/?no3d#/`
 
 ---
 
@@ -92,22 +89,32 @@ hero: {
 
 ---
 
-## 히어로 씬 (2.5D 레이어) — 현재 기본값
+## 히어로 씬 (2.5D 레이어)
 
-투명 PNG 26장(`public/hero-assets/`)을 원본 히어로 이미지의 좌표계(1448 × 1086)에 겹쳐 그립니다.
+투명 스프라이트 26장을 원본 히어로 이미지의 좌표계(1448 × 1086)에 겹쳐 그립니다.
 
 | 파일 | 역할 |
 |------|------|
-| `public/hero-assets/manifest.json` | 에셋 목록·그룹·클릭 대상(원본 패키지 그대로) |
+| `portfolio/hero-source/` | **원본 PNG 패키지**(21MB) + `manifest.json`(에셋 목록·그룹·클릭 대상). 배포되지 않습니다 |
+| `public/hero-assets/` | 사이트가 실제로 불러오는 **WebP**(약 1.3MB). `npm run optimize:hero`로 생성 |
+| `scripts/optimize-hero-assets.py` | 원본 → WebP 변환(Pillow 필요: `pip install pillow`) |
 | `src/portfolio/hero2d/scene-layout.json` | **레이어 위치 보정값** (x, y, scale, rotation, z, opacity, visible) + `framing.hero`(항상 보여야 하는 영역) |
 | `src/portfolio/hero2d/HeroScene.tsx`, `SceneLayer.tsx` | 레이어 렌더링, 무대 크기에 맞춘 그룹 스케일 |
-| `src/portfolio/hero2d/hitTest.ts` | PNG 알파 기반 선택(투명 영역은 클릭되지 않음) |
+| `src/portfolio/hero2d/hitTest.ts` | 알파 기반 선택(투명 영역은 클릭되지 않음) |
 | `src/portfolio/hero2d/editor/` | 개발 전용 위치 편집기 |
 
 - 좌표는 각 레이어의 **중심점** 기준이며, scale·rotation도 중심을 기준으로 적용됩니다.
 - 위치값은 컴포넌트에 하드코딩하지 않고 `scene-layout.json`에만 둡니다.
-- `npm run check:hero`: manifest ↔ 실제 파일(픽셀 크기) ↔ layout이 일치하는지 검사합니다.
-- 렌더러 전환: 기본은 2.5D, `/portfolio/?scene=3d`로 기존 3D 씬을 볼 수 있습니다(이전 완료 후 제거 예정).
+- `npm run check:hero`: manifest ↔ 원본 PNG(픽셀 크기) ↔ layout ↔ WebP가 일치하는지 검사합니다.
+
+### 에셋 교체 / 용량
+
+- 각 스프라이트는 화면에 그려지는 크기(`width × scale`)의 **2.5배 해상도**까지만 남기고 줄입니다.
+  레티나(2×) 화면에서 Tracing/Shaping으로 가장 크게 확대해도 선명한 수준입니다.
+  흐린 레이어(바닥 그림자, 앞쪽 식물)는 1.25배로 충분합니다.
+- 원본을 바꾸거나 편집기에서 레이어를 크게 키웠다면 `npm run optimize:hero`를 다시 실행하세요.
+  `npm run check:hero`가 해상도가 부족해진 레이어를 경고합니다.
+- 좌표·크기(`width`, `height`)는 항상 원본 PNG 기준입니다. WebP가 더 작아도 화면 배치는 그대로입니다.
 
 ### 인터랙션
 
@@ -142,40 +149,11 @@ npm run dev
 
 ---
 
-## 3D 씬 (이전 구현 — `?scene=3d`)
-
-`src/portfolio/scene/`
-
-| 파일 | 역할 |
-|------|------|
-| `SceneStage.tsx` | WebGL 확인, 지연 로드, 2D 대체, 창문·식물 배경 레이어 |
-| `Scene3D.tsx` | Canvas, 조명, 카메라 샷(`SHOTS`), 성능 모니터 |
-| `Characters.tsx` / `cast.ts` | 캐릭터 4종(형태·애니메이션) / 위치 |
-| `Furniture.tsx` | 테이블, 노트북, 의자 |
-| `Effects.tsx` | Tracing 대화선, Shaping 블록·링, 호버 라벨 |
-| `Backdrop.tsx` / `SceneFallback.tsx` | 2D 배경 / WebGL 미지원용 2D 씬 |
-
-- 캐릭터는 기본 도형(구, 회전체, 돌출 별)으로 만든 **절차적 모델**입니다. 참고 이미지는 평면 이미지라
-  3D 에셋이 없기 때문입니다.
-- **GLB 모델로 교체**: `public/portfolio/models/clover.glb`를 넣고 `Characters.tsx`에서 해당
-  몸체 컴포넌트를 바꾸면 됩니다. `CharacterRig`(호흡·호버·클릭 이벤트)는 그대로 유지됩니다.
-
-  ```tsx
-  import { useGLTF } from "@react-three/drei";
-  function Clover() {
-    const { scene } = useGLTF("/portfolio/models/clover.glb");
-    return <primitive object={scene} />;
-  }
-  ```
+## 성능과 접근성
 
 - 캐릭터 클릭 → Tracing, 테이블·노트북 클릭 → Shaping. 같은 선택은 오른쪽 패널의 버튼/탭으로도
-  가능해서(키보드·터치·스크린리더), 3D 없이도 모든 기능을 쓸 수 있습니다.
-
-### 성능과 대체 동작
-
-- 하드웨어 가속 없는 소프트웨어 WebGL(SwiftShader 등)에서는 자동으로 2D 씬을 보여줍니다.
-- 실행 중 프레임이 떨어지면 해상도·그림자를 낮추고, 그래도 매우 느리면 2D로 전환합니다.
-- 화면 밖으로 스크롤되면 렌더링을 멈춥니다.
+  가능해서(키보드·터치·스크린리더) 장면 없이도 모든 기능을 쓸 수 있습니다.
+- 프레임이 계속 느린 기기에서는 패럴랙스와 카메라 애니메이션을 자동으로 끕니다.
 - `prefers-reduced-motion`: 헤드라인 자동 전환·패럴랙스·카메라 이동이 꺼집니다.
 - 헤드라인 자동 전환은 마우스를 헤드라인에 올리면 멈추고, 키보드 사용자는 Tab으로 나타나는
   "Pause word animation" 버튼으로 멈출 수 있습니다(WCAG 2.2.2).
