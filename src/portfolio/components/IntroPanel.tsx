@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { site } from "../data/site";
 import { KineticHeadline } from "./KineticHeadline";
-import { ModeButtons } from "./ModeLinks";
+import { ModePills } from "./ModeLinks";
 
 const rise = {
   hidden: { opacity: 0, y: 18 },
@@ -25,10 +25,12 @@ export function IntroPanel() {
 
       <motion.div className="intro__explore" variants={rise} initial="hidden" animate="show" custom={2}>
         <p className="hint">
-          <span className="hint__wide">Select a character or the table to explore</span>
-          <span className="hint__narrow">Tap a character or the table — or pick a path</span>
+          <span className="hint__text">
+            <span className="hint__wide">Click a character or the table</span>
+            <span className="hint__narrow">Tap a character or the table</span> — or browse
+          </span>
+          <ModePills />
         </p>
-        <ModeButtons />
       </motion.div>
     </div>
   );

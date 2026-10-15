@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { trackEmailClick } from "@/lib/analytics";
-import { site } from "../data/site";
 import { useRouteState } from "../hooks/usePortfolioState";
 
 const NAV = [
   { to: "/works", label: "Works" },
   { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
 ];
 
 export function Header() {
@@ -71,9 +68,9 @@ export function Header() {
             {item.label}
           </NavLink>
         ))}
-        <a className="say-hello" href={`mailto:${site.email}`} onClick={() => trackEmailClick(site.email)}>
+        <NavLink to="/contact" className={({ isActive }) => `say-hello${isActive ? " is-active" : ""}`}>
           Say hello <span className="say-hello__dot" aria-hidden="true" />
-        </a>
+        </NavLink>
       </nav>
     </header>
   );

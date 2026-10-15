@@ -350,7 +350,8 @@ ul {
     color 0.25s;
 }
 
-.say-hello:hover {
+.say-hello:hover,
+.say-hello.is-active {
   background: var(--pf-ink);
   color: var(--pf-bg);
 }
@@ -986,8 +987,9 @@ ul {
 
 .hint {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 10px 12px;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
@@ -1046,70 +1048,51 @@ ul {
   }
 }
 
-.mode-buttons {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  max-width: 580px;
-  margin-top: 16px;
+.mode-pills {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-@media (max-width: 559px) {
-  .mode-buttons {
-    grid-template-columns: 1fr;
-  }
-}
-
-.mode-button {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: start;
-  gap: 12px;
-  padding: 16px 18px;
-  border: 1px solid var(--pf-line);
-  border-radius: 18px;
-  background: color-mix(in srgb, var(--pf-white) 55%, transparent);
-  transition:
-    background 0.25s,
-    box-shadow 0.3s,
-    transform 0.3s var(--ease-out),
-    border-color 0.25s;
-}
-
-.mode-button .mode-dot {
-  margin-top: 6px;
-}
-
-.mode-button:hover,
-.mode-button:focus-visible {
-  background: var(--pf-white);
-  border-color: transparent;
-  box-shadow: var(--shadow-soft);
-  transform: translateY(-2px);
-}
-
-.mode-button__label {
-  display: block;
-  font-size: 17px;
+/* Small, clearly clickable buttons (links) into each theme. */
+.mode-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 12px;
+  border: 1.5px solid var(--pf-ink);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--pf-white) 70%, transparent);
+  font-family: var(--font-sans);
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: var(--pf-ink);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.25s var(--ease-out);
 }
 
-.mode-button__def {
-  display: block;
-  margin-top: 3px;
-  font-size: 13px;
-  line-height: 1.45;
-  color: var(--pf-ink-2);
+.mode-pill .mode-dot {
+  width: 8px;
+  height: 8px;
 }
 
-.mode-button__arrow {
-  font-size: 17px;
-  transition: transform 0.3s var(--ease-out);
+.mode-pill__arrow {
+  transition: transform 0.25s var(--ease-out);
 }
 
-.mode-button:hover .mode-button__arrow {
-  transform: translateX(4px);
+.mode-pill:hover,
+.mode-pill:focus-visible {
+  background: var(--pf-ink);
+  color: var(--pf-bg);
+}
+
+.mode-pill:hover .mode-pill__arrow,
+.mode-pill:focus-visible .mode-pill__arrow {
+  transform: translateX(3px);
 }
 
 /* ======================================================================

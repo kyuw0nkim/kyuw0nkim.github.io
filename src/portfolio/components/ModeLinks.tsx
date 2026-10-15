@@ -4,21 +4,20 @@ import { MODES, MODE_ORDER } from "../data/modes";
 import { getProjects } from "../data/projects";
 import { pathForFilter, previewHandlers } from "../hooks/usePortfolioState";
 
-/** The explicit, accessible way into Tracing / Shaping (no 3D needed). */
-export function ModeButtons() {
+/** Compact pill links into Tracing / Shaping — the keyboard/touch alternative to the scene. */
+export function ModePills() {
   return (
-    <div className="mode-buttons">
+    <span className="mode-pills">
       {MODE_ORDER.map((mode) => (
-        <Link key={mode} to={`/${mode}`} className="mode-button" data-mode={mode} {...previewHandlers(mode)}>
+        <Link key={mode} to={`/${mode}`} className="mode-pill" data-mode={mode} {...previewHandlers(mode)}>
           <span className="mode-dot" data-mode={mode} aria-hidden="true" />
-          <span className="mode-button__text">
-            <span className="mode-button__label">{MODES[mode].label}</span>
-            <span className="mode-button__def">{MODES[mode].definition}</span>
+          {MODES[mode].label}
+          <span className="mode-pill__arrow" aria-hidden="true">
+            →
           </span>
-          <span className="mode-button__arrow" aria-hidden="true">→</span>
         </Link>
       ))}
-    </div>
+    </span>
   );
 }
 
