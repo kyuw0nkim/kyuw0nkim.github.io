@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Portfolio hero editor: local reference image for alignment (not published)
+src/portfolio/hero2d/reference/*
+!src/portfolio/hero2d/reference/README.md

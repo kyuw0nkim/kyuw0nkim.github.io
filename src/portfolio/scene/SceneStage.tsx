@@ -2,8 +2,22 @@ import { Component, Suspense, lazy, useEffect, useRef, useState } from "react";
 import type { PointerEvent, ReactNode } from "react";
 import type { Mode } from "../data/types";
 import { useIsWide, useReducedMotion } from "../hooks/useMedia";
+import { HeroScene } from "../hero2d/HeroScene";
 import { Backdrop, ForegroundPlant } from "./Backdrop";
 import { SceneFallback } from "./SceneFallback";
+
+/**
+ * Which hero renderer to use. The layered 2.5D scene (transparent PNGs) replaces
+ * the real-time 3D scene; `?scene=3d` brings the legacy 3D scene back while the
+ * migration is in progress.
+ */
+type HeroRenderer = "2.5d" | "3d";
+const DEFAULT_RENDERER: HeroRenderer = "2.5d";
+
+function pickRenderer(): HeroRenderer {
+  const requested = new URLSearchParams(window.location.search).get("scene");
+  return requested === "3d" || requested === "2.5d" ? requested : DEFAULT_RENDERER;
+}
 
 // three.js is only downloaded when the scene is actually shown.
 const Scene3D = lazy(() => import("./Scene3D"));
@@ -49,7 +63,26 @@ interface Props {
   onSelect: (mode: Mode) => void;
 }
 
-export function SceneStage({ selected, onSelect }: Props) {
+export function SceneStage(props: Props) {
+  const [renderer] = useState(pickRenderer);
+  return renderer === "3d" ? <Stage3D {...props} /> : <Stage25D {...props} />;
+}
+
+/** Layered 2.5D hero (static composition — interactions follow in the next phase). */
+function Stage25D({ selected }: Props) {
+  return (
+    <section className="stage" data-renderer="2.5d" data-selected={selected ?? undefined} aria-labelledby="stage-title">
+      <h2 id="stage-title" className="sr-only">
+        Illustration: four soft characters sitting around a round table with a laptop, in a sunlit room
+      </h2>
+      <HeroScene className="stage__scene" />
+      <div className="stage__edge" aria-hidden="true" />
+    </section>
+  );
+}
+
+/** Legacy real-time 3D hero (kept as a fallback during the 2.5D migration). */
+function Stage3D({ selected, onSelect }: Props) {
   const ref = useRef<HTMLElement>(null);
   const [supported] = useState(canRender3D);
   const [failed, setFailed] = useState(false);
@@ -84,6 +117,7 @@ export function SceneStage({ selected, onSelect }: Props) {
     <section
       ref={ref}
       className="stage"
+      data-renderer="3d"
       data-ready={ready || !use3D || undefined}
       data-selected={selected ?? undefined}
       aria-labelledby="stage-title"

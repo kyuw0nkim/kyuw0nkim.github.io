@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "gen:pubs": "node scripts/gen-publications.mjs",
+    "check:hero": "node scripts/check-hero-assets.mjs",
     "prebuild": "node scripts/gen-publications.mjs",
     "build": "vite build",
     "build:dev": "vite build --mode development",

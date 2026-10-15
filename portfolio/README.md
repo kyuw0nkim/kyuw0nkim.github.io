@@ -92,7 +92,42 @@ hero: {
 
 ---
 
-## 3D 씬
+## 히어로 씬 (2.5D 레이어) — 현재 기본값
+
+투명 PNG 26장(`public/hero-assets/`)을 원본 히어로 이미지의 좌표계(1448 × 1086)에 겹쳐 그립니다.
+
+| 파일 | 역할 |
+|------|------|
+| `public/hero-assets/manifest.json` | 에셋 목록·그룹·클릭 대상(원본 패키지 그대로) |
+| `src/portfolio/hero2d/scene-layout.json` | **레이어 위치 보정값** (x, y, scale, rotation, z, opacity, visible) + `framing.hero`(항상 보여야 하는 영역) |
+| `src/portfolio/hero2d/HeroScene.tsx`, `SceneLayer.tsx` | 레이어 렌더링, 무대 크기에 맞춘 그룹 스케일 |
+| `src/portfolio/hero2d/hitTest.ts` | PNG 알파 기반 선택(투명 영역은 클릭되지 않음) |
+| `src/portfolio/hero2d/editor/` | 개발 전용 위치 편집기 |
+
+- 좌표는 각 레이어의 **중심점** 기준이며, scale·rotation도 중심을 기준으로 적용됩니다.
+- 위치값은 컴포넌트에 하드코딩하지 않고 `scene-layout.json`에만 둡니다.
+- `npm run check:hero`: manifest ↔ 실제 파일(픽셀 크기) ↔ layout이 일치하는지 검사합니다.
+- 렌더러 전환: 기본은 2.5D, `/portfolio/?scene=3d`로 기존 3D 씬을 볼 수 있습니다(이전 완료 후 제거 예정).
+
+### 위치 편집기 (개발 전용)
+
+```sh
+npm run dev
+# http://localhost:8080/portfolio/?editor
+```
+
+- 레이어 선택(캔버스 클릭 / Alt+클릭으로 겹친 레이어 순환 / 목록), 드래그 이동, x·y·scale·rotation·z·opacity 입력
+- 레이어 표시/숨김, 잠금(배경 3장은 기본 잠금 — 클릭이 벽에 걸리지 않도록), Solo, 그룹 단위 이동
+- 원본 이미지 오버레이(투명도, Normal/Difference) — `src/portfolio/hero2d/reference/`에 원본을 넣으면 자동 로드(git 제외), 또는 "Load reference image…"
+- 데스크톱/모바일 무대에서 실제로 잘리는 영역(Stage crops) 미리보기
+- **Save to project**: `scene-layout.json`에 바로 저장(개발 서버에서만 동작) · Download/Copy/Load JSON · 실행 취소/다시 실행 · 브라우저에 임시 저장(새로고침해도 유지)
+- 단축키: 화살표 1px(Shift 10px), +/− 크기, Alt+휠 크기, Shift+휠 회전, [ ] z순서, H 숨김, 휠 확대, Space+드래그 이동, ⌘/Ctrl+S 저장
+
+편집기 코드는 프로덕션 빌드에 포함되지 않습니다.
+
+---
+
+## 3D 씬 (이전 구현 — `?scene=3d`)
 
 `src/portfolio/scene/`
 

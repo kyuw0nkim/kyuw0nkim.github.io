@@ -730,6 +730,68 @@ ul {
 }
 
 /* ======================================================================
+   Layered 2.5D hero (src/portfolio/hero2d)
+   ====================================================================== */
+
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* Matches the room layer's top edge, shown only if the stage is taller than the scene. */
+  background: #e6d9ce;
+}
+
+.hero-scene__world {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-out);
+}
+
+.hero-scene[data-ready] .hero-scene__world {
+  opacity: 1;
+}
+
+.scene-layer {
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: 50% 50%;
+}
+
+@media (max-width: 959px) {
+  .stage[data-renderer="2.5d"] {
+    height: clamp(340px, 118vw, 70svh);
+  }
+}
+
+/* Soft hand-off from the scene to the page. */
+.stage__edge {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 9%;
+  background: linear-gradient(90deg, rgba(248, 245, 239, 0), var(--pf-bg));
+}
+
+@media (max-width: 959px) {
+  .stage__edge {
+    top: auto;
+    left: 0;
+    width: auto;
+    height: 12%;
+    background: linear-gradient(180deg, rgba(248, 245, 239, 0), var(--pf-bg));
+  }
+}
+
+/* ======================================================================
    Kinetic headline
    ====================================================================== */
 
