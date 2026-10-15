@@ -1,24 +1,20 @@
 import { Link } from "react-router-dom";
 import type { Mode, ModeFilter } from "../data/types";
-import { MODES, MODE_ORDER } from "../data/modes";
+import { MODES } from "../data/modes";
 import { getProjects } from "../data/projects";
 import { pathForFilter, previewHandlers } from "../hooks/usePortfolioState";
 import { ModeIcon } from "./ModeIcon";
 
-/** Compact pill links into Tracing / Shaping — the keyboard/touch alternative to the scene. */
-export function ModePills() {
+/** Compact pill link into Tracing / Shaping — the keyboard/touch alternative to the scene. */
+export function ModePill({ mode }: { mode: Mode }) {
   return (
-    <span className="mode-pills">
-      {MODE_ORDER.map((mode) => (
-        <Link key={mode} to={`/${mode}`} className="mode-pill" data-mode={mode} {...previewHandlers(mode)}>
-          <ModeIcon mode={mode} />
-          {MODES[mode].label}
-          <span className="mode-pill__arrow" aria-hidden="true">
-            →
-          </span>
-        </Link>
-      ))}
-    </span>
+    <Link to={`/${mode}`} className="mode-pill" data-mode={mode} {...previewHandlers(mode)}>
+      <ModeIcon mode={mode} />
+      {MODES[mode].label}
+      <span className="mode-pill__arrow" aria-hidden="true">
+        →
+      </span>
+    </Link>
   );
 }
 

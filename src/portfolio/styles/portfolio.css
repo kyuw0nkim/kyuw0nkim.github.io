@@ -940,27 +940,72 @@ ul {
   margin-top: clamp(28px, 5vh, 52px);
 }
 
+/*
+ * One sentence with the two theme buttons inline. Each half ("…explore
+ * [Tracing]", "or the table for [Shaping]") wraps as a unit, and the arrow
+ * sits in its own column so wrapped lines stay aligned.
+ */
 .hint {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 10px 12px;
+  padding-left: 28px;
   font-size: 15px;
   color: var(--pf-ink-2);
 }
 
 .hint::before {
   content: "←";
-  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  height: 39px; /* one .mode-pill row */
   font-size: 16px;
   color: var(--pf-ink);
   animation: nudge-left 2.4s var(--ease-in-out) infinite;
+}
+
+.hint__part {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
 }
 
 @media (max-width: 959px) {
   .hint::before {
     content: "↑";
     animation-name: nudge-up;
+  }
+}
+
+/* Phones: the scene is well above, and the arrow column would force a third line. */
+@media (max-width: 559px) {
+  .hint {
+    padding-left: 0;
+  }
+
+  .hint::before {
+    display: none;
+  }
+}
+
+/* "Tap" on touch screens, "Click" with a mouse. */
+.hint__tap {
+  display: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .hint__click {
+    display: none;
+  }
+
+  .hint__tap {
+    display: inline;
   }
 }
 
@@ -984,12 +1029,6 @@ ul {
   30% {
     transform: translateY(-4px);
   }
-}
-
-.mode-pills {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 8px;
 }
 
 /* Small, clearly clickable buttons (links) into each theme. */
