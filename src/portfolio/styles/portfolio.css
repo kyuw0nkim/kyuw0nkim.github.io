@@ -478,24 +478,6 @@ ul {
   }
 }
 
-.eyebrow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 14px;
-  margin-bottom: clamp(28px, 4.5vh, 48px);
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--pf-ink-2);
-}
-
-.eyebrow__rule {
-  width: 32px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.6;
-}
-
 /* ======================================================================
    Stage (scene) — 2D layers around the 3D canvas
    ====================================================================== */

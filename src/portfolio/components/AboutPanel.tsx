@@ -7,12 +7,6 @@ import { ModeIcon } from "./ModeIcon";
 export function AboutPanel() {
   return (
     <div className="about">
-      <p className="eyebrow">
-        <span>About</span>
-        <span className="eyebrow__rule" aria-hidden="true" />
-        <span>{site.location}</span>
-      </p>
-
       <h1 className="statement">{site.about.statement}</h1>
 
       <div className="prose">

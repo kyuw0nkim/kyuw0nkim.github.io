@@ -9,7 +9,6 @@ const { profile, cv } = siteData;
 export const site = {
   name: profile.name,
   email: profile.email,
-  location: "Seoul, KR",
   /** The academic website (publications, CV, news). */
   academicUrl: "/",
   /** Publication list on the academic website (HashRouter route). */
