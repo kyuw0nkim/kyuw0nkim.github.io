@@ -3,8 +3,9 @@ import type { ChangeEvent, PointerEvent as ReactPointerEvent, ReactNode } from "
 import { HeroScene } from "../HeroScene";
 import { alphaAt, loadAlphaMask } from "../hitTest";
 import type { AlphaMask } from "../hitTest";
-import { byZ, fitScene, layerSize, layerSrc, parseLayout, sceneLayout } from "../sceneConfig";
-import type { Fit, SceneLayerConfig, SceneLayout } from "../sceneConfig";
+import { byZ, cameraFit, fitScene, layerSize, layerSrc, layerTransform, parseLayout, sceneLayout } from "../sceneConfig";
+import type { Fit, Rect, SceneLayerConfig, SceneLayout, Shot } from "../sceneConfig";
+import { CAMERA } from "../sceneMotion";
 import "./editor.css";
 
 /**
@@ -78,6 +79,7 @@ export default function EditorApp() {
   const [solo, setSolo] = useState(false);
   const [showFraming, setShowFraming] = useState(true);
   const [showOutlines, setShowOutlines] = useState(false);
+  const [shot, setShot] = useState<Shot>("hero");
   const [reference, setReference] = useState({
     src: AUTO_REFERENCE as string | null,
     show: !!AUTO_REFERENCE,
@@ -459,7 +461,7 @@ export default function EditorApp() {
           top: l.y - h / 2,
           width: w,
           height: h,
-          transform: l.rotation ? `rotate(${l.rotation}deg)` : undefined,
+          transform: layerTransform(l) || undefined,
           outline: `${width * px}px ${dashed ? "dashed" : "solid"} ${color}`,
         }}
       />
@@ -467,7 +469,7 @@ export default function EditorApp() {
   };
 
   const frames = STAGE_PRESETS.map((p) => {
-    const f = fitScene(layout, p.w, p.h, "cover");
+    const f = cameraFit(layout, p.w, p.h, shot, CAMERA.maxZoom);
     return { ...p, x: -f.x / f.scale, y: -f.y / f.scale, w2: p.w / f.scale, h2: p.h / f.scale };
   });
 
@@ -529,6 +531,20 @@ export default function EditorApp() {
               >
                 <span style={{ fontSize: 11 * px }}>must stay visible</span>
               </div>
+              {shot !== "hero" && layout.framing[shot] && (
+                <div
+                  className="ed-frame ed-frame--target"
+                  style={{
+                    left: layout.framing[shot].x,
+                    top: layout.framing[shot].y,
+                    width: layout.framing[shot].width,
+                    height: layout.framing[shot].height,
+                    outlineWidth: 2 * px,
+                  }}
+                >
+                  <span style={{ fontSize: 11 * px }}>{shot} camera target</span>
+                </div>
+              )}
               {frames.map((f, i) => (
                 <div
                   key={f.label}
@@ -655,6 +671,40 @@ export default function EditorApp() {
           </div>
         </section>
 
+        <section className="ed-section">
+          <h2>Camera</h2>
+          <div className="ed-row">
+            {(["hero", "tracing", "shaping"] as Shot[]).map((sh) => (
+              <button key={sh} type="button" className={shot === sh ? "ed-primary" : undefined} onClick={() => setShot(sh)}>
+                {sh}
+              </button>
+            ))}
+          </div>
+          <p className="ed-hint">
+            Stage crops show what each screen size sees in this shot. {shot === "hero" ? "Hero keeps the pink framing fully visible." : "Edit the target rectangle the camera zooms toward:"}
+          </p>
+          <div className="ed-grid">
+            {(["x", "y", "width", "height"] as (keyof Rect)[]).map((k) => (
+              <label key={k} className="ed-field">
+                <span>
+                  {shot === "hero" ? "hero framing" : shot}.{k}
+                </span>
+                <input
+                  type="number"
+                  step={1}
+                  value={layout.framing[shot]?.[k] ?? 0}
+                  onChange={(e) => {
+                    const v = Number(e.target.value);
+                    if (!Number.isFinite(v)) return;
+                    const cur = layoutRef.current;
+                    commit({ ...cur, framing: { ...cur.framing, [shot]: { ...cur.framing[shot], [k]: v } } }, `framing:${shot}:${k}`);
+                  }}
+                />
+              </label>
+            ))}
+          </div>
+        </section>
+
         <section className="ed-section ed-section--layers">
           <h2>Layers</h2>
           <ol className="ed-layers">
@@ -719,6 +769,12 @@ export default function EditorApp() {
                   onClick={() => patchLayers([selected.id], () => ({ visible: !selected.visible }))}
                 >
                   {selected.visible ? "Hide (H)" : "Show (H)"}
+                </button>
+                <button type="button" onClick={() => patchLayers([selected.id], (l) => ({ flipX: !l.flipX || undefined }))}>
+                  Flip H{selected.flipX ? " ✓" : ""}
+                </button>
+                <button type="button" onClick={() => patchLayers([selected.id], (l) => ({ flipY: !l.flipY || undefined }))}>
+                  Flip V{selected.flipY ? " ✓" : ""}
                 </button>
               </div>
             </>

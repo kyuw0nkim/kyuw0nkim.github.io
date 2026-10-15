@@ -71,6 +71,13 @@
   font-family: var(--font-mono);
 }
 
+.ed-frame--target {
+  outline-style: solid;
+  outline-color: #a855f7;
+  color: #a855f7;
+  z-index: 951;
+}
+
 .ed-frame--safe {
   outline-style: solid;
   outline-color: #ff2d75;
@@ -274,4 +281,9 @@
   display: grid;
   gap: 4px;
   color: #4b4943;
+}
+
+.ed-frame--target span {
+  left: auto;
+  right: 0;
 }

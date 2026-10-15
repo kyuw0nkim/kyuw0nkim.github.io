@@ -1,7 +1,8 @@
 import { Component, Suspense, lazy, useEffect, useRef, useState } from "react";
 import type { PointerEvent, ReactNode } from "react";
 import type { Mode } from "../data/types";
-import { useIsWide, useReducedMotion } from "../hooks/useMedia";
+import { useCanHover, useIsWide, useReducedMotion } from "../hooks/useMedia";
+import { setHover, usePortfolioStore } from "../hooks/usePortfolioState";
 import { HeroScene } from "../hero2d/HeroScene";
 import { Backdrop, ForegroundPlant } from "./Backdrop";
 import { SceneFallback } from "./SceneFallback";
@@ -61,6 +62,8 @@ class SceneErrorBoundary extends Component<{ onError: () => void; children: Reac
 interface Props {
   selected: Mode | null;
   onSelect: (mode: Mode) => void;
+  /** Back to the Hero shot (intro). */
+  onReset?: () => void;
 }
 
 export function SceneStage(props: Props) {
@@ -68,14 +71,47 @@ export function SceneStage(props: Props) {
   return renderer === "3d" ? <Stage3D {...props} /> : <Stage25D {...props} />;
 }
 
-/** Layered 2.5D hero (static composition — interactions follow in the next phase). */
-function Stage25D({ selected }: Props) {
+/**
+ * Layered 2.5D hero. The route decides the camera shot (Hero / Tracing /
+ * Shaping); hovering previews a theme (headline + glow); clicking a character
+ * opens Tracing, the table or laptop opens Shaping. Escape returns to Hero.
+ */
+function Stage25D({ selected, onSelect, onReset }: Props) {
+  const reduced = useReducedMotion();
+  const finePointer = useCanHover();
+  const hover = usePortfolioStore((s) => s.hover);
+  const hoverObject = usePortfolioStore((s) => s.hoverObject);
+
+  useEffect(() => {
+    if (!selected || !onReset) return;
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement | null;
+      if (e.key !== "Escape" || (t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      onReset();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selected, onReset]);
+
   return (
-    <section className="stage" data-renderer="2.5d" data-selected={selected ?? undefined} aria-labelledby="stage-title">
+    <section className="stage" data-renderer="2.5d" data-selected={selected ?? undefined} aria-labelledby="stage-title" aria-describedby="stage-desc">
       <h2 id="stage-title" className="sr-only">
         Illustration: four soft characters sitting around a round table with a laptop, in a sunlit room
       </h2>
-      <HeroScene className="stage__scene" />
+      <p id="stage-desc" className="sr-only">
+        Selecting a character opens Tracing; selecting the table or laptop opens Shaping. The same choices are available
+        as links in the main content.
+      </p>
+      <HeroScene
+        className="stage__scene"
+        shot={selected ?? "hero"}
+        parallax={finePointer}
+        interactive
+        reducedMotion={reduced}
+        highlight={{ selected, hoverMode: hover, hoverGroup: hoverObject }}
+        onHoverTarget={(t) => setHover(t?.mode ?? null, t?.group ?? null)}
+        onSelectTarget={(t) => onSelect(t.mode)}
+      />
       <div className="stage__edge" aria-hidden="true" />
     </section>
   );

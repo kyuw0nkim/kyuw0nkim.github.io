@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useNavigate, useOutlet } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Mode } from "../data/types";
@@ -41,6 +41,7 @@ export function HomeShell() {
   }, []);
 
   const select = (mode: Mode) => navigate(`/${mode}`);
+  const goHome = useCallback(() => navigate("/"), [navigate]);
 
   return (
     <motion.div
@@ -51,7 +52,7 @@ export function HomeShell() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.35 }}
     >
-      <SceneStage selected={selected} onSelect={select} />
+      <SceneStage selected={selected} onSelect={select} onReset={goHome} />
 
       <main id="main" ref={panelRef} className="home__panel" tabIndex={-1}>
         <AnimatePresence mode="wait" initial={false}>

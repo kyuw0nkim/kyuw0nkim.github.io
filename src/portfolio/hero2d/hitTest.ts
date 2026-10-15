@@ -48,8 +48,10 @@ export function alphaAt(layer: SceneLayerConfig, mask: AlphaMask, x: number, y: 
   const r = (-layer.rotation * Math.PI) / 180;
   const dx = x - layer.x;
   const dy = y - layer.y;
-  const rx = dx * Math.cos(r) - dy * Math.sin(r);
-  const ry = dx * Math.sin(r) + dy * Math.cos(r);
+  let rx = dx * Math.cos(r) - dy * Math.sin(r);
+  let ry = dx * Math.sin(r) + dy * Math.cos(r);
+  if (layer.flipX) rx = -rx;
+  if (layer.flipY) ry = -ry;
   const u = (rx / layer.scale + layer.width / 2) * mask.k;
   const v = (ry / layer.scale + layer.height / 2) * mask.k;
   if (u < 0 || v < 0 || u >= mask.w || v >= mask.h) return 0;
