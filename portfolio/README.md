@@ -26,8 +26,8 @@ npm run preview    # 빌드 결과 확인: http://localhost:4173/portfolio/
 | 주소 | 화면 |
 |------|------|
 | `/portfolio/#/` | Intro — 히어로 장면 + Tracing/Shaping 헤드라인 |
-| `#/tracing`, `#/shaping` | Explore — 해당 관점의 프로젝트 목록 |
-| `#/works` | 전체 프로젝트 |
+| `#/tracing`, `#/shaping` | Explore — 해당 관점의 프로젝트 카드(좌우로 넘기는 레일) |
+| `#/works` | 전체 프로젝트 카드(2열 그리드) |
 | `#/works/<id>` | 프로젝트 상세(케이스 스터디) |
 | `#/about`, `#/contact` | 소개 / 연락처 |
 
@@ -40,20 +40,20 @@ npm run preview    # 빌드 결과 확인: http://localhost:4173/portfolio/
 | 필드 | 설명 |
 |------|------|
 | `id` | URL 슬러그 (`#/works/<id>`) |
-| `title`, `subtitle`, `summary` | 목록·미리보기·상세에 쓰이는 문구 |
+| `title`, `subtitle`, `summary` | 카드·상세에 쓰이는 문구 |
 | `year` | 모르면 `null` → "TBD"로 표시 |
-| `category` | 목록에 보이는 짧은 분류 |
+| `category` | 카드에 보이는 짧은 분류 |
 | `modes` | `["tracing"]`, `["shaping"]`, 또는 둘 다 |
 | `role`, `organization`, `collaborators` | 비워두면 "To be added"로 표시 |
-| `hero`, `thumbnail` | 대표 이미지 (`Media`) |
+| `hero`, `thumbnail` | 대표 이미지 (`Media`). 카드에는 `thumbnail`(없으면 `hero`)이 쓰이고, 둘 다 없으면 테마 색 위에 이모지와 "Image to come" 표시 |
 | `sections` | Context / Process / Outcome 등 자유 구성 (`body`, `points`, `media`, `placeholder`) |
 | `outcomes` | **검증된** 성과만 (게재, 수상 등) |
 | `publications` | `src/data/publications.generated.ts`의 논문 id → 제목·학회·링크·수상이 자동 표시 |
 | `links` | 데모, GitHub, 프리프린트 등 |
 | `draft` | 내용이 아직 대부분 비어 있는 프로젝트 표시 |
 
-- **순서**: 배열 순서가 곧 목록 순서와 번호(01, 02…)입니다.
-- **추가/삭제**: 배열에 객체를 추가·삭제하면 목록, 개수, 이전/다음 링크가 모두 자동 반영됩니다.
+- **순서**: 배열 순서가 곧 카드 순서와 번호(01, 02…)입니다.
+- **추가/삭제**: 배열에 객체를 추가·삭제하면 카드, 개수, 이전/다음 링크가 모두 자동 반영됩니다.
 - **플레이스홀더**: 아직 없는 이미지는 `pending("설명")`, 아직 쓰지 않은 글은 섹션의
   `placeholder: "..."`로 둡니다. 화면에 "Placeholder / To be added"로 명확히 표시됩니다.
   확인되지 않은 결과나 수치는 넣지 마세요.
@@ -130,7 +130,7 @@ hero: {
   - 움직이는 동안에만 깊이감: 가까운 그룹(식물·스툴·캐릭터)이 먼 그룹보다 조금 더 커지고 더 이동합니다(`CAMERA.depthScale`, `depthLead`). 멈추면 0이 되어 보정된 배치가 그대로 유지됩니다. 마우스가 있는 기기에서만 켜지고, 터치 기기에서는 카메라 이동만 합니다.
 - **패럴랙스**: 그룹별 깊이(`src/portfolio/hero2d/sceneMotion.ts`의 `PARALLAX_DEPTH`, 단위 px). 같은 그룹(의자+캐릭터, 테이블+노트북)은 같은 깊이라 서로 어긋나지 않습니다. 마우스/펜에서만 동작하고, 터치·동작 줄이기 설정에서는 꺼집니다. 프레임이 계속 느리면(소프트웨어 합성 등) 자동으로 패럴랙스와 카메라 애니메이션을 끕니다.
 - **클릭 판정**: PNG 알파 기반입니다. 투명한 부분은 클릭되지 않고, 앞쪽 식물은 통과하며, 앞에 있는 의자·스툴은 뒤의 캐릭터를 가립니다.
-- **호버**: 캐릭터를 벗어나도 잠깐(`HOVER_GRACE_MS`) 유지되어 캐릭터 사이 틈을 지날 때 글로우가 깜빡이지 않고, 카메라가 멈추면 가만히 있는 포인터 아래를 다시 확인합니다. 캐릭터 하나에 올리면 헤드라인이 Tracing으로 바뀌고 **캐릭터 4종이 함께** 빛납니다. 테이블이나 노트북에 올리면 Shaping으로 바뀌고 테이블·노트북이 함께 빛납니다. 오른쪽 Tracing/Shaping 버튼에 올려도 같습니다. 테이블 앞 테두리(`table_front_rim`)는 빛이 상판 위로 번지지 않도록 아래쪽으로만 빛납니다(`sceneMotion.ts`의 `GLOW_BELOW_LAYERS`).
+- **호버**: 캐릭터를 벗어나도 잠깐(`HOVER_GRACE_MS`) 유지되어 캐릭터 사이 틈을 지날 때 글로우가 깜빡이지 않고, 카메라가 멈추면 가만히 있는 포인터 아래를 다시 확인합니다. 캐릭터 하나에 올리면 헤드라인이 Tracing으로 바뀌고 **캐릭터 4종이 함께** 빛납니다. 테이블이나 노트북에 올리면 Shaping으로 바뀌고 테이블·노트북이 함께 빛납니다. 글로우 색은 테마 색입니다 — Tracing은 창가의 노란빛, Shaping은 바다의 파란빛(`tokens.css`의 `--pf-tracing`, `--pf-shaping`; 카드의 강조색과 이미지 없는 카드 배경에도 쓰임). 오른쪽 Tracing/Shaping 버튼에 올려도 같습니다. 테이블 앞 테두리(`table_front_rim`)는 빛이 상판 위로 번지지 않도록 아래쪽으로만 빛납니다(`sceneMotion.ts`의 `GLOW_BELOW_LAYERS`).
 - 레이어는 `flipX`/`flipY`로 좌우·상하 반전할 수 있습니다(편집기 Flip H / Flip V).
 
 ### 위치 편집기 (개발 전용)

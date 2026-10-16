@@ -588,24 +588,38 @@ ul {
 /*
  * Glow that follows each sprite's silhouette (alpha). Hover lights up the
  * whole set (every character, or table + laptop) and is stronger than the
- * persistent "selected" glow, so the scene reads as clickable.
+ * persistent "selected" glow, so the scene reads as clickable. Characters
+ * (Tracing) glow with the warm window light, the table and laptop (Shaping)
+ * with the blue of the sea outside.
  */
+.scene-layer {
+  --glow-rim: rgba(255, 251, 238, 1);
+  --glow: color-mix(in srgb, var(--pf-tracing) 85%, transparent);
+  --glow-soft: color-mix(in srgb, var(--pf-tracing) 62%, transparent);
+}
+
+.scene-layer[data-interaction="shaping"] {
+  --glow-rim: rgba(240, 249, 255, 1);
+  --glow: color-mix(in srgb, var(--pf-shaping) 85%, transparent);
+  --glow-soft: color-mix(in srgb, var(--pf-shaping) 62%, transparent);
+}
+
 .scene-layer[data-highlight="hover"] {
-  filter: drop-shadow(0 0 2px rgba(255, 251, 238, 1)) drop-shadow(0 0 16px rgba(255, 204, 92, 0.85));
+  filter: drop-shadow(0 0 2px var(--glow-rim)) drop-shadow(0 0 16px var(--glow));
   transition-duration: 0.3s;
 }
 
 .scene-layer[data-highlight="selected"] {
-  filter: drop-shadow(0 0 2px rgba(255, 248, 225, 0.95)) drop-shadow(0 0 11px rgba(255, 212, 110, 0.62));
+  filter: drop-shadow(0 0 2px var(--glow-rim)) drop-shadow(0 0 11px var(--glow-soft));
 }
 
 /* Offset = blur: the glow falls below the layer and barely rises above its top edge. */
 .scene-layer[data-glow="below"][data-highlight="hover"] {
-  filter: drop-shadow(0 2px 1px rgba(255, 251, 238, 1)) drop-shadow(0 12px 12px rgba(255, 204, 92, 0.85));
+  filter: drop-shadow(0 2px 1px var(--glow-rim)) drop-shadow(0 12px 12px var(--glow));
 }
 
 .scene-layer[data-glow="below"][data-highlight="selected"] {
-  filter: drop-shadow(0 2px 1px rgba(255, 248, 225, 0.95)) drop-shadow(0 9px 9px rgba(255, 212, 110, 0.62));
+  filter: drop-shadow(0 2px 1px var(--glow-rim)) drop-shadow(0 9px 9px var(--glow-soft));
 }
 
 /* Small screens: soft hand-off from the scene (above) to the content (below). */
@@ -870,7 +884,7 @@ ul {
 }
 
 /* ======================================================================
-   Explore: tabs + project list + preview
+   Explore: tabs + project cards
    ====================================================================== */
 
 .explore .kh {
@@ -926,94 +940,7 @@ ul {
   opacity: 0.6;
 }
 
-.project-list {
-  margin-top: 26px;
-  border-bottom: 1px solid var(--pf-line);
-}
-
-.project-row {
-  border-top: 1px solid var(--pf-line);
-}
-
-.project-row__link {
-  position: relative;
-  isolation: isolate;
-  display: grid;
-  grid-template-columns: 2.4em minmax(0, 1fr) auto 1.2em;
-  align-items: baseline;
-  gap: 4px 16px;
-  padding: 20px 6px;
-  border-radius: 0;
-}
-
-.project-row__link::before {
-  content: "";
-  position: absolute;
-  inset: 5px -10px;
-  z-index: -1;
-  border-radius: 14px;
-  background: var(--pf-white);
-  opacity: 0;
-  transform: scale(0.985);
-  transition:
-    opacity 0.25s,
-    transform 0.35s var(--ease-out);
-}
-
-.project-row__link:hover::before,
-.project-row__link:focus-visible::before {
-  opacity: 1;
-  transform: none;
-}
-
-.project-row__num {
-  font-size: 14px;
-  font-variant-numeric: tabular-nums;
-  color: var(--pf-ink-2);
-}
-
-.project-row__title {
-  display: block;
-  font-size: clamp(19px, 1.5vw, 24px);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.25;
-  transition: transform 0.35s var(--ease-out);
-}
-
-.project-row__meta {
-  display: flex;
-  align-items: center;
-  gap: 6px 9px;
-  margin-top: 6px;
-  font-size: 14px;
-  color: var(--pf-ink-2);
-}
-
-.project-row__modes {
-  display: inline-flex;
-  flex: none;
-  gap: 3px;
-}
-
-.project-row__category {
-  min-width: 0;
-}
-
-.project-row__meta .tag {
-  flex: none;
-}
-
 @media (max-width: 559px) {
-  .project-row__link {
-    grid-template-columns: 2em minmax(0, 1fr) auto;
-    gap: 4px 12px;
-  }
-
-  .project-row__arrow {
-    display: none;
-  }
-
   .mode-tabs {
     gap: 6px;
   }
@@ -1025,103 +952,232 @@ ul {
   }
 }
 
-.project-row__summary {
-  display: none;
-  margin-top: 8px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--pf-ink-2);
+/* ----------------------------------------------------------------------
+   Project cards — a rail for Tracing / Shaping, a grid for All works
+   ---------------------------------------------------------------------- */
+
+.prail {
+  margin-top: 22px;
 }
 
-@media (max-width: 959px), (hover: none) {
-  .project-row__summary {
-    display: block;
+.prail__controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.prail__btn {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid var(--pf-ink);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--pf-white) 70%, transparent);
+  font-size: 15px;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    opacity 0.2s;
+}
+
+.prail__btn:hover:not(:disabled) {
+  background: var(--pf-ink);
+  color: var(--pf-bg);
+}
+
+.prail__btn:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+.prail__track {
+  --rail-gap: 16px;
+  display: flex;
+  gap: var(--rail-gap);
+  /* Room for the hover lift and focus ring inside the scroll box. */
+  margin: -8px -4px 0;
+  padding: 8px 4px 20px;
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 4px;
+  scrollbar-width: none;
+}
+
+.prail__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Fade the cut-off card on the right while there is more (cards snap flush on the left). */
+.prail:not([data-at-end]) .prail__track {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 56px), transparent);
+}
+
+/* About two and a half cards in view: the cut-off one says "there is more". */
+.prail .pcard {
+  flex: 0 0 calc((100% - 2 * var(--rail-gap)) / 2.4);
+  scroll-snap-align: start;
+}
+
+@media (max-width: 559px) {
+  .prail .pcard {
+    flex-basis: 76%;
   }
 }
 
-.project-row__year {
-  font-size: 14px;
+.pgrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 18px;
+  margin-top: 26px;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 559px) {
+  .pgrid {
+    gap: 22px 12px;
+  }
+}
+
+.pcard {
+  --card-accent: var(--pf-tracing);
+  --card-tint: var(--pf-tracing-soft);
+  min-width: 0;
+}
+
+.pcard[data-mode="shaping"] {
+  --card-accent: var(--pf-shaping);
+  --card-tint: var(--pf-shaping-soft);
+}
+
+.pcard__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 20px;
+  outline-offset: 4px;
+}
+
+.pcard__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 22px 44px -34px rgba(70, 52, 32, 0.5);
+  transition:
+    transform 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out);
+}
+
+.pcard__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Research figures: whole, on a white plate. */
+.pcard__media--figure img {
+  padding: 7%;
+  object-fit: contain;
+}
+
+/* No picture yet: the theme's colour, its emoji, and a clear label. */
+.pcard__media--empty {
+  display: grid;
+  place-items: center;
+  background: var(--card-tint);
+}
+
+.pcard__emoji {
+  font-size: clamp(30px, 3.2vw, 46px);
+  line-height: 1;
+}
+
+.pcard__pending {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  background: color-mix(in srgb, var(--pf-white) 55%, transparent);
+}
+
+.pcard__link:hover .pcard__media,
+.pcard__link:focus-visible .pcard__media {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 2px var(--card-accent),
+    0 30px 52px -32px rgba(70, 52, 32, 0.55);
+}
+
+.pcard__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 4px 0;
+}
+
+.pcard__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
   font-variant-numeric: tabular-nums;
   color: var(--pf-ink-2);
 }
 
-.project-row__year.is-unknown {
+.pcard__meta .is-unknown {
   color: var(--pf-ink-3);
 }
 
-.project-row__arrow {
-  justify-self: end;
+.pcard__title {
   font-size: 17px;
-  transition: transform 0.35s var(--ease-out);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  text-wrap: balance;
 }
 
-.project-row__link:hover .project-row__title,
-.project-row__link:focus-visible .project-row__title {
-  transform: translateX(6px);
+.pcard__category {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--pf-ink-2);
 }
 
-.project-row__link:hover .project-row__arrow,
-.project-row__link:focus-visible .project-row__arrow {
-  transform: translateX(4px);
+/* Inline, so a long category wraps under the emoji instead of leaving it alone on a line. */
+.pcard__modes {
+  margin-right: 6px;
+}
+
+.pcard__modes .mode-icon + .mode-icon {
+  margin-left: 2px;
+}
+
+.pcard__category .tag {
+  margin-left: 6px;
+  vertical-align: 1px;
+}
+
+@media (max-width: 559px) {
+  .pcard__title {
+    font-size: 15.5px;
+  }
+
+  .pcard__category {
+    font-size: 12.5px;
+  }
 }
 
 .explore__footnote {
   margin-top: 36px;
   font-size: 14px;
   color: var(--pf-ink-2);
-}
-
-.project-preview {
-  position: fixed;
-  z-index: 40;
-  left: calc(var(--scene-w) - 336px);
-  width: 312px;
-  translate: 0 -50%;
-  padding: 10px;
-  border-radius: 22px;
-  background: var(--pf-white);
-  box-shadow: var(--shadow-soft);
-  pointer-events: none;
-}
-
-.project-preview__media .media__frame {
-  padding: 6px;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: none;
-}
-
-.project-preview__media img {
-  width: 100%;
-  object-fit: contain;
-}
-
-.project-preview__body {
-  padding: 14px 10px 8px;
-}
-
-.project-preview__num {
-  font-size: 12.5px;
-  font-variant-numeric: tabular-nums;
-  color: var(--pf-ink-2);
-}
-
-.project-preview__title {
-  margin-top: 2px;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.project-preview__summary {
-  display: -webkit-box;
-  margin-top: 6px;
-  overflow: hidden;
-  font-size: 13.5px;
-  line-height: 1.5;
-  color: var(--pf-ink-2);
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
 }
 
 /* ======================================================================
