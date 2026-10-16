@@ -18,7 +18,7 @@ function RouteEffects() {
 
   useEffect(() => {
     trackPageView(`/portfolio${pathname}`);
-    portfolioStore.set({ hover: null, previewId: null });
+    portfolioStore.set({ hover: null });
 
     const wasProject = previous.current.startsWith("/works/");
     const isProject = pathname.startsWith("/works/");

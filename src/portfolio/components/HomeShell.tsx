@@ -2,10 +2,9 @@ import { useCallback, useEffect, useRef } from "react";
 import { useNavigate, useOutlet } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Mode } from "../data/types";
-import { portfolioStore, useRouteState } from "../hooks/usePortfolioState";
-import { useCanHover, useIsWide, useReducedMotion } from "../hooks/useMedia";
+import { useRouteState } from "../hooks/usePortfolioState";
+import { useIsWide, useReducedMotion } from "../hooks/useMedia";
 import { SceneStage } from "../scene/SceneStage";
-import { ProjectPreview } from "./ProjectPreview";
 
 /**
  * Intro / Explore / About / Contact share this shell: the interactive scene
@@ -16,7 +15,6 @@ export function HomeShell() {
   const { view, selected } = useRouteState();
   const navigate = useNavigate();
   const isWide = useIsWide();
-  const canHover = useCanHover();
   const reduced = useReducedMotion();
   const panelRef = useRef<HTMLElement>(null);
   const lastView = useRef(view);
@@ -32,13 +30,6 @@ export function HomeShell() {
       panelRef.current?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
     }
   }, [view, isWide, reduced]);
-
-  // A scroll moves the rows away from the floating preview: hide it.
-  useEffect(() => {
-    const onScroll = () => portfolioStore.get().previewId && portfolioStore.set({ previewId: null });
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const select = (mode: Mode) => navigate(`/${mode}`);
   const goHome = useCallback(() => navigate("/"), [navigate]);
@@ -69,7 +60,6 @@ export function HomeShell() {
         </AnimatePresence>
       </main>
 
-      {isWide && canHover && <ProjectPreview />}
     </motion.div>
   );
 }

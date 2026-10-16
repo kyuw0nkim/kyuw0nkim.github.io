@@ -5,6 +5,7 @@ import type { Highlight } from "./SceneLayer";
 import { byZ, cameraFit, fitScene, layerSrc, sceneLayout } from "./sceneConfig";
 import type { Fit, SceneLayerConfig, SceneLayout, Shot } from "./sceneConfig";
 import { CAMERA, PARALLAX_DEPTH } from "./sceneMotion";
+import { useCamera } from "./useCamera";
 import { useParallax } from "./useParallax";
 import { useSceneInteraction } from "./useSceneInteraction";
 import type { SceneTarget } from "./useSceneInteraction";
@@ -109,6 +110,7 @@ export function HeroScene({
 }: Props) {
   const [ref, size, stageRef] = useElementSize<HTMLDivElement>(bleed);
   const worldRef = useRef<HTMLDivElement>(null);
+  const backWorldRef = useRef<HTMLDivElement>(null);
   const layers = useMemo(() => byZ(layout.layers), [layout.layers]);
   const [backLayers, frontLayers] = useMemo(
     () => (bleed ? [layers.filter((l) => BACKDROP_GROUPS.has(l.group)), layers.filter((l) => !BACKDROP_GROUPS.has(l.group))] : [[], layers]),
@@ -140,15 +142,33 @@ export function HeroScene({
   const [lowPower, setLowPower] = useState(false);
   const parallaxOn = parallax && !reducedMotion && !lowPower;
   const parallaxState = useParallax(ref, stageRef, parallaxOn, () => setLowPower(true));
-  useSceneInteraction({
+  const cameraMoving = useRef(false);
+  const refreshHover = useSceneInteraction({
     layout,
     enabled: interactive,
     rootRef: ref,
     worldRef,
     parallaxRef: parallaxState,
     parallaxOn,
+    movingRef: cameraMoving,
     onHover: onHoverTarget,
     onSelect: onSelectTarget,
+  });
+
+  const animate = cameraLive && !reducedMotion && !fitOverride && !lowPower;
+  const worldRefs = useMemo(() => [worldRef, backWorldRef], []);
+  useCamera({
+    fit,
+    shot,
+    animate,
+    depthMotion: parallaxOn,
+    width: size.width,
+    height: size.height,
+    hostRef: ref,
+    worldRefs,
+    movingRef: cameraMoving,
+    // The scene moved under a resting pointer: hover what is under it now.
+    onSettle: refreshHover,
   });
 
   // Reveal the scene once all layers are in, so it never assembles piece by piece.
@@ -169,13 +189,8 @@ export function HeroScene({
     return () => window.clearTimeout(t);
   }, []);
 
-  const animate = cameraLive && !reducedMotion && !fitOverride && !lowPower;
-  const worldStyle: CSSProperties = {
-    width: layout.baseSize.width,
-    height: layout.baseSize.height,
-    transform: `translate(${fit.x}px, ${fit.y}px) scale(${fit.scale})`,
-    transition: animate ? `transform ${CAMERA.durationMs}ms ${CAMERA.easing}` : "none",
-  };
+  // The transform itself is applied by useCamera.
+  const worldStyle: CSSProperties = { width: layout.baseSize.width, height: layout.baseSize.height };
 
   const renderLayer = (layer: SceneLayerConfig) => (
     <SceneLayer
@@ -183,6 +198,7 @@ export function HeroScene({
       layer={layer}
       src={layerSrc(layout, layer)}
       depth={parallaxOn ? (PARALLAX_DEPTH[layer.group] ?? 0) : 0}
+      camDepth={animate && parallaxOn && !BACKDROP_GROUPS.has(layer.group) ? (PARALLAX_DEPTH[layer.group] ?? 0) : 0}
       highlight={highlightFor(layer, highlight)}
       onSettled={onSettled}
     />
@@ -198,7 +214,7 @@ export function HeroScene({
       data-interactive={interactive || undefined}
     >
       {backLayers.length > 0 && (
-        <div className="hero-scene__world hero-scene__world--back" style={worldStyle} aria-hidden="true">
+        <div ref={backWorldRef} className="hero-scene__world hero-scene__world--back" style={worldStyle} aria-hidden="true">
           {backLayers.map(renderLayer)}
         </div>
       )}

@@ -10,6 +10,8 @@ interface Props {
   src: string;
   /** Parallax depth in logical px (0 = fixed). Driven by --par-x/--par-y on the world. */
   depth?: number;
+  /** Depth for camera moves (0 = moves with the room). Driven by the --cam-* variables (see useCamera). */
+  camDepth?: number;
   highlight?: Highlight;
   onSettled?: (id: string) => void;
 }
@@ -19,12 +21,19 @@ interface Props {
  * displayed size (rather than scaled with a transform) so the browser
  * downsamples it with full quality.
  */
-export const SceneLayer = memo(function SceneLayer({ layer, src, depth = 0, highlight = null, onSettled }: Props) {
+export const SceneLayer = memo(function SceneLayer({ layer, src, depth = 0, camDepth = 0, highlight = null, onSettled }: Props) {
   const { w, h } = layerSize(layer);
   const parallax = depth
     ? `translate3d(calc(var(--par-x, 0) * ${-depth}px), calc(var(--par-y, 0) * ${-depth}px), 0)`
     : "";
-  const transform = `${parallax} ${layerTransform(layer)}`.trim();
+  // Extra scale k·D about the view centre (--cam-px/py) plus a lead along the pan, both zero at rest.
+  // Scaling about a point P from the layer's own centre C = translate(k·D·(C − P)) scale(1 + k·D).
+  const camera = camDepth
+    ? `translate(calc((var(--cam-tx, 0) + var(--cam-k, 0) * (${layer.x} - var(--cam-px, 0))) * ${camDepth}px), ` +
+      `calc((var(--cam-ty, 0) + var(--cam-k, 0) * (${layer.y} - var(--cam-py, 0))) * ${camDepth}px)) ` +
+      `scale(calc(1 + var(--cam-k, 0) * ${camDepth}))`
+    : "";
+  const transform = `${parallax} ${camera} ${layerTransform(layer)}`.replace(/\s+/g, " ").trim();
   return (
     <img
       className="scene-layer"

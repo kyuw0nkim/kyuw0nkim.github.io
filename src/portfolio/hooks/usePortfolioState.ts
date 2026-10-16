@@ -10,15 +10,11 @@ import type { Mode, ModeFilter } from "../data/types";
  * is selected — lives in the URL; see `useRouteState`.
  */
 export interface InteractionState {
-  /** Mode being previewed by hovering/focusing a scene object, a button or a list item. */
+  /** Mode being previewed by hovering/focusing a scene object, a button or a project card. */
   hover: Mode | null;
-  /** Project being previewed in the list. */
-  previewId: string | null;
-  /** Vertical centre (viewport px) of the previewed list row. */
-  previewY: number;
 }
 
-let state: InteractionState = { hover: null, previewId: null, previewY: 0 };
+let state: InteractionState = { hover: null };
 const listeners = new Set<() => void>();
 
 export const portfolioStore = {

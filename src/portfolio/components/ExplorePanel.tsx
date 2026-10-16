@@ -6,7 +6,7 @@ import { getProjects } from "../data/projects";
 import { site } from "../data/site";
 import { KineticHeadline } from "./KineticHeadline";
 import { ModeTabs } from "./ModeLinks";
-import { ProjectList } from "./ProjectList";
+import { ProjectGrid, ProjectRail } from "./ProjectCards";
 
 const ALL_DEFINITION =
   "Selected research, design, and development work. Each project traces how people think together, shapes something that helps them — or both.";
@@ -36,7 +36,11 @@ export function ExplorePanel({ filter }: { filter: ModeFilter }) {
       </AnimatePresence>
 
       <ModeTabs current={filter} />
-      <ProjectList key={filter} projects={getProjects(filter)} filter={filter} />
+      {selected ? (
+        <ProjectRail key={filter} projects={getProjects(filter)} filter={filter} label={`${MODES[selected].label} projects`} />
+      ) : (
+        <ProjectGrid projects={getProjects(filter)} filter={filter} label="All works" />
+      )}
 
       <p className="explore__footnote">
         Publications, CV and news live on the{" "}
