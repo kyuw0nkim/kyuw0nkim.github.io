@@ -33,12 +33,24 @@ export const PARALLAX = {
 };
 
 export const CAMERA = {
-  /** Duration and easing of Hero ↔ Tracing ↔ Shaping camera moves. */
-  durationMs: 1100,
-  easing: "cubic-bezier(0.65, 0, 0.35, 1)",
+  /** Duration and easing of Hero ↔ Tracing ↔ Shaping camera moves: a soft start and a long glide to rest. */
+  durationMs: 1400,
+  ease: [0.45, 0, 0.1, 1] as const,
   /** Never zoom further than this multiple of the Hero framing. */
   maxZoom: 2.2,
+  /**
+   * Depth while moving, per PARALLAX_DEPTH unit at full camera speed (zero at
+   * rest): extra scale from the view centre, and extra pan as a fraction of the
+   * camera's travel, capped at maxDepthLead logical px. E.g. the plant (12)
+   * grows up to 6% and leads by up to 18px.
+   */
+  depthScale: 0.005,
+  depthLead: 0.012,
+  maxDepthLead: 1.5,
 };
+
+/** How long hover holds after the pointer leaves an object (crossing gaps between characters). */
+export const HOVER_GRACE_MS = 140;
 
 /** Groups that never take part in click detection (decoration, not obstacles). */
 export const PASS_THROUGH_GROUPS = new Set(["foreground-plant"]);

@@ -1,13 +1,11 @@
 import type { SceneLayerConfig } from "./sceneConfig";
 
 /**
- * Alpha-based hit testing for transparent PNG layers, so empty pixels never act
- * as invisible click targets. Masks are downsampled copies of each PNG's alpha
- * channel, built once per image.
+ * Alpha-based hit testing for transparent sprite layers, so empty pixels never
+ * act as invisible click targets. Masks are downsampled copies of each image's
+ * alpha channel, built once per image.
  */
 export interface AlphaMask {
-  /** Mask resolution relative to the native PNG. */
-  k: number;
   w: number;
   h: number;
   alpha: Uint8ClampedArray;
@@ -36,7 +34,7 @@ export function loadAlphaMask(src: string): Promise<AlphaMask> {
       const data = ctx.getImageData(0, 0, w, h).data;
       const alpha = new Uint8ClampedArray(w * h);
       for (let i = 0; i < alpha.length; i++) alpha[i] = data[i * 4 + 3];
-      return { k, w, h, alpha };
+      return { w, h, alpha };
     })();
     cache.set(src, p);
   }
@@ -52,8 +50,10 @@ export function alphaAt(layer: SceneLayerConfig, mask: AlphaMask, x: number, y: 
   let ry = dx * Math.sin(r) + dy * Math.cos(r);
   if (layer.flipX) rx = -rx;
   if (layer.flipY) ry = -ry;
-  const u = (rx / layer.scale + layer.width / 2) * mask.k;
-  const v = (ry / layer.scale + layer.height / 2) * mask.k;
+  // The layout is in original-PNG pixels; the loaded image (and so the mask)
+  // may be a smaller web copy, so map through the mask's own size.
+  const u = (rx / layer.scale + layer.width / 2) * (mask.w / layer.width);
+  const v = (ry / layer.scale + layer.height / 2) * (mask.h / layer.height);
   if (u < 0 || v < 0 || u >= mask.w || v >= mask.h) return 0;
   return mask.alpha[Math.floor(v) * mask.w + Math.floor(u)];
 }
