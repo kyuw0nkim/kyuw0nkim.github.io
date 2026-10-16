@@ -385,7 +385,7 @@
       "rotation": 0,
       "z": 24,
       "opacity": 1,
-      "visible": true
+      "visible": false
     },
     {
       "id": "char_lavender",

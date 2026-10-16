@@ -20,8 +20,8 @@
   /* Themes: Tracing glows with the warm window light, Shaping with the sea outside the window. */
   --pf-tracing: #ffcc5c;
   --pf-tracing-soft: #fcefcc;
-  --pf-shaping: #5aaee8;
-  --pf-shaping-soft: #e2effa;
+  --pf-shaping: #8db8f2;
+  --pf-shaping-soft: #e5eefc;
 
   /* Type */
   --font-serif: "Instrument Serif", "Iowan Old Style", "Times New Roman", serif;
