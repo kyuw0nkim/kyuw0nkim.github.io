@@ -604,6 +604,19 @@ ul {
   --glow-soft: color-mix(in srgb, var(--pf-shaping) 62%, transparent);
 }
 
+/*
+ * Resting state: the same drop-shadow list as the highlighted states, fully
+ * transparent. Transitioning from `filter: none` makes browsers interpolate
+ * from an implied black shadow, which flashes a dark glow on hover.
+ */
+.scene-layer[data-interaction] {
+  filter: drop-shadow(0 0 2px transparent) drop-shadow(0 0 16px transparent);
+}
+
+.scene-layer[data-interaction][data-glow="below"] {
+  filter: drop-shadow(0 2px 1px transparent) drop-shadow(0 12px 12px transparent);
+}
+
 .scene-layer[data-highlight="hover"] {
   filter: drop-shadow(0 0 2px var(--glow-rim)) drop-shadow(0 0 16px var(--glow));
   transition-duration: 0.3s;
