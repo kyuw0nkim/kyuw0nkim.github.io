@@ -21,8 +21,8 @@ export const site = {
   about: {
     statement: "Learning technologies that help people think together through complex and contested issues.",
     paragraphs: [
-      "My research explores how human thinking unfolds — and sometimes breaks down — during collaborative dialogue, especially around socially contested topics. I focus on how AI systems can recognize these critical moments and intervene to sustain and deepen the dialogue.",
-      "I studied Educational Technology and Software at Ewha Womans University, where I worked in the Interaction Design for Learning Lab with Prof. Hyo-Jeong So. Since May 2026 I've been a museum educator at the Seoul Robot & AI Museum.",
+      "I study what happens when people encounter perspectives beyond what they already know and believe. My work traces how groups reason through controversial issues, express competing values, and move toward more integrative collective decisions. I combine dialogue analysis and computational modeling with the design of conversational agents and learning environments.",
+      "My background spans Educational Technology and Software at Ewha Womans University and research in the Interaction Design for Learning Lab with Prof. Hyo-Jeong So. My projects include AI ethics games, a peer agent for deliberation, music-learning interfaces, and inclusive digital learning resources. At HSPACE, I have also designed training programs and game-based workshops with domain experts.",
     ],
   },
 

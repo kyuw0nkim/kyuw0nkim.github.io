@@ -36,6 +36,7 @@ npm run preview    # 빌드 결과 확인: http://localhost:4173/portfolio/
 ## 콘텐츠 수정
 
 대부분은 **`src/portfolio/data/projects.ts`** 하나만 고치면 됩니다.
+작성 근거와 확인이 남은 범위는 [`CONTENT_SOURCES.md`](CONTENT_SOURCES.md)를 참고하세요.
 
 | 필드 | 설명 |
 |------|------|
@@ -66,9 +67,9 @@ npm run preview    # 빌드 결과 확인: http://localhost:4173/portfolio/
 ```ts
 hero: {
   kind: "image",
-  src: "/portfolio/projects/raim-volunteer-scheduling/dashboard.png",
-  alt: "주간 자원봉사 일정을 보여주는 대시보드 화면",
-  caption: "Weekly schedule view.",
+  src: "/portfolio/projects/my-project/screen-01.png",
+  alt: "프로젝트의 주요 인터페이스 화면",
+  caption: "Main interface view.",
   aspect: "16 / 10",
   frame: "bleed",   // 스크린샷·사진: "bleed", 작은 연구 그림: "figure"
 },
