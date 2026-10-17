@@ -594,27 +594,33 @@ ul {
  */
 .scene-layer {
   --glow-rim: rgba(255, 251, 238, 1);
+  --glow-rim-off: rgba(255, 251, 238, 0);
   --glow: color-mix(in srgb, var(--pf-tracing) 85%, transparent);
   --glow-soft: color-mix(in srgb, var(--pf-tracing) 62%, transparent);
+  --glow-off: color-mix(in srgb, var(--pf-tracing) 0%, transparent);
 }
 
 .scene-layer[data-interaction="shaping"] {
   --glow-rim: rgba(240, 249, 255, 1);
+  --glow-rim-off: rgba(240, 249, 255, 0);
   --glow: color-mix(in srgb, var(--pf-shaping) 85%, transparent);
   --glow-soft: color-mix(in srgb, var(--pf-shaping) 62%, transparent);
+  --glow-off: color-mix(in srgb, var(--pf-shaping) 0%, transparent);
 }
 
 /*
  * Resting state: the same drop-shadow list as the highlighted states, fully
  * transparent. Transitioning from `filter: none` makes browsers interpolate
- * from an implied black shadow, which flashes a dark glow on hover.
+ * from an implied black shadow, and plain `transparent` (black, alpha 0)
+ * blends into the glow color through near-black, so the resting color is the
+ * glow color itself at zero alpha (--glow-off, --glow-rim-off).
  */
 .scene-layer[data-interaction] {
-  filter: drop-shadow(0 0 2px transparent) drop-shadow(0 0 16px transparent);
+  filter: drop-shadow(0 0 2px var(--glow-rim-off)) drop-shadow(0 0 16px var(--glow-off));
 }
 
 .scene-layer[data-interaction][data-glow="below"] {
-  filter: drop-shadow(0 2px 1px transparent) drop-shadow(0 12px 12px transparent);
+  filter: drop-shadow(0 2px 1px var(--glow-rim-off)) drop-shadow(0 12px 12px var(--glow-off));
 }
 
 .scene-layer[data-highlight="hover"] {
