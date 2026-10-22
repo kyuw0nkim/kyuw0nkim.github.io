@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { HashRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, MotionConfig } from "framer-motion";
-import { trackPageView } from "@/lib/analytics";
+import { initVisitorNetwork, trackPageView } from "@/lib/analytics";
 import { Header } from "./components/Header";
 import { HomeShell } from "./components/HomeShell";
 import { IntroPanel } from "./components/IntroPanel";
@@ -15,6 +15,10 @@ import { portfolioStore } from "./hooks/usePortfolioState";
 function RouteEffects() {
   const { pathname } = useLocation();
   const previous = useRef(pathname);
+
+  useEffect(() => {
+    void initVisitorNetwork();
+  }, []);
 
   useEffect(() => {
     trackPageView(`/portfolio${pathname}`);

@@ -4,16 +4,19 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import { trackPageView, getSessionUtm } from "@/lib/analytics";
+import { trackPageView, getSessionUtm, initVisitorNetwork } from "@/lib/analytics";
 import { useScrollDepth } from "@/hooks/use-scroll-depth";
 
 function RouteTracker() {
   const location = useLocation();
   useScrollDepth();
   useEffect(() => {
+    void initVisitorNetwork();
+  }, []);
+  useEffect(() => {
     // Make sure UTM params on the landing URL are captured once.
     getSessionUtm();
-    trackPageView(location.pathname + location.search + location.hash);
+    trackPageView(location.pathname);
   }, [location]);
   return null;
 }

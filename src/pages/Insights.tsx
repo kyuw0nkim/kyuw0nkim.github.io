@@ -44,6 +44,13 @@ const CUSTOM_DIMENSIONS = [
     scope: "Event",
     description: "Per-target campaign tag (e.g. prof_smith_cmu)",
   },
+  {
+    name: "network_org",
+    scope: "Event",
+    description: "Organisation that owns the visitor's IP (e.g. Seoul National University)",
+  },
+  { name: "network_domain", scope: "Event", description: "Registrable domain from reverse DNS (e.g. snu.ac.kr)" },
+  { name: "network_type", scope: "Event", description: "academic | other" },
   { name: "paper_id", scope: "Event", description: "Which publication was viewed / downloaded" },
   { name: "link_url", scope: "Event", description: "Outbound URL that was clicked" },
   { name: "link_label", scope: "Event", description: "Friendly label on the link" },
@@ -52,6 +59,7 @@ const CUSTOM_DIMENSIONS = [
 
 const CUSTOM_EVENTS = [
   { name: "page_view", description: "Every route change in the SPA" },
+  { name: "visitor_network", description: "Once per session: the visitor's network organisation" },
   { name: "pdf_download", description: "Publication PDF link clicked" },
   { name: "cv_download", description: "CV page download button clicked" },
   { name: "external_link_click", description: "Any outbound link (arXiv, DOI, social, ...)" },
@@ -63,10 +71,13 @@ const CUSTOM_EVENTS = [
 
 const GA4_CHECKLIST = [
   "Admin → Custom definitions → register each custom dimension listed below (Event scope).",
-  "Admin → Data Streams → Enhanced measurement: confirm 'Outbound clicks' and 'File downloads' are ON.",
+  "Admin → Data Streams → Enhanced measurement: confirm 'Outbound clicks' and 'File downloads' are ON, and turn OFF 'Page changes based on browser history events' (the router already sends page_view; leaving it on double-counts).",
+  "Admin → Data settings → Data retention: set event data retention to 14 months (default is 2).",
+  "Admin → Reporting identity: choose 'Device-based' so small numbers aren't hidden by data thresholds.",
   "Admin → Data filters: add an 'Internal traffic' filter for your own IP so dev visits don't skew numbers.",
   "Reports → Realtime: verify pdf_download / cv_download events show up after a test click.",
-  "Explore → create a free-form exploration: Rows = Country + City + Network, Values = Active users. Save as 'Geo × Institution'.",
+  "Explore → create a free-form exploration: Rows = network_org + City + Date hour and minute, Values = Views. Save as 'Who visited'.",
+  "Explore → User explorer: open any visitor to see their timeline — time, city, network_org and every page they viewed.",
   "Explore → create: Rows = utm_campaign, Values = Sessions + cv_download + pdf_download. Save as 'Reviewer Radar'.",
   "Looker Studio → New report → GA4 connector → build a country choropleth + campaign table + academic-referrer filter. Embed via iframe if you want it on this page.",
 ];
@@ -296,8 +307,8 @@ const Insights = () => {
         <h2 className="text-xl font-heading font-semibold mb-3">How to read the data</h2>
         <ul className="space-y-3 text-sm text-foreground leading-relaxed">
           <li>
-            <strong>Country + City + Network</strong> in one table is your institution lens:
-            campus-wired visitors often surface the university name in the Network column.
+            <strong>network_org + City</strong> in one table is your institution lens:
+            visitors on a campus network show up as the university name.
             Mobile / home ISPs won't — don't expect 100 %.
           </li>
           <li>
