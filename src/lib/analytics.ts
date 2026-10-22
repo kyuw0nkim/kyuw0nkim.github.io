@@ -10,10 +10,15 @@
  *     (e.g. ?utm_campaign=prof_smith_cmu in cold emails).
  *  3. Helpers for common interactions: outbound links, PDF / CV downloads,
  *     mailto clicks, publication views, scroll depth, section engagement.
+ *  4. The visitor's network (the organisation that owns their IP, e.g.
+ *     "Seoul National University") is looked up once per session and attached
+ *     to every later event. GA4 itself no longer exposes this. Only the
+ *     organisation name and the registrable domain are sent — never the IP.
  *
  * Custom dimensions to register in GA4 Admin → Custom definitions (event scope):
  *   referrer_domain, referrer_type,
  *   utm_source, utm_medium, utm_campaign,
+ *   network_org, network_domain, network_type,
  *   paper_id, link_url, link_label, section_id, depth
  */
 
@@ -165,6 +170,76 @@ export function getSessionUtm(): UtmRecord {
   return cachedUtm;
 }
 
+/* ---------------------------- Visitor network ----------------------------- */
+
+const NETWORK_STORAGE_KEY = "__kk_net_v1";
+const NETWORK_LOOKUP_URL = "https://ipinfo.io/json";
+
+export interface NetworkInfo {
+  network_org: string; // "Seoul National University", "Korea Telecom", ...
+  network_domain: string; // "snu.ac.kr" — from reverse DNS, "(unknown)" if none
+  network_type: "academic" | "other";
+}
+
+const ACADEMIC_ORG_PATTERN =
+  /universit|college|institute of technology|school of|academy of|research (center|centre)|대학|学院|大学/i;
+
+/** Second-level labels that sit under a ccTLD, e.g. ac.kr, co.uk, edu.au. */
+const SECOND_LEVEL_LABELS = new Set(["ac", "co", "or", "go", "ne", "re", "edu", "gov", "com", "net", "org", "mil"]);
+
+/** Reduce a reverse-DNS hostname to its registrable domain so no IP fragment leaks. */
+function registrableDomain(hostname: string): string {
+  const labels = hostname.toLowerCase().replace(/\.$/, "").split(".");
+  if (labels.length < 2) return "(unknown)";
+  const tld = labels[labels.length - 1];
+  const sld = labels[labels.length - 2];
+  const take = tld.length === 2 && SECOND_LEVEL_LABELS.has(sld) && labels.length >= 3 ? 3 : 2;
+  return labels.slice(-take).join(".");
+}
+
+let cachedNetwork: NetworkInfo | null = null;
+
+function loadStoredNetwork(): NetworkInfo | null {
+  try {
+    const raw = sessionStorage.getItem(NETWORK_STORAGE_KEY);
+    return raw ? (JSON.parse(raw) as NetworkInfo) : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Look up the visitor's network once per session, then send a
+ * `visitor_network` event and attach the result to every later event.
+ */
+export async function initVisitorNetwork() {
+  if (typeof window === "undefined" || cachedNetwork) return;
+  const stored = loadStoredNetwork();
+  if (stored) {
+    cachedNetwork = stored;
+    return;
+  }
+  try {
+    const res = await fetch(NETWORK_LOOKUP_URL, { headers: { Accept: "application/json" } });
+    if (!res.ok) return;
+    const data = (await res.json()) as { org?: string; hostname?: string };
+    // ipinfo returns org as "AS9488 Seoul National University".
+    const org = (data.org || "").replace(/^AS\d+\s+/, "").trim() || "(unknown)";
+    const domain = data.hostname ? registrableDomain(data.hostname) : "(unknown)";
+    const academic =
+      ACADEMIC_ORG_PATTERN.test(org) || ACADEMIC_HOST_PATTERNS.some((re) => re.test(domain));
+    cachedNetwork = { network_org: org, network_domain: domain, network_type: academic ? "academic" : "other" };
+    try {
+      sessionStorage.setItem(NETWORK_STORAGE_KEY, JSON.stringify(cachedNetwork));
+    } catch {
+      /* ignore */
+    }
+    trackEvent("visitor_network", {});
+  } catch {
+    /* blocked by an ad blocker or offline — skip silently */
+  }
+}
+
 /* ----------------------------- Core tracking ------------------------------ */
 
 let cachedReferrer: ParsedReferrer | null = null;
@@ -188,6 +263,7 @@ export function trackEvent(name: string, params: EventParams = {}) {
     referrer_domain: referrer.domain,
     referrer_type: referrer.type,
     ...utm,
+    ...cachedNetwork,
     ...params,
   };
   // Drop undefined values so they don't clutter GA4 reports.
@@ -195,8 +271,20 @@ export function trackEvent(name: string, params: EventParams = {}) {
   window.gtag("event", name, payload);
 }
 
+/**
+ * HashRouter keeps the route in the URL fragment, which GA4 drops from its
+ * "Page path" dimension — every page would report as "/". Rewrite the route
+ * into page_location so each page shows up separately. The original query
+ * string is kept so UTM tags on the landing URL still attribute the session.
+ */
 export function trackPageView(pagePath: string) {
-  trackEvent("page_view", { page_path: pagePath });
+  if (typeof window === "undefined") return;
+  const path = pagePath.split("?")[0].split("#")[0] || "/";
+  trackEvent("page_view", {
+    page_location: window.location.origin + path + window.location.search,
+    page_path: path,
+    page_title: document.title,
+  });
 }
 
 /* ------------------------ Convenience helpers ----------------------------- */

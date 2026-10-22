@@ -25,7 +25,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-S9V5S51QTE');
+      // Page views are sent by the router (src/App.tsx) so each hash route is counted once.
+      gtag('config', 'G-S9V5S51QTE', { send_page_view: false });
     </script>
 
     <link rel="canonical" href="https://kyuwonkim.com" />
