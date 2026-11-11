@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>램프 아래 RND</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap">
+<style>
+/* Layout: one dark stage. A conic "lamp" (after Aceternity's Lamp on 21st.dev) shines down;
+   the RND star sits in its light and talks through a glassmorphism bubble. Single dark look by design. */
+:root {
+  --stage: #020617;      /* slate-950, the lamp's night */
+  --beam: #eab308;       /* yellow-500 cone */
+  --beam-hot: #fde047;   /* yellow-300 filament + core glow */
+  --ink: #f8fafc;        /* bubble text */
+  --ink-soft: #94a3b8;   /* captions */
+  --font-talk: "Gowun Dodum", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-name: "Jua", "Gowun Dodum", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --lamp-w: min(30rem, 48vw);
+  color-scheme: dark;
+}
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--stage);
+  color: var(--ink);
+  font-family: var(--font-talk);
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  height: 100%;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- photo backdrop (darkened so the lamp reads) ---------- */
+.photo {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom, rgb(2 6 23 / .85), rgb(2 6 23 / .35) 45%, rgb(2 6 23 / .55)),
+    url("bg.jpg") center 60% / cover no-repeat;
+  filter: saturate(.9);
+  z-index: 0;
+}
+
+/* ---------- the lamp ---------- */
+.lamp {
+  position: absolute;
+  left: 0; right: 0;
+  top: -6rem;
+  height: 34rem;
+  transform: scaleY(1.25);
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+.lamp > * { position: absolute; left: 50%; top: 50%; }
+
+.cone {
+  height: 14rem;
+  width: var(--lamp-w);
+  top: calc(50% - 7rem);
+  overflow: hidden;
+  opacity: .5;
+  animation: open-cone 1.1s .3s ease-in-out forwards;
+}
+.cone-l {
+  right: 50%; left: auto;
+  background-image: conic-gradient(from 70deg at center top, var(--beam), transparent, transparent);
+}
+.cone-r {
+  background-image: conic-gradient(from 290deg at center top, transparent, transparent, var(--beam));
+}
+.cone::before, .cone::after { content: ""; position: absolute; background: #000; }
+.cone::before { left: 0; right: 0; bottom: 0; height: 10rem; -webkit-mask-image: linear-gradient(to top, #000, transparent); mask-image: linear-gradient(to top, #000, transparent); }
+.cone-l::after { left: 0; top: 0; bottom: 0; width: 10rem; -webkit-mask-image: linear-gradient(to right, #000, transparent); mask-image: linear-gradient(to right, #000, transparent); }
+.cone-r::after { right: 0; top: 0; bottom: 0; width: 10rem; -webkit-mask-image: linear-gradient(to left, #000, transparent); mask-image: linear-gradient(to left, #000, transparent); }
+
+.floor-shade { width: 100%; left: 0; height: 12rem; transform: translateY(3rem) scaleX(1.5); background: #000; filter: blur(40px); }
+.core-glow { width: min(28rem, 44vw); height: 9rem; transform: translate(-50%, calc(-50% - 4.5rem)); border-radius: 50%; background: var(--beam); opacity: .5; filter: blur(64px); z-index: 2; }
+.hot-glow { width: 8rem; height: 9rem; transform: translate(-50%, calc(-50% - 6rem)); border-radius: 50%; background: var(--beam-hot); filter: blur(40px); z-index: 1; animation: grow-hot 1.1s .3s ease-in-out forwards; }
+.filament { width: calc(var(--lamp-w) / 2); height: 2px; transform: translate(-50%, -7rem); background: var(--beam-hot); z-index: 3; animation: grow-filament 1.1s .3s ease-in-out forwards; }
+.ceiling { width: 100%; left: 0; height: 11rem; top: calc(50% - 18rem); background: #000; z-index: 2; }
+
+@keyframes open-cone { from { width: calc(var(--lamp-w) / 2); opacity: .5; } to { width: var(--lamp-w); opacity: 1; } }
+@keyframes grow-hot { from { width: 8rem; } to { width: 16rem; } }
+@keyframes grow-filament { from { width: calc(var(--lamp-w) / 2); } to { width: var(--lamp-w); } }
+
+/* ---------- the scene under the lamp ---------- */
+.scene {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: clamp(12.5rem, 33vh, 17rem);
+  gap: 1.1rem;
+}
+
+/* glassmorphism bubble: translucent fill + backdrop blur + thin light border + soft shadow */
+.bubble {
+  position: relative;
+  box-sizing: border-box;
+  width: min(26rem, calc(100vw - 32px));
+  min-height: 3.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.05rem 1.5rem 1.15rem;
+  border-radius: 1.5rem;
+  font-size: clamp(1.05rem, 2.6vw, 1.25rem);
+  line-height: 1.55;
+  letter-spacing: -.01em;
+  text-align: center;
+  color: var(--ink);
+  text-shadow: 0 1px 6px rgb(2 6 23 / .6);
+  background: rgb(255 255 255 / .12);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgb(255 255 255 / .28);
+  box-shadow: 0 8px 32px rgb(2 6 23 / .45);
+  opacity: 0;
+  transform: translateY(6px) scale(.98);
+  transition: opacity .45s ease, transform .45s ease;
+  pointer-events: none;
+}
+.bubble.show { opacity: 1; transform: none; }
+.line { position: relative; z-index: 1; }
+.caret {
+  display: inline-block;
+  width: 2px; height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: var(--beam-hot);
+  animation: blink 1s steps(1) infinite;
+}
+.done .caret { opacity: 0; animation: none; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* the star */
+.star {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 40%;
+  width: clamp(10rem, 30vw, 13.5rem);
+  aspect-ratio: 1;
+  max-width: 100%;
+  position: relative;
+  animation: bob 4s ease-in-out infinite;
+}
+.star img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 -6px 18px rgb(253 224 71 / .25));
+  transition: transform .18s ease, filter .25s ease;
+}
+.star:hover img, .star:focus-visible img {
+  filter: drop-shadow(0 0 14px rgb(253 224 71 / .9)) drop-shadow(0 0 38px rgb(250 204 21 / .75));
+}
+.star:active img, .star.boing img { transform: scale(.94, .9) translateY(4%); }
+.star:focus-visible { outline: 2px solid var(--beam-hot); outline-offset: 6px; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.shadow {
+  width: clamp(7rem, 20vw, 9rem);
+  height: 14px;
+  margin-top: -1.2rem;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(253 224 71 / .22), transparent);
+  animation: shadow 4s ease-in-out infinite;
+}
+@keyframes shadow { 50% { transform: scaleX(.85); opacity: .7; } }
+
+
+@media (prefers-reduced-motion: reduce) {
+  .cone, .hot-glow, .filament, .star, .shadow, .caret { animation: none; }
+  .cone { width: var(--lamp-w); opacity: 1; }
+  .hot-glow { width: 16rem; }
+  .filament { width: var(--lamp-w); }
+}
+@media (max-height: 640px) {
+  .scene { padding-top: 11rem; gap: .8rem; }
+}
+</style>
+
+</head>
+<body>
+<main class="stage">
+  <div class="photo" aria-hidden="true"></div>
+  <div class="lamp" aria-hidden="true">
+    <div class="cone cone-l"></div>
+    <div class="cone cone-r"></div>
+    <div class="floor-shade"></div>
+    <div class="core-glow"></div>
+    <div class="hot-glow"></div>
+    <div class="filament"></div>
+    <div class="ceiling"></div>
+  </div>
+
+  <section class="scene">
+    <div class="bubble" id="bubble" aria-live="polite">
+      <span class="line" id="line"></span><span class="caret" aria-hidden="true"></span>
+    </div>
+
+    <button class="star" id="star" type="button" aria-label="별을 눌러 인사 듣기">
+      <img src="rnd.png" alt="노란 별 모양의 RND 캐릭터">
+    </button>
+    <div class="shadow" aria-hidden="true"></div>
+  </section>
+</main>
+
+<script>
+(function () {
+  var TEXT = "안녕, 불빛 아래는 따뜻해!";
+  var lineEl = document.getElementById("line");
+  var bubble = document.getElementById("bubble");
+  var star = document.getElementById("star");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var typer = null, hider = null, wiper = null;
+
+  function say() {
+    clearInterval(typer); clearTimeout(hider); clearTimeout(wiper);
+    bubble.classList.remove("done");
+    bubble.classList.add("show");
+    var n = 0;
+    lineEl.textContent = "";
+    function finished() {
+      bubble.classList.add("done");
+      hider = setTimeout(function () {          // 3 seconds after the line ends, the bubble goes away
+        bubble.classList.remove("show");
+        wiper = setTimeout(function () { lineEl.textContent = ""; }, 500);
+      }, 3000);
+    }
+    if (reduce) { lineEl.textContent = TEXT; finished(); return; }
+    typer = setInterval(function () {
+      n += 1;
+      lineEl.textContent = TEXT.slice(0, n);
+      if (n >= TEXT.length) { clearInterval(typer); finished(); }
+    }, 55);
+  }
+
+  star.addEventListener("click", function () {
+    say();
+    star.classList.remove("boing"); void star.offsetWidth; star.classList.add("boing");
+    setTimeout(function () { star.classList.remove("boing"); }, 180);
+  });
+})();
+</script>
+</body>
+</html>
