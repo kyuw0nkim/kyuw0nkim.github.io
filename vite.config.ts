@@ -73,6 +73,8 @@ export default defineConfig(({ mode }) => ({
       input: {
         main: path.resolve(__dirname, "index.html"),
         portfolio: path.resolve(__dirname, "portfolio/index.html"),
+        // Draft C: conversation-centred portfolio, not linked from either site yet.
+        portfolioC: path.resolve(__dirname, "portfolio-c/index.html"),
       },
     },
   },
