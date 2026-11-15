@@ -1,29 +1,30 @@
 // ===========================================================================
 // Portfolio C (/portfolio-c/) — a conversation-centred portfolio.
 //
-// The hero is a scripted group conversation in which an AI agent steps in.
-// Tagged parts of the conversation ("anchors") reveal the research behind them.
-// Findings and numbers come from the Fall 2027 SoP and the October 2026 CV;
-// the conversation itself is illustrative and labelled so on the page.
+// SOURCING RULE: every sentence here comes from the author's SoP (Fall 2027),
+// CV (Oct 2026) or papers. Where a line is not directly sourced it is marked
+// `// UNSOURCED` so it can be replaced.
+//   • Dilemma: LAK '26 Table 1, scenario 2.
+//   • Human utterances: example utterances from the LAK '26 coding scheme
+//     (Table 2), quoted verbatim.
+//   • Dialogue modes: the three latent modes from ICALT '26 (HMM). Affective
+//     and deliberative turns are connected through conversational mediation,
+//     as the paper reports direct transitions between them are rare.
 // ===========================================================================
 
-export type AnchorId = "games" | "moves" | "states" | "agent" | "next";
+export type AnchorId = "games" | "moves" | "modes" | "agent" | "next";
+export type Mode = "tracing" | "shaping" | "next";
 
 export interface Evidence {
   id: AnchorId;
-  /** Short tag shown in the conversation. */
   tag: string;
-  /** Which side of the work this is. */
-  mode: "tracing" | "shaping" | "next";
-  /** What this part of the conversation stands for. */
-  stands: string;
+  mode: Mode;
   venue: string;
   title: string;
+  /** Finding, in the paper's / SoP's own words. */
   finding: string;
   stats: string[];
-  methods?: string;
-  role?: string;
-  award?: string;
+  details: { label: string; value: string }[];
   links: { label: string; href: string }[];
 }
 
@@ -34,14 +35,18 @@ export const evidence: Record<AnchorId, Evidence> = {
     id: "games",
     tag: "AIED ’25 · ICLS ’25",
     mode: "shaping",
-    stands: "Where the conversation comes from",
     venue: "AIED 2025 · ICLS 2025",
-    title: "Dialogue games for AI ethics",
+    title: "Dialogic games for AI ethics education",
+    // SoP, "Designing Environments for Deliberation"
     finding:
-      "Tabletop and digital games that bring diverse viewpoints into collective decisions. They showed a key problem: many groups agreed before examining the values underneath. Exposure to other views did not guarantee reconsidering one's own.",
+      "Dialogic games designed to engage learners in collective decision-making through structured dialogue. Spanning physical and digital formats, these environments showed that intentionally structured spaces can bring diverse viewpoints into dialogue. Yet many groups reached premature agreement without examining underlying value tensions.",
     stats: ["82 participants", "Tabletop + digital"],
-    methods: "Game design · Figma · ProtoPie · User studies",
-    role: "Led prototype design & development",
+    details: [
+      // SoP + CV
+      { label: "My role", value: "Designed the cards for the tabletop RPG (FLIP) and built the digital game (The Desk)" },
+      // Dilemmas in AI Ethics (AIED) + FLIP (ICLS)
+      { label: "Grounded in", value: "Social Intuitionist Model · Moral Foundations Theory · cognitive dissonance" },
+    ],
     links: [
       { label: "AIED paper", href: "https://doi.org/10.1007/978-3-031-98417-4_31" },
       { label: "ICLS paper", href: "https://doi.org/10.22318/icls2025.945127" },
@@ -52,35 +57,41 @@ export const evidence: Record<AnchorId, Evidence> = {
     id: "moves",
     tag: "LAK ’26",
     mode: "tracing",
-    stands: "What makes a turn productive",
-    venue: "LAK 2026 · Full paper",
-    title: "Productive discussion moves in groups addressing controversial issues",
+    venue: "LAK 2026 · Full paper · First author",
+    title: "Productive Discussion Moves in Groups Addressing Controversial Issues",
+    // LAK abstract
     finding:
-      "Explicitly acknowledging ambiguity and uncertainty was linked to more productive deliberation — recognizing one's own limits opens room for competing views.",
-    stats: ["2,199 utterances", "14 discussion moves"],
-    methods: "SEDA-based coding · Ko-SBERT / BERTopic · Ordered Network Analysis",
-    role: "First author",
+      "Emotive/experiential arguments, as well as explicit acknowledgment of ambiguity, are strong positive predictors of discussion quality, whereas building on ideas is negatively associated.",
+    stats: ["2,199 utterances", "14 discussion moves", "Acknowledging Ambiguity: B = 0.436, p = .040"],
+    details: [
+      { label: "Data", value: "83 sessions from 51 undergraduates in groups of three" },
+      {
+        label: "Methods",
+        value: "SEDA coding (κ = .80) · fine-tuned Korean Sentence-BERT + BERTopic · linear mixed-effects model · Ordered Network Analysis",
+      },
+    ],
     links: [
       { label: "ACM DL", href: "https://doi.org/10.1145/3785022.3785111" },
+      { label: "Code", href: "https://github.com/kyuw0nkim/LAK26-methodology" },
       { label: "Case study", href: CASE("productive-discussion-moves") },
     ],
   },
-  states: {
-    id: "states",
+  modes: {
+    id: "modes",
     tag: "ICALT ’26",
     mode: "tracing",
-    stands: "How the discussion moves over time",
-    venue: "IEEE ICALT 2026 · Full paper",
-    title: "Understanding productive dialogue in value-laden discussions through Hidden Markov Models",
+    venue: "IEEE ICALT 2026 · Full paper · First author",
+    title: "Understanding Productive Dialogue in Value-Laden Contexts through Hidden Markov Models",
+    // ICALT abstract
     finding:
-      "Discussions that combined emotional engagement with logical examination were associated with higher-quality deliberation.",
-    stats: ["80 discussions", "3 dialogue states"],
-    methods: "Hidden Markov Models · discourse coding",
-    role: "First author",
-    award: "IEEE TCLT Best Student Paper Nominee & Student Award",
+      "Three recurring dialogue modes emerged: deliberative dialogue, conversational mediation, and affective dialogue. The coexistence of affective and deliberative dialogue modes within a session was a predictor of significantly higher dialogic quality.",
+    stats: ["80 sessions", "3 dialogue modes", "Coexistence: β = 0.608, p = .027"],
+    details: [
+      { label: "Methods", value: "Hidden Markov Models (AIC/BIC model selection) · linear mixed-effects models · integrative complexity" },
+      { label: "Recognition", value: "IEEE TCLT Best Student Paper Nominee & Student Award" },
+    ],
     links: [
       { label: "IEEE", href: "https://doi.org/10.1109/ICALT68022.2026.00046" },
-      { label: "arXiv", href: "https://doi.org/10.48550/arXiv.2601.05651" },
       { label: "Case study", href: CASE("productive-discussion-moves") },
     ],
   },
@@ -88,97 +99,123 @@ export const evidence: Record<AnchorId, Evidence> = {
     id: "agent",
     tag: "M.A. thesis",
     mode: "shaping",
-    stands: "What role the agent should play",
     venue: "M.A. thesis · with UC Irvine",
-    title: "How conversational agent roles shape group deliberation on controversial issues",
+    title: "Examining the Effects of LLM-Based Conversational Agent Participation and Role in Decision-Making on Controversial Issues",
+    // SoP, "Scaffolding Deliberation with AI"
     finding:
-      "Compared with human-only groups, a perspective-contributing agent significantly broadened the ideas explored and led to more integrative group decisions. A process-supporting agent did not.",
+      "Perspective-contributing agents, by introducing viewpoints participants might not have encountered on their own, significantly broadened the range of ideas explored and led to more integrative group decisions than the human-only baseline.",
     stats: ["21 groups · N = 49", "3 conditions"],
-    methods: "LLM agents (Python, LangChain) · Linear mixed-effects models · Ordered Network Analysis",
-    role: "First author · led cross-institutional study",
-    award: "Best Paper Award, KAEIM 2026 · journal manuscript under review",
+    details: [
+      { label: "Conditions", value: "Perspective-contributing agent · process-supporting agent · human-only baseline" },
+      { label: "Methods", value: "LLM agents (Python, LangChain) · linear mixed-effects models · Ordered Network Analysis" },
+      // UIST '25
+      {
+        label: "Related",
+        value: "UIST ’25 peer agent: if players choose the same stance, the agent adopts the opposing position to introduce tension.",
+      },
+      { label: "Recognition", value: "Best Paper Award, KAEIM 2026" },
+    ],
     links: [
       { label: "Case study", href: CASE("agent-roles-in-deliberation") },
-      { label: "Related: peer-agent design (UIST ’25)", href: CASE("your-thoughtful-opponent") },
+      { label: "UIST ’25 peer agent", href: "https://doi.org/10.1145/3746058.3758410" },
     ],
   },
   next: {
     id: "next",
     tag: "Next",
     mode: "next",
-    stands: "When the agent should speak",
     venue: "Doctoral research",
-    title: "From measurement to intervention",
+    title: "What computational measures can capture pivotal moments in a group’s deliberation?",
+    // SoP, "Scaffolding" + "Future Directions"
     finding:
-      "Today the agent decides when to speak through prompt-based heuristics, disconnected from how the conversation is actually evolving. I want to identify and validate linguistic indicators of pivotal moments — such as the emergence of uncertainty — and build agents that adapt their support to the real-time discourse state.",
-    stats: ["Hypothesis: uncertainty makes room to reconsider"],
+      "Because the agents triggered interventions via prompt-based heuristics, their timing was disconnected from systematic evidence of how the group’s conversation was actually evolving. I aim to identify and validate linguistic indicators that capture pivotal moments in a discussion, and translate these measures into AI agents that adapt their support to real-time discourse states.",
+    stats: [],
+    details: [
+      {
+        label: "Hypothesis",
+        value: "The emergence of subjective uncertainty makes space for participants to reconsider their assumptions and explore alternative views.",
+      },
+    ],
     links: [],
   },
 };
 
-export const anchorOrder: AnchorId[] = ["games", "moves", "states", "agent", "next"];
+export const anchorOrder: AnchorId[] = ["games", "moves", "modes", "agent", "next"];
 
 // ------------------------------------------------------------ conversation --
 
-export type Speaker = "green" | "white" | "pink" | "lilac" | "agent";
+export type Speaker = "green" | "pink" | "lilac" | "agent";
+export type DialogueMode = "mediation" | "affective" | "deliberative";
 
 export const speakerName: Record<Speaker, string> = {
-  green: "Jun",
-  white: "Mina",
-  pink: "Seo",
-  lilac: "Ari",
+  green: "A",
+  pink: "B",
+  lilac: "C",
   agent: "AI agent",
 };
 
 export interface Message {
   speaker: Speaker;
-  /** Text; a `highlight` substring is marked as an anchor. */
   text: string;
-  highlight?: { text: string; anchor: AnchorId };
-  /** The whole bubble is an anchor. */
+  /** Discussion move (LAK '26 coding scheme). */
+  move: string;
+  mode: DialogueMode;
+  /** The whole message is an anchor. */
   anchor?: AnchorId;
-  state: DialogueState;
+  /** The agent's line is not from a paper — see note in the report. */
+  unsourced?: boolean;
 }
 
-export type DialogueState = "position" | "converging" | "uncertainty" | "perspective" | "integrating";
-
-export const stateLabel: Record<DialogueState, string> = {
-  position: "Taking positions",
-  converging: "Converging",
-  uncertainty: "Uncertainty",
-  perspective: "New perspective",
-  integrating: "Integrating",
+// ICALT '26 mode names.
+export const modeLabel: Record<DialogueMode, string> = {
+  mediation: "Conversational mediation",
+  affective: "Affective dialogue",
+  deliberative: "Deliberative dialogue",
 };
 
-export const dilemma = {
-  label: "Dilemma card",
-  text: "Should your school use AI to flag students at risk of dropping out?",
-};
+// LAK '26 Table 1, scenario 2.
+export const dilemma =
+  "After an emotional upgrade, a user’s mother became attached to a household android. Should further emotional upgrades be allowed?";
 
+// Utterances: LAK '26 Table 2 examples (verbatim, translated by the authors).
 export const messages: Message[] = [
-  { speaker: "green", text: "Yes. Flagging students early is how you actually help them.", state: "position" },
-  { speaker: "white", text: "Agreed — early support is the whole point.", state: "converging" },
-  { speaker: "pink", text: "Sounds good to me too.", state: "converging" },
-  {
-    speaker: "lilac",
-    text: "Hmm… I'm honestly not sure. What if being flagged changes how teachers see you?",
-    highlight: { text: "I'm honestly not sure.", anchor: "moves" },
-    state: "uncertainty",
-  },
+  { speaker: "green", text: "I absolutely think restrictions are needed.", move: "Position Declaration", mode: "mediation" },
+  { speaker: "pink", text: "Right.", move: "Conversation Maintenance", mode: "mediation" },
+  { speaker: "lilac", text: "Let’s collect our opinions.", move: "Facilitating Agreement", mode: "mediation" },
+  { speaker: "pink", text: "This is tough.", move: "Acknowledging Ambiguity", mode: "affective", anchor: "moves" },
   {
     speaker: "agent",
-    text: "One view we haven't heard yet is the flagged student's. How might an “at-risk” label feel — and who should be able to see it?",
+    // UNSOURCED — replace with an utterance from the thesis agent logs.
+    text: "Let me take the other side. What if her attachment to the android is something she actually needs?",
+    move: "Opposing position (peer agent)",
+    mode: "mediation",
     anchor: "agent",
-    state: "perspective",
+    unsourced: true,
   },
-  { speaker: "green", text: "That's fair. Maybe only counselors see it, and the student gets a say.", state: "integrating" },
+  {
+    speaker: "lilac",
+    text: "I’m an only child… and honestly, as someone who always wanted siblings, I don’t think this robot is such a bad idea.",
+    move: "Emotive/Experiential Argument",
+    mode: "affective",
+  },
+  { speaker: "pink", text: "Exactly.", move: "Conversation Maintenance", mode: "mediation" },
+  {
+    speaker: "green",
+    text: "Think about when laptops were first developed; their energy efficiency was terrible at the start… So maybe this robot is just in that initial phase.",
+    move: "Connecting with External Contexts",
+    mode: "deliberative",
+  },
 ];
 
-/** Index of the message the agent "notices" before speaking (the pivotal moment). */
+/** The uncertain turn — the pivotal moment the agent notices before speaking. */
 export const PIVOT_INDEX = 3;
 
+// SoP: "My goal as a researcher is to design AI-supported learning environments
+// helping people engage in constructive dialogue. Specifically, I aim to ground
+// AI design in empirical discourse research, examining how group discussions
+// unfold to inform when and how systems support them."
 export const vision =
-  "I design AI-supported learning environments that help people engage in constructive dialogue across differences — grounding when and how AI steps in on evidence of how group discussions actually unfold.";
+  "I aim to design AI-supported learning environments that help people engage in constructive dialogue — grounding AI design in empirical discourse research that examines how group discussions unfold, to inform when and how systems support them.";
 
 // ---------------------------------------------------------------- works ----
 
@@ -189,7 +226,6 @@ export interface Work {
   line: string;
   image: string;
   alt: string;
-  mode: "tracing" | "shaping";
 }
 
 const thumb = (f: string) => `/thumbnails/${encodeURIComponent(f)}`;
@@ -199,43 +235,55 @@ export const works: Work[] = [
     id: "productive-discussion-moves",
     title: "Productive Discussion Moves",
     venue: "LAK ’26 · IEEE ICALT ’26",
-    line: "Which moves and dialogue states make value-laden group discussion productive.",
+    // LAK abstract
+    line: "Productive ethical discussion is grounded not only in reasoning and justification but also in the constructive integration of emotional expression.",
     image: thumb("pic.C.Productive Discussion.png"),
-    alt: "Network diagrams of discussion moves in high- and low-quality discussions.",
-    mode: "tracing",
+    alt: "Ordered networks of discussion moves in high- and low-quality discussion groups.",
   },
   {
     id: "agent-roles-in-deliberation",
     title: "Agent Roles in Deliberation",
     venue: "M.A. thesis · KAEIM ’26 Best Paper",
-    line: "Does it matter how an AI agent takes part in a group decision?",
+    // SoP
+    line: "What role generative AI agents should play in deliberation to foster constructive dialogue.",
     image: thumb("pic.C.논쟁문제 의사결정.png"),
     alt: "Box plots comparing discussion and decision measures across three conditions.",
-    mode: "shaping",
   },
   {
     id: "your-thoughtful-opponent",
     title: "Your Thoughtful Opponent",
     venue: "UIST ’25 Adjunct",
-    line: "A peer agent that decides what to contribute and when to speak.",
+    // UIST abstract
+    line: "A peer agent designed to simulate a deliberative conversational partner that induces socio-cognitive conflict within dilemma-based game play.",
     image: thumb("pic.P.Your Thoughtful.png"),
-    alt: "System diagram of the peer agent's context interpreter, thought formation and participation rules.",
-    mode: "shaping",
+    alt: "Peer agent workflow: Context Interpreter, Agent State Manager, Thought Generator, Thought Evaluator and Thought Articulator.",
   },
   {
     id: "ai-ethics-games",
     title: "AI Ethics Through Play",
     venue: "AIED ’25 · ICLS ’25",
-    line: "Dialogue games that bring competing values into collective decisions.",
+    // AIED + ICLS abstracts
+    line: "A digital game and a tabletop role-playing game that engage players in moral reasoning and collective decision-making about killer robots.",
     image: thumb("pic.C.Dilemmas in.png"),
-    alt: "Overview of the digital game for AI ethics dilemmas.",
-    mode: "shaping",
+    alt: "Screens of The Desk: Dilemmas in AI Ethics.",
   },
 ];
 
+// CV titles.
 export const otherWork: { title: string; venue: string; href: string }[] = [
-  { title: "MelodyMate — a conversational partner for music form analysis", venue: "CHI ’26 EA", href: CASE("conversational-agent-prototypes") },
-  { title: "Bridging Literacy with AI — a digital textbook for DHH students", venue: "IDC ’25 EA", href: CASE("bridging-literacy") },
-  { title: "Mapping AI in Education — reviews and topic modeling", venue: "ICCE ’24 Best Poster", href: CASE("mapping-ai-in-education") },
-  { title: "Learning experiences at HSPACE — incl. a DEF CON 34 competition", venue: "Practice", href: CASE("hspace-learning-experiences") },
+  {
+    title: "How Learners Engage with an LLM-Based Pedagogical Conversational Agent During Music Form Analysis",
+    venue: "CHI ’26 EA",
+    href: CASE("conversational-agent-prototypes"),
+  },
+  {
+    title: "Bridging Literacy with AI: AI-Integrated Digital Textbook for Deaf and Hard-of-Hearing Students",
+    venue: "IDC ’25 EA",
+    href: CASE("bridging-literacy"),
+  },
+  {
+    title: "What Do University Students Say About ChatGPT? A Topic Modeling of Perception on GenAI in Academic Writing",
+    venue: "ICCE ’24 · Best Poster",
+    href: CASE("mapping-ai-in-education"),
+  },
 ];

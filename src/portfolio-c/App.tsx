@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { siteData } from "@/data/siteData";
@@ -8,17 +8,15 @@ import {
   dilemma,
   evidence,
   messages,
+  modeLabel,
   otherWork,
   speakerName,
-  stateLabel,
   vision,
   works,
 } from "./data";
 import type { AnchorId, Message, Speaker } from "./data";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-
-// ------------------------------------------------------------------ hooks --
 
 function useMediaQuery(query: string) {
   const [match, setMatch] = useState(() => window.matchMedia(query).matches);
@@ -31,13 +29,10 @@ function useMediaQuery(query: string) {
   return match;
 }
 
-/**
- * The conversation plays once: typing → message, with the agent's "notice"
- * beat before it speaks. Steps: 0 = empty … STEPS = everything shown.
- * Step layout: each message takes one step; the notice is its own step.
- */
+// ------------------------------------------------------------- playback ---
+// Each message is one step; the "notice" before the agent speaks is its own step.
 const STEPS = messages.length + 1;
-const noticeStep = PIVOT_INDEX + 2; // right after the uncertain turn
+const noticeStep = PIVOT_INDEX + 2;
 const messageStep = (i: number) => (i <= PIVOT_INDEX ? i + 1 : i + 2);
 
 function usePlayback(reduced: boolean) {
@@ -51,7 +46,7 @@ function usePlayback(reduced: boolean) {
     }
     const isNotice = step + 1 === noticeStep;
     setTyping(!isNotice);
-    const wait = step === 0 ? 700 : isNotice ? 900 : step + 1 === messageStep(PIVOT_INDEX + 1) ? 1700 : 1150;
+    const wait = step === 0 ? 700 : isNotice ? 1000 : step + 1 === messageStep(PIVOT_INDEX + 1) ? 1700 : 1100;
     const id = window.setTimeout(() => setStep((s) => s + 1), wait);
     return () => window.clearTimeout(id);
   }, [step, reduced]);
@@ -59,9 +54,9 @@ function usePlayback(reduced: boolean) {
   return { step, typing, done: step >= STEPS, replay: () => setStep(0), skip: () => setStep(STEPS) };
 }
 
-// ------------------------------------------------------------- pieces ----
+// --------------------------------------------------------------- pieces ---
 
-function Avatar({ speaker, size = 32 }: { speaker: Speaker; size?: number }) {
+function Avatar({ speaker, size = 30 }: { speaker: Speaker; size?: number }) {
   return (
     <span className="av" data-speaker={speaker} style={{ width: size, height: speaker === "agent" ? size * 0.78 : size }} aria-hidden="true">
       {speaker === "agent" ? (
@@ -76,20 +71,23 @@ function Avatar({ speaker, size = 32 }: { speaker: Speaker; size?: number }) {
   );
 }
 
-interface AnchorProps {
+type Activate = (id: AnchorId, how: "hover" | "press", el?: HTMLElement) => void;
+
+function Anchor({
+  id,
+  active,
+  onActivate,
+  className = "",
+  children,
+}: {
   id: AnchorId;
   active: AnchorId | null;
-  onActivate: (id: AnchorId, how: "hover" | "press") => void;
+  onActivate: Activate;
   className?: string;
   children: ReactNode;
-  inline?: boolean;
-}
-
-/** A tagged part of the conversation. Hover, focus or press reveals the research behind it. */
-function Anchor({ id, active, onActivate, className = "", children, inline }: AnchorProps) {
-  const Tag = inline ? "span" : "div";
+}) {
   return (
-    <Tag
+    <div
       role="button"
       tabIndex={0}
       className={`anchor ${className}`}
@@ -97,61 +95,49 @@ function Anchor({ id, active, onActivate, className = "", children, inline }: An
       data-mode={evidence[id].mode}
       data-active={active === id || undefined}
       aria-pressed={active === id}
-      aria-label={inline ? undefined : `${evidence[id].stands}: ${evidence[id].tag}`}
-      onPointerEnter={(e) => e.pointerType === "mouse" && onActivate(id, "hover")}
-      onFocus={() => onActivate(id, "hover")}
-      onClick={() => onActivate(id, "press")}
+      aria-label={`${evidence[id].tag}: ${evidence[id].title}`}
+      onPointerEnter={(e) => e.pointerType === "mouse" && onActivate(id, "hover", e.currentTarget)}
+      onFocus={(e) => onActivate(id, "hover", e.currentTarget)}
+      onClick={(e) => onActivate(id, "press", e.currentTarget)}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          onActivate(id, "press");
+          onActivate(id, "press", e.currentTarget);
         }
       }}
     >
       {children}
-    </Tag>
+    </div>
   );
 }
 
-function AnchorTag({ id }: { id: AnchorId }) {
+function Tag({ id }: { id: AnchorId }) {
   return (
-    <span className="atag" data-mode={evidence[id].mode}>
+    <span className="tag" data-mode={evidence[id].mode}>
       {evidence[id].tag}
     </span>
   );
 }
 
-function MessageText({ m, active, onActivate }: { m: Message; active: AnchorId | null; onActivate: AnchorProps["onActivate"] }) {
-  if (!m.highlight) return <>{m.text}</>;
-  const [before, after] = m.text.split(m.highlight.text);
-  return (
-    <>
-      {before}
-      <Anchor id={m.highlight.anchor} active={active} onActivate={onActivate} inline className="anchor--phrase">
-        <mark>{m.highlight.text}</mark>
-        <AnchorTag id={m.highlight.anchor} />
-      </Anchor>
-      {after}
-    </>
-  );
-}
-
-function Bubble({ m, active, onActivate }: { m: Message; active: AnchorId | null; onActivate: AnchorProps["onActivate"] }) {
+function Bubble({ m, active, onActivate }: { m: Message; active: AnchorId | null; onActivate: Activate }) {
   const body = (
-    <div className="msg__bubble">
-      <p className="msg__name">{speakerName[m.speaker]}</p>
-      <p className="msg__text">
-        <MessageText m={m} active={active} onActivate={onActivate} />
+    <div className="bubble">
+      <p className="bubble__text">
+        <span className="sr-only">{speakerName[m.speaker]}: </span>
+        {m.text}
       </p>
-      {m.anchor && <AnchorTag id={m.anchor} />}
+      <p className="bubble__move">
+        {m.move}
+        {m.anchor && <Tag id={m.anchor} />}
+      </p>
     </div>
   );
   return (
     <motion.li
       className="msg"
       data-speaker={m.speaker}
-      initial={{ opacity: 0, y: 12, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: EASE }}
     >
       <Avatar speaker={m.speaker} />
@@ -166,108 +152,91 @@ function Bubble({ m, active, onActivate }: { m: Message; active: AnchorId | null
   );
 }
 
-function Chat({
-  active,
-  onActivate,
-  reduced,
-}: {
-  active: AnchorId | null;
-  onActivate: AnchorProps["onActivate"];
-  reduced: boolean;
-}) {
+function Chat({ active, onActivate, reduced }: { active: AnchorId | null; onActivate: Activate; reduced: boolean }) {
   const { step, typing, done, replay, skip } = usePlayback(reduced);
-  const nextSpeaker: Speaker | null = (() => {
-    if (done || !typing) return null;
-    const i = messages.findIndex((_, idx) => messageStep(idx) === step + 1);
-    return i >= 0 ? messages[i].speaker : null;
-  })();
-  const shownStates = messages.filter((_, i) => messageStep(i) <= step).map((m) => m.state);
+  const nextIdx = !done && typing ? messages.findIndex((_, i) => messageStep(i) === step + 1) : -1;
+  const nextSpeaker = nextIdx >= 0 ? messages[nextIdx].speaker : null;
+  const shown = messages.filter((_, i) => messageStep(i) <= step).length;
 
   return (
     <div className="chat" data-dim={active ? true : undefined}>
       <div className="chat__bar">
         <div className="chat__people" aria-hidden="true">
-          {(["green", "white", "pink", "lilac", "agent"] as Speaker[]).map((s) => (
-            <Avatar key={s} speaker={s} size={24} />
+          {(["green", "pink", "lilac", "agent"] as Speaker[]).map((s) => (
+            <Avatar key={s} speaker={s} size={22} />
           ))}
         </div>
-        <div className="chat__titles">
-          <p className="chat__title">Group deliberation</p>
-          <p className="chat__sub">4 people · 1 AI agent · illustrative conversation</p>
-        </div>
+        <p className="chat__meta">3 participants and an AI agent · example utterances from LAK ’26</p>
         <button type="button" className="chat__ctl" onClick={done ? replay : skip}>
-          {done ? "↺ Replay" : "Skip"}
+          {done ? "Replay" : "Skip"}
         </button>
       </div>
 
-      <div className="chat__body">
-        <Anchor id="games" active={active} onActivate={onActivate} className="anchor--card">
-          <div className="dcard">
-            <p className="dcard__label">🃏 {dilemma.label}</p>
-            <p className="dcard__text">{dilemma.text}</p>
-            <AnchorTag id="games" />
-          </div>
-        </Anchor>
+      <Anchor id="games" active={active} onActivate={onActivate} className="anchor--dilemma">
+        <div className="dilemma">
+          <p className="dilemma__text">{dilemma}</p>
+          <Tag id="games" />
+        </div>
+      </Anchor>
 
-        <ol className="chat__list" aria-label="Conversation">
-          {messages.map((m, i) => (
-            <Fragment key={i}>
-              {i === PIVOT_INDEX + 1 && step >= noticeStep && (
-                <motion.li
-                  className="notice"
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, ease: EASE }}
-                >
-                  <Anchor id="next" active={active} onActivate={onActivate} className="anchor--notice">
-                    <span className="notice__flag" aria-hidden="true">
-                      ⚑
-                    </span>
-                    <span className="notice__text">
-                      Agent notices <b>uncertainty</b> — is this the moment to speak?
-                    </span>
-                    <AnchorTag id="next" />
-                  </Anchor>
-                </motion.li>
-              )}
-              {messageStep(i) <= step && <Bubble m={m} active={active} onActivate={onActivate} />}
-            </Fragment>
-          ))}
-          <AnimatePresence>
-            {nextSpeaker && (
+      <ol className="chat__list" aria-label="Conversation">
+        {messages.map((m, i) => (
+          <Fragment key={i}>
+            {i === PIVOT_INDEX + 1 && step >= noticeStep && (
               <motion.li
-                key={`typing-${step}`}
-                className="msg msg--typing"
-                data-speaker={nextSpeaker}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                aria-hidden="true"
+                className="notice"
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, ease: EASE }}
               >
-                <Avatar speaker={nextSpeaker} />
-                <span className="typing">
-                  <i />
-                  <i />
-                  <i />
-                </span>
+                <Anchor id="next" active={active} onActivate={onActivate} className="anchor--notice">
+                  <span className="notice__text">A pivotal moment? When and how should the agent intervene?</span>
+                  <Tag id="next" />
+                </Anchor>
               </motion.li>
             )}
-          </AnimatePresence>
-        </ol>
-      </div>
-
-      <Anchor id="states" active={active} onActivate={onActivate} className="anchor--ribbon">
-        <div className="ribbon">
-          <p className="ribbon__label">
-            Dialogue state <AnchorTag id="states" />
-          </p>
-          <div className="ribbon__track" aria-hidden="true">
-            {messages.map((m, i) => (
-              <span key={i} className="ribbon__seg" data-state={m.state} data-on={i < shownStates.length || undefined}>
-                {(i === 0 || messages[i - 1].state !== m.state) && <span className="ribbon__name">{stateLabel[m.state]}</span>}
+            {messageStep(i) <= step && <Bubble m={m} active={active} onActivate={onActivate} />}
+          </Fragment>
+        ))}
+        <AnimatePresence>
+          {nextSpeaker && (
+            <motion.li
+              key={`typing-${step}`}
+              className="msg msg--typing"
+              data-speaker={nextSpeaker}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: { duration: 0.1 } }}
+              aria-hidden="true"
+            >
+              <Avatar speaker={nextSpeaker} />
+              <span className="typing">
+                <i />
+                <i />
+                <i />
               </span>
+            </motion.li>
+          )}
+        </AnimatePresence>
+      </ol>
+
+      <Anchor id="modes" active={active} onActivate={onActivate} className="anchor--modes">
+        <div className="modes">
+          <p className="modes__head">
+            Dialogue mode <Tag id="modes" />
+          </p>
+          <div className="modes__track" aria-hidden="true">
+            {messages.map((m, i) => (
+              <span key={i} className="modes__seg" data-mode={m.mode} data-on={i < shown || undefined} />
             ))}
           </div>
+          <p className="modes__legend" aria-hidden="true">
+            {(["affective", "mediation", "deliberative"] as const).map((k) => (
+              <span key={k} data-mode={k}>
+                {modeLabel[k]}
+              </span>
+            ))}
+          </p>
         </div>
       </Anchor>
     </div>
@@ -281,49 +250,36 @@ function EvidenceCard({ id }: { id: AnchorId }) {
       key={id}
       className="ev"
       data-mode={e.mode}
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -6 }}
-      transition={{ duration: 0.3, ease: EASE }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.28, ease: EASE }}
     >
-      <p className="ev__stands">{e.stands}</p>
       <p className="ev__venue">{e.venue}</p>
       <h3 className="ev__title">{e.title}</h3>
       <p className="ev__finding">{e.finding}</p>
-      <ul className="ev__stats">
-        {e.stats.map((s) => (
-          <li key={s}>{s}</li>
-        ))}
-      </ul>
-      {(e.methods || e.role || e.award) && (
-        <dl className="ev__meta">
-          {e.role && (
-            <div>
-              <dt>Role</dt>
-              <dd>{e.role}</dd>
-            </div>
-          )}
-          {e.methods && (
-            <div>
-              <dt>Methods</dt>
-              <dd>{e.methods}</dd>
-            </div>
-          )}
-          {e.award && (
-            <div>
-              <dt>Recognition</dt>
-              <dd>{e.award}</dd>
-            </div>
-          )}
-        </dl>
+      {e.stats.length > 0 && (
+        <ul className="ev__stats">
+          {e.stats.map((s) => (
+            <li key={s}>{s}</li>
+          ))}
+        </ul>
       )}
+      <dl className="ev__details">
+        {e.details.map((d) => (
+          <div key={d.label}>
+            <dt>{d.label}</dt>
+            <dd>{d.value}</dd>
+          </div>
+        ))}
+      </dl>
       {e.links.length > 0 && (
         <p className="ev__links">
           {e.links.map((l) => {
             const ext = l.href.startsWith("http");
             return (
-              <a key={l.href} href={l.href} className="pill" {...(ext ? { target: "_blank", rel: "noreferrer" } : {})}>
-                {l.label} <span aria-hidden="true">{ext ? "↗" : "→"}</span>
+              <a key={l.href} href={l.href} className="link" {...(ext ? { target: "_blank", rel: "noreferrer" } : {})}>
+                {l.label} <span aria-hidden="true">{ext ? "↗" : "›"}</span>
               </a>
             );
           })}
@@ -333,23 +289,21 @@ function EvidenceCard({ id }: { id: AnchorId }) {
   );
 }
 
-function AnchorIndex({ active, onActivate }: { active: AnchorId | null; onActivate: AnchorProps["onActivate"] }) {
+function TagIndex({ active, onActivate }: { active: AnchorId | null; onActivate: Activate }) {
+  const find = (id: AnchorId) => document.querySelector<HTMLElement>(`.chat [data-anchor="${id}"]`) ?? undefined;
   return (
-    <ul className="aindex" aria-label="Research behind the conversation">
+    <ul className="tindex" aria-label="Research behind the conversation">
       {anchorOrder.map((id) => (
         <li key={id}>
           <button
             type="button"
-            className="aindex__item"
+            className="tag tag--button"
             data-mode={evidence[id].mode}
             aria-pressed={active === id}
-            title={evidence[id].stands}
-            aria-label={`${evidence[id].tag}: ${evidence[id].stands}`}
-            onPointerEnter={(e) => e.pointerType === "mouse" && onActivate(id, "hover")}
-            onClick={() => onActivate(id, "press")}
+            onPointerEnter={(e) => e.pointerType === "mouse" && onActivate(id, "hover", find(id))}
+            onClick={() => onActivate(id, "press", find(id))}
           >
-            <span className="aindex__tag">{evidence[id].tag}</span>
-            <span className="aindex__stands">{evidence[id].stands}</span>
+            {evidence[id].tag}
           </button>
         </li>
       ))}
@@ -357,7 +311,7 @@ function AnchorIndex({ active, onActivate }: { active: AnchorId | null; onActiva
   );
 }
 
-// ------------------------------------------------------------ headline ---
+// ------------------------------------------------------------- headline ---
 
 function Headline({ force }: { force: "tracing" | "shaping" | null }) {
   const reduced = useMediaQuery("(prefers-reduced-motion: reduce)");
@@ -403,18 +357,46 @@ function Headline({ force }: { force: "tracing" | "shaping" | null }) {
 
 export default function App() {
   const reduced = useMediaQuery("(prefers-reduced-motion: reduce)");
-  const wide = useMediaQuery("(min-width: 1024px)");
+  const floating = useMediaQuery("(min-width: 1200px)");
   const [active, setActive] = useState<AnchorId | null>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [cardTop, setCardTop] = useState(0);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const floatRef = useRef<HTMLElement>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
 
-  const onActivate = useCallback(
-    (id: AnchorId, how: "hover" | "press") => {
+  const onActivate = useCallback<Activate>(
+    (id, how, el) => {
       setActive(id);
-      if (!wide && how === "press") setSheetOpen(true);
+      if (el) setAnchorEl(el);
+      if (!floating && how === "press") setSheetOpen(true);
     },
-    [wide],
+    [floating],
   );
+
+  // Float the card beside the part of the conversation it explains.
+  useLayoutEffect(() => {
+    if (!floating || !anchorEl || !stageRef.current) return;
+    // Line the card up with the anchor, but keep it inside the visible area.
+    const place = () => {
+      const s = stageRef.current!.getBoundingClientRect();
+      const a = anchorEl.getBoundingClientRect();
+      const h = floatRef.current?.offsetHeight ?? 0;
+      const want = a.top - s.top - 8;
+      const lowest = window.innerHeight - 24 - h - s.top; // card bottom stays on screen
+      const highest = 68 - s.top; // below the sticky header
+      setCardTop(Math.max(0, Math.max(highest, Math.min(want, lowest))));
+    };
+    place();
+    const ro = floatRef.current ? new ResizeObserver(place) : null;
+    if (ro && floatRef.current) ro.observe(floatRef.current);
+    window.addEventListener("resize", place);
+    return () => {
+      ro?.disconnect();
+      window.removeEventListener("resize", place);
+    };
+  }, [floating, anchorEl, active]);
 
   useEffect(() => {
     if (!sheetOpen) return;
@@ -436,54 +418,42 @@ export default function App() {
         <nav className="top__nav" aria-label="Primary">
           <a href="#work">Work</a>
           <a href="/#/publications" target="_blank" rel="noopener">
-            Publications ↗
+            Publications
           </a>
           <a href={cv.cvUrl} target="_blank" rel="noreferrer">
-            CV ↗
+            CV
           </a>
-          <a href="#contact" className="top__hello">
-            Say hello
-          </a>
+          <a href="#contact">Contact</a>
         </nav>
       </header>
 
       <main id="top">
         <section className="hero" aria-labelledby="hero-title">
-          <div className="hero__left">
-            <div id="hero-title">
-              <Headline force={mode === "tracing" || mode === "shaping" ? mode : null} />
-            </div>
-            <p className="hero__vision">{vision}</p>
-
-            {wide ? (
-              <>
-                <p className="hint__text">
-                  Every tagged part of the conversation is grounded in my research. <b>Hover a tag</b> to see the study behind it.
-                </p>
-                <AnchorIndex active={active} onActivate={onActivate} />
-                <div className="hero__evidence" aria-live="polite">
-                  <AnimatePresence mode="wait" initial={false}>
-                    {active ? (
-                      <EvidenceCard key={active} id={active} />
-                    ) : (
-                      <motion.p key="empty" className="ev-empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                        <span aria-hidden="true">→</span> The conversation on the right is playing. Tags appear as it unfolds.
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </>
-            ) : (
-              <p className="hint__text hint__text--mobile">
-                Every tagged part of the conversation below is grounded in my research. <b>Tap a tag</b> to see the study behind
-                it.
-              </p>
-            )}
+          <div id="hero-title">
+            <Headline force={mode === "tracing" || mode === "shaping" ? mode : null} />
+          </div>
+          <p className="hero__vision">{vision}</p>
+          <div className="hero__guide">
+            <p className="hero__hint">Each tagged part of the conversation links to the study behind it.</p>
+            <TagIndex active={active} onActivate={onActivate} />
           </div>
 
-          <div className="hero__right">
+          <div className="stage" ref={stageRef}>
             <Chat active={active} onActivate={onActivate} reduced={reduced} />
-            {!wide && <AnchorIndex active={active} onActivate={onActivate} />}
+            {floating && (
+              <motion.aside
+                ref={floatRef}
+                className="ev-float"
+                aria-live="polite"
+                initial={false}
+                animate={{ top: cardTop }}
+                transition={{ duration: reduced ? 0 : 0.35, ease: EASE }}
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  {active && <EvidenceCard key={active} id={active} />}
+                </AnimatePresence>
+              </motion.aside>
+            )}
           </div>
         </section>
 
@@ -491,26 +461,25 @@ export default function App() {
           <h2 id="work-title" className="sec-title">
             Selected work
           </h2>
-          <p className="sec-sub">Case studies with the study design, methods, results, and my role.</p>
           <ul className="work__grid">
             {works.map((w) => (
               <li key={w.id}>
-                <a href={`/portfolio/#/works/${w.id}`} className="wcard" data-mode={w.mode}>
+                <a href={`/portfolio/#/works/${w.id}`} className="wcard">
                   <span className="wcard__img">
                     <img src={w.image} alt={w.alt} loading="lazy" />
                   </span>
-                  <span className="wcard__venue">{w.venue}</span>
                   <span className="wcard__title">{w.title}</span>
+                  <span className="wcard__venue">{w.venue}</span>
                   <span className="wcard__line">{w.line}</span>
-                  <span className="wcard__more">
-                    Case study <span aria-hidden="true">→</span>
+                  <span className="link">
+                    Case study <span aria-hidden="true">›</span>
                   </span>
                 </a>
               </li>
             ))}
           </ul>
 
-          <h3 className="other__title">Also</h3>
+          <h3 className="other__title">More publications</h3>
           <ul className="other">
             {otherWork.map((o) => (
               <li key={o.href}>
@@ -525,24 +494,23 @@ export default function App() {
 
         <section id="contact" className="contact" aria-labelledby="contact-title">
           <h2 id="contact-title" className="sec-title">
-            Let's think together.
+            Contact
           </h2>
-          <p className="sec-sub">I'm applying to PhD programs for Fall 2027.</p>
           <p className="contact__links">
-            <a href={`mailto:${profile.email}`} className="pill pill--solid">
+            <a href={`mailto:${profile.email}`} className="btn btn--solid">
               {profile.email}
             </a>
-            <a href={profile.googleScholar} className="pill" target="_blank" rel="noreferrer">
+            <a href={profile.googleScholar} className="btn" target="_blank" rel="noreferrer">
               Google Scholar ↗
             </a>
-            <a href="/" className="pill">
-              Academic website →
+            <a href="/" className="btn">
+              Academic website
             </a>
           </p>
         </section>
       </main>
 
-      {!wide && (
+      {!floating && (
         <AnimatePresence>
           {sheetOpen && active && (
             <>
@@ -558,7 +526,7 @@ export default function App() {
                 className="sheet"
                 role="dialog"
                 aria-modal="true"
-                aria-label={evidence[active].stands}
+                aria-label={evidence[active].title}
                 tabIndex={-1}
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
@@ -566,7 +534,7 @@ export default function App() {
                 transition={{ duration: 0.35, ease: EASE }}
               >
                 <button type="button" className="sheet__close" onClick={() => setSheetOpen(false)}>
-                  Close
+                  Done
                 </button>
                 <AnimatePresence mode="wait" initial={false}>
                   <EvidenceCard key={active} id={active} />
