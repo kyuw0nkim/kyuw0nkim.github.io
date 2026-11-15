@@ -75,12 +75,6 @@ export function AboutPanel() {
         ))}
       </div>
 
-      <p className="about__vision-link">
-        <Link to="/vision" className="pill-link">
-          Read my research vision <span aria-hidden="true">→</span>
-        </Link>
-      </p>
-
       <div className="about__modes">
         {MODE_ORDER.map((mode) => (
           <Link key={mode} to={`/${mode}`} className="about__mode" {...previewHandlers(mode)}>

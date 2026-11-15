@@ -30,8 +30,6 @@ Sources: `Fall_2027_Stanford_Academic_Statement_of_Purpose_v.8.0.docx` and `Fall
 
 | Surface | Evidence used | Editorial boundary |
 | --- | --- | --- |
-| `#/vision` chapters and pivotal moments | SoP narrative: 82 participants across game formats; 21 groups (N=49), three conditions, LMM + ONA, UC Irvine collaboration; 2,199 utterances (LAK); 80 discussions (ICALT); future-direction hypothesis | Program- and faculty-specific SoP content (Stanford, named professors) is not used. Findings are reported as associations where the SoP does. |
-| "A discussion, traced" vignette | Illustrates the SoP's future direction | Scripted and labelled on screen as "Illustrative sketch · not study data". |
 | About: capability map, teaching & practice, recognition | CV research experience, skills, professional/teaching experience, awards | Museum educator, College of Education consultancy, and vibe-coding teaching now come from the October 2026 CV. |
 | Agent Roles in Deliberation | SoP + CV (submitted journal manuscript with Samadi & Nixon) | Manuscript described only as "under review"; journal not named on the page. |
 | AI Ethics Through Play | CV: "Led the design and development of TTRPG prototypes (Figma) and interactive game prototypes (ProtoPie)"; SoP: card design, 82 participants | Team authorship kept; individual role stated as in the CV. |

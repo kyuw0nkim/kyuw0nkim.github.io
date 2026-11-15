@@ -20,7 +20,7 @@ export function SceneStage({ selected, onSelect, onReset }: Props) {
   const reduced = useReducedMotion();
   const finePointer = useCanHover();
   const isWide = useIsWide();
-  const hover = usePortfolioStore((s) => s.hover ?? s.glow);
+  const hover = usePortfolioStore((s) => s.hover);
 
   useEffect(() => {
     if (!selected || !onReset) return;

@@ -1,0 +1,211 @@
+/* ======================================================================
+   About additions — capability map, teaching & practice, recognition
+   ====================================================================== */
+
+.cap,
+.practice,
+.recognition {
+  margin-top: 48px;
+}
+
+.cap__title {
+  font-size: clamp(24px, 2.2vw, 30px);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+
+.cap__intro {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--pf-ink-2);
+}
+
+.cap__list {
+  display: grid;
+  margin-top: 18px;
+  border-top: 1px solid var(--pf-line);
+}
+
+.cap__row {
+  position: relative;
+  padding: 18px 16px 18px 20px;
+  border-bottom: 1px solid var(--pf-line);
+  transition: background 0.25s;
+}
+
+.cap__row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18px;
+  bottom: 18px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--pf-tracing);
+  transform: scaleY(0.35);
+  transform-origin: top;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.cap__row[data-mode="shaping"]::before {
+  background: var(--pf-shaping);
+}
+
+.cap__row[data-active] {
+  background: color-mix(in srgb, var(--pf-white) 70%, transparent);
+}
+
+.cap__row[data-active]::before {
+  transform: scaleY(1);
+}
+
+.cap__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cap__name {
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.cap__line {
+  margin-top: 4px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--pf-ink-2);
+}
+
+.cap__methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.cap__methods li {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--pf-bg-2);
+  font-size: 12.5px;
+}
+
+.cap__row[data-mode="tracing"][data-active] .cap__methods li {
+  background: var(--pf-tracing-soft);
+}
+
+.cap__row[data-mode="shaping"][data-active] .cap__methods li {
+  background: var(--pf-shaping-soft);
+}
+
+.cap__works {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin-top: 10px;
+  font-size: 13.5px;
+}
+
+.cap__works .label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.cap__work {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  font-weight: 600;
+  background-image: linear-gradient(var(--pf-yellow), var(--pf-yellow));
+  background-repeat: no-repeat;
+  background-size: 100% 0.3em;
+  background-position: 0 92%;
+  transition: background-size 0.3s var(--ease-out);
+}
+
+.cap__work:hover {
+  background-size: 100% 100%;
+}
+
+.cap__work-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--pf-ink-2);
+}
+
+.practice__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+@media (max-width: 559px) {
+  .practice__list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.practice__item {
+  padding: 18px;
+  border: 1px solid var(--pf-line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--pf-white) 60%, transparent);
+}
+
+.practice__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.practice__role {
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.practice__when {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--pf-ink-2);
+  white-space: nowrap;
+}
+
+.practice__place {
+  margin-top: 2px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--pf-ink-2);
+}
+
+.practice__text {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--pf-ink-2);
+}
+
+.recognition__list {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.recognition__list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.recognition__list li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: #d9a400;
+}
+

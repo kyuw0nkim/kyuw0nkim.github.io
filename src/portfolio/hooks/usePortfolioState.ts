@@ -12,14 +12,9 @@ import type { Mode, ModeFilter } from "../data/types";
 export interface InteractionState {
   /** Mode being previewed by hovering/focusing a scene object, a button or a project card. */
   hover: Mode | null;
-  /**
-   * Mode lit up by the content itself (e.g. the Vision chapter on screen).
-   * A real hover always wins over it.
-   */
-  glow: Mode | null;
 }
 
-let state: InteractionState = { hover: null, glow: null };
+let state: InteractionState = { hover: null };
 const listeners = new Set<() => void>();
 
 export const portfolioStore = {
@@ -41,9 +36,8 @@ export function usePortfolioStore<T>(selector: (s: InteractionState) => T): T {
 }
 
 export const setHover = (hover: Mode | null) => portfolioStore.set({ hover });
-export const setGlow = (glow: Mode | null) => portfolioStore.set({ glow });
 
-export type View = "intro" | "explore" | "vision" | "about" | "contact" | "project" | "other";
+export type View = "intro" | "explore" | "about" | "contact" | "project" | "other";
 
 export interface RouteState {
   view: View;
@@ -59,7 +53,6 @@ export function routeStateFor(pathname: string): RouteState {
   if (pathname === "/shaping") return { view: "explore", filter: "shaping", selected: "shaping" };
   if (pathname === "/works") return { view: "explore", filter: "all", selected: null };
   if (pathname.startsWith("/works/")) return { view: "project", filter: null, selected: null };
-  if (pathname === "/vision") return { view: "vision", filter: null, selected: null };
   if (pathname === "/about") return { view: "about", filter: null, selected: null };
   if (pathname === "/contact") return { view: "contact", filter: null, selected: null };
   return { view: "other", filter: null, selected: null };
