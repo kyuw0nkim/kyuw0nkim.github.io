@@ -1,4 +1,4 @@
-# Kyuwon Kim — Original portfolio (`/portfolio-o/`)
+# Kyuwon Kim — Original portfolio (`/portfolio-o/`, deprecated)
 
 학술 사이트(`/`)와 분리된 시각 중심 포트폴리오입니다. 같은 저장소·같은 빌드로 배포되지만
 학술 사이트 내비게이션에는 연결되어 있지 않습니다. 주소: `https://kyuwonkim.com/portfolio-o/`
@@ -168,7 +168,7 @@ npm run dev
 
 ## 연구 비전 페이지 (`/vision/`, `/portfolio/`)
 
-대화창을 중심에 둔 페이지 하나를 두 주소로 배포합니다. 둘 다 `noindex`이며 어느 사이트에서도 링크하지 않습니다.
+대화창을 중심에 둔 페이지 하나를 두 주소로 배포합니다. 어느 사이트에서도 링크하지 않습니다.
 
 | 주소 | 용도 | 진입 HTML |
 |------|------|-----------|
@@ -178,4 +178,6 @@ npm run dev
 - 소스는 하나입니다: `src/vision/` (`App.tsx`, `data.ts`, `styles.css`).
 - 두 버전의 차이는 `src/vision/variants.ts`에서만 정합니다(비전 문장, 작업 순서). 현재는 비어 있어 두 페이지가 같습니다.
 - 문구·수치·대화 각본은 `src/vision/data.ts`에 있고, 줄마다 출처(SoP·CV·논문)가 주석으로 달려 있습니다.
-- 케이스 스터디 링크는 기존 포트폴리오(`/portfolio-o/#/works/<id>`)로 연결됩니다.
+- 케이스 스터디는 페이지 안에 있습니다: `#case/<id>` (내용: `src/vision/cases.ts`, 블록마다 출처 주석).
+- 예전 `/portfolio/#/works/<id>` 링크는 해당 케이스 스터디가 있으면 `#case/<id>`로, 없으면 `/portfolio-o/`로 넘어갑니다.
+- `/vision/`, `/portfolio/`, `/portfolio-o/` 모두 `noindex`입니다.

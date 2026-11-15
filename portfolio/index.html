@@ -2,8 +2,16 @@
 <html lang="en" data-variant="stem">
   <head>
     <script>
-      // Links to the original portfolio used hash routes (e.g. /portfolio/#/works/<id>); send them to /portfolio-o/.
-      if (location.hash.indexOf("#/") === 0) location.replace("/portfolio-o/" + location.hash);
+      // Old links used the original portfolio's hash routes (/portfolio/#/works/<id>).
+      // Open the matching case study here when there is one; otherwise go to /portfolio-o/.
+      (function () {
+        var h = location.hash;
+        if (h.indexOf("#/") !== 0) return;
+        var cases = ["productive-discussion-moves", "agent-roles-in-deliberation", "your-thoughtful-opponent", "ai-ethics-games"];
+        var id = h.indexOf("#/works/") === 0 ? h.slice(8) : "";
+        if (cases.indexOf(id) !== -1) location.replace("#case/" + id);
+        else location.replace("/portfolio-o/" + h);
+      })();
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />

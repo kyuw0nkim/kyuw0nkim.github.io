@@ -29,8 +29,8 @@ export interface Evidence {
   links: { label: string; href: string }[];
 }
 
-/** Case studies live in the original portfolio, now at /portfolio-o/. */
-export const CASE = (id: string) => `/portfolio-o/#/works/${id}`;
+/** Case studies are part of this page (see cases.ts). */
+export const CASE = (id: string) => `#case/${id}`;
 
 export const evidence: Record<AnchorId, Evidence> = {
   games: {
@@ -271,21 +271,21 @@ export const works: Work[] = [
   },
 ];
 
-// CV titles.
+// CV titles; links go to the papers.
 export const otherWork: { title: string; venue: string; href: string }[] = [
   {
     title: "How Learners Engage with an LLM-Based Pedagogical Conversational Agent During Music Form Analysis",
     venue: "CHI ’26 EA",
-    href: CASE("conversational-agent-prototypes"),
+    href: "https://doi.org/10.1145/3772363.3798900",
   },
   {
     title: "Bridging Literacy with AI: AI-Integrated Digital Textbook for Deaf and Hard-of-Hearing Students",
     venue: "IDC ’25 EA",
-    href: CASE("bridging-literacy"),
+    href: "https://doi.org/10.1145/3713043.3731489",
   },
   {
     title: "What Do University Students Say About ChatGPT? A Topic Modeling of Perception on GenAI in Academic Writing",
     venue: "ICCE ’24, Best Poster",
-    href: CASE("mapping-ai-in-education"),
+    href: "https://doi.org/10.58459/icce.2024.5029",
   },
 ];

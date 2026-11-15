@@ -17,6 +17,8 @@ import {
 } from "./data";
 import type { AnchorId, Message, Speaker } from "./data";
 import { currentVariant, variantOverrides } from "./variants";
+import { cases, getCase } from "./cases";
+import type { CaseFigure, CaseStudy } from "./cases";
 
 // Apply the page variant (/vision/ = dialogue, /portfolio/ = STEM).
 const overrides = variantOverrides[currentVariant()];
@@ -362,6 +364,115 @@ function Headline({ force }: { force: "tracing" | "shaping" | null }) {
   );
 }
 
+// ----------------------------------------------------------- case study ---
+
+/** Current location hash, kept in sync with navigation. */
+function useHash() {
+  const [hash, setHash] = useState(() => window.location.hash);
+  useEffect(() => {
+    const on = () => setHash(window.location.hash);
+    window.addEventListener("hashchange", on);
+    return () => window.removeEventListener("hashchange", on);
+  }, []);
+  return hash;
+}
+
+function Figure({ f }: { f: CaseFigure }) {
+  return (
+    <figure className="case__figure">
+      <img src={f.src} alt={f.alt} loading="lazy" />
+      <figcaption>{f.caption}</figcaption>
+    </figure>
+  );
+}
+
+function CaseView({ study }: { study: CaseStudy }) {
+  const i = cases.findIndex((c) => c.id === study.id);
+  const prev = cases[(i - 1 + cases.length) % cases.length];
+  const next = cases[(i + 1) % cases.length];
+
+  return (
+    <motion.main
+      id="top"
+      key={study.id}
+      className="case"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: EASE }}
+    >
+      <a href="#work" className="case__back">
+        <span aria-hidden="true">‹</span> All work
+      </a>
+      <h1 className="case__title">{study.title}</h1>
+      <ul className="case__papers">
+        {study.papers.map((p) => (
+          <li key={p}>{p}</li>
+        ))}
+      </ul>
+      <dl className="case__meta">
+        {study.meta.map((m) => (
+          <div key={m.label}>
+            <dt>{m.label}</dt>
+            <dd>{m.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <Figure f={study.figure} />
+
+      {study.sections.map((s) => (
+        <section key={s.title} className="case__section">
+          <h2>{s.title}</h2>
+          <div className="case__body">
+            {s.body?.map((p) => (
+              <p key={p.slice(0, 40)}>{p}</p>
+            ))}
+            {s.steps && (
+              <ol className="case__steps">
+                {s.steps.map((st) => (
+                  <li key={st.title}>
+                    <h3>{st.title}</h3>
+                    <p>{st.text}</p>
+                  </li>
+                ))}
+              </ol>
+            )}
+            {s.points && (
+              <ul className="case__points">
+                {s.points.map((p) => (
+                  <li key={p.slice(0, 40)}>{p}</li>
+                ))}
+              </ul>
+            )}
+            {s.figure && <Figure f={s.figure} />}
+          </div>
+        </section>
+      ))}
+
+      {study.links.length > 0 && (
+        <p className="case__links">
+          {study.links.map((l) => (
+            <a key={l.href} href={l.href} className="btn" target="_blank" rel="noreferrer">
+              {l.label} ↗
+            </a>
+          ))}
+        </p>
+      )}
+
+      <nav className="case__nav" aria-label="More case studies">
+        <a href={CASE(prev.id)}>
+          <span className="case__nav-label">Previous</span>
+          {prev.title}
+        </a>
+        <a href={CASE(next.id)} className="case__nav-next">
+          <span className="case__nav-label">Next</span>
+          {next.title}
+        </a>
+      </nav>
+    </motion.main>
+  );
+}
+
 // ------------------------------------------------------------------ app ---
 
 export default function App() {
@@ -415,6 +526,22 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKey);
   }, [sheetOpen]);
 
+  const hash = useHash();
+  const study = hash.startsWith("#case/") ? getCase(hash.slice("#case/".length)) : undefined;
+
+  // Opening a case study starts at its top; returning to the home sections
+  // (e.g. "#work") scrolls to that section once it has rendered again.
+  useEffect(() => {
+    if (study) {
+      window.scrollTo({ top: 0 });
+      setSheetOpen(false);
+      return;
+    }
+    if (/^#[a-z]+$/.test(hash)) {
+      requestAnimationFrame(() => document.getElementById(hash.slice(1))?.scrollIntoView());
+    }
+  }, [hash, study]);
+
   const mode = active ? evidence[active].mode : null;
   const { profile, cv } = siteData;
 
@@ -436,6 +563,9 @@ export default function App() {
         </nav>
       </header>
 
+      {study ? (
+        <CaseView study={study} />
+      ) : (
       <main id="top">
         <section className="hero" aria-labelledby="hero-title">
           <div id="hero-title">
@@ -492,7 +622,7 @@ export default function App() {
           <ul className="other">
             {otherWork.map((o) => (
               <li key={o.href}>
-                <a href={o.href} className="other__item">
+                <a href={o.href} className="other__item" target="_blank" rel="noreferrer">
                   <span>{o.title}</span>
                   <span className="other__venue">{o.venue}</span>
                 </a>
@@ -518,8 +648,9 @@ export default function App() {
           </p>
         </section>
       </main>
+      )}
 
-      {!floating && (
+      {!floating && !study && (
         <AnimatePresence>
           {sheetOpen && active && (
             <>
