@@ -5,6 +5,7 @@ import { site } from "../data/site";
 import { useRouteState } from "../hooks/usePortfolioState";
 
 const NAV = [
+  { to: "/vision", label: "Vision" },
   { to: "/works", label: "Works" },
   { to: "/about", label: "About" },
 ];

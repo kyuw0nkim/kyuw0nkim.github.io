@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { site } from "../data/site";
 import { KineticHeadline } from "./KineticHeadline";
@@ -36,6 +37,12 @@ export function IntroPanel() {
             <span>or the table for</span>
             <ModePill mode="shaping" />
           </span>
+        </p>
+        <p className="intro__vision">
+          <Link to="/vision" className="text-link">
+            Or read the research vision
+          </Link>{" "}
+          <span aria-hidden="true">→</span>
         </p>
       </motion.div>
     </div>

@@ -51,7 +51,7 @@ export const projects: Project[] = [
       {
         title: "Process",
         body: [
-          "The LAK study analyzed 83 discussion sessions from 51 undergraduates in groups of three. Expert-informed SEDA coding and BERTopic clustering were combined to identify 14 discussion moves across five categories. Ordered Network Analysis (ONA) then examined how those moves followed one another in groups with different discussion quality.",
+          "The LAK study analyzed 2,199 utterances from 83 discussion sessions with 51 undergraduates in groups of three. Expert-informed SEDA coding and BERT-based semantic clustering (Ko-SBERT, BERTopic) were combined to identify 14 discussion moves across five categories. Ordered Network Analysis (ONA) then examined how those moves followed one another in groups with different discussion quality.",
         ],
         media: [
           {
@@ -69,13 +69,19 @@ export const projects: Project[] = [
         title: "What makes dialogue productive?",
         body: [
           "Emotive and experiential arguments, together with explicit acknowledgment of ambiguity, were positively associated with discussion quality. More productive discussions connected emotional and personal experience to evidence-based reasoning. This suggests that analytics for ethical discussion need to capture how people work through values and feelings alongside their arguments.",
-          "A companion ICALT study used Hidden Markov Models to recover latent dialogue states and their transitions: deliberative dialogue, conversational mediation, and affective dialogue. Together, the studies connect observable discussion moves with the evolving process of thinking together.",
+          "A companion ICALT study used Hidden Markov Models across 80 discussions to recover latent dialogue states and their transitions: deliberative dialogue, conversational mediation, and affective dialogue. Discussions that combined emotional engagement with logical examination were associated with higher-quality deliberation. Together, the studies connect observable discussion moves with the evolving process of thinking together.",
+        ],
+      },
+      {
+        title: "Why it matters for AI",
+        body: [
+          "These measures are a step toward the question behind my next work: which moments in a discussion are pivotal, and could an agent use them to decide when and how to intervene? Acknowledging uncertainty stands out as one candidate signal.",
         ],
       },
     ],
     outcomes: [
       "Full paper — LAK 2026",
-      "Full paper — IEEE ICALT 2026, nominated for Best Student Paper",
+      "Full paper — IEEE ICALT 2026 · IEEE TCLT Best Student Paper Nominee & Student Award",
     ],
     publications: ["p2026-c2", "p2026-pre1"],
     links: [{ label: "Preprint (arXiv)", href: "https://doi.org/10.48550/arXiv.2601.05651" }],
@@ -89,9 +95,9 @@ export const projects: Project[] = [
     modes: ["tracing", "shaping"],
     summary:
       "Comparing how an LLM-based conversational agent's participation and role affect group decision-making on controversial issues.",
-    role: "First author",
-    organization: IDL,
-    collaborators: "Hyo-Jeong So",
+    role: "First author · M.A. thesis",
+    organization: `${IDL} × UC Irvine`,
+    collaborators: "Hyo-Jeong So; A. Samadi and Nia Nixon (UC Irvine)",
     hero: {
       kind: "image",
       src: thumb("pic.C.논쟁문제 의사결정.png"),
@@ -111,8 +117,9 @@ export const projects: Project[] = [
       {
         title: "Process",
         body: [
-          "The study assigned 49 graduate students to human-only, supporter-agent, and peer-agent conditions for AI ethics dilemma discussions. The supporter summarized and coordinated without expressing its own position; the peer participated as an equal teammate, contributing a position and reasons.",
-          "Evaluation separated objective decision quality from participants' experience: perspective diversity in the discussion and integrative complexity in the joint statement were examined alongside perceived discussion and decision quality, team satisfaction, and interviews. The agent's identity was disclosed after discussion to limit prior expectations.",
+          "Running synchronous, multi-user human–AI teaming needed specialized infrastructure, so I initiated a cross-institutional collaboration with a doctoral researcher at UC Irvine and adapted their platform. I built the LLM-based agents in Python with LangChain and oversaw the study from experimental design and recruitment to data collection and analysis.",
+          "21 groups (N = 49 graduate students) discussed AI ethics dilemmas in one of three conditions: human-only, a process-supporting agent, or a perspective-contributing agent. The supporter summarized and coordinated without expressing its own position; the peer participated as an equal teammate, contributing a position and reasons.",
+          "Linear mixed-effects models and Ordered Network Analysis examined both outcomes and interaction patterns. Evaluation separated objective decision quality from participants' experience: perspective diversity in the discussion and integrative complexity in the joint statement were examined alongside perceived discussion and decision quality, team satisfaction, and interviews. The agent's identity was disclosed after discussion to limit prior expectations.",
         ],
       },
       {
@@ -122,8 +129,14 @@ export const projects: Project[] = [
           "Participants' experience did not mirror objective performance: human-only groups reported the highest mean perceived discussion and decision quality, while supporter-agent groups reported significantly lower team satisfaction than human-only groups. Interviews pointed to mismatches between expected and delivered support. The design implication is to evaluate both the quality of collective reasoning and how the intervention is experienced.",
         ],
       },
+      {
+        title: "The question it opened",
+        body: [
+          "The agents decided when to speak through prompt-based heuristics, so their timing was disconnected from evidence of how each group's conversation was actually evolving. That gap — knowing when an intervention will help — now drives my research on measuring pivotal moments in deliberation.",
+        ],
+      },
     ],
-    outcomes: ["Best Paper Award — KAEIM 2026 Spring Conference"],
+    outcomes: ["Best Paper Award — KAEIM 2026 Spring Conference", "Journal manuscript with UC Irvine collaborators — under review"],
     publications: ["p2026-c3"],
   },
   {
@@ -265,7 +278,7 @@ export const projects: Project[] = [
     modes: ["shaping", "tracing"],
     summary:
       "Designing dialogue-based games that invite learners to encounter competing values, explain their positions, and make collective decisions about AI ethics.",
-    role: "Co-author · Game-based learning research",
+    role: "Co-author · Led prototype design & development",
     organization: IDL,
     collaborators: "Sung-Eun Kim, Jeanhee Lee, Yeji Ko, Yue Wang, Hyo-Jeong So (across related studies)",
     hero: {
@@ -286,7 +299,8 @@ export const projects: Project[] = [
       {
         title: "Two forms of play",
         body: [
-          "The digital game places moral reasoning and collective decision-making at the center of the activity. FLIP, a tabletop role-play game, explores cognitive dissonance as a resource for AI ethics education. Across this work, I participated in translating theoretical frameworks into prototypes and studying the learner interactions they supported.",
+          "The digital game places moral reasoning and collective decision-making at the center of the activity. FLIP, a tabletop role-play game, explores cognitive dissonance as a resource for AI ethics education.",
+          "I led the design and development of the prototypes: designing the cards for the tabletop game in Figma and building the interactive digital game in ProtoPie, drawing on my software engineering background. Across both formats, the environments engaged 82 participants in ethical discussion.",
         ],
         media: [
           {
@@ -302,7 +316,7 @@ export const projects: Project[] = [
       {
         title: "From game design to dialogue research",
         body: [
-          "The work was reported at AIED 2025 and ICLS 2025, and in a journal article on supporting ethical discourse through collective decision-making. Observing groups reach premature consensus helped motivate my subsequent work on peer agents and the analysis of productive discussion.",
+          "The work was reported at AIED 2025 and ICLS 2025, and in a journal article on supporting ethical discourse through collective decision-making. Analyzing these groups revealed a key problem: participants joined the conversation readily, but many reached agreement before examining the value tensions underneath. Exposure to other perspectives did not guarantee reconsidering one's own — which motivated my subsequent work on AI agents and the analysis of productive discussion.",
         ],
       },
     ],
@@ -355,13 +369,13 @@ export const projects: Project[] = [
   {
     id: "hspace-learning-experiences",
     title: "Learning Experiences at HSPACE",
-    subtitle: "Cybersecurity training and game-based leadership workshops",
+    subtitle: "Cybersecurity learning, a DEF CON competition, and game-based leadership workshops",
     year: 2024,
     category: "Learning experience design",
     modes: ["shaping"],
     summary:
       "Turning specialist knowledge into training programs and participatory workshops, from cybersecurity learning to student-club leadership.",
-    role: "Learning Experience Designer",
+    role: "Consultant · Learning experience design",
     organization: "HSPACE",
     collaborators: "Cybersecurity subject matter experts and program teams",
     sections: [
@@ -369,6 +383,7 @@ export const projects: Project[] = [
         title: "Designing with domain experts",
         body: [
           "Beginning in January 2024, I worked with subject matter experts to design, develop, and operate cybersecurity and hacking training programs. The work connects instructional design with the practical needs of a specialist learning community.",
+          "I co-designed an AI penetration competition selected for DEF CON 34, contributing experiential learning design and competency-based evaluation rubrics. Building on this, I am researching stealth assessment of cybersecurity competencies: how behavioral data from Capture-the-Flag competitions can reveal learners' problem-solving processes and skills.",
         ],
       },
       {
@@ -381,11 +396,15 @@ export const projects: Project[] = [
       {
         title: "Facilitation and delivery",
         body: [
-          "My documented experience includes designing and facilitating a leadership workshop for 120 student organization leaders, incorporating a game-based session on organizational branding. Alongside cybersecurity training, this work shows how I structure learning activities and carry them into facilitation.",
+          "My documented experience includes designing and facilitating a leadership workshop for 120 student organization leaders, incorporating a game-based session on organizational branding. I also mentor an instructional-design intern developing soft-skills training curricula, from activity design to assessment and iterative refinement.",
         ],
       },
     ],
-    outcomes: ["Cybersecurity training design, development, and operation", "Leadership workshop designed and facilitated for 120 student organization leaders"],
+    outcomes: [
+      "AI penetration competition co-designed — selected for DEF CON 34",
+      "Leadership workshop designed and facilitated for 120 student organization leaders",
+      "Cybersecurity training design, development, and operation",
+    ],
   },
   {
     id: "mapping-ai-in-education",

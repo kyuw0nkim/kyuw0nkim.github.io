@@ -29,7 +29,8 @@ npm run preview    # 빌드 결과 확인: http://localhost:4173/portfolio/
 | `#/tracing`, `#/shaping` | Explore — 해당 관점의 프로젝트 카드(좌우로 넘기는 레일) |
 | `#/works` | 전체 프로젝트 카드(2열 그리드) |
 | `#/works/<id>` | 프로젝트 상세(케이스 스터디) |
-| `#/about`, `#/contact` | 소개 / 연락처 |
+| `#/vision` | 연구 비전 — 연구 흐름(챕터 + Pivotal moment), "A discussion, traced" 데모, 다음 연구 루프 |
+| `#/about`, `#/contact` | 소개(연구 역량 맵·Teaching & practice·Recognition 포함) / 연락처 |
 
 ---
 
@@ -84,8 +85,11 @@ hero: {
 | 바꿀 것 | 파일 |
 |---------|------|
 | 인트로·About·Contact 문구 | `src/portfolio/data/site.ts` (이메일·소셜·스킬은 학술 사이트 `siteData.ts`에서 자동으로 가져옴) |
+| Vision 페이지(챕터, Pivotal moment, 데모 대화 스크립트, 다음 연구 단계) | `src/portfolio/data/vision.ts` |
+| About의 연구 역량 맵 · Teaching & practice · Recognition | `src/portfolio/data/capabilities.ts` |
 | Tracing / Shaping 정의, 활동 목록, 이모지(💭 / 🛠️) | `src/portfolio/data/modes.ts` |
 | 색·폰트·여백 토큰 | `src/portfolio/styles/tokens.css` |
+| Vision·역량 맵 스타일 | `src/portfolio/styles/vision.css` |
 | 헤드라인 전환 간격 | `src/portfolio/components/KineticHeadline.tsx`의 `INTERVAL` |
 
 ---
@@ -152,6 +156,11 @@ npm run dev
 편집기 코드는 프로덕션 빌드에 포함되지 않습니다.
 
 ---
+
+### Vision 페이지와 장면 연동
+
+- 챕터가 화면 가운데에 오면 그 챕터의 `glow` 모드로 장면이 빛납니다(Tracing → 캐릭터, Shaping → 테이블·노트북). 실제 마우스 호버가 항상 우선합니다(`usePortfolioState.ts`의 `glow`).
+- "A discussion, traced"는 **연구 방향을 보여주는 각본 데모**이며 연구 데이터가 아닙니다(화면에도 표시). 망설임이 나오는 순간 캐릭터가, 에이전트가 말할 때 노트북이 빛납니다. 일시정지/전체 보기 버튼이 있고, 동작 줄이기 설정에서는 처음부터 전체가 보입니다.
 
 ## 성능과 접근성
 

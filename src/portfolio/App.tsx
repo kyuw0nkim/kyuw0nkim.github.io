@@ -7,6 +7,7 @@ import { HomeShell } from "./components/HomeShell";
 import { IntroPanel } from "./components/IntroPanel";
 import { ExplorePanel } from "./components/ExplorePanel";
 import { AboutPanel } from "./components/AboutPanel";
+import { VisionPanel } from "./components/VisionPanel";
 import { ContactPanel } from "./components/ContactPanel";
 import { ProjectDetail } from "./components/ProjectDetail";
 import { portfolioStore } from "./hooks/usePortfolioState";
@@ -22,7 +23,7 @@ function RouteEffects() {
 
   useEffect(() => {
     trackPageView(`/portfolio${pathname}`);
-    portfolioStore.set({ hover: null });
+    portfolioStore.set({ hover: null, glow: null });
 
     const wasProject = previous.current.startsWith("/works/");
     const isProject = pathname.startsWith("/works/");
@@ -47,6 +48,7 @@ function AnimatedRoutes() {
           <Route path="tracing" element={<ExplorePanel filter="tracing" />} />
           <Route path="shaping" element={<ExplorePanel filter="shaping" />} />
           <Route path="works" element={<ExplorePanel filter="all" />} />
+          <Route path="vision" element={<VisionPanel />} />
           <Route path="about" element={<AboutPanel />} />
           <Route path="contact" element={<ContactPanel />} />
         </Route>

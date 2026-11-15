@@ -16,13 +16,13 @@ export const site = {
   cvUrl: cv.cvUrl,
 
   heroIntro:
-    "I'm Kyuwon Kim — a researcher, designer, and developer working where human interaction, AI, and learning meet. I trace how people think and talk together, and shape the agents, tools, and learning experiences that help them do it.",
+    "I'm Kyuwon Kim — a researcher, designer, and developer working where dialogue, AI, and learning meet. I trace how groups talk through contested issues, and shape AI agents that know when and how to help them think together.",
 
   about: {
     statement: "Learning technologies that help people think together through complex and contested issues.",
     paragraphs: [
-      "I study what happens when people encounter perspectives beyond what they already know and believe. My work traces how groups reason through controversial issues, express competing values, and move toward more integrative collective decisions. I combine dialogue analysis and computational modeling with the design of conversational agents and learning environments.",
-      "My background spans Educational Technology and Software at Ewha Womans University and research in the Interaction Design for Learning Lab with Prof. Hyo-Jeong So. My projects include AI ethics games, a peer agent for deliberation, music-learning interfaces, and inclusive digital learning resources. At HSPACE, I have also designed training programs and game-based workshops with domain experts.",
+      "I study what happens when people encounter perspectives beyond what they already know and believe. My work traces how groups reason through controversial issues — which moves make a discussion productive, and how it shifts over time — and uses that evidence to design AI agents that know when and how to support a group's deliberation.",
+      "I trained in both Educational Technology and Software at Ewha Womans University, and completed my M.A. in the Interaction Design for Learning Lab with Prof. Hyo-Jeong So, including a cross-institutional study with UC Irvine. As a first-generation graduate student, I care about making research — and the unwritten rules around it — reachable for others, through teaching, museum education, and mentoring.",
     ],
   },
 

@@ -21,8 +21,21 @@ This file records editorial provenance; it is not rendered on the website.
 | MelodyMate | `p2026-c1`, existing score-preprocessing and interface figure | Uses confirmed co-authorship. Does not assign an unverified individual engineering contribution or assert learning gains. Existing URL slug `conversational-agent-prototypes` is retained for incoming links. |
 | AI Ethics Through Play | `p2025-c2`, `p2025-c4`, `p2025-j1`; CV research experience; connected research narrative | Groups the digital game and FLIP as related work, with team attribution across the studies. Does not claim sole design ownership or measured learning gains. |
 | Bridging Literacy with AI | `p2025-c3` and its existing figure | Limits detail to the AI-integrated textbook, intended learner community, co-authorship, and publication. No unverified interface features or study results are added. |
-| Learning Experiences at HSPACE | April 2026 CV; `브랜딩_스크립트.pdf` | Describes training design and documented workshop activity. The 120-person figure comes from the CV, not response-row counts. A planned DEFCON contest is not described as completed. No participant information is exposed. |
+| Learning Experiences at HSPACE | April 2026 CV; `브랜딩_스크립트.pdf` | Describes training design and documented workshop activity. The 120-person figure comes from the CV, not response-row counts. (Superseded Nov 2026: the CV now records the competition as selected for DEF CON 34.) No participant information is exposed. |
 | Mapping AI in Education | `p2024-j1`, `p2024-c1`, `p2025-c5` | Groups related synthesis/topic-modeling work; the poster design award belongs specifically to the ICCE 2024 project. |
+
+## November 2026 update — research vision and capabilities
+
+Sources: `Fall_2027_Stanford_Academic_Statement_of_Purpose_v.8.0.docx` and `Fall_2027_CV_Kyuwon_Kim_Oct_2.docx` (provided by the author).
+
+| Surface | Evidence used | Editorial boundary |
+| --- | --- | --- |
+| `#/vision` chapters and pivotal moments | SoP narrative: 82 participants across game formats; 21 groups (N=49), three conditions, LMM + ONA, UC Irvine collaboration; 2,199 utterances (LAK); 80 discussions (ICALT); future-direction hypothesis | Program- and faculty-specific SoP content (Stanford, named professors) is not used. Findings are reported as associations where the SoP does. |
+| "A discussion, traced" vignette | Illustrates the SoP's future direction | Scripted and labelled on screen as "Illustrative sketch · not study data". |
+| About: capability map, teaching & practice, recognition | CV research experience, skills, professional/teaching experience, awards | Museum educator, College of Education consultancy, and vibe-coding teaching now come from the October 2026 CV. |
+| Agent Roles in Deliberation | SoP + CV (submitted journal manuscript with Samadi & Nixon) | Manuscript described only as "under review"; journal not named on the page. |
+| AI Ethics Through Play | CV: "Led the design and development of TTRPG prototypes (Figma) and interactive game prototypes (ProtoPie)"; SoP: card design, 82 participants | Team authorship kept; individual role stated as in the CV. |
+| HSPACE | CV: DEF CON 34 selection, rubric design, intern mentoring, CTF stealth-assessment research | The CTF stealth-assessment research is described as ongoing, without results. |
 
 ## Removal and follow-up
 
