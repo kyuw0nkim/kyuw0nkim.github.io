@@ -6,7 +6,7 @@ import fs from "fs";
 import { componentTagger } from "lovable-tagger";
 
 /**
- * Dev-server only: lets the portfolio's hero scene editor (/portfolio/?editor)
+ * Dev-server only: lets the portfolio's hero scene editor (/portfolio-o/?editor)
  * write its calibrated layout back to src/portfolio/hero2d/scene-layout.json.
  * Not part of production builds.
  */
@@ -68,10 +68,12 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     rollupOptions: {
-      // Two independent pages: the academic site (/) and the portfolio (/portfolio/).
-      // The portfolio is not linked from the academic site's navigation.
+      // Independent pages: the academic site (/), the research-vision pages
+      // (/vision/ for dialogue programs, /portfolio/ for STEM programs) and the
+      // original 2.5D portfolio (/portfolio-o/). None is linked from the academic nav.
       input: {
         main: path.resolve(__dirname, "index.html"),
+        portfolioO: path.resolve(__dirname, "portfolio-o/index.html"),
         portfolio: path.resolve(__dirname, "portfolio/index.html"),
         // Research vision: conversation-centred portfolio (/vision/), not linked from either site yet.
         vision: path.resolve(__dirname, "vision/index.html"),

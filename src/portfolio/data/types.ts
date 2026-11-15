@@ -49,7 +49,7 @@ export interface ProjectLink {
 }
 
 export interface Project {
-  /** URL slug — /portfolio/#/works/<id> */
+  /** URL slug — /portfolio-o/#/works/<id> */
   id: string;
   title: string;
   subtitle?: string;

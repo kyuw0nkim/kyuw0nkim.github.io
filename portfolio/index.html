@@ -1,11 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-variant="stem">
   <head>
+    <script>
+      // Links to the original portfolio used hash routes (e.g. /portfolio/#/works/<id>); send them to /portfolio-o/.
+      if (location.hash.indexOf("#/") === 0) location.replace("/portfolio-o/" + location.hash);
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Kyuwon Kim — Portfolio</title>
+    <title>Kyuwon Kim — How we think together</title>
     <meta name="description" content="Selected research, design, and development work by Kyuwon Kim — tracing and shaping how we think together." />
     <meta name="author" content="Kyuwon Kim" />
+    <meta name="robots" content="noindex" />
     <meta name="theme-color" content="#F8F5EF" />
     <meta name="color-scheme" content="light" />
 
@@ -31,13 +36,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
     <!-- Korean glyph fallback (loaded per unicode-range only when needed) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   </head>
   <body>
     <div id="root"></div>
-    <noscript>This portfolio needs JavaScript. Publications and CV are on <a href="/">the academic website</a>.</noscript>
-    <script type="module" src="/src/portfolio/main.tsx"></script>
+    <noscript>This page needs JavaScript. Publications and CV are on <a href="/">the academic website</a>.</noscript>
+    <script type="module" src="/src/vision/main.tsx"></script>
   </body>
 </html>

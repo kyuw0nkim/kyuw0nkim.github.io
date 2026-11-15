@@ -10,7 +10,7 @@ import type { Media, ModeFilter, Project } from "./types";
 //   academic site live in public/thumbnails/ and are reused via `thumb()`.
 // • Publications are linked by id from src/data/publications.generated.ts,
 //   so venues, links and awards stay in sync with data/publications.xlsx.
-// • Content provenance and remaining limits: portfolio/CONTENT_SOURCES.md.
+// • Content provenance and remaining limits: portfolio-o/CONTENT_SOURCES.md.
 // • Never fill gaps with guessed results, roles, or publication claims.
 // ===========================================================================
 

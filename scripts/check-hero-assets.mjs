@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Verifies the layered hero:
-//  - every manifest asset exists in the original package (portfolio/hero-source/)
+//  - every manifest asset exists in the original package (portfolio-o/hero-source/)
 //    with the stated pixel size, and the scene layout covers exactly those assets;
 //  - every layer has its web copy (public/hero-assets/*.webp) with the same aspect
 //    ratio, sharp enough for its current scale (else: npm run optimize:hero).
@@ -9,7 +9,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const sourceDir = path.join(root, "portfolio/hero-source");
+const sourceDir = path.join(root, "portfolio-o/hero-source");
 const webDir = path.join(root, "public/hero-assets");
 const manifest = JSON.parse(fs.readFileSync(path.join(sourceDir, "manifest.json"), "utf8"));
 const layout = JSON.parse(fs.readFileSync(path.join(root, "src/portfolio/hero2d/scene-layout.json"), "utf8"));

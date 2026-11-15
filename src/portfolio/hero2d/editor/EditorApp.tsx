@@ -9,7 +9,7 @@ import { CAMERA } from "../sceneMotion";
 import "./editor.css";
 
 /**
- * DEV-ONLY asset position editor for the layered hero (open /portfolio/?editor
+ * DEV-ONLY asset position editor for the layered hero (open /portfolio-o/?editor
  * on the dev server). It edits the same scene-layout.json the website renders;
  * nothing here ships in production builds.
  */

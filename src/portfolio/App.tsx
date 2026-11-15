@@ -21,7 +21,7 @@ function RouteEffects() {
   }, []);
 
   useEffect(() => {
-    trackPageView(`/portfolio${pathname}`);
+    trackPageView(`/portfolio-o${pathname}`);
     portfolioStore.set({ hover: null });
 
     const wasProject = previous.current.startsWith("/works/");

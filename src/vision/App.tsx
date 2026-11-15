@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { siteData } from "@/data/siteData";
 import {
+  CASE,
   PIVOT_INDEX,
   anchorOrder,
   dilemma,
@@ -11,10 +12,18 @@ import {
   modeLabel,
   otherWork,
   speakerName,
-  vision,
-  works,
+  vision as baseVision,
+  works as baseWorks,
 } from "./data";
 import type { AnchorId, Message, Speaker } from "./data";
+import { currentVariant, variantOverrides } from "./variants";
+
+// Apply the page variant (/vision/ = dialogue, /portfolio/ = STEM).
+const overrides = variantOverrides[currentVariant()];
+const vision = overrides.vision ?? baseVision;
+const works = overrides.worksOrder
+  ? overrides.worksOrder.map((id) => baseWorks.find((w) => w.id === id)).filter((w): w is (typeof baseWorks)[number] => !!w)
+  : baseWorks;
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -464,7 +473,7 @@ export default function App() {
           <ul className="work__grid">
             {works.map((w) => (
               <li key={w.id}>
-                <a href={`/portfolio/#/works/${w.id}`} className="wcard">
+                <a href={CASE(w.id)} className="wcard">
                   <span className="wcard__img">
                     <img src={w.image} alt={w.alt} loading="lazy" />
                   </span>

@@ -6,7 +6,7 @@ import rawLayout from "./scene-layout.json";
  * All layers live in one logical coordinate system (the original hero image,
  * 1448 × 1086). Each layer is placed by its *centre* (x, y), scaled from its
  * native pixel size and rotated about that centre. Positions are calibrated
- * data in scene-layout.json (edit them with the dev-only editor: /portfolio/?editor),
+ * data in scene-layout.json (edit them with the dev-only editor: /portfolio-o/?editor),
  * never hard-coded in components.
  */
 
@@ -16,7 +16,7 @@ export interface SceneLayerConfig {
   /** Unique id (file name without extension). */
   id: string;
   /**
-   * Original PNG, relative to the source package (portfolio/hero-source/), e.g.
+   * Original PNG, relative to the source package (portfolio-o/hero-source/), e.g.
    * "characters/char_green_body.png". The site loads the WebP built from it
    * (same path, .webp — see `webFile`).
    */

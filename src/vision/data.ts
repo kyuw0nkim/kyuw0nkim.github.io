@@ -1,5 +1,6 @@
 // ===========================================================================
-// Research vision (/vision/) — a conversation-centred portfolio.
+// Research vision (/vision/ and /portfolio/) — a conversation-centred portfolio.
+// The two entry points differ only through variants.ts.
 //
 // SOURCING RULE: every sentence here comes from the author's SoP (Fall 2027),
 // CV (Oct 2026) or papers. Where a line is not directly sourced it is marked
@@ -28,7 +29,8 @@ export interface Evidence {
   links: { label: string; href: string }[];
 }
 
-const CASE = (id: string) => `/portfolio/#/works/${id}`;
+/** Case studies live in the original portfolio, now at /portfolio-o/. */
+export const CASE = (id: string) => `/portfolio-o/#/works/${id}`;
 
 export const evidence: Record<AnchorId, Evidence> = {
   games: {

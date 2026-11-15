@@ -1,10 +1,10 @@
-# Kyuwon Kim — Portfolio (`/portfolio/`)
+# Kyuwon Kim — Original portfolio (`/portfolio-o/`)
 
 학술 사이트(`/`)와 분리된 시각 중심 포트폴리오입니다. 같은 저장소·같은 빌드로 배포되지만
-학술 사이트 내비게이션에는 연결되어 있지 않습니다. 주소: `https://kyuwonkim.com/portfolio/`
-(= `kyuw0nkim.github.io/portfolio/`).
+학술 사이트 내비게이션에는 연결되어 있지 않습니다. 주소: `https://kyuwonkim.com/portfolio-o/`
+(= `kyuw0nkim.github.io/portfolio-o/`). `/portfolio/` 주소는 이제 연구 비전 페이지(STEM 버전)이며, 예전 `/portfolio-o/#/…` 링크는 자동으로 이곳으로 넘어옵니다.
 
-- 진입 HTML: `portfolio/index.html` → 빌드 시 `dist/portfolio/index.html`
+- 진입 HTML: `portfolio-o/index.html` → 빌드 시 `dist/portfolio-o/index.html`
 - 소스: `src/portfolio/`
 - 히어로는 투명 이미지 레이어를 겹친 2.5D 장면입니다(WebGL·3D 라이브러리 없음).
 
@@ -14,9 +14,9 @@
 
 ```sh
 npm install
-npm run dev        # http://localhost:8080/portfolio/
+npm run dev        # http://localhost:8080/portfolio-o/
 npm run build      # dist/ 와 dist/portfolio/ 를 함께 생성
-npm run preview    # 빌드 결과 확인: http://localhost:4173/portfolio/
+npm run preview    # 빌드 결과 확인: http://localhost:4173/portfolio-o/
 ```
 
 배포는 기존 GitHub Actions(`.github/workflows/deploy.yml`)가 `main` push 시 그대로 처리합니다.
@@ -25,7 +25,7 @@ npm run preview    # 빌드 결과 확인: http://localhost:4173/portfolio/
 
 | 주소 | 화면 |
 |------|------|
-| `/portfolio/#/` | Intro — 히어로 장면 + Tracing/Shaping 헤드라인 |
+| `/portfolio-o/#/` | Intro — 히어로 장면 + Tracing/Shaping 헤드라인 |
 | `#/tracing`, `#/shaping` | Explore — 해당 관점의 프로젝트 카드(좌우로 넘기는 레일) |
 | `#/works` | 전체 프로젝트 카드(2열 그리드) |
 | `#/works/<id>` | 프로젝트 상세(케이스 스터디) |
@@ -98,7 +98,7 @@ hero: {
 
 | 파일 | 역할 |
 |------|------|
-| `portfolio/hero-source/` | **원본 PNG 패키지**(21MB) + `manifest.json`(에셋 목록·그룹·클릭 대상). 배포되지 않습니다 |
+| `portfolio-o/hero-source/` | **원본 PNG 패키지**(21MB) + `manifest.json`(에셋 목록·그룹·클릭 대상). 배포되지 않습니다 |
 | `public/hero-assets/` | 사이트가 실제로 불러오는 **WebP**(약 1.3MB). `npm run optimize:hero`로 생성 |
 | `scripts/optimize-hero-assets.py` | 원본 → WebP 변환(Pillow 필요: `pip install pillow`) |
 | `src/portfolio/hero2d/scene-layout.json` | **레이어 위치 보정값** (x, y, scale, rotation, z, opacity, visible) + `framing.hero`(항상 보여야 하는 영역) |
@@ -140,7 +140,7 @@ hero: {
 
 ```sh
 npm run dev
-# http://localhost:8080/portfolio/?editor
+# http://localhost:8080/portfolio-o/?editor
 ```
 
 - 레이어 선택(캔버스 클릭 / Alt+클릭으로 겹친 레이어 순환 / 목록), 드래그 이동, x·y·scale·rotation·z·opacity 입력
@@ -166,11 +166,16 @@ npm run dev
 
 ---
 
-## 연구 비전 페이지: 대화 중심 포트폴리오 (`/vision/`)
+## 연구 비전 페이지 (`/vision/`, `/portfolio/`)
 
-2.5D 방 대신 **대화창**을 중심에 둔 별도 시안입니다. 아직 어느 사이트에서도 링크하지 않으며 `noindex`입니다.
+대화창을 중심에 둔 페이지 하나를 두 주소로 배포합니다. 둘 다 `noindex`이며 어느 사이트에서도 링크하지 않습니다.
 
-- 주소: `kyuw0nkim.github.io/vision/` · 진입 HTML: `vision/index.html` → 소스: `src/vision/` (`App.tsx`, `data.ts`, `styles.css`)
-- 히어로: Tracing/Shaping 헤드라인 → 연구 비전 1문장 → 각본으로 재생되는 그룹 토론(에이전트가 개입하는 장면)
-- 태그된 부분(딜레마 카드, 하이라이트 구절, 에이전트 발화, ⚑ 표시, 상태 띠)을 호버/탭하면 근거 연구 카드가 열립니다. 모바일은 하단 시트.
-- 문구·수치·대화 각본은 모두 `src/vision/data.ts`에서 수정합니다. 케이스 스터디는 기존 포트폴리오의 프로젝트 페이지로 연결됩니다.
+| 주소 | 용도 | 진입 HTML |
+|------|------|-----------|
+| `/vision/` | Constructive dialogue 지원용 | `vision/index.html` (`data-variant="dialogue"`) |
+| `/portfolio/` | STEM 지원용 | `portfolio/index.html` (`data-variant="stem"`) |
+
+- 소스는 하나입니다: `src/vision/` (`App.tsx`, `data.ts`, `styles.css`).
+- 두 버전의 차이는 `src/vision/variants.ts`에서만 정합니다(비전 문장, 작업 순서). 현재는 비어 있어 두 페이지가 같습니다.
+- 문구·수치·대화 각본은 `src/vision/data.ts`에 있고, 줄마다 출처(SoP·CV·논문)가 주석으로 달려 있습니다.
+- 케이스 스터디 링크는 기존 포트폴리오(`/portfolio-o/#/works/<id>`)로 연결됩니다.

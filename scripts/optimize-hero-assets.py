@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Builds the web sprites for the 2.5D hero (public/hero-assets/**/*.webp) from
-the original PNG package (portfolio/hero-source/).
+the original PNG package (portfolio-o/hero-source/).
 
 Each sprite is drawn at `width × scale` logical px (scene-layout.json). The
 originals carry far more pixels than that, so every sprite is downscaled to at
@@ -28,7 +28,7 @@ SOFT_GROUPS = {"foreground-plant"}
 QUALITY = 88  # WebP colour quality; alpha is kept lossless
 
 ROOT = Path(__file__).resolve().parent.parent
-SOURCE = ROOT / "portfolio" / "hero-source"
+SOURCE = ROOT / "portfolio-o" / "hero-source"
 OUT = ROOT / "public" / "hero-assets"
 LAYOUT = ROOT / "src" / "portfolio" / "hero2d" / "scene-layout.json"
 
