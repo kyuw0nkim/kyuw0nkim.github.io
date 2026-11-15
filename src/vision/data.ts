@@ -1,5 +1,5 @@
 // ===========================================================================
-// Portfolio C (/portfolio-c/) — a conversation-centred portfolio.
+// Research vision (/vision/) — a conversation-centred portfolio.
 //
 // SOURCING RULE: every sentence here comes from the author's SoP (Fall 2027),
 // CV (Oct 2026) or papers. Where a line is not directly sourced it is marked

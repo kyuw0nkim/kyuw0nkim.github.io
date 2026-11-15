@@ -166,11 +166,11 @@ npm run dev
 
 ---
 
-## 시안 C: 대화 중심 포트폴리오 (`/portfolio-c/`)
+## 연구 비전 페이지: 대화 중심 포트폴리오 (`/vision/`)
 
 2.5D 방 대신 **대화창**을 중심에 둔 별도 시안입니다. 아직 어느 사이트에서도 링크하지 않으며 `noindex`입니다.
 
-- 진입 HTML: `portfolio-c/index.html` → 소스: `src/portfolio-c/` (`App.tsx`, `data.ts`, `styles.css`)
+- 주소: `kyuw0nkim.github.io/vision/` · 진입 HTML: `vision/index.html` → 소스: `src/vision/` (`App.tsx`, `data.ts`, `styles.css`)
 - 히어로: Tracing/Shaping 헤드라인 → 연구 비전 1문장 → 각본으로 재생되는 그룹 토론(에이전트가 개입하는 장면)
 - 태그된 부분(딜레마 카드, 하이라이트 구절, 에이전트 발화, ⚑ 표시, 상태 띠)을 호버/탭하면 근거 연구 카드가 열립니다. 모바일은 하단 시트.
-- 문구·수치·대화 각본은 모두 `src/portfolio-c/data.ts`에서 수정합니다. 케이스 스터디는 기존 포트폴리오의 프로젝트 페이지로 연결됩니다.
+- 문구·수치·대화 각본은 모두 `src/vision/data.ts`에서 수정합니다. 케이스 스터디는 기존 포트폴리오의 프로젝트 페이지로 연결됩니다.
