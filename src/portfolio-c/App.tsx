@@ -166,7 +166,7 @@ function Chat({ active, onActivate, reduced }: { active: AnchorId | null; onActi
             <Avatar key={s} speaker={s} size={22} />
           ))}
         </div>
-        <p className="chat__meta">3 participants and an AI agent · example utterances from LAK ’26</p>
+        <p className="chat__meta">3 participants and an AI agent. Example utterances from LAK ’26</p>
         <button type="button" className="chat__ctl" onClick={done ? replay : skip}>
           {done ? "Replay" : "Skip"}
         </button>
@@ -434,7 +434,7 @@ export default function App() {
           </div>
           <p className="hero__vision">{vision}</p>
           <div className="hero__guide">
-            <p className="hero__hint">Each tagged part of the conversation links to the study behind it.</p>
+            <p className="hero__hint">Find the studies behind my research vision</p>
             <TagIndex active={active} onActivate={onActivate} />
           </div>
 

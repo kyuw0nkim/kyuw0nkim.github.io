@@ -33,9 +33,9 @@ const CASE = (id: string) => `/portfolio/#/works/${id}`;
 export const evidence: Record<AnchorId, Evidence> = {
   games: {
     id: "games",
-    tag: "AIED ’25 · ICLS ’25",
+    tag: "AIED ’25, ICLS ’25",
     mode: "shaping",
-    venue: "AIED 2025 · ICLS 2025",
+    venue: "AIED 2025, ICLS 2025",
     title: "Dialogic games for AI ethics education",
     // SoP, "Designing Environments for Deliberation"
     finding:
@@ -45,7 +45,7 @@ export const evidence: Record<AnchorId, Evidence> = {
       // SoP + CV
       { label: "My role", value: "Designed the cards for the tabletop RPG (FLIP) and built the digital game (The Desk)" },
       // Dilemmas in AI Ethics (AIED) + FLIP (ICLS)
-      { label: "Grounded in", value: "Social Intuitionist Model · Moral Foundations Theory · cognitive dissonance" },
+      { label: "Grounded in", value: "Social Intuitionist Model, Moral Foundations Theory, cognitive dissonance" },
     ],
     links: [
       { label: "AIED paper", href: "https://doi.org/10.1007/978-3-031-98417-4_31" },
@@ -57,7 +57,7 @@ export const evidence: Record<AnchorId, Evidence> = {
     id: "moves",
     tag: "LAK ’26",
     mode: "tracing",
-    venue: "LAK 2026 · Full paper · First author",
+    venue: "LAK 2026, full paper, first author",
     title: "Productive Discussion Moves in Groups Addressing Controversial Issues",
     // LAK abstract
     finding:
@@ -67,7 +67,7 @@ export const evidence: Record<AnchorId, Evidence> = {
       { label: "Data", value: "83 sessions from 51 undergraduates in groups of three" },
       {
         label: "Methods",
-        value: "SEDA coding (κ = .80) · fine-tuned Korean Sentence-BERT + BERTopic · linear mixed-effects model · Ordered Network Analysis",
+        value: "SEDA coding (κ = .80), fine-tuned Korean Sentence-BERT with BERTopic, linear mixed-effects model, Ordered Network Analysis",
       },
     ],
     links: [
@@ -80,14 +80,14 @@ export const evidence: Record<AnchorId, Evidence> = {
     id: "modes",
     tag: "ICALT ’26",
     mode: "tracing",
-    venue: "IEEE ICALT 2026 · Full paper · First author",
+    venue: "IEEE ICALT 2026, full paper, first author",
     title: "Understanding Productive Dialogue in Value-Laden Contexts through Hidden Markov Models",
     // ICALT abstract
     finding:
       "Three recurring dialogue modes emerged: deliberative dialogue, conversational mediation, and affective dialogue. The coexistence of affective and deliberative dialogue modes within a session was a predictor of significantly higher dialogic quality.",
     stats: ["80 sessions", "3 dialogue modes", "Coexistence: β = 0.608, p = .027"],
     details: [
-      { label: "Methods", value: "Hidden Markov Models (AIC/BIC model selection) · linear mixed-effects models · integrative complexity" },
+      { label: "Methods", value: "Hidden Markov Models (AIC/BIC model selection), linear mixed-effects models, integrative complexity" },
       { label: "Recognition", value: "IEEE TCLT Best Student Paper Nominee & Student Award" },
     ],
     links: [
@@ -99,15 +99,15 @@ export const evidence: Record<AnchorId, Evidence> = {
     id: "agent",
     tag: "M.A. thesis",
     mode: "shaping",
-    venue: "M.A. thesis · with UC Irvine",
+    venue: "M.A. thesis with UC Irvine",
     title: "Examining the Effects of LLM-Based Conversational Agent Participation and Role in Decision-Making on Controversial Issues",
     // SoP, "Scaffolding Deliberation with AI"
     finding:
       "Perspective-contributing agents, by introducing viewpoints participants might not have encountered on their own, significantly broadened the range of ideas explored and led to more integrative group decisions than the human-only baseline.",
-    stats: ["21 groups · N = 49", "3 conditions"],
+    stats: ["21 groups, N = 49", "3 conditions"],
     details: [
-      { label: "Conditions", value: "Perspective-contributing agent · process-supporting agent · human-only baseline" },
-      { label: "Methods", value: "LLM agents (Python, LangChain) · linear mixed-effects models · Ordered Network Analysis" },
+      { label: "Conditions", value: "Perspective-contributing agent, process-supporting agent, human-only baseline" },
+      { label: "Methods", value: "LLM agents built with Python and LangChain, linear mixed-effects models, Ordered Network Analysis" },
       // UIST '25
       {
         label: "Related",
@@ -234,7 +234,7 @@ export const works: Work[] = [
   {
     id: "productive-discussion-moves",
     title: "Productive Discussion Moves",
-    venue: "LAK ’26 · IEEE ICALT ’26",
+    venue: "LAK ’26, IEEE ICALT ’26",
     // LAK abstract
     line: "Productive ethical discussion is grounded not only in reasoning and justification but also in the constructive integration of emotional expression.",
     image: thumb("pic.C.Productive Discussion.png"),
@@ -243,7 +243,7 @@ export const works: Work[] = [
   {
     id: "agent-roles-in-deliberation",
     title: "Agent Roles in Deliberation",
-    venue: "M.A. thesis · KAEIM ’26 Best Paper",
+    venue: "M.A. thesis, KAEIM ’26 Best Paper",
     // SoP
     line: "What role generative AI agents should play in deliberation to foster constructive dialogue.",
     image: thumb("pic.C.논쟁문제 의사결정.png"),
@@ -261,7 +261,7 @@ export const works: Work[] = [
   {
     id: "ai-ethics-games",
     title: "AI Ethics Through Play",
-    venue: "AIED ’25 · ICLS ’25",
+    venue: "AIED ’25, ICLS ’25",
     // AIED + ICLS abstracts
     line: "A digital game and a tabletop role-playing game that engage players in moral reasoning and collective decision-making about killer robots.",
     image: thumb("pic.C.Dilemmas in.png"),
@@ -283,7 +283,7 @@ export const otherWork: { title: string; venue: string; href: string }[] = [
   },
   {
     title: "What Do University Students Say About ChatGPT? A Topic Modeling of Perception on GenAI in Academic Writing",
-    venue: "ICCE ’24 · Best Poster",
+    venue: "ICCE ’24, Best Poster",
     href: CASE("mapping-ai-in-education"),
   },
 ];
