@@ -233,6 +233,15 @@ export interface Work {
   line: string;
   image: string;
   alt: string;
+  /** Related publications (CV / publication list). Empty → "Stay tuned!". */
+  pubs: Publication[];
+}
+
+export interface Publication {
+  title: string;
+  venue: string;
+  href?: string;
+  award?: string;
 }
 
 const thumb = (f: string) => `/thumbnails/${encodeURIComponent(f)}`;
@@ -246,24 +255,40 @@ export const works: Work[] = [
     line: "Productive ethical discussion is grounded not only in reasoning and justification but also in the constructive integration of emotional expression.",
     image: thumb("pic.C.Productive Discussion.png"),
     alt: "Ordered networks of discussion moves in high- and low-quality discussion groups.",
+    pubs: [
+      {
+        title: "Productive Discussion Moves in Groups Addressing Controversial Issues",
+        venue: "LAK 2026",
+        href: "https://doi.org/10.1145/3785022.3785111",
+      },
+      {
+        title: "Understanding Productive Dialogue in Value-Laden Discussions through Hidden Markov Models",
+        venue: "IEEE ICALT 2026",
+        href: "https://doi.org/10.1109/ICALT68022.2026.00046",
+        award: "Best Student Paper Nominee",
+      },
+    ],
   },
   {
     id: "agent-roles-in-deliberation",
-    title: "Agent Roles in Deliberation",
-    venue: "M.A. thesis, KAEIM ’26 Best Paper",
+    title: "AI in Deliberation",
+    venue: "M.A. thesis, KAEIM ’26 Best Paper, UIST ’25 Adjunct",
     // SoP
     line: "What role generative AI agents should play in deliberation to foster constructive dialogue.",
     image: thumb("pic.C.논쟁문제 의사결정.png"),
     alt: "Box plots comparing discussion and decision measures across three conditions.",
-  },
-  {
-    id: "your-thoughtful-opponent",
-    title: "Your Thoughtful Opponent",
-    venue: "UIST ’25 Adjunct",
-    // UIST abstract
-    line: "A peer agent designed to simulate a deliberative conversational partner that induces socio-cognitive conflict within dilemma-based game play.",
-    image: thumb("pic.P.Your Thoughtful.png"),
-    alt: "Peer agent workflow: Context Interpreter, Agent State Manager, Thought Generator, Thought Evaluator and Thought Articulator.",
+    pubs: [
+      {
+        title: "Examining the Effects of LLM-Based Conversational Agent Participation and Role in Decision-Making on Controversial Issues",
+        venue: "KAEIM 2026",
+        award: "Best Paper Award",
+      },
+      {
+        title: "Your Thoughtful Opponent: Embracing Cognitive Conflict with Peer Agent",
+        venue: "UIST 2025 Adjunct",
+        href: "https://doi.org/10.1145/3746058.3758410",
+      },
+    ],
   },
   {
     id: "ai-ethics-games",
@@ -273,6 +298,23 @@ export const works: Work[] = [
     line: "A digital game and a tabletop role-playing game that engage players in moral reasoning and collective decision-making about killer robots.",
     image: thumb("pic.C.Dilemmas in.png"),
     alt: "Screens of The Desk: Dilemmas in AI Ethics.",
+    pubs: [
+      {
+        title: "Dilemmas in AI Ethics: A Digital Game for Moral Reasoning and Collective Decision-Making",
+        venue: "AIED 2025",
+        href: "https://doi.org/10.1007/978-3-031-98417-4_31",
+      },
+      {
+        title: "FLIP: Tabletop Role-Play Game for AI Ethics Education through Cognitive Dissonance",
+        venue: "ICLS 2025",
+        href: "https://doi.org/10.22318/icls2025.945127",
+      },
+      {
+        title: "AI 윤리교육을 위한 대화형 게임 설계: 집단 의사결정을 통한 윤리 담화 지원",
+        venue: "Journal of Educational Information and Media Research, 2025",
+        href: "http://dx.doi.org/10.15833/KAFEIAM.31.5.2033",
+      },
+    ],
   },
 ];
 

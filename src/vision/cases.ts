@@ -2,7 +2,7 @@
 // Case studies — shown at #case/<id> on /vision/ and /portfolio/.
 //
 // SOURCING RULE (same as data.ts): text comes only from the author's papers,
-// SoP and CV. Each block notes its source. The Agent Roles case also uses the
+// SoP and CV. Each block notes its source. The AI in Deliberation case also uses the
 // project text from the original portfolio (src/portfolio/data/projects.ts),
 // which that portfolio's CONTENT_SOURCES.md traces to the KAEIM 2026
 // presentation script; those passages are marked "ORIGINAL PORTFOLIO".
@@ -167,16 +167,17 @@ export const cases: CaseStudy[] = [
   // --------------------------------------------------------------- thesis
   {
     id: "agent-roles-in-deliberation",
-    title: "Agent Roles in Deliberation",
+    title: "AI in Deliberation",
     papers: [
       "Examining the Effects of LLM-Based Conversational Agent Participation and Role in Decision-Making on Controversial Issues (M.A. thesis)",
+      "Your Thoughtful Opponent: Embracing Cognitive Conflict With a Peer Agent (UIST 2025 Adjunct)",
     ],
     meta: [
       // CV
       { label: "Role", value: "First author; led the study end to end" },
-      { label: "Venues", value: "M.A. thesis; KAEIM 2026 Spring Conference; journal manuscript under review" },
+      { label: "Venues", value: "M.A. thesis; KAEIM 2026 Spring Conference; journal manuscript under review; UIST 2025 Adjunct" },
       { label: "Recognition", value: "Best Paper Award, KAEIM 2026" },
-      { label: "With", value: "Hyo-Jeong So; A. Samadi and Nia Nixon (UC Irvine)" },
+      { label: "With", value: "Hyo-Jeong So; A. Samadi and Nia Nixon (UC Irvine); UIST: Jaeryeong Hwang, Younseo Lee, Jeanhee Lee, Sung-Eun Kim" },
     ],
     figure: {
       src: thumb("pic.C.논쟁문제 의사결정.png"),
@@ -227,42 +228,21 @@ export const cases: CaseStudy[] = [
           "Participants’ experience did not mirror objective performance: human-only groups reported the highest mean perceived discussion and decision quality, and the process-supporting condition reported significantly lower team satisfaction than human-only groups.",
         ],
       },
+      // ---- UIST 2025 Adjunct (formerly its own case study)
       {
-        title: "What it led to",
-        body: [
-          // SoP
-          "Because the agents triggered interventions autonomously via prompt-based heuristics, their timing was disconnected from systematic evidence of how the group’s conversation was actually evolving. This shaped my next research question: what computational measures can capture pivotal moments in a group’s deliberation to guide when and how AI should intervene?",
-        ],
-      },
-    ],
-    links: [],
-  },
-
-  // ------------------------------------------------------------------ UIST
-  {
-    id: "your-thoughtful-opponent",
-    title: "Your Thoughtful Opponent",
-    papers: ["Your Thoughtful Opponent: Embracing Cognitive Conflict With a Peer Agent (UIST 2025 Adjunct)"],
-    meta: [
-      { label: "Role", value: "First author" },
-      { label: "Venue", value: "UIST 2025 Adjunct Proceedings" },
-      { label: "With", value: "Jaeryeong Hwang, Younseo Lee, Jeanhee Lee, Sung-Eun Kim, Hyo-Jeong So" },
-    ],
-    figure: {
-      src: thumb("pic.P.Your Thoughtful.png"),
-      alt: "Interface, positioning rules and the peer agent's deliberation workflow.",
-      caption: "Proposed interface and overall workflow of the peer agent system (UIST 2025 Adjunct, Fig. 1).",
-    },
-    sections: [
-      {
-        title: "Question",
+        title: "Peer agent: Your Thoughtful Opponent",
         body: [
           // UIST 1
           "Most existing work has focused on the role of LLMs in synthesizing or amplifying pre-existing opinions, rather than leveraging LLMs to simulate and introduce diverse perspectives. We propose a Peer Agent designed to simulate a deliberative conversational partner that induces socio-cognitive conflict within dilemma-based game play.",
         ],
+        figure: {
+          src: thumb("pic.P.Your Thoughtful.png"),
+          alt: "Interface, positioning rules and the peer agent's deliberation workflow.",
+          caption: "Proposed interface and overall workflow of the peer agent system (UIST 2025 Adjunct, Fig. 1).",
+        },
       },
       {
-        title: "Interaction design",
+        title: "Peer agent: interaction design",
         body: [
           // UIST 2.1
           "The system simulates a voice-based multi-party deliberation between two human players and one peer agent on AI ethics dilemmas (e.g., should we allow the development of AI killer robots?). Players state their stance and rate their confidence on a 1–5 scale.",
@@ -270,7 +250,7 @@ export const cases: CaseStudy[] = [
         ],
       },
       {
-        title: "Architecture",
+        title: "Peer agent: architecture",
         steps: [
           {
             title: "Context Interpreter",
@@ -295,7 +275,7 @@ export const cases: CaseStudy[] = [
         ],
       },
       {
-        title: "Preliminary study",
+        title: "Peer agent: preliminary study",
         body: [
           // UIST 3
           "A single-party prototype was tested with four participants. They perceived the agent’s competence as comparable to their own (M = 4.00, SD = 1.37) while recognizing that it expressed different viewpoints (perceived homophily M = 3.38, SD = 1.73).",
@@ -305,8 +285,15 @@ export const cases: CaseStudy[] = [
           "Need for an external knowledge base: some responses lacked sufficient supporting grounds.",
         ],
       },
+      {
+        title: "What it led to",
+        body: [
+          // SoP
+          "Because the agents triggered interventions autonomously via prompt-based heuristics, their timing was disconnected from systematic evidence of how the group’s conversation was actually evolving. This shaped my next research question: what computational measures can capture pivotal moments in a group’s deliberation to guide when and how AI should intervene?",
+        ],
+      },
     ],
-    links: [{ label: "Paper (ACM DL)", href: "https://doi.org/10.1145/3746058.3758410" }],
+    links: [{ label: "UIST paper (ACM DL)", href: "https://doi.org/10.1145/3746058.3758410" }],
   },
 
   // ------------------------------------------------------------ AIED + ICLS
@@ -373,4 +360,9 @@ export const cases: CaseStudy[] = [
   },
 ];
 
-export const getCase = (id: string | null) => cases.find((c) => c.id === id);
+// Old ids that now live inside another case study.
+const caseAlias: Record<string, string> = { "your-thoughtful-opponent": "agent-roles-in-deliberation" };
+export const getCase = (id: string | null) => {
+  const key = id && (caseAlias[id] ?? id);
+  return cases.find((c) => c.id === key);
+};

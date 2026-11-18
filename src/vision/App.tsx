@@ -417,7 +417,7 @@ function CaseView({ study }: { study: CaseStudy }) {
       transition={{ duration: 0.4, ease: EASE }}
     >
       <a href="#work" className="case__back">
-        <span aria-hidden="true">‹</span> All work
+        <span aria-hidden="true">‹</span> All projects
       </a>
       <h1 className="case__title">{study.title}</h1>
       <ul className="case__papers">
@@ -637,22 +637,55 @@ export default function App() {
 
         <section id="work" className="work" aria-labelledby="work-title">
           <h2 id="work-title" className="sec-title">
-            Selected work
+            Selected Projects
           </h2>
           <ul className="work__grid">
             {works.map((w) => (
               <li key={w.id}>
-                <a href={CASE(w.id)} className="wcard">
-                  <span className="wcard__img">
-                    <img src={w.image} alt={w.alt} loading="lazy" />
-                  </span>
-                  <span className="wcard__title">{w.title}</span>
-                  <span className="wcard__venue">{w.venue}</span>
-                  <span className="wcard__line">{w.line}</span>
-                  <span className="link">
-                    Case study <span aria-hidden="true">›</span>
-                  </span>
-                </a>
+                <article className="wcard">
+                  <a href={CASE(w.id)} className="wcard__main">
+                    <span className="wcard__img">
+                      <img src={w.image} alt={w.alt} loading="lazy" />
+                    </span>
+                    <span className="wcard__title">{w.title}</span>
+                    <span className="wcard__venue">{w.venue}</span>
+                    <span className="wcard__line">{w.line}</span>
+                    <span className="link">
+                      Case study <span aria-hidden="true">›</span>
+                    </span>
+                  </a>
+                  <div className="wcard__pubs">
+                    <h3>Related Publications</h3>
+                    {w.pubs.length ? (
+                      <ul>
+                        {w.pubs.map((p) => {
+                          const inner = (
+                            <>
+                              <span className="pub__title">{p.title}</span>
+                              <span className="pub__venue">
+                                {p.venue}
+                                {p.award && ` · ${p.award}`}
+                              </span>
+                            </>
+                          );
+                          return (
+                            <li key={p.title}>
+                              {p.href ? (
+                                <a href={p.href} target="_blank" rel="noreferrer">
+                                  {inner}
+                                </a>
+                              ) : (
+                                <span>{inner}</span>
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    ) : (
+                      <p className="wcard__soon">Stay tuned!</p>
+                    )}
+                  </div>
+                </article>
               </li>
             ))}
           </ul>
