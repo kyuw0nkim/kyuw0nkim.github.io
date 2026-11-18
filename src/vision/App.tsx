@@ -46,6 +46,9 @@ const STEPS = messages.length + 1;
 const noticeStep = PIVOT_INDEX + 2;
 const messageStep = (i: number) => (i <= PIVOT_INDEX ? i + 1 : i + 2);
 
+// Short names for the narrow rail; the full ICALT '26 name is the tooltip.
+const modeShort: Record<DialogueMode, string> = { mediation: "Mediation", affective: "Affective", deliberative: "Deliberative" };
+
 // Consecutive messages sharing a phase form one block on the vertical mode rail.
 const phases = messages.reduce<{ mode: DialogueMode; from: number; to: number }[]>((acc, m, i) => {
   const last = acc[acc.length - 1];
@@ -235,12 +238,13 @@ function Chat({ active, onActivate, reduced }: { active: AnchorId | null; onActi
               <motion.div
                 className="phase__rail"
                 aria-label={modeLabel[p.mode]}
+                title={modeLabel[p.mode]}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.45, ease: EASE }}
                 onClick={(e) => onActivate("modes", "press", e.currentTarget)}
               >
-                <span className="phase__label">{modeLabel[p.mode]}</span>
+                <span className="phase__label">{modeShort[p.mode]}</span>
               </motion.div>
             </li>
           );
