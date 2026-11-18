@@ -184,7 +184,6 @@ export const dilemma =
 // Utterances: LAK '26 Table 2 examples (verbatim, translated by the authors).
 export const messages: Message[] = [
   { speaker: "green", text: "I absolutely think restrictions are needed.", move: "Position Declaration", mode: "mediation", phase: "mediation" },
-  { speaker: "pink", text: "Right.", move: "Conversation Maintenance", mode: "mediation", phase: "mediation" },
   { speaker: "lilac", text: "Let’s collect our opinions.", move: "Facilitating Agreement", mode: "mediation", phase: "mediation" },
   { speaker: "pink", text: "This is tough.", move: "Acknowledging Ambiguity", mode: "affective", phase: "affective", anchor: "moves" },
   {
@@ -216,7 +215,7 @@ export const messages: Message[] = [
 ];
 
 /** The uncertain turn — the pivotal moment the agent notices before speaking. */
-export const PIVOT_INDEX = 3;
+export const PIVOT_INDEX = 2;
 
 // SoP: "My goal as a researcher is to design AI-supported learning environments
 // helping people engage in constructive dialogue. Specifically, I aim to ground

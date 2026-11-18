@@ -511,6 +511,29 @@ export default function App() {
     [floating],
   );
 
+  // Once the mouse has left every study anchor (and the card) for 3 s,
+  // clear the focus so the whole conversation is shown undimmed again.
+  useEffect(() => {
+    if (!active || sheetOpen) return;
+    let timer: number | undefined;
+    const HOT = ".anchor, .tag--button, .phase__rail, .ev-float";
+    const onOver = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse") return;
+      const hot = (e.target as Element | null)?.closest?.(HOT);
+      if (hot) {
+        window.clearTimeout(timer);
+        timer = undefined;
+      } else if (timer === undefined) {
+        timer = window.setTimeout(() => setActive(null), 3000);
+      }
+    };
+    document.addEventListener("pointerover", onOver);
+    return () => {
+      document.removeEventListener("pointerover", onOver);
+      window.clearTimeout(timer);
+    };
+  }, [active, sheetOpen]);
+
   // Float the card beside the part of the conversation it explains.
   useLayoutEffect(() => {
     if (!floating || !anchorEl || !stageRef.current) return;
