@@ -15,7 +15,7 @@ import {
   vision as baseVision,
   works as baseWorks,
 } from "./data";
-import type { AnchorId, Message, Speaker } from "./data";
+import type { AnchorId, DialogueMode, Message, Speaker } from "./data";
 import { currentVariant, variantOverrides } from "./variants";
 import { cases, getCase } from "./cases";
 import type { CaseFigure, CaseStudy } from "./cases";
@@ -45,6 +45,14 @@ function useMediaQuery(query: string) {
 const STEPS = messages.length + 1;
 const noticeStep = PIVOT_INDEX + 2;
 const messageStep = (i: number) => (i <= PIVOT_INDEX ? i + 1 : i + 2);
+
+// Consecutive messages sharing a phase form one block on the vertical mode rail.
+const phases = messages.reduce<{ mode: DialogueMode; from: number; to: number }[]>((acc, m, i) => {
+  const last = acc[acc.length - 1];
+  if (last && last.mode === m.phase) last.to = i;
+  else acc.push({ mode: m.phase, from: i, to: i });
+  return acc;
+}, []);
 
 function usePlayback(reduced: boolean) {
   const [step, setStep] = useState(reduced ? STEPS : 0);
@@ -159,6 +167,7 @@ function Bubble({ m, active, onActivate }: { m: Message; active: AnchorId | null
       ) : (
         body
       )}
+      <span className="msg__mode" data-mode={m.mode} title={modeLabel[m.mode]} aria-label={modeLabel[m.mode]} />
     </motion.li>
   );
 }
@@ -167,7 +176,6 @@ function Chat({ active, onActivate, reduced }: { active: AnchorId | null; onActi
   const { step, typing, done, replay, skip } = usePlayback(reduced);
   const nextIdx = !done && typing ? messages.findIndex((_, i) => messageStep(i) === step + 1) : -1;
   const nextSpeaker = nextIdx >= 0 ? messages[nextIdx].speaker : null;
-  const shown = messages.filter((_, i) => messageStep(i) <= step).length;
 
   return (
     <div className="chat" data-dim={active ? true : undefined}>
@@ -177,7 +185,7 @@ function Chat({ active, onActivate, reduced }: { active: AnchorId | null; onActi
             <Avatar key={s} speaker={s} size={22} />
           ))}
         </div>
-        <p className="chat__meta">3 participants and an AI agent. Example utterances from LAK ’26</p>
+        <p className="chat__meta">3 participants and an AI agent</p>
         <button type="button" className="chat__ctl" onClick={done ? replay : skip}>
           {done ? "Replay" : "Skip"}
         </button>
@@ -190,25 +198,53 @@ function Chat({ active, onActivate, reduced }: { active: AnchorId | null; onActi
         </div>
       </Anchor>
 
+      <Anchor id="modes" active={active} onActivate={onActivate} className="anchor--modes">
+        <p className="modes__head">
+          Dialogue mode <Tag id="modes" />
+        </p>
+      </Anchor>
+
       <ol className="chat__list" aria-label="Conversation">
-        {messages.map((m, i) => (
-          <Fragment key={i}>
-            {i === PIVOT_INDEX + 1 && step >= noticeStep && (
-              <motion.li
-                className="notice"
-                initial={{ opacity: 0, scale: 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, ease: EASE }}
+        {phases.map((p) => {
+          if (messageStep(p.from) > step) return null;
+          return (
+            <li key={p.from} className="phase" data-mode={p.mode}>
+              <ol className="phase__msgs">
+                {messages.slice(p.from, p.to + 1).map((m, j) => {
+                  const i = p.from + j;
+                  return (
+                    <Fragment key={i}>
+                      {i === PIVOT_INDEX + 1 && step >= noticeStep && (
+                        <motion.li
+                          className="notice"
+                          initial={{ opacity: 0, scale: 0.97 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.4, ease: EASE }}
+                        >
+                          <Anchor id="next" active={active} onActivate={onActivate} className="anchor--notice">
+                            <span className="notice__text">A pivotal moment? When and how should the agent intervene?</span>
+                            <Tag id="next" />
+                          </Anchor>
+                        </motion.li>
+                      )}
+                      {messageStep(i) <= step && <Bubble m={m} active={active} onActivate={onActivate} />}
+                    </Fragment>
+                  );
+                })}
+              </ol>
+              <motion.div
+                className="phase__rail"
+                aria-label={modeLabel[p.mode]}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.45, ease: EASE }}
+                onClick={(e) => onActivate("modes", "press", e.currentTarget)}
               >
-                <Anchor id="next" active={active} onActivate={onActivate} className="anchor--notice">
-                  <span className="notice__text">A pivotal moment? When and how should the agent intervene?</span>
-                  <Tag id="next" />
-                </Anchor>
-              </motion.li>
-            )}
-            {messageStep(i) <= step && <Bubble m={m} active={active} onActivate={onActivate} />}
-          </Fragment>
-        ))}
+                <span className="phase__label">{modeLabel[p.mode]}</span>
+              </motion.div>
+            </li>
+          );
+        })}
         <AnimatePresence>
           {nextSpeaker && (
             <motion.li
@@ -230,26 +266,6 @@ function Chat({ active, onActivate, reduced }: { active: AnchorId | null; onActi
           )}
         </AnimatePresence>
       </ol>
-
-      <Anchor id="modes" active={active} onActivate={onActivate} className="anchor--modes">
-        <div className="modes">
-          <p className="modes__head">
-            Dialogue mode <Tag id="modes" />
-          </p>
-          <div className="modes__track" aria-hidden="true">
-            {messages.map((m, i) => (
-              <span key={i} className="modes__seg" data-mode={m.mode} data-on={i < shown || undefined} />
-            ))}
-          </div>
-          <p className="modes__legend" aria-hidden="true">
-            {(["affective", "mediation", "deliberative"] as const).map((k) => (
-              <span key={k} data-mode={k}>
-                {modeLabel[k]}
-              </span>
-            ))}
-          </p>
-        </div>
-      </Anchor>
     </div>
   );
 }

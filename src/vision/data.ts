@@ -7,7 +7,7 @@
 // `// UNSOURCED` so it can be replaced.
 //   • Dilemma: LAK '26 Table 1, scenario 2.
 //   • Human utterances: example utterances from the LAK '26 coding scheme
-//     (Table 2), quoted verbatim.
+//     (Table 2), quoted verbatim (the external-context example is adapted).
 //   • Dialogue modes: the three latent modes from ICALT '26 (HMM). Affective
 //     and deliberative turns are connected through conversational mediation,
 //     as the paper reports direct transitions between them are rare.
@@ -162,6 +162,8 @@ export interface Message {
   /** Discussion move (LAK '26 coding scheme). */
   move: string;
   mode: DialogueMode;
+  /** Discussion phase (ICALT '26 latent mode) shown on the vertical rail. */
+  phase: DialogueMode;
   /** The whole message is an anchor. */
   anchor?: AnchorId;
   /** The agent's line is not from a paper — see note in the report. */
@@ -181,16 +183,17 @@ export const dilemma =
 
 // Utterances: LAK '26 Table 2 examples (verbatim, translated by the authors).
 export const messages: Message[] = [
-  { speaker: "green", text: "I absolutely think restrictions are needed.", move: "Position Declaration", mode: "mediation" },
-  { speaker: "pink", text: "Right.", move: "Conversation Maintenance", mode: "mediation" },
-  { speaker: "lilac", text: "Let’s collect our opinions.", move: "Facilitating Agreement", mode: "mediation" },
-  { speaker: "pink", text: "This is tough.", move: "Acknowledging Ambiguity", mode: "affective", anchor: "moves" },
+  { speaker: "green", text: "I absolutely think restrictions are needed.", move: "Position Declaration", mode: "mediation", phase: "mediation" },
+  { speaker: "pink", text: "Right.", move: "Conversation Maintenance", mode: "mediation", phase: "mediation" },
+  { speaker: "lilac", text: "Let’s collect our opinions.", move: "Facilitating Agreement", mode: "mediation", phase: "mediation" },
+  { speaker: "pink", text: "This is tough.", move: "Acknowledging Ambiguity", mode: "affective", phase: "affective", anchor: "moves" },
   {
     speaker: "agent",
     // UNSOURCED — replace with an utterance from the thesis agent logs.
     text: "Let me take the other side. What if her attachment to the android is something she actually needs?",
     move: "Opposing position (peer agent)",
     mode: "mediation",
+    phase: "affective",
     anchor: "agent",
     unsourced: true,
   },
@@ -199,14 +202,17 @@ export const messages: Message[] = [
     text: "I’m an only child… and honestly, as someone who always wanted siblings, I don’t think this robot is such a bad idea.",
     move: "Emotive/Experiential Argument",
     mode: "affective",
+    phase: "affective",
   },
-  { speaker: "pink", text: "Exactly.", move: "Conversation Maintenance", mode: "mediation" },
   {
     speaker: "green",
-    text: "Think about when laptops were first developed; their energy efficiency was terrible at the start… So maybe this robot is just in that initial phase.",
+    // Adapted from the LAK '26 Table 2 example (laptop energy efficiency) to fit this dilemma.
+    text: "Think about when smartphones first came out; people worried we’d get too attached to them… So maybe this attachment is just part of that initial phase.",
     move: "Connecting with External Contexts",
     mode: "deliberative",
+    phase: "deliberative",
   },
+  { speaker: "pink", text: "Exactly.", move: "Conversation Maintenance", mode: "mediation", phase: "deliberative" },
 ];
 
 /** The uncertain turn — the pivotal moment the agent notices before speaking. */
